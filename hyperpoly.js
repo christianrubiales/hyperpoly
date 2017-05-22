@@ -1,4 +1,3 @@
-var globaldata;
 var jsons = {};
 
 $(document).ready(function(){
@@ -7,20 +6,31 @@ $(document).ready(function(){
     	var checked = $(this).prop('checked');
     	if (checked) {
     		var json;
-    		if (jsons.hasOwnProperty(technology)) {
-    			json = jsons[technology];
-    		} else {
-	    		$.getJSON('http://localhost:8000/json/' + technology + '.json', function(data) {
-		    		globaldata = data;
-		    		jsons[technology] = data;
-		    		/*for (var key in data) {
-		    			alert(key);
-		    			alert(JSON.stringify(data[key]));
-		    		}*/
+    		if (!jsons.hasOwnProperty(technology)) {
+    			$.ajax({
+    				url: 'http://localhost:8000/json/' + technology + '.json',
+				    dataType: 'json',
+				    async: false,
+    				success: function(data) {
+		    			jsons[technology] = data;
+		    		}
 		    	});
     		}
+    		json = jsons[technology];
+
+	    	var parentClazz;
 	    	$('tr').each(function() {
-	    		$(this).append('<td class="' + technology + '">new</td>');
+	    		if ($(this).prop('class') == 'header') {
+	    			parentClazz = $(this).find('th:first-child').text();
+	    			$(this).append('<td class="' + technology + '">' + technology + '</td>');
+	    		} else {
+	    			var clazz = $(this).prop('class');
+	    			if (json[parentClazz] && json[parentClazz].hasOwnProperty(clazz)) {
+	    				$(this).append('<td class="' + technology + '">' + json[parentClazz][clazz] + '</td>');
+	    			} else {
+	    				$(this).append('<td class="' + technology + '"></td>');
+	    			}
+	    		}
 	    	});
 	    } else {
 	    	$("." + technology).remove();

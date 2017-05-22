@@ -20,7 +20,10 @@ curl :
 	curl http://hyperpolyglot.org/fortran -o html/fortran.html
 
 compile-java :
-	javac ./java/com/christianrubiales/hyperpoly/HyperpolyglotHtmlToJson.java
+	rm -r ./bin
+	mkdir bin
+	javac ./java/com/christianrubiales/hyperpoly/HyperpolyglotHtmlToJson.java -d ./bin
+	javac ./java/com/christianrubiales/hyperpoly/SkeletonHtmlProcessor.java -d ./bin
 
 html-to-json :
 	./html-to-json.sh

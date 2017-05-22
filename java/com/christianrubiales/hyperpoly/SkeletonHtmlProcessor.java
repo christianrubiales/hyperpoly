@@ -35,7 +35,8 @@ public class SkeletonHtmlProcessor {
 						in.nextLine();
 						contents = "";
 					} else if (line.startsWith("<th colspan=\"3")) {
-						contents += "<th id='header' colspan='1'>";
+						contents = contents.replace("<tr>", "<tr class='header'>");
+						contents += "<th class='header'>";
 						contents += line.substring(line.lastIndexOf("\">") + 2).replace("</a>", "");
 						contents += in.nextLine();
 						write(out, contents);
@@ -44,10 +45,15 @@ public class SkeletonHtmlProcessor {
 						in.nextLine();
 						in.nextLine();
 					} else if (line.startsWith("<td><img"))  {
-						contents = line + in.nextLine();
+						contents += line + in.nextLine();
 						String name = in.nextLine().replace("<td>#", "").replace("</td>", "");
 						contents = contents.replaceAll("src=\".*\" />", "src='./img/" + name + ".jpg' class='image' />");
 						in.nextLine();
+						
+						String clazz = contents.substring(contents.indexOf("<a name=") + 9);
+						clazz = clazz.substring(0, clazz.indexOf('"'));
+						contents = contents.replaceFirst("<tr>", "<tr class='" + clazz + "'>");
+						
 						write(out, contents + in.nextLine());
 					} else if (line.startsWith("<th></th>"))  {
 						in.nextLine();
@@ -61,6 +67,9 @@ public class SkeletonHtmlProcessor {
 						while (!line.startsWith("</tr>") && in.hasNextLine()) {
 							line = in.nextLine();
 						}
+						String clazz = contents.substring(contents.indexOf("<a name=") + 9);
+						clazz = clazz.substring(0, clazz.indexOf('"'));
+						contents = contents.replaceFirst("<tr>", "<tr class='" + clazz + "'>");
 						write(out, contents + "</td></tr>");
 					}
 				} else if (line.startsWith("<th colspan=\"3")) {
