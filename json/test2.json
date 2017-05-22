@@ -1,0 +1,8 @@
+{
+
+"version": {
+  "version-used": "<span style=\"color: gray\"><em>1.4</em></span>",
+  "show-version": "$ go version",
+  "implicit-prologue": "import \"fmt\""
+}
+}

@@ -1,0 +1,4940 @@
+<p><a name="top"></a><span style="color: gray">core:</span> <a href="#version">version</a> | <a href="#grammar-execution">grammar and execution</a> | <a href="#var-expr">variables and expressions</a> | <a href="#arithmetic-logic">arithmetic and logic</a> | <a href="#str">strings</a> | <a href="#regex">regular expressions</a> | <a href="#dates-time">dates and time</a> | <a href="#func">functions</a> | <a href="#exec-control">execution control</a> | <a href="#exceptions">exceptions</a> | <a href="#concurrency">concurrency</a> | <a href="#streams">streams</a> | <a href="#file">files</a> | <a href="#file-fmt">file formats</a> | <a href="#dir">directories</a> | <a href="#env-processes">processes and environment</a> | <a href="#option-parsing">option parsing</a> | <a href="#lib-namespaces">libraries and namespaces</a> | <a href="#objects">objects</a> | <a href="#inheritance-polymorphism">inheritance and polymorphism</a> | <a href="#reflection">reflection</a> | <a href="#net-web">net and web</a> | <a href="#dom">dom</a> | <a href="#gui">gui</a> | <a href="#unit-tests">unit tests</a> | <a href="#debug-profile">debugging and profiling</a></p>
+<p><span style="color: gray">data structures:</span> <a href="#fixed-length-arrays">fixed-length arrays</a> | <a href="#resizable-arrays">resizable arrays</a> | <a href="#arithmetic-sequences">arithmetic sequences</a> | <a href="#lists">lists</a> | <a href="#tuples">tuples</a> | <a href="#stacks">stacks</a> | <a href="#queues">queues</a> | <a href="#sets">sets</a> | <a href="#dict">dictionaries</a> | <a href="#two-d-arrays">2d arrays</a> | <a href="#three-d-arrays">3d arrays</a> | <a href="#user-defined-types">user-defined types</a> | <a href="#generic-types">generic types</a> | <a href="#dependent-types">dependent types</a></p>
+<p><span style="color: gray">auxiliary:</span> <a href="#cpp-macros">c preprocessor macros</a> | <a href="#lisp-macros">lisp macros</a> | <a href="#java-interop">java interop</a></p>
+<p><span style="color: gray">tables:</span> <a href="#tables">tables</a> | <a href="#import-export">import and export</a> | <a href="#relational-algebra">relational algebra</a> | <a href="#aggregation">aggregation</a></p>
+<p><span style="color: gray">mathematics:</span> <a href="#vectors">vectors</a> | <a href="#matrices">matrices</a> | <a href="#symbolic-expressions">symbolic expressions</a> | <a href="#calculus">calculus</a> | <a href="#equations-unknowns">equations and unknowns</a> | <a href="#optimization">optimization</a> | <a href="#combinatorics">combinatorics</a> | <a href="#number-theory">number theory</a> | <a href="#elliptic-curves">elliptic curves</a> | <a href="#algebraic-numbers">algebraic numbers</a> | <a href="#polynomials">polynomials</a> | <a href="#rings">rings</a> | <a href="#power-series">power series</a> | <a href="#special-functions">special functions</a> | <a href="#permutations">permutations</a> | <a href="#groups">groups</a> | <a href="#subgroups">subgroups</a> | <a href="#group-homomorphisms">group homomorphisms</a> | <a href="#actions">actions</a> | <a href="#propositions">propositions</a></p>
+<p><span style="color: gray">statistics:</span> <a href="#descriptive-statistics">descriptive statistics</a> | <a href="#distributions">distributions</a> | <a href="#linear-regression">linear regression</a> | <a href="#statistical-tests">statistical tests</a> | <a href="#time-series">time series</a></p>
+<p><span style="color: gray">charts:</span> <a href="#univariate-charts">univariate charts</a> | <a href="#bivariate-charts">bivariate charts</a> | <a href="#multivariate-charts">multivariate charts</a></p>
+<table class="wiki-content-table">
+<tr>
+<th colspan="3">CORE</th>
+</tr>
+<tr>
+<th colspan="3"><a name="version"></a><a href="#version-note">version</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="version-used"></a><a href="#version-used-note">version used</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#version-used</td>
+<td>The versions used for testing code in the reference sheet.</td>
+</tr>
+<tr>
+<td><a name="show-version"></a><a href="#show-version-note">show version</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#show-version</td>
+<td>How to get the version.</td>
+</tr>
+<tr>
+<td><a name="implicit-prologue"></a><a href="#implicit-prologue-note">implicit prologue</a></td>
+<td>#implicit-prologue</td>
+<td>Code which examples in the sheet assume to have already been executed.<br />
+<br />
+Replace this with convention note? #include, using import in java sheet, not following expressions with semicolons, lists of function names</td>
+</tr>
+<tr>
+<th colspan="3"><a name="grammar-execution"></a><a href="#grammar-execution-note">grammar and execution</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="hello-world"></a><a href="#hello-world-note">hello world</a></td>
+<td>#hello-world</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="compiler"></a><a href="#compiler-note">compiler</a></td>
+<td>#compiler</td>
+<td>compile file; standalone executable</td>
+</tr>
+<tr>
+<td><a name="bytecode-compiler"></a><a href="#bytecode-compiler-note">bytecode compiler</a></td>
+<td>#bytecode-compiler</td>
+<td>also how to execute bytecode</td>
+</tr>
+<tr>
+<td><a name="interpreter"></a><a href="#interpreter-note">interpreter</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#interpreter</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="shebang"></a><a href="#shebang-note">shebang</a></td>
+<td>#shebang</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="repl"></a><a href="#repl-note">repl</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#repl</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cmd-line-program"></a><a href="#cmd-line-program-note">command line program</a></td>
+<td>#cmd-line-program</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="file-suffixes"></a><a href="#file-suffixes-note">file suffixes</a></td>
+<td>#file-suffixes</td>
+<td>omit if can be observed from other examples</td>
+</tr>
+<tr>
+<td><a name="block-delimiters"></a><a href="#block-delimiters-note">block delimiters</a></td>
+<td>#block-delimiters</td>
+<td>consider omitting if can easily be inferred</td>
+</tr>
+<tr>
+<td><a name="stmt-separator"></a><a href="#stmt-separator-note">statement separator</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#stmt-separator</td>
+<td>rename statement terminator</td>
+</tr>
+<tr>
+<td><a name="top-level-stmt"></a><a href="#top-level-stmt-note">top level statements</a></td>
+<td>#top-level-stmt</td>
+<td>statements that can occur at the top level of the file; i.e. not inside any block. Also indicate if certains statements are required or required to appear in a certain order</td>
+</tr>
+<tr>
+<td><a name="expr-delimiters"></a><a href="#expr-delimiters-note">expression delimiters</a></td>
+<td>#expr-delimiters</td>
+<td>indicate other uses of delimiters (parens often have multiple uses). Also list places where expressions must be encased by parens (such as conditional of if).</td>
+</tr>
+<tr>
+<td><a name="expr-stmt"></a><a href="#expr-stmt-note">are expressions statements</a></td>
+<td>#expr-stmt</td>
+<td>in vimscript function invocation is an expr, not a stmt (use call to make it a stmt)</td>
+</tr>
+<tr>
+<td><a name="word-separator"></a><a href="#word-separator-note">word separator</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#word-separator</td>
+<td>how are function args separated, how is function name separated from args, how are other keywords (if, while) separated from their operands</td>
+</tr>
+<tr>
+<td><a name="source-code-encoding"></a><a href="#source-code-encoding-note">source code encoding</a></td>
+<td>#source-code-encoding</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="eol-comment"></a><a href="#eol-comment-note">end-of-line comment</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#eol-comment</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multiple-line-comment"></a><a href="#multiple-line-comment-note">multiple line comment</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#multiple-line-comment</td>
+<td>do they nest?</td>
+</tr>
+<tr>
+<th colspan="3"><a name="var-expr"></a><a href="#var-expr-note">variables and expressions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="id"></a><a href="#id-note">identifier</a></td>
+<td>#id</td>
+<td>is it case sensitive? Sigils? Restrictions on characters?</td>
+</tr>
+<tr>
+<td><a name="quoted-id"></a><a href="#quoted-id-note">quoted identifier</a></td>
+<td>#quoted-id</td>
+<td>how to quote or escape unusual characters</td>
+</tr>
+<tr>
+<td><a name="case-sensitive-id"></a><a href="#case-sensitive-id-note">are identifiers case sensitive</a></td>
+<td>#case-sensitive-id</td>
+<td>if some of languages are *not* case sensitive</td>
+</tr>
+<tr>
+<td><a name="local-var"></a><a href="#local-var-note">local variable</a></td>
+<td>#local-var</td>
+<td>how to declare</td>
+</tr>
+<tr>
+<td><a name="init-var"></a><a href="#init-var-note">initialize variable</a></td>
+<td>#init-var</td>
+<td>if syntax is different than assignment</td>
+</tr>
+<tr>
+<td><a name="uninitialized-local-var"></a><a href="#uninitialized-local-var-note">uninitialized local variable</a></td>
+<td>#uninitialized-local-var</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="scope-regions"></a><a href="#scope-regions-note">regions which define lexical scope</a></td>
+<td>#scope-regions</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="global-var"></a><a href="#global-var-note">global variable</a></td>
+<td>#global-var</td>
+<td>how to declare</td>
+</tr>
+<tr>
+<td><a name="uninitialized-global-var"></a><a href="#uninitialized-global-var-note">uninitialized global variable</a></td>
+<td>#uninitialized-global-var</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="immutable-var"></a><a href="#immutable-var-note">immutable variable</a></td>
+<td>#immutable-var</td>
+<td>e.g const in C++; how to declare</td>
+</tr>
+<tr>
+<td><a name="compile-time-const"></a><a href="#compile-time-const-note">compile time constant</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#compile-time-const</td>
+<td>how to declare</td>
+</tr>
+<tr>
+<td><a name="assignment"></a><a href="#assignment-note">assignment</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#assignment</td>
+<td>does assignment have a value; can they be chained</td>
+</tr>
+<tr>
+<td><a name="parallel-assignment"></a><a href="#parallel-assignment-note">parallel assignment</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#parallel-assignment</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="swap"></a><a href="#swap-note">swap</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#swap</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="compound-assignment"></a><a href="#compound-assignment-note">compound assignment</a><br />
+<span style="color: gray"><em>arithmetic, string, logical, bit</em></span></td>
+<td>#compound-assignment</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="incr-decr"></a><a href="#incr-decr-note">increment and decrement</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#incr-decr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="addr"></a><a href="#addr-note">address</a></td>
+<td>#addr</td>
+<td>&amp; in C, \ in Perl; in typed languages how to declare pointer types</td>
+</tr>
+<tr>
+<td><a name="dereference"></a><a href="#dereference-note">dereference</a></td>
+<td>#dereference</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="type-size"></a><a href="#type-size-note">type size</a></td>
+<td>#type-size</td>
+<td>i.e. sizeof()</td>
+</tr>
+<tr>
+<td><a name="val-size"></a><a href="#val-size-note">value size</a></td>
+<td>#val-size</td>
+<td>sizeof() can be used on expressions</td>
+</tr>
+<tr>
+<td><a name="addr-arithm"></a><a href="#addr-arithm-note">address arithmetic</a></td>
+<td>#addr-arithm</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="ref-cnt-ptr"></a><a href="#ref-cnt-ptr-note">reference count pointer</a></td>
+<td>#ref-cnt-ptr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="weak-ptr"></a><a href="#weak-ptr-note">weak pointer</a></td>
+<td>#weak-ptr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="allocate-heap"></a><a href="#allocate-heap-note">allocate heap</a></td>
+<td>#allocate-heap</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="uninitialized-heap"></a><a href="#uninitialized-heap-note">uninitialized heap</a></td>
+<td>#uninitialized-heap</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="free-heap"></a><a href="#free-heap-note">free heap</a></td>
+<td>#free-heap</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="id-as-val"></a><a href="#id-as-val-note">identifier as value</a></td>
+<td>#id-as-val</td>
+<td>i.e. quoting a symbol in lisp</td>
+</tr>
+<tr>
+<td><a name="var-attr"></a><a href="#var-attr-note">variable attributes</a><br />
+<span style="color: gray"><em>set, get, remove</em></span></td>
+<td>#var-attr</td>
+<td>called properties in lisp</td>
+</tr>
+<tr>
+<td><a name="non-referential-id"></a><a href="#non-referential-id-note">non-referential identifier</a></td>
+<td>#non-referential-id</td>
+<td>called atom in Prolog and Erlang; symbol in Ruby; keyword in Lisp; show how to quote special characters; also mention named parameters of Python and perhaps Objective C?</td>
+</tr>
+<tr>
+<td><a name="unit-type-val"></a><a href="#unit-type-val-note">unit type and value</a></td>
+<td>#unit-type-val</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="null"></a><a href="#null-note">null</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#null</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="null-test"></a><a href="#null-test-note">null test</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#null-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="coalesce"></a><a href="#coalesce-note">coalesce</a></td>
+<td>#coalesce</td>
+<td>aka null coalescing operator</td>
+</tr>
+<tr>
+<td><a name="nullif"></a><a href="#nullif-note">nullif</a></td>
+<td>#nullif</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="undef-var"></a><a href="#undef-var-note">undefined variable</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#undef-var</td>
+<td>for languages which don't require declaration; notes can have undef test</td>
+</tr>
+<tr>
+<td><a name="rm-var"></a><a href="#rm-var-note">remove variable</a></td>
+<td>#rm-var</td>
+<td>interactive environments often have this feature</td>
+</tr>
+<tr>
+<td><a name="cond-expr"></a><a href="#cond-expr-note">conditional expression</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#cond-expr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="branch-type-mismatch"></a><a href="#branch-type-mismatch-note">branch type mismatch</a></td>
+<td>#branch-type-mismatch</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="decl-expr-type"></a><a href="#decl-expr-type-note">declare expression type</a></td>
+<td>#decl-expr-type</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="arithmetic-logic"></a><a href="#arithmetic-logic-note">arithmetic and logic</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="boolean-type"></a><a href="#boolean-type-note">boolean type</a></td>
+<td>#boolean-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="true-false"></a><a href="#true-false-note">true and false</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#true-false</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="falsehoods"></a><a href="#falsehoods-note">falsehoods</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#falsehoods</td>
+<td>lists all values which evaluate as false in a conditional or as an operand of a logical operator. Add a note if there values which cause an error in that context.</td>
+</tr>
+<tr>
+<td><a name="logical-op"></a><a href="#logical-op-note">logical operators</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#logical-op</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="short-circuit-op"></a><a href="#short-circuit-op-note">short circuit operators</a></td>
+<td>#short-circuit-op</td>
+<td>when logical ops don't short circuit</td>
+</tr>
+<tr>
+<td><a name="relational-expr"></a><a href="#relational-expr-note">relational expression</a></td>
+<td>#relational-expr</td>
+<td>for languages with unusual syntax: shells, tcl, prolog</td>
+</tr>
+<tr>
+<td><a name="relational-op"></a><a href="#relational-op-note">relational operators</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#relational-op</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="min-max"></a><a href="#min-max-note">min and max</a></td>
+<td>#min-max</td>
+<td>Do functions take variable number of arguments? See also min-max-elem in the arrays section.</td>
+</tr>
+<tr>
+<td><a name="three-val-comparison"></a><a href="#three-val-comparison-note">three value comparison</a></td>
+<td>#three-val-comparison</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="int-type"></a><a href="#int-type-note">integer type</a></td>
+<td>#int-type</td>
+<td>list types if more than one, notes contain info about literals</td>
+</tr>
+<tr>
+<td><a name="int-literal"></a><a href="#int-literal-note">integer literal</a></td>
+<td>#int-literal</td>
+<td>if unusual; SML, Oz uses ~ for negation; Haskell lacks negative literals</td>
+</tr>
+<tr>
+<td><a name="unsigned-type"></a><a href="#unsigned-type-note">unsigned type</a></td>
+<td>#unsigned-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="float-type"></a><a href="#float-type-note">float type</a></td>
+<td>#float-type</td>
+<td>list types if more than one</td>
+</tr>
+<tr>
+<td><a name="float-literal"></a><a href="#float-literal-note">float literal</a></td>
+<td>#float-literal</td>
+<td>if unusual, otherwise put in notes to float type</td>
+</tr>
+<tr>
+<td><a name="fixed-type"></a><a href="#fixed-type-note">fixed type</a></td>
+<td>#fixed-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="num-predicates"></a><a href="#num-predicates-note">numeric predicates</a></td>
+<td>#num-predicates</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="arith-expr"></a><a href="#arith-expr-note">arithmetic expression</a></td>
+<td>#arith-expr</td>
+<td>for languages with unusual syntax: shells, tcl</td>
+</tr>
+<tr>
+<td><a name="arith-op"></a><a href="#arith-op-note">arithmetic operators</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#arith-op</td>
+<td>addition, subtraction, multiplication, division, quotient, remainder</td>
+</tr>
+<tr>
+<td><a name="add-int-float"></a><a href="#add-int-float-note">add integer and float</a></td>
+<td>#add-int-float</td>
+<td>how to add integer and float; omit if no explicit conversion is needed</td>
+</tr>
+<tr>
+<td><a name="unary-negation"></a><a href="#unary-negation-note">unary negation</a></td>
+<td>#unary-negation</td>
+<td>example should be unary negation and not a negative float literal (i.e. use a variable)</td>
+</tr>
+<tr>
+<td><a name="int-div"></a><a href="#int-div-note">integer division</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#int-div</td>
+<td>How to perform integer division (i.e. quotient) on integers.</td>
+</tr>
+<tr>
+<td><a name="int-div-zero"></a><a href="#int-div-zero-note">integer division by zero</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#int-div-zero</td>
+<td>test positive, negative, and zero dividend; if there is an infinity value does it have a literal?</td>
+</tr>
+<tr>
+<td><a name="divmod"></a><a href="#divmod-note">divmod</a></td>
+<td>#divmod</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="float-div"></a><a href="#float-div-note">float division</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#float-div</td>
+<td>How to perform float division on integers.</td>
+</tr>
+<tr>
+<td><a name="float-div-zero"></a><a href="#float-div-zero-note">float division by zero</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#float-div-zero</td>
+<td>test positive, negative, and zero dividend; if there is an infinity value does it have a literal?</td>
+</tr>
+<tr>
+<td><a name="power"></a><a href="#power-note">power</a></td>
+<td>#power</td>
+<td>Use 2 ** 16 as an example. different for integers and floats? Zero with negative exponent? Negative number with fractional exponent?</td>
+</tr>
+<tr>
+<td><a name="factorial"></a><a href="#factorial-note">factorial</a><br />
+<br />
+<span style="color: gray"><em>and binomial coefficient</em></span></td>
+<td>#factorial</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sqrt"></a><a href="#sqrt-note">sqrt</a></td>
+<td>#sqrt</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sqrt-negative-one"></a><a href="#sqrt-negative-one-note">sqrt -1</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#sqrt-negative-one</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="transcendental-func"></a><a href="#transcendental-func-note">transcendental functions</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#transcendental-func</td>
+<td>rename transcendental functions (but rm sqrt). 4 groups: exp and log; trig; inverse trig; atan2</td>
+</tr>
+<tr>
+<td><a name="transcendental-const"></a><a href="#transcendental-const-note">transcendental constants</a></td>
+<td>#transcendental-const</td>
+<td>pi and e</td>
+</tr>
+<tr>
+<td><a name="float-truncation"></a><a href="#float-truncation-note">float truncation</a><br />
+<span style="color: gray"><em>round towards zero, round to nearest integer, round down, round up</em></span></td>
+<td>#float-truncation</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="absolute-val"></a><a href="#absolute-val-note">absolute value</a><br />
+<span style="color: gray"><em>and signum</em></span></td>
+<td>#absolute-val</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="int-overflow"></a><a href="#int-overflow-note">integer overflow</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#int-overflow</td>
+<td>some possibilities: modular arithmetic, exception, conversion to float, conversion to arbitrary length integer</td>
+</tr>
+<tr>
+<td><a name="float-overflow"></a><a href="#float-overflow-note">float overflow</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#float-overflow</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="float-limits"></a><a href="#float-limits-note">float limits</a></td>
+<td>#float-limits</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="arbitrary-len-int-type"></a><a href="#arbitrary-len-int-type-note">arbitrary length integer type</a></td>
+<td>#arbitrary-len-int-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="arbitrary-len-int-op"></a><a href="#arbitrary-len-int-op-note">arbitrary length integer operations</a></td>
+<td>#arbitrary-len-int-op</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rational-type"></a><a href="#rational-type-note">rational type</a></td>
+<td>#rational-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rational-construction"></a><a href="#rational-construction-note">rational construction</a></td>
+<td>#rational-construction</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rational-decomposition"></a><a href="#rational-decomposition-note">rational decomposition</a></td>
+<td>#rational-decomposition</td>
+<td>numerator, denominator</td>
+</tr>
+<tr>
+<td><a name="decimal-approx"></a><a href="#decimal-approx-note">decimal approximation</a></td>
+<td>#decimal-approx</td>
+<td>and how to control the number of digits</td>
+</tr>
+<tr>
+<td><a name="complex-type"></a><a href="#complex-type-note">complex type</a></td>
+<td>#complex-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="complex-construction"></a><a href="#complex-construction-note">complex construction</a></td>
+<td>#complex-construction</td>
+<td>also construct from polar coordinates</td>
+</tr>
+<tr>
+<td><a name="complex-decomposition"></a><a href="#complex-decomposition-note">complex decomposition</a></td>
+<td>#complex-decomposition</td>
+<td>real and imaginary, argument and absolute value, conjugate</td>
+</tr>
+<tr>
+<td><a name="random-num"></a><a href="#random-num-note">random number</a><br />
+<span style="color: gray"><em>uniform integer, uniform float, normal float</em></span></td>
+<td>#random-num</td>
+<td>put distribution in subtitle</td>
+</tr>
+<tr>
+<td><a name="random-seed"></a><a href="#random-seed-note">random seed</a><br />
+<span style="color: gray"><em>set, get and restore</em></span></td>
+<td>#random-seed</td>
+<td>just show how to set it?</td>
+</tr>
+<tr>
+<td><a name="bit-op"></a><a href="#bit-op-note">bit operators</a><br />
+<span style="color: gray"><em>left shift, right shift, and, inclusive or, exclusive or, complement</em></span></td>
+<td>#bit-op</td>
+<td>for examples use (1, 3) or (5, 1). Supposing the arguments are nonnegative, (1, 3) is the minimal solution which makes all of the operators distinct. (5, 1) is the minimal solution where all of the operators are distinct and nonzero. The minimization function is the sum of the arguments.<br />
+<br />
+Shift can be logical, circular, or arithmetic. In logical shift the new bits are zero. In circular the new bits are the bits that were removed from the other end. Arithmetic left shift is the same as logical left shift. Arithmetic right shift fills with the value of the high order bit.</td>
+</tr>
+<tr>
+<td><a name="binary-octal-hex-literals"></a><a href="#binary-octal-hex-literals-note">binary, octal, and hex literals</a></td>
+<td>#binary-octal-hex-literals</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="radix"></a><a href="#radix-note">radix</a><br />
+<span style="color: gray"><em>convert integer to and from string with radix</em></span></td>
+<td>#radix</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="str"></a><a href="#str-note">strings</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="str-type"></a><a href="#str-type-note">string type</a></td>
+<td>#str-type</td>
+<td>is encoding a property?</td>
+</tr>
+<tr>
+<td><a name="str-pred"></a><a href="#str-pred-note">string predicate</a></td>
+<td>#str-pred</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="allocate-str"></a><a href="#allocate-str-note">allocate string</a></td>
+<td>#allocate-str</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="str-literal"></a><a href="#str-literal-note">string literal</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#str-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="newline-in-str-literal"></a><a href="#newline-in-str-literal-note">newline in literal</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#newline-in-str-literal</td>
+<td>Ways to put a newline in a string; note if actual newline doesn't render.</td>
+</tr>
+<tr>
+<td><a name="str-literal-esc"></a><a href="#str-literal-esc-note">literal escapes</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#str-literal-esc</td>
+<td>explain sequences not found in C</td>
+</tr>
+<tr>
+<td><a name="custom-str-literal-delimiters"></a><a href="#custom-str-literal-delimiters-note">custom delimiters</a></td>
+<td>#custom-str-literal-delimiters</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="here-doc"></a><a href="#here-doc-note">here document</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#here-doc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="unquoted-str-literal"></a><a href="#unquoted-str-literal-note">unquoted string literal</a></td>
+<td>#unquoted-str-literal</td>
+<td>also called a bareword</td>
+</tr>
+<tr>
+<td><a name="var-interpolation"></a><a href="#var-interpolation-note">variable interpolation</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#var-interpolation</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="expr-interpolation"></a><a href="#expr-interpolation-note">expression interpolation</a></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="fmt-str"></a><a href="#fmt-str-note">format string</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#fmt-str</td>
+<td>i.e. sprintf; characters for string, integer, float, how to escape conversion specifier character</td>
+</tr>
+<tr>
+<td><a name="mutable-str"></a><a href="#mutable-str-note">are strings mutable?</a></td>
+<td>#mutable-str</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="copy-str"></a><a href="#copy-str-note">copy string</a></td>
+<td>#copy-str</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="compare-str"></a><a href="#compare-str-note">compare strings</a></td>
+<td>#compare-str</td>
+<td>if relational operators don't work</td>
+</tr>
+<tr>
+<td><a name="str-concat"></a><a href="#str-concat-note">concatenate</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#str-concat</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="str-replicate"></a><a href="#str-replicate-note">replicate</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#str-replicate</td>
+<td>replicate character and replicate string. Also called string multiplication.</td>
+</tr>
+<tr>
+<td><a name="translate-case"></a><a href="#translate-case-note">translate case</a><br />
+<span style="color: gray"><em>to upper, to lower</em></span></td>
+<td>#translate-case</td>
+<td>rename from case manipulation. to upper, to lower</td>
+</tr>
+<tr>
+<td><a name="capitalize"></a><a href="#capitalize-note">capitalize</a></td>
+<td>#capitalize</td>
+<td>capitalizes string or words?</td>
+</tr>
+<tr>
+<td><a name="trim"></a><a href="#trim-note">trim</a><br />
+<span style="color: gray"><em>left, right, both ends</em></span></td>
+<td>#trim</td>
+<td>Also called stripping. But prefer trimming, since stripping can mean removing internal occurrences of a character</td>
+</tr>
+<tr>
+<td><a name="pad"></a><a href="#pad-note">pad</a><br />
+<span style="color: gray"><em>left, right, both ends</em></span></td>
+<td>#pad</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="num-to-str"></a><a href="#num-to-str-note">number to string</a></td>
+<td>#num-to-str</td>
+<td>precision and zero padding; explict conversion and operators which perform implicit conversion</td>
+</tr>
+<tr>
+<td><a name="str-to-num"></a><a href="#str-to-num-note">string to number</a></td>
+<td>#str-to-num</td>
+<td>notes on whether full string must parse and what happen if conversion fails; explicit conversion and operators which perform implicit conversion</td>
+</tr>
+<tr>
+<td><a name="str-join"></a><a href="#str-join-note">string join</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#str-join</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="split"></a><a href="#split-note">split</a></td>
+<td>#split</td>
+<td>char, string, and regex delimiter<br />
+<br />
+splitting on one occurrence of a delimiter vs one or more occurrences<br />
+<br />
+how boundary delimiters are handled</td>
+</tr>
+<tr>
+<td><a name="split-in-two"></a><a href="#split-in-two-note">split in two</a><br />
+<span style="color: gray"><em>at first delimiter, at last delimiter</em></span></td>
+<td>#split-in-two</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="split-keep-delimiters"></a><a href="#split-keep-delimiters-note">split and keep delimiters</a></td>
+<td>#split-keep-delimiters</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="prefix-suffix-test"></a><a href="#prefix-suffix-test-note">prefix and suffix test</a></td>
+<td>#prefix-suffix-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="serialize"></a><a href="#serialize-note">serialize</a><br />
+<span style="color: gray"><em>and deserialize</em></span></td>
+<td>#serialize</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="str-len"></a><a href="#str-len-note">length</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#str-len</td>
+<td>in characters, in bytes</td>
+</tr>
+<tr>
+<td><a name="index-substr"></a><a href="#index-substr-note">index of substring</a><br />
+<span style="color: gray"><em>first, last</em></span></td>
+<td>#index-substr</td>
+<td>is index zero-based or one-based? What if not found?</td>
+</tr>
+<tr>
+<td><a name="extract-substr"></a><a href="#extract-substr-note">extract substring</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#extract-substr</td>
+<td>zero-based or one-based index? by endpoints, by start and length; what about out-of-bounds condition</td>
+</tr>
+<tr>
+<td><a name="char-type"></a><a href="#char-type-note">character type</a></td>
+<td>#char-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="char-pred"></a><a href="#char-pred-note">character predicate</a></td>
+<td>#char-pred</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="char-literal"></a><a href="#char-literal-note">character literal</a></td>
+<td>#char-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="lookup-char"></a><a href="#lookup-char-note">character lookup</a><br />
+<span style="color: gray"><em>and byte</em></span></td>
+<td>#lookup-char</td>
+<td>is index zero-based or one-based? out-of-bounds?</td>
+</tr>
+<tr>
+<td><a name="char-index"></a><a href="#char-index-note">character index</a></td>
+<td>#char-index</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="char-tests"></a><a href="#char-tests-note">character tests</a></td>
+<td>#char-tests</td>
+<td>such as defined in &lt;ctype.h</td>
+</tr>
+<tr>
+<td><a name="chr-ord"></a><a href="#chr-ord-note">chr and ord</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#chr-ord</td>
+<td>"chr" converts an integer representing a code point to the corresponding character. In language which represent characters by integers no such operation is necessary, but in other languages "chr" might return a string with one character. "ord" is the inverse operation. There must be a character encoding, whether implicit or explicit, and "chr" can fail if not given a code point that is in range.</td>
+</tr>
+<tr>
+<td><a name="str-to-char-array"></a><a href="#str-to-char-array-note">to array of characters</a></td>
+<td>#str-to-char-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="test-char"></a><a href="#test-char-note">test character</a></td>
+<td>#test-char</td>
+<td>is uppercase? is lowercase? Other Unicode properties</td>
+</tr>
+<tr>
+<td><a name="translate-char"></a><a href="#translate-char-note">translate characters</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#translate-char</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="delete-char"></a><a href="#delete-char-note">delete characters</a></td>
+<td>#delete-char</td>
+<td>also how to delete characters "not" in the list</td>
+</tr>
+<tr>
+<td><a name="squeeze-char"></a><a href="#squeeze-char-note">squeeze characters</a></td>
+<td>#squeeze-char</td>
+<td>combine with translate to squeeze all whitespace to a single space?</td>
+</tr>
+<tr>
+<th colspan="3"><a name="regex"></a><a href="#regex-note">regular expressions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="regex-literal"></a><a href="#regex-literal-note">literal, custom delimited literal</a></td>
+<td>#regex-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="char-class-abbrev"></a><a href="#char-class-abbrev-note">character class abbreviations</a></td>
+<td>#char-class-abbrev</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="regex-anchors"></a><a href="#regex-anchors-note">anchors</a></td>
+<td>#regex-anchors</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="regex-lookahead"></a><a href="#regex-lookahead-note">lookahead</a><br />
+<span style="color: gray"><em>positive, negative</em></span></td>
+<td>#regex-lookahead</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="regex-test"></a><a href="#regex-test-note">match test</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#regex-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="case-insensitive-regex"></a><a href="#case-insensitive-regex-note">case insensitive match test</a></td>
+<td>#case-insensitive-regex</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="regex-modifiers"></a><a href="#regex-modifiers-note">modifiers</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#regex-modifiers</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="subst"></a><a href="#subst-note">substitution</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#subst</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="match-prematch-postmatch"></a><a href="#match-prematch-postmatch-note">match, prematch, postmatch</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#match-prematch-postmatch</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="group-capture"></a><a href="#group-capture-note">group capture</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#group-capture</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="named-group-capture"></a><a href="#named-group-capture-note">named group capture</a></td>
+<td>#named-group-capture</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="scan"></a><a href="#scan-note">scan</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#scan</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="backreference"></a><a href="#backreference-note">backreference in match and substitution</a></td>
+<td>#backreference</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="recursive-regex"></a><a href="#recursive-regex-note">recursive regex</a></td>
+<td>#recursive-regex</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="dates-time"></a><a href="#dates-time-note">dates and time</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="broken-down-datetime-type"></a><a href="#broken-down-datetime-type-note">broken-down datetime type</a></td>
+<td>#broken-down-datetime-type</td>
+<td>called broken-down or broken-out in the C standard library</td>
+</tr>
+<tr>
+<td><a name="unix-epoch-type"></a><a href="#unix-epoch-type-note">unix epoch type</a></td>
+<td>#unix-epoch-type</td>
+<td>if not an integer or if there are multiple integer types</td>
+</tr>
+<tr>
+<td><a name="current-datetime"></a><a href="#current-datetime-note">current datetime</a></td>
+<td>#current-datetime</td>
+<td>local and UTC</td>
+</tr>
+<tr>
+<td><a name="current-unix-epoch"></a><a href="#current-unix-epoch-note">current unix epoch</a></td>
+<td>#current-unix-epoch</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="broken-down-datetime-to-unix-epoch"></a><a href="#broken-down-datetime-to-unix-epoch-note">broken-down datetime to unix epoch</a></td>
+<td>#broken-down-datetime-to-unix-epoch</td>
+<td>convert broken-down datetime to unix epoch; both local and UTC</td>
+</tr>
+<tr>
+<td><a name="unix-epoch-to-broken-down-datetime"></a><a href="#unix-epoch-to-broken-down-datetime-note">unix epoch to broken-down datetime</a></td>
+<td>#unix-epoch-to-broken-down-datetime</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="datetime-to-str"></a><a href="#datetime-to-str-note">datetime to string</a></td>
+<td>#datetime-to-str</td>
+<td>Using the default format for the locale</td>
+</tr>
+<tr>
+<td><a name="fmt-datetime"></a><a href="#fmt-datetime-note">format datetime</a></td>
+<td>#fmt-datetime</td>
+<td>man page of format specifiers</td>
+</tr>
+<tr>
+<td><a name="parse-datetime"></a><a href="#parse-datetime-note">parse datetime</a></td>
+<td>#parse-datetime</td>
+<td>man page of format specifiers</td>
+</tr>
+<tr>
+<td><a name="parse-datetime-without-format"></a><a href="#parse-datetime-without-format-note">parse datetime w/o format</a></td>
+<td>#parse-datetime-without-format</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="date-parts"></a><a href="#date-parts-note">date parts</a></td>
+<td>#date-parts</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="time-parts"></a><a href="#time-parts-note">time parts</a></td>
+<td>#time-parts</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="build-datetime"></a><a href="#build-datetime-note">build broken-down datetime</a></td>
+<td>#build-datetime</td>
+<td>rollover: does May 32 == Jun 1; what about Jun 0?</td>
+</tr>
+<tr>
+<td><a name="dow-doy"></a><a href="#dow-doy-note">day of week and day of year</a></td>
+<td>#dow-doy</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="datetime-subtraction"></a><a href="#datetime-subtraction-note">datetime subtraction</a></td>
+<td>#datetime-subtraction</td>
+<td>does the subtraction operator work or is the result nonsensical? Is there are different way to get the duration length</td>
+</tr>
+<tr>
+<td><a name="add-duration"></a><a href="#add-duration-note">add duration</a></td>
+<td>#add-duration</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="local-tmz-determination"></a><a href="#local-tmz-determination-note">local time zone determination</a></td>
+<td>#local-tmz-determination</td>
+<td>and if it is stored in broken-down date and time values</td>
+</tr>
+<tr>
+<td><a name="tmz-info"></a><a href="#tmz-info-note">time zone info</a><br />
+<span style="color: gray"><em>name and utc offset</em></span></td>
+<td>#tmz-info</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="daylight-savings-test"></a><a href="#daylight-savings-test-note">daylight savings test</a></td>
+<td>#daylight-savings-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="nonlocal-tmz"></a><a href="#nonlocal-tmz-note">nonlocal time zone</a></td>
+<td>#nonlocal-tmz</td>
+<td>convert a UTC date and time to the corresponding date and time for a nonlocal time zone</td>
+</tr>
+<tr>
+<td><a name="microseconds"></a><a href="#microseconds-note">microseconds</a></td>
+<td>#microseconds</td>
+<td>get current date and time down to the microsecond</td>
+</tr>
+<tr>
+<th colspan="3"><a name="func"></a><a href="#func-note">functions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="decl-func"></a><a href="#decl-func-note">declare</a></td>
+<td>#decl-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-func"></a><a href="#def-func-note">define</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#def-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="call-func"></a><a href="#call-func-note">call</a></td>
+<td>#call-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-static-class-method"></a><a href="#def-static-class-method-note">define static class method</a></td>
+<td>#def-static-class-method</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="call-static-class-method"></a><a href="#call-static-class-method-note">call static class method</a></td>
+<td>#call-static-class-method</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-func-with-block-body"></a><a href="#def-func-with-block-body-note">define with block body</a></td>
+<td>#def-func-with-block-body</td>
+<td>for languages which have functions which expression bodies</td>
+</tr>
+<tr>
+<td><a name="undef-func"></a><a href="#undef-func-note">undefine</a></td>
+<td>#undef-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="redefine-func"></a><a href="#redefine-func-note">redefine</a></td>
+<td>#redefine-func</td>
+<td>in particular, can built-ins be redefined</td>
+</tr>
+<tr>
+<td><a name="overload-func"></a><a href="#overload-func-note">overload</a></td>
+<td>#overload-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-func-piecewise"></a><a href="#def-func-piecewise-note">define piecewise</a></td>
+<td>#def-func-piecewise</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="nest-func"></a><a href="#nest-func-note">nest</a></td>
+<td>#nest-func</td>
+<td>Note visibility of nested function. Can nested function see local functions of parent variable?</td>
+</tr>
+<tr>
+<td><a name="missing-arg"></a><a href="#missing-arg-note">missing argument behavior</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#missing-arg</td>
+<td>what about extra arg behavior?</td>
+</tr>
+<tr>
+<td><a name="extra-arg"></a><a href="#extra-arg-note">extra argument behavior</a></td>
+<td>#extra-arg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="default-arg"></a><a href="#default-arg-note">default argument</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#default-arg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="named-param"></a><a href="#named-param-note">named parameters</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#named-param</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="variadic-func"></a><a href="#variadic-func-note">variadic function</a></td>
+<td>#variadic-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="expand-array"></a><a href="#expand-array-note">pass array elements as separate arguments</a></td>
+<td>#expand-array</td>
+<td>aka splat operator; should illustrate when not all arguments come from array</td>
+</tr>
+<tr>
+<td><a name="param-alias"></a><a href="#param-alias-note">parameter alias</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#param-alias</td>
+<td>What if an expression is provided? What about strings, arrays, and dictionaries in the normal case? in out in Ada and ref in C#</td>
+</tr>
+<tr>
+<td><a name="uninitialized-param-alias"></a><a href="#uninitialized-param-alias-note">uninitialized parameter alias</a></td>
+<td>#uninitialized-param-alias</td>
+<td>out in Ada and C#</td>
+</tr>
+<tr>
+<td><a name="retval"></a><a href="#retval-note">return value</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#retval</td>
+<td>how return value</td>
+</tr>
+<tr>
+<td><a name="no-retval"></a><a href="#no-retval-note">no return value</a></td>
+<td>#no-retval</td>
+<td>how to declare function with no return value; aka a procedure</td>
+</tr>
+<tr>
+<td><a name="multiple-retval"></a><a href="#multiple-retval-note">multiple return values</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#multiple-retval</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="named-retval"></a><a href="#named-retval-note">named return values</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#named-retval</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="exec-on-return"></a><a href="#exec-on-return-note">execute on return</a><br />
+<span style="white-space: pre-wrap;">&nbsp;&nbsp;</span></td>
+<td>#exec-on-return</td>
+<td>e.g.. the defer statement in Go</td>
+</tr>
+<tr>
+<td><a name="recursive-func"></a><a href="#recursive-func-note">recursive function</a></td>
+<td>#recursive-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="mutually-recursive-func"></a><a href="#mutually-recursive-func-note">mutually recursive functions</a></td>
+<td>#mutually-recursive-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="anon-func-literal"></a><a href="#anon-func-literal-note">anonymous function literal</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#anon-func-literal</td>
+<td>aka lambda function</td>
+</tr>
+<tr>
+<td><a name="call-anon-func"></a><a href="#call-anon-func-note">call anonymous function</a></td>
+<td>#call-anon-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="closure"></a><a href="#closure-note">closure</a></td>
+<td>#closure</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="func-private-state"></a><a href="#func-private-state-note">function with private state</a></td>
+<td>#func-private-state</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="func-as-val"></a><a href="#func-as-val-note">function as value</a></td>
+<td>#func-as-val</td>
+<td>i.e. how to pass a function as an argument.</td>
+</tr>
+<tr>
+<td><a name="generator"></a><a href="#generator-note">generator</a></td>
+<td>#generator</td>
+<td>a function which can yield to the caller and resume</td>
+</tr>
+<tr>
+<td><a name="decorator"></a><a href="#decorator-note">decorator</a></td>
+<td>#decorator</td>
+<td>note on order when there are two decorators</td>
+</tr>
+<tr>
+<td><a name="compose-func"></a><a href="#compose-func-note">compose functions</a></td>
+<td>#compose-func</td>
+<td>if a point free operator is provided</td>
+</tr>
+<tr>
+<td><a name="partial-application"></a><a href="#partial-application-note">partial application</a></td>
+<td>#partial-application</td>
+<td>cf currying</td>
+</tr>
+<tr>
+<td><a name="overload-op"></a><a href="#overload-op-note">overload operator</a></td>
+<td>#overload-op</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="call-op-like-func"></a><a href="#call-op-like-func-note">call operator like function</a></td>
+<td>#call-op-like-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="call-func-like-op"></a><a href="#call-func-like-op-note">call function like operator</a></td>
+<td>#call-func-like-op</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="lazy-eval"></a><a href="#lazy-eval-note">lazy evaluation</a></td>
+<td>#lazy-eval</td>
+<td>when not the default behavior</td>
+</tr>
+<tr>
+<td><a name="strict-eval"></a><a href="#strict-eval-note">strict evaluation</a></td>
+<td>#strict-eval</td>
+<td>when not the default behavior</td>
+</tr>
+<tr>
+<th colspan="3"><a name="exec-control"></a><a href="#exec-control-note">execution control</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="if"></a><a href="#if-note">if</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#if</td>
+<td>print "positive", "negative", or "zero" depending upon sign of x</td>
+</tr>
+<tr>
+<td><a name="switch"></a><a href="#switch-note">switch</a></td>
+<td>#switch</td>
+<td>does execution fall thru to the next case?<br />
+<br />
+permitted type of expression in switch: integer, any<br />
+<br />
+type of comparision in case: equality test, regex match</td>
+</tr>
+<tr>
+<td><a name="while"></a><a href="#while-note">while</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#while</td>
+<td>iterate over i and print the numbers 0 to 9<br />
+<br />
+if do-while loop exists, mention in footnote</td>
+</tr>
+<tr>
+<td><a name="for"></a><a href="#for-note">for</a></td>
+<td>#for</td>
+<td>initialization, condition, afterthought; illustrate comma operator<br />
+iterate over i and print the numbers 0 to 9</td>
+</tr>
+<tr>
+<td><a name="for-local-scope"></a><a href="#for-local-scope-note">for with local scope</a></td>
+<td>#for-local-scope</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="infinite-loop"></a><a href="#infinite-loop-note">infinite loop</a></td>
+<td>#infinite-loop</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="break"></a><a href="#break-note">break</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#break</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="break-from-nested-loops"></a><a href="#break-from-nested-loops-note">break from nested loops</a></td>
+<td>#break-from-nested-loops</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="continue"></a><a href="#continue-note">continue</a></td>
+<td>#continue</td>
+<td>can't find a short example where continue is useful</td>
+</tr>
+<tr>
+<td><a name="stmt-modifiers"></a><a href="#stmt-modifiers-note">statement modifiers</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#stmt-modifiers</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="single-stmt-branch-loop"></a><a href="#single-stmt-branch-loop-note">single statement branches and loops</a></td>
+<td>#single-stmt-branch-loop</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dangling-else"></a><a href="#dangling-else-note">dangling else</a></td>
+<td>#dangling-else</td>
+<td>if dangling else ambiguity, show how resolved</td>
+</tr>
+<tr>
+<td><a name="goto"></a><a href="#goto-note">goto</a></td>
+<td>#goto</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="longjmp"></a><a href="#longjmp-note">longjmp</a></td>
+<td>#longjmp</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="exceptions"></a><a href="#exceptions-note">exceptions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="base-exc"></a><a href="#base-exc-note">base exception</a><br />
+<span style="color: gray"><em>and base of user defined exceptions</em></span></td>
+<td>#base-exc</td>
+<td>what can be thrown; base of all exceptions; of user defined exceptions; base exception methods</td>
+</tr>
+<tr>
+<td><a name="predefined-exc"></a><a href="#predefined-exc-note">predefined exceptions</a></td>
+<td>#predefined-exc</td>
+<td>use indentation to show hierarchy</td>
+</tr>
+<tr>
+<td><a name="raise-exc"></a><a href="#raise-exc-note">raise</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#raise-exc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="handle-exc"></a><a href="#handle-exc-note">handle</a></td>
+<td>#handle-exc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-exc"></a><a href="#def-exc-note">define</a></td>
+<td>#def-exc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="re-raise-exc"></a><a href="#re-raise-exc-note">re-raise exception</a></td>
+<td>#re-raise-exc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="catch-all-handler"></a><a href="#catch-all-handler-note">catch-all handler</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#catch-all-handler</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multiple-handlers"></a><a href="#multiple-handlers-note">multiple handlers</a></td>
+<td>#multiple-handlers</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="uncaught-exc"></a><a href="#uncaught-exc-note">uncaught exception behavior</a></td>
+<td>#uncaught-exc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="last-exc-global"></a><a href="#last-exc-global-note">global variable for last exception</a></td>
+<td>#last-exc-global</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="error-msg"></a><a href="#error-msg-note">error message</a></td>
+<td>#error-msg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="errno"></a><a href="#errno-note">system call errno</a></td>
+<td>#errno</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="stack-trace"></a><a href="#stack-trace-note">stack trace</a></td>
+<td>#stack-trace</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="finally-block"></a><a href="#finally-block-note">finally block</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#finally-block</td>
+<td>aka ensure</td>
+</tr>
+<tr>
+<td><a name="exc-specification"></a><a href="#exc-specification-note">exception specification</a></td>
+<td>#exc-specification</td>
+<td>should this be in function section? Are they required, and when.</td>
+</tr>
+<tr>
+<th colspan="3"><a name="concurrency"></a><a href="#concurrency-note">concurrency</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="sleep"></a><a href="#sleep-note">sleep</a></td>
+<td>#sleep</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="timeout"></a><a href="#timeout-note">timeout</a></td>
+<td>#timeout</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="start-thread"></a><a href="#start-thread-note">start thread</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#start-thread</td>
+<td>can threads use multiple processors; limitations such as the Python GIL</td>
+</tr>
+<tr>
+<td><a name="terminate-current-thread"></a><a href="#terminate-current-thread-note">terminate current thread</a></td>
+<td>#terminate-current-thread</td>
+<td>what happens when thread function returns; when all threads exit; when an exception makes it to the top of a thread</td>
+</tr>
+<tr>
+<td><a name="terminate-other-thread"></a><a href="#terminate-other-thread-note">terminate other thread</a></td>
+<td>#terminate-other-thread</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-threads"></a><a href="#list-threads-note">list threads</a></td>
+<td>#list-threads</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="wait-on-thread"></a><a href="#wait-on-thread-note">wait on thread</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#wait-on-thread</td>
+<td>does join have a return value; how is it set; blocking and non-blocking; order which lock is granted to waiting threads</td>
+</tr>
+<tr>
+<td><a name="lock"></a><a href="#lock-note">lock</a></td>
+<td>#lock</td>
+<td>reentrant locks; blocking and non-blocking</td>
+</tr>
+<tr>
+<td><a name="create-msg-queue"></a><a href="#create-msg-queue-note">create message queue</a></td>
+<td>#create-msg-queue</td>
+<td>for erlang, each process has an implicit queue; LIFO, FIFO, and priority queue</td>
+</tr>
+<tr>
+<td><a name="send-msg"></a><a href="#send-msg-note">send message</a></td>
+<td>#send-msg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="receive-msg"></a><a href="#receive-msg-note">receive message</a></td>
+<td>#receive-msg</td>
+<td>how to receive a msg transactionally</td>
+</tr>
+<tr>
+<th colspan="3"><a name="streams"></a><a href="#streams-note">streams</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="std-file-handles"></a><a href="#std-file-handles-note">standard file handles</a></td>
+<td>#std-file-handles</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="read-line-stdin"></a><a href="#read-line-stdin-note">read line from stdin</a></td>
+<td>#read-line-stdin</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="eof"></a><a href="#eof-note">end-of-file behavior</a></td>
+<td>#eof</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="chomp"></a><a href="#chomp-note">chomp</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#chomp</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="write-line-stdout"></a><a href="#write-line-stdout-note">write line to stdout</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#write-line-stdout</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="printf"></a><a href="#printf-note">write formatted string to stdout</a></td>
+<td>#printf</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="open-file"></a><a href="#open-file-note">open file for reading</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#open-file</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="open-file-write"></a><a href="#open-file-write-note">open file for writing</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#open-file-write</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="file-encoding"></a><a href="#file-encoding-note">set file handle encoding</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#file-encoding</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="open-file-append"></a><a href="#open-file-append-note">open file for appending</a></td>
+<td>#open-file-append</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="close-file"></a><a href="#close-file-note">close file</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#close-file</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="close-file-implicitly"></a><a href="#close-file-implicitly-note">close file implicitly</a></td>
+<td>#close-file-implicitly</td>
+<td>rename close file automatically?</td>
+</tr>
+<tr>
+<td><a name="io-err"></a><a href="#io-err-note">i/o error</a></td>
+<td>#io-err</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="encoding-err"></a><a href="#encoding-err-note">encoding error</a></td>
+<td>#encoding-err</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="read-line"></a><a href="#read-line-note">read line</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#read-line</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="file-iterate"></a><a href="#file-iterate-note">iterate over file by line</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#file-iterate</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="read-file-array"></a><a href="#read-file-array-note">read file into array of strings</a></td>
+<td>#read-file-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="read-file-str"></a><a href="#read-file-str-note">read file into string</a></td>
+<td>#read-file-str</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="write-str"></a><a href="#write-str-note">write string</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#write-str</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="write-line"></a><a href="#write-line-note">write line</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#write-line</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="flush"></a><a href="#flush-note">flush file handle</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#flush</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="eof-test"></a><a href="#eof-test-note">end-of-file test</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#eof-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="seek"></a><a href="#seek-note">file handle position</a><br />
+<span style="color: gray"><em>get, set</em></span></td>
+<td>#seek</td>
+<td>from start of file, current position, end of file</td>
+</tr>
+<tr>
+<td><a name="tmp-file"></a><a href="#tmp-file-note">open temporary file</a></td>
+<td>#tmp-file</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="in-memory-stream"></a><a href="#in-memory-stream-note">in memory stream</a></td>
+<td>#in-memory-stream</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="file"></a><a href="#file-note">files</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="create-empty-file"></a><a href="#create-empty-file-note">create empty file</a></td>
+<td>#create-empty-file</td>
+<td>not an error if the file already exists; also how to touch a file, which updates the last modified timestamp if the file already exists</td>
+</tr>
+<tr>
+<td><a name="file-test"></a><a href="#file-test-note">file exists test, file regular test</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#file-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="file-size"></a><a href="#file-size-note">file size</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#file-size</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="readable-writable-executable"></a><a href="#readable-writable-executable-note">is file readable, writable, executable</a></td>
+<td>#readable-writable-executable</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="chmod"></a><a href="#chmod-note">set file permissions</a></td>
+<td>#chmod</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="last-modification-time"></a><a href="#last-modification-time-note">last modification time</a></td>
+<td>#last-modification-time</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="file-cp-rm-mv"></a><a href="#file-cp-rm-mv-note">copy file, remove file, rename file</a></td>
+<td>#file-cp-rm-mv</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="symlink"></a><a href="#symlink-note">create symlink, symlink test, readlink</a></td>
+<td>#symlink</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="unused-file-name"></a><a href="#unused-file-name-note">generate unused file name</a></td>
+<td>#unused-file-name</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="file-fmt"></a><a href="#file-fmt-note">file formats</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="parse-csv"></a><a href="#parse-csv-note">parse csv</a></td>
+<td>#parse-csv</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="generate-csv"></a><a href="#generate-csv-note">generate csv</a></td>
+<td>#generate-csv</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="parse-json"></a><a href="#parse-json-note">parse json</a></td>
+<td>#parse-json</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="generate-json"></a><a href="#generate-json-note">generate json</a></td>
+<td>#generate-json</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="parse-yaml"></a><a href="#parse-yaml-note">parse yaml</a></td>
+<td>#parse-yaml</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="generate-yaml"></a><a href="#generate-yaml-note">generate yaml</a></td>
+<td>#generate-yaml</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="parse-xml"></a><a href="#parse-xml-note">parse xml</a></td>
+<td>#parse-xml</td>
+<td>xpath?</td>
+</tr>
+<tr>
+<td><a name="generate-xml"></a><a href="#generate-xml-note">generate xml</a></td>
+<td>#generate-xml</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="parse-html"></a><a href="#parse-html-note">parse html</a></td>
+<td>#parse-html</td>
+<td>xpath?</td>
+</tr>
+<tr>
+<th colspan="3"><a name="dir"></a><a href="#dir-note">directories</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="working-dir"></a><a href="#working-dir-note">working directory</a><br />
+<span style="color: gray"><em>get and set</em></span></td>
+<td>#working-dir</td>
+<td>aka current directory</td>
+</tr>
+<tr>
+<td><a name="program-dir"></a><a href="#program-dir-note">program directory</a></td>
+<td>#program-dir</td>
+<td>The directory which contains the executable or script being executed</td>
+</tr>
+<tr>
+<td><a name="build-pathname"></a><a href="#build-pathname-note">build pathname</a></td>
+<td>#build-pathname</td>
+<td>does it remove doubled slashes.</td>
+</tr>
+<tr>
+<td><a name="dirname-basename"></a><a href="#dirname-basename-note">dirname and basename</a></td>
+<td>#dirname-basename</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="absolute-pathname"></a><a href="#absolute-pathname-note">absolute pathname</a></td>
+<td>#absolute-pathname</td>
+<td>does it understand ~; does it remove ..</td>
+</tr>
+<tr>
+<td><a name="iterate-dir"></a><a href="#iterate-dir-note">iterate over directory by file</a></td>
+<td>#iterate-dir</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="glob"></a><a href="#glob-note">glob paths</a></td>
+<td>#glob</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="mkdir"></a><a href="#mkdir-note">make directory</a></td>
+<td>#mkdir</td>
+<td>both mkdir and mkdir -p (latter not transactional)</td>
+</tr>
+<tr>
+<td><a name="recursive-cp"></a><a href="#recursive-cp-note">recursive copy</a></td>
+<td>#recursive-cp</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rmdir"></a><a href="#rmdir-note">remove empty directory</a></td>
+<td>#rmdir</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rm-rf"></a><a href="#rm-rf-note">remove directory and contents</a></td>
+<td>#rm-rf</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dir-test"></a><a href="#dir-test-note">directory test</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dir-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="unused-dir"></a><a href="#unused-dir-note">generate unused directory</a></td>
+<td>#unused-dir</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="system-tmp-dir"></a><a href="#system-tmp-dir-note">system temporary file directory</a></td>
+<td>#system-tmp-dir</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="env-processes"></a><a href="#env-processes-note">processes and environment</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="cmd-line-arg"></a><a href="#cmd-line-arg-note">command line arguments</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#cmd-line-arg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="program-name"></a><a href="#program-name-note">program name</a></td>
+<td>#program-name</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="env-var"></a><a href="#env-var-note">environment variable</a><br />
+<span style="color: gray"><em>get, set, clear</em></span></td>
+<td>#env-var</td>
+<td>not possible to set env variable in a portable way?</td>
+</tr>
+<tr>
+<td><a name="env-var-iter"></a><a href="#env-var-iter-note">iterate over environment variables</a></td>
+<td>#env-var-iter</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="user-id-name"></a><a href="#user-id-name-note">user id and name</a></td>
+<td>#user-id-name</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="exit"></a><a href="#exit-note">exit</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#exit</td>
+<td>and how to set the status code</td>
+</tr>
+<tr>
+<td><a name="exec-test"></a><a href="#exec-test-note">executable test</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#exec-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="external-cmd"></a><a href="#external-cmd-note">external command</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#external-cmd</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="shell-esc-external-cmd"></a><a href="#shell-esc-external-cmd-note">shell-escaped external command</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#shell-esc-external-cmd</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cmd-subst"></a><a href="#cmd-subst-note">command substitution</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#cmd-subst</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pid"></a><a href="#pid-note">get pid, parent pid</a></td>
+<td>#pid</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="subproc-pid"></a><a href="#subproc-pid-note">subprocess pid</a></td>
+<td>#subproc-pid</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="signal-handler"></a><a href="#signal-handler-note">set signal handler</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#signal-handler</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="send-signal"></a><a href="#send-signal-note">send signal</a></td>
+<td>#send-signal</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="option-parsing"></a><a href="#option-parsing-note">option parsing</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="cmd-line-opt"></a><a href="#cmd-line-opt-note">command line options</a></td>
+<td>#cmd-line-opt</td>
+<td>boolean option, option with argument, and usage</td>
+</tr>
+<tr>
+<th colspan="3"><a name="lib-namespaces"></a><a href="#lib-namespaces-note">libraries and namespaces</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="std-lib-name"></a><a href="#std-lib-name-note">standard library name</a></td>
+<td>#std-lib-name</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="compile-lib"></a><a href="#compile-lib-note">compile library</a></td>
+<td>#compile-lib</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="link-lib"></a><a href="#link-lib-note">link library</a></td>
+<td>#link-lib</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="load-lib"></a><a href="#load-lib-note">load library</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#load-lib</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="load-lib-subdir"></a><a href="#load-lib-subdir-note">load library in subdirectory</a></td>
+<td>#load-lib-subdir</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="hot-patch"></a><a href="#hot-patch-note">hot patch</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#hot patch</td>
+<td>i.e. reload possibly modified version of library</td>
+</tr>
+<tr>
+<td><a name="load-err"></a><a href="#load-err-note">load error</a></td>
+<td>#load-err</td>
+</tr>
+<tr>
+<td><a name="lib-path"></a><a href="#lib-path-note">library path</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#lib-path</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="lib-path-env"></a><a href="#lib-path-env-note">library path environment variable</a></td>
+<td>#lib-path-env</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="lib-path-cmd-line"></a><a href="#lib-path-cmd-line-note">library path command line option</a></td>
+<td>#lib-path-cmd-line</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="main-in-lib"></a><a href="#main-in-lib-note">main routine in library</a></td>
+<td>#main-in-lib</td>
+<td>i.e. how to put code in a library which only executes when the used as the entry point of the program</td>
+</tr>
+<tr>
+<td><a name="namespace-decl"></a><a href="#namespace-decl-note">namespace declaration</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#namespace-decl</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="subnamespace-decl"></a><a href="#subnamespace-decl-note">subnamespace declaration</a></td>
+<td>#subnamespace-decl</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="namespace-separator"></a><a href="#namespace-separator-note">namespace separator</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#namespace-separator</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="import-def"></a><a href="#import-def-note">import definitions</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#import-def</td>
+<td>unqualified import</td>
+</tr>
+<tr>
+<td><a name="import-namespace"></a><a href="#import-namespace-note">import all definitions in namespace</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#import-namespace</td>
+<td>unqualified import</td>
+</tr>
+<tr>
+<td><a name="shadow-avoidance"></a><a href="#shadow-avoidance-note">shadow avoidance</a><br />
+<span style="color: gray"><em>namespace, identifier</em></span></td>
+<td>#shadow-avoidance</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="app-env"></a><a href="#app-env-note">application environment</a><br />
+<span style="color: gray"><em>create; add pkg</em></span></td>
+<td>#app-env</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multiple-installations"></a><a href="#multiple-installations-note">multiple installations</a></td>
+<td>#multiple-installations</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pkg-manager"></a><a href="#pkg-manager-note">package manager</a><br />
+<span style="color: gray"><em>search; install; list installed</em></span></td>
+<td>#pkg-manager</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pkg-spec"></a><a href="#pkg-spec-note">package specification format</a></td>
+<td>#pkg-spec</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="objects"></a><a href="#objects-note">objects</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="def-class"></a><a href="#def-class-note">define class</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#def-class</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="create-obj"></a><a href="#create-obj-note">create object</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#create-obj</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="getter-setter"></a><a href="#getter-setter-note">get and set attribute</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#getter-setter</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="instance-var"></a><a href="#instance-var-note">instance variable accessibility</a></td>
+<td>#instance-var</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-method"></a><a href="#def-method-note">define method</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#def-method</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="invoke-method"></a><a href="#invoke-method-note">invoke method</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#invoke-method</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="destructor"></a><a href="#destructor-note">destructor</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#destructor</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="method-missing"></a><a href="#method-missing-note">method missing</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#method-missing</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="method-alias"></a><a href="#method-alias-note">method alias</a></td>
+<td>#method-alias</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-class-method"></a><a href="#def-class-method-note">define class method</a></td>
+<td>#def-class-method</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="invoke-class-method"></a><a href="#invoke-class-method-note">invoke class method</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#invoke-class-method</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="inheritance-polymorphism"></a><a href="#inheritance-polymorphism-note">inheritance and polymorphism</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="universal-base-class"></a><a href="#universal-base-class-note">universal base class</a></td>
+<td>#universal-base-class</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="subclass"></a><a href="#subclass-note">subclass</a></td>
+<td>#subclass</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="mixin"></a><a href="#mixin-note">mixin</a></td>
+<td>#mixin</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="reflection"></a><a href="#reflection-note">reflection</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="object-id"></a><a href="#object-id-note">object id</a></td>
+<td>#object-id</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="inspect-type"></a><a href="#inspect-type-note">inspect type</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#inspect-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="types"></a><a href="#types-note">basic types</a></td>
+<td>#types</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="inspect-class"></a><a href="#inspect-class-note">inspect class</a></td>
+<td>#inspect-class</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="inspect-class-hierarchy"></a><a href="#inspect-class-hierarchy-note">inspect class hierarchy</a></td>
+<td>#inspect-class-hierarchy</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="has-method"></a><a href="#has-method-note">has method?</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#has-method</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="msg-passing"></a><a href="#msg-passing-note">message passing</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#msg-passing</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="eval"></a><a href="#eval-note">eval</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#eval</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="inspect-methods"></a><a href="#inspect-methods-note">inspect methods</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#inspect-methods</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="inspect-attr"></a><a href="#inspect-attr-note">inspect attributes</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#inspect-attr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pretty-print"></a><a href="#pretty-print-note">pretty print</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#pretty-print</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="src-line-file"></a><a href="#src-line-file-note">source line number and file name</a></td>
+<td>#src-line-file</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cmd-line-doc"></a><a href="#cmd-line-doc-note">command line documentation</a></td>
+<td>#cmd-line-doc</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="net-web"></a><a href="#net-web-note">net and web</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="hostname-ip"></a><a href="#hostname-ip-note">get local hostname, dns lookup, reverse dns lookup</a></td>
+<td>#hostname-ip</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="http-get"></a><a href="#http-get-note">http get</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#http-get</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="http-post"></a><a href="#http-post-note">http post</a></td>
+<td>#http-post</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="abs-url"></a><a href="#abs-url-note">absolute url</a></td>
+<td>#abs-url</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="parse-url"></a><a href="#parse-url-note">parse url</a></td>
+<td>#parse-url</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="url-encode"></a><a href="#url-encode-note">url encode/decode</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#url-encode</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="base64"></a><a href="#base64-note">base64 encode</a></td>
+<td>#base64</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="dom"></a><a href="#dom-note">dom</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="get-window"></a><a href="#get-window-note">get window</a></td>
+<td>#get-window</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="get-doc-root"></a><a href="#get-doc-root-note">get document root</a></td>
+<td>#get-doc-root</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="css-selector"></a><a href="#css-selector-note">css selector</a></td>
+<td>#css-selector</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="get-attr"></a><a href="#get-attr-note">get attribute</a></td>
+<td>#get-attr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="set-attr"></a><a href="#set-attr-note">set attribute</a></td>
+<td>#set-attr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="children-node"></a><a href="#children-node-note">children of node</a></td>
+<td>#children-node</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="append-node"></a><a href="#append-node-note">append node</a></td>
+<td>#append-node</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rm-node"></a><a href="#rm-node-note">remove node</a></td>
+<td>#rm-node</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="get-parent-node"></a><a href="#get-parent-node-note">get parent node</a></td>
+<td>#get-parent-node</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="get-set-text"></a><a href="#get-set-text-note">get and set text</a></td>
+<td>#get-set-text</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="set-click-handler"></a><a href="#set-click-handler-note">set click handler</a></td>
+<td>#set-click-handler</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rm-click-handler"></a><a href="#rm-click-handler-note">remove click handler</a></td>
+<td>#rm-click-handler</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="gui"></a><a href="#gui-note">gui</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="unit-tests"></a><a href="#unit-tests-note">unit tests</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="test-class"></a><a href="#test-class-note">test class</a></td>
+<td>#test-class</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="run-all-tests"></a><a href="#run-all-tests-note">run all tests</a></td>
+<td>#run-all-tests</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="run-single-test"></a><a href="#run-single-test-note">run single test</a></td>
+<td>#run-single-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="assert-equal"></a><a href="#assert-equal-note">equality assertion</a></td>
+<td>#assert-equal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="assert-approx"></a><a href="#assert-approx-note">approximate assertion</a></td>
+<td>#assert-approx</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="assert-regex"></a><a href="#assert-regex-note">regex assertion</a></td>
+<td>#assert-regex</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="assert-exc"></a><a href="#assert-exc-note">exception assertion</a></td>
+<td>#assert-exc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="mock-method"></a><a href="#mock-method-note">mock method</a></td>
+<td>#mock-method</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="test-setup"></a><a href="#test-setup-note">setup</a></td>
+<td>#test-setup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="test-teardown"></a><a href="#test-teardown-note">teardown</a></td>
+<td>#test-teardown</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="coverage"></a><a href="#coverage-note">coverage</a></td>
+<td>#coverage</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="debug-profile"></a><a href="#debug-profile-note">debugging and profiling</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="check-syntax"></a><a href="#check-syntax-note">check syntax</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#check-syntax</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="stronger-warnings"></a><a href="#stronger-warnings-note">flag for stronger warnings</a></td>
+<td>#stronger-warnings</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="stronger-errors"></a><a href="#stronger-errors-note">flag for stronger errors</a></td>
+<td>#strong-err</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="suppress-warnings"></a><a href="#suppress-warnings-note">suppress warnings</a></td>
+<td>#suppress-warnings</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="warnings-as-err"></a><a href="#warnings-as-err-note">treat warnings as errors</a></td>
+<td>#warnings-as-err</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="lint"></a><a href="#lint-note">lint</a></td>
+<td>#lint</td>
+<td>unused declarations; paths with no return</td>
+</tr>
+<tr>
+<td><a name="src-cleanup"></a><a href="#src-cleanup-note">source cleanup</a></td>
+<td>#src-cleanup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="debugger"></a><a href="#debugger-note">run debugger</a></td>
+<td>#debugger</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="debugger-cmds"></a><a href="#debugger-cmds-note">debugger commands</a></td>
+<td>#debugger-cmds</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="benchmark"></a><a href="#benchmark-note">benchmark code</a></td>
+<td>#benchmark</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cpu-usage"></a><a href="#cpu-usage-note">cpu usage</a></td>
+<td>#cpu-usage</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="profile"></a><a href="#profile-note">profile code</a></td>
+<td>#profile</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="memory-tool"></a><a href="#memory-tool-note">memory tool</a></td>
+<td>#memory-tool</td>
+<td>memory leaks; accessing uninitialized memory</td>
+</tr>
+<tr>
+<th colspan="3">DATA STRUCTURES</th>
+</tr>
+<tr>
+<th colspan="3"><a name="fixed-length-arrays"></a><a href="#fixed-length-arrays-note">fixed-length arrays</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="fixed-len-array-stack"></a><a href="#fixed-len-array-stack-note">declare on stack</a></td>
+<td>#fixed-len-array-stack</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-stack-runtime-size"></a><a href="#fixed-len-array-stack-runtime-size-note">declare on stack with runtime expression for size</a></td>
+<td>#fixed-len-array-stack-runtime-size</td>
+<td>a C99 feature</td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-heap"></a><a href="#fixed-len-array-heap-note">declare on heap</a></td>
+<td>#fixed-len-array-heap</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="free-fixed-len-array-heap"></a><a href="#free-fixed-len-array-heap-note">free heap</a></td>
+<td>#free-fixed-len-array-heap</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-init-list"></a><a href="#fixed-len-array-init-list-note">initialization list</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#fixed-len-array-init-list</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-size"></a><a href="#fixed-len-array-size-note">size</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#fixed-len-array-size</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-lookup"></a><a href="#fixed-len-array-lookup-note">lookup</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#fixed-len-array-lookup</td>
+<td>negative integers or arrays of integers and indices</td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-update"></a><a href="#fixed-len-array-update-note">update</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#fixed-len-array-update</td>
+<td>what happens to size of array</td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-out-of-bounds"></a><a href="#fixed-len-array-out-of-bounds-note">out-of-bounds</a></td>
+<td>#fixed-len-array-out-of-bounds</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="copy-fixed-len-array"></a><a href="#copy-fixed-len-array-note">copy</a></td>
+<td>#copy-fixed-len-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="realloc"></a><a href="#realloc-note">realloc</a></td>
+<td>#realloc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="fixed-len-array-as-func-arg"></a><a href="#fixed-len-array-as-func-arg-note">as function argument</a></td>
+<td>#fixed-len-array-as-func-arg</td>
+<td>how to pass with or without making a copy</td>
+</tr>
+<tr>
+<td><a name="iterate-over-fixed-len-array"></a><a href="#iterate-over-fixed-len-array-note">iterate</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#iterate-over-fixed-len-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sort-fixed-len-array"></a><a href="#sort-fixed-len-array-note">sort</a></td>
+<td>#sort-fixed-len-array</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="resizable-arrays"></a><a href="#resizable-arrays-note">resizable arrays</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="decl-resizable-array"></a><a href="#decl-resizable-array-note">declare</a></td>
+<td>#decl-resizable-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="resizable-array-init-list"></a><a href="#resizable-array-init-list-note">initialization list</a></td>
+<td>#resizable-array-init-list</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="resizable-array-literal"></a><a href="#resizable-array-literal-note">literal</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#resizable-array-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="quote-words"></a><a href="#quote-words-note">quote words</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#quote-words</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="resizable-array-size"></a><a href="#resizable-array-size-note">size</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#resizable-array-size</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="resizable-array-capacity"></a><a href="#resizable-array-capacity-note">capacity</a></td>
+<td>#resizable-array-capacity</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="empty-resizable-array-test"></a><a href="#empty-resizable-array-test-note">empty test</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#empty-resizable-array-test</td>
+<td>and how to make array empty</td>
+</tr>
+<tr>
+<td><a name="resizable-array-lookup"></a><a href="#resizable-array-lookup-note">lookup</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#resizable-array-lookup</td>
+<td>negative integers or arrays of integers and indices</td>
+</tr>
+<tr>
+<td><a name="resizable-array-update"></a><a href="#resizable-array-update-note">update</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#resizable-array-update</td>
+<td>what happens to size of array</td>
+</tr>
+<tr>
+<td><a name="resizable-array-out-of-bounds"></a><a href="#resizable-array-out-of-bounds-note">out-of-bounds behavior</a></td>
+<td>#resizable-array-out-of-bounds</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-element-index"></a><a href="#array-element-index-note">element index</a></td>
+<td>#array-element-index</td>
+<td>first and last occurrence; example should have two occurrences; does language return an array of indices; what if none found</td>
+</tr>
+<tr>
+<td><a name="slice-array"></a><a href="#slice-array-note">slice</a><br />
+<span style="color: gray"><em>by endpoints, by length</em></span><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#slice-array</td>
+<td>is slice modifiable, and if modified, does the original array change?</td>
+</tr>
+<tr>
+<td><a name="slice-array-to-end"></a><a href="#slice-array-to-end-note">slice to end</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#slice-array-to-end</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-back"></a><a href="#array-back-note">manipulate back</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#array-back</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-front"></a><a href="#array-front-note">manipulate front</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#array-front</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="concatenate-array"></a><a href="#concatenate-array-note">concatenate</a></td>
+<td>#concatenate-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="replicate-array"></a><a href="#replicate-array-note">replicate</a></td>
+<td>#replicate-array</td>
+<td>replicate element; replicate array</td>
+</tr>
+<tr>
+<td><a name="copy-array"></a><a href="#copy-array-note">copy</a><br />
+<span style="color: gray"><em>address copy, shallow copy, deep copy</em></span></td>
+<td>#copy-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-as-func-arg"></a><a href="#array-as-func-arg-note">array as function argument</a></td>
+<td>#array-as-func-arg</td>
+<td>how to pass with or without making a copy</td>
+</tr>
+<tr>
+<td><a name="iterate-over-array"></a><a href="#iterate-over-array-note">iterate over elements</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#iterate-over-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="indexed-array-iteration"></a><a href="#indexed-array-iteration-note">iterate over indices and elements</a></td>
+<td>#indexed-array-iteration</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="range-iteration"></a><a href="#range-iteration-note">iterate over range</a></td>
+<td>#range-iteration</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="range-array"></a><a href="#range-array-note">instantiate range as array</a></td>
+<td>#range-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="reverse-array"></a><a href="#reverse-array-note">reverse</a></td>
+<td>#reverse-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sort-array"></a><a href="#sort-array-note">sort</a></td>
+<td>#sort-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dedupe-array"></a><a href="#dedupe-array-note">dedupe</a></td>
+<td>#dedupe-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="membership"></a><a href="#membership-note">membership</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#membership</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="intersection"></a><a href="#intersection-note">intersection</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#intersection</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="union"></a><a href="#union-note">union</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#union</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="set-diff"></a><a href="#set-diff-note">relative complement, symmetric difference</a></td>
+<td>#set-diff</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="map"></a><a href="#map-note">map</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#map</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="filter"></a><a href="#filter-note">filter</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#filter</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="reduce"></a><a href="#reduce-note">reduce</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#reduce</td>
+<td>fold right versus fold left?</td>
+</tr>
+<tr>
+<td><a name="min-max-elem"></a><a href="#min-max-elem-note">min and max element</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#min-max-elem</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="universal-existential-test"></a><a href="#universal-existential-test-note">universal  and existential tests</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#universal-existential-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="shuffle-sample"></a><a href="#shuffle-sample-note">shuffle and sample</a></td>
+<td>#shuffle-sample</td>
+<td>sample with replacement: R: sample(a, 3, replace=T)</td>
+</tr>
+<tr>
+<td><a name="zip"></a><a href="#zip-note">zip</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#zip</td>
+<td>what if of different length?</td>
+</tr>
+<tr>
+<td><a name="flatten"></a><a href="#flatten-note">flatten</a></td>
+<td>#flatten</td>
+<td>one level and completely</td>
+</tr>
+<tr>
+<td><a name="cartesian-product"></a><a href="#cartesian-product-note">cartesian product</a></td>
+<td>#cartesian-product</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="arithmetic-sequences"></a><a href="#arithmetic-sequences-note">arithmetic sequences</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="arith-seq-diff-one"></a><a href="#arith-seq-diff-one-note">unit difference</a></td>
+<td>#arith-seq-diff-one</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="arith-seq-diff-ten"></a><a href="#arith-seq-diff-ten-note">difference of 10</a></td>
+<td>#arith-seq-diff-ten</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="arith-seq-diff-tenth"></a><a href="#arith-seq-diff-tenth-note">difference of 0.1</a></td>
+<td>#arith-seq-diff-tenth</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="iter-over-arith-seq"></a><a href="#iter-over-arith-seq-note">iterate over arithmetic sequence</a></td>
+<td>#iter-over-arith-seq</td>
+<td>Is it possible to iterate over the arithmetic sequence w/o instantiating it as an array in memory?</td>
+</tr>
+<tr>
+<td><a name="arith-seq-to-array"></a><a href="#arith-seq-to-array-note">convert arithmetic sequence to array</a></td>
+<td>#arith-seq-to-array</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="lists"></a><a href="#lists-note">lists</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="list-literal"></a><a href="#list-literal-note">literal</a></td>
+<td>#list-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="empty-list"></a><a href="#empty-list-note">empty list</a></td>
+<td>#empty-list</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="empty-list-test"></a><a href="#empty-list-test-note">empty list test</a></td>
+<td>#empty-list-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cons"></a><a href="#cons-note">cons</a></td>
+<td>#cons</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="head"></a><a href="#head-note">head</a></td>
+<td>#head</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="tail"></a><a href="#tail-note">tail</a></td>
+<td>#tail</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="head-tail-empty-list"></a><a href="#head-tail-empty-list-note">head and tail of empty list</a></td>
+<td>#head-tail-empty-list</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cons-cell"></a><a href="#cons-cell-note">cons cell</a></td>
+<td>#cons-cell</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-test"></a><a href="#list-test-note">tests</a><br />
+<span style="color: gray"><em>atom, cons cell, list</em></span></td>
+<td>#list-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-len"></a><a href="#list-len-note">length</a></td>
+<td>#list-len</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="nth-elem-of-list"></a><a href="#nth-elem-of-list-note">nth element</a></td>
+<td>#nth-elem-of-list</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-elem-index"></a><a href="#list-elem-index-note">element index</a></td>
+<td>#list-elem-index</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-update"></a><a href="#list-update-note">update</a></td>
+<td>#list-update</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-front"></a><a href="#list-front-note">manipulate front</a></td>
+<td>#list-front</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-concat"></a><a href="#list-concat-note">concatenate</a><br />
+<span style="color: gray"><em>two lists, list of lists</em></span></td>
+<td>#list-concat</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-last"></a><a href="#list-last-note">last</a><br />
+<span style="color: gray"><em>and butlast</em></span></td>
+<td>#list-last</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-take"></a><a href="#list-take-note">take</a></td>
+<td>#list-take</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-drop"></a><a href="#list-drop-note">drop</a>]</td>
+<td>#list-drop</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="iter-over-list"></a><a href="#iter-over-list-note">iterate</a></td>
+<td>#iter-over-list</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-reverse"></a><a href="#list-reverse-note">reverse</a></td>
+<td>#list-reverse</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-sort"></a><a href="#list-sort-note">sort</a></td>
+<td>#list-sort</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-map"></a><a href="#list-map-note">map</a></td>
+<td>#list-map</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-filter"></a><a href="#list-filter-note">filter</a></td>
+<td>#list-filter</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-fold-left"></a><a href="#list-fold-left-note">fold from left</a></td>
+<td>#list-fold-left</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-fold-right"></a><a href="#list-fold-right-note">fold from right</a></td>
+<td>#list-fold-right</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-membership"></a><a href="#list-membership-note">membership</a></td>
+<td>#list-membership</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-universal-test"></a><a href="#list-universal-test-note">universal test</a></td>
+<td>#list-universal-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-existential-test"></a><a href="#list-existential-test-note">existential test</a></td>
+<td>#list-existential-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="list-zip"></a><a href="#list-zip-note">zip lists</a></td>
+<td>#list-zip</td>
+<td>what if of different length?</td>
+</tr>
+<tr>
+<td><a name="assoc-list-lookup"></a><a href="#assoc-list-lookup-note">association list lookup</a></td>
+<td>#assoc-list-lookup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="prop-list-lookup"></a><a href="#prop-list-lookup-note">property list lookup</a></td>
+<td>#prop-list-lookup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="apply-assoc-list"></a><a href="#apply-assoc-list-note">apply association list</a></td>
+<td>#apply-assoc-list</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="tuples"></a><a href="#tuples-note">tuples</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="tuple-type"></a><a href="#tuple-type-note">type</a></td>
+<td>#tuple-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="tuple-literal"></a><a href="#tuple-literal-note">literal</a></td>
+<td>#tuple-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="tuple-ctor"></a><a href="#tuple-ctor-note">constructor</a></td>
+<td>#tuple-ctor</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="tuple-lookup"></a><a href="#tuple-lookup-note">lookup</a></td>
+<td>#tuple-lookup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="tuple-decompose"></a><a href="#tuple-decompose-note">decompose</a></td>
+<td>#tuple-decompose</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="tuple-update"></a><a href="#tuple-update-note">update</a></td>
+<td>#tuple-update</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="tuple-len"></a><a href="#tuple-len-note">length</a></td>
+<td>#tuple-len</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pair-literal"></a><a href="#pair-literal-note">pair literal</a></td>
+<td>#pair-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pair-ctor"></a><a href="#pair-ctor-note">pair constructor</a></td>
+<td>#pair-ctor</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pair-lookup"></a><a href="#pair-lookup-note">pair lookup</a></td>
+<td>#pair-lookup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pair-update"></a><a href="#pair-update-note">pair update</a></td>
+<td>#pair-update</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="stacks"></a><a href="#stacks-note">stacks</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="queues"></a><a href="#queues-note">queues</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="sets"></a><a href="#sets-note">sets</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="dict"></a><a href="#dict-note">dictionaries</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="declare-dict"></a><a href="#declare-dict-note">declare</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#declare-dict</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-literal"></a><a href="#dict-literal-note">literal</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-ctor"></a><a href="#dict-ctor-note">constructor</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-ctor</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-size"></a><a href="#dict-size-note">size</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-size</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-lookup"></a><a href="#dict-lookup-note">lookup</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-lookup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-update"></a><a href="#dict-update-note">update</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-update</td>
+<td>distinguish between insert and update?</td>
+</tr>
+<tr>
+<td><a name="dict-missing-key"></a><a href="#dict-missing-key-note">missing key behavior</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-missing-key</td>
+<td>on lookup</td>
+</tr>
+<tr>
+<td><a name="dict-is-key-present"></a><a href="#dict-is-key-present-note">is key present</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-is-key-present</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-delete"></a><a href="#dict-delete-note">delete</a></td>
+<td>#dict-delete</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-associative-array"></a><a href="#dict-associative-array-note">from array of pairs, from even length array</a></td>
+<td>#dict-associative-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-merge"></a><a href="#dict-merge-note">merge</a></td>
+<td>#dict-merge</td>
+<td><span style="color: gray"><em>How are duplicate keys handled?</em></span></td>
+</tr>
+<tr>
+<td><a name="dict-invert"></a><a href="#dict-invert-note">invert</a></td>
+<td>#dict-invert</td>
+<td><span style="color: gray"><em>How are duplicate values handled?</em></span></td>
+</tr>
+<tr>
+<td><a name="dict-intersection"></a><a href="#dict-intersection-note">intersection</a></td>
+<td>#dict-intersection</td>
+<td>a dictionary of key-value pairs in both dictionaries</td>
+</tr>
+<tr>
+<td><a name="dict-diff"></a><a href="#dict-diff-note">relative complement</a></td>
+<td>#dict-diff</td>
+<td>a dictionary of key-value pairs in the 2nd dictionary and not the 1st</td>
+</tr>
+<tr>
+<td><a name="dict-iter"></a><a href="#dict-iter-note">iterate</a><br />
+<span style="white-space: pre-wrap;">&nbsp;</span></td>
+<td>#dict-iter</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-key-val-arrays"></a><a href="#dict-key-val-arrays-note">keys and values as arrays</a></td>
+<td>#dict-key-val-arrays</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-sort-values"></a><a href="#dict-sort-values-note">sort by values</a></td>
+<td>#dict-sort-values</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dict-default-val"></a><a href="#dict-default-val-note">default value, computed value</a></td>
+<td>#dict-default-val</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="two-d-arrays"></a><a href="#two-d-arrays-note">2d arrays</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="elem-type"></a><a href="#elem-type-note">element type</a></td>
+<td>#elem-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="permitted-elem-types"></a><a href="#permitted-elem-types-note">permitted element types</a></td>
+<td>#permitted-elem-types</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="literal-2d-array"></a><a href="#literal-2d-array-note">2d literal</a></td>
+<td>#literal-2d-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-2d-from-seq"></a><a href="#array-2d-from-seq-note">construct 2d array from sequence of elements</a><br />
+<span style="color: gray"><em>fill by row, by column</em></span></td>
+<td>#array-2d-from-seq</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-2d-from-rows"></a><a href="#array-2d-from-rows-note">construct 2d array from rows</a></td>
+<td>#array-2d-from-rows</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-2d-from-cols"></a><a href="#array-2d-from-cols-note">construct 2d array from columns</a></td>
+<td>#array-2d-from-cols</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-2d-from-2d-arrays"></a><a href="#array-2d-from-2d-arrays-note">construct 2d array from 2d arrays</a><br />
+<span style="color: gray"><em>stacked, side-by-side</em></span></td>
+<td>#array-2d-from-2d-arrays</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multidim-array-size"></a><a href="#multidim-array-size-note">size</a><br />
+<span style="color: gray"><em>number of elements,<br />
+number of dimensions,<br />
+dimension lengths</em></span></td>
+<td>#multidim-array-size</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-2d-lookup"></a><a href="#array-2d-lookup-note">2d array lookup</a></td>
+<td>#array-2d-lookup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multidim-out-of-bounds-behavior"></a><a href="#multidim-out-of-bounds-behavior-note">out-of-bounds behavior</a></td>
+<td>#multidim-out-of-bounds-behavior</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="index-1d-lookup-2d-array"></a><a href="#index-1d-lookup-2d-array-note">1d index lookup of 2d array</a></td>
+<td>#index-1d-lookup-2d-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multidim-slice"></a><a href="#multidim-slice-note">slice</a></td>
+<td>#multidim-slice</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multidim-update"></a><a href="#multidim-update-note">update</a></td>
+<td>#multidim-update</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="higher-order-update"></a><a href="#higher-order-update-note">higher order update</a></td>
+<td>#higher-order-update</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multidim-transpose"></a><a href="#multidim-transpose-note">transpose</a></td>
+<td>#multidim-transpose</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multidim-map"></a><a href="#multidim-map-note">map elements</a></td>
+<td>#multidim-map</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="higher-order-map"></a><a href="#higher-order-map-note">higher order map</a></td>
+<td>#higher-order-map</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="three-d-arrays"></a><a href="#three-d-arrays-note">3d arrays</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="array-3d-from-seq"></a><a href="#array-3d-from-seq-note">construct 3d array from sequence of elements</a></td>
+<td>#array-3d-from-seq</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-3d-from-2d-arrays"></a><a href="#array-3d-from-2d-arrays-note">construct 3d array from 2d arrays</a></td>
+<td>#array-3d-from-2d-arrays</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="array-3d-from-seq-of-seq-of-rows"></a><a href="#array-3d-from-seq-of-seq-of-rows-note">construct 3d array from sequence of sequences of rows</a></td>
+<td>#array-3d-from-seq-of-seq-of-rows</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multidim-swap-axes"></a><a href="#multidim-swap-axes-note">swap axes</a></td>
+<td>#multidim-swap-axes</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="user-defined-types"></a><a href="#user-defined-types-note">user-defined types</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="type-alias"></a><a href="#type-alias-note">type alias</a></td>
+<td>#type-alias</td>
+<td>new type and old are interchangeable</td>
+</tr>
+<tr>
+<td><a name="new-type"></a><a href="#new-type-note">new type</a></td>
+<td>#new-type</td>
+<td>not interchangeable</td>
+</tr>
+<tr>
+<td><a name="algebraic-sum-type"></a><a href="#algebraic-sum-type-note">algebraic sum type</a></td>
+<td>#algebraic-sum-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="enumerated-type"></a><a href="#enumerated-type-note">enumerated type</a></td>
+<td>#enumerated-type</td>
+<td>a sum type</td>
+</tr>
+<tr>
+<td><a name="union-type"></a><a href="#union-type-note">union type</a></td>
+<td>#union-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="algebraic-prod-type"></a><a href="#algebraic-prod-type-note">algebraic product type</a></td>
+<td>#algebraic-prod-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="algebraic-prod-literal"></a><a href="#algebraic-prod-literal-note">algebraic product type literal</a></td>
+<td>#algebraic-prod-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="type-ctor-with-arg"></a><a href="#type-ctor-with-arg-note">type constructor with argument</a></td>
+<td>#type-ctor-with-arg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="type-ctor-with-tuple-arg"></a><a href="#type-ctor-with-tuple-arg-note">type constructor with tuple argument</a></td>
+<td>#type-ctor-with-tuple-arg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="generic-type"></a><a href="#generic-type-note">generic type</a></td>
+<td>#generic-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="recursive-type"></a><a href="#recursive-type-note">recursive type</a></td>
+<td>#recursive-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="match"></a><a href="#match-note">match/with case/of</a></td>
+<td>#match</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="match-guard"></a><a href="#match-guard-note">match guard</a></td>
+<td>#match-guard</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="match-catchall"></a><a href="#match-catchall-note">match catchall</a></td>
+<td>#match-catchall</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="option-type"></a><a href="#option-type-note">option type</a></td>
+<td>#option-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="member-offset"></a><a href="#member-offset-note">member offset</a></td>
+<td>#member-offset</td>
+<td>i.e. offsetof()</td>
+</tr>
+<tr>
+<th colspan="3"><a name="generic-types"></a><a href="#generic-types-note">generic types</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="define-generic-type"></a><a href="#define-generic-type-note">define generic type</a></td>
+<td>#define-generic-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="instantiate-generic-type"></a><a href="#instantiate-generic-type-note">instantiate generic type</a></td>
+<td>#instantiate-generic-type</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="generic-array"></a><a href="#generic-array-note">generic array</a></td>
+<td>#generic-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="val-param"></a><a href="#val-param-note">value parameter</a></td>
+<td>#val-param</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="template-param"></a><a href="#template-param-note">template parameter</a></td>
+<td>#template-param</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="template-specialization"></a><a href="#template-specialization-note">template specialization</a></td>
+<td>#template-specialization</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multiple-type-params"></a><a href="#multiple-type-params-note">multiple type parameters</a></td>
+<td>#multiple-type-params</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="generic-type-params"></a><a href="#generic-type-params-note">generic type parameters</a></td>
+<td>#generic-type-params</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="variadic-template"></a><a href="#variadic-template-note">variadic template</a></td>
+<td>#variadic-template</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="dependent-types"></a><a href="#dependent-types-note">dependent types</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3">AUXILIARY</th>
+</tr>
+<tr>
+<th colspan="3"><a name="cpp-macros"></a><a href="#cpp-macros-note">c preprocessor macros</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="include-file"></a><a href="#include-file-note">include file</a></td>
+<td>#include-file</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="add-system-dir"></a><a href="#add-system-dir-note">add system directory</a></td>
+<td>#add-system-dir</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="def-macro"></a><a href="#def-macro-note">define macro</a></td>
+<td>#def-macro</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cmd-line-macro"></a><a href="#cmd-line-macro-note">command line macro</a></td>
+<td>#cmd-line-macro</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="undef-macro"></a><a href="#undef-macro-note">undefine macro</a></td>
+<td>#undef-macro</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="macro-op"></a><a href="#macro-op-note">macro operators</a></td>
+<td>#macro-op</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="lisp-macros"></a><a href="#lisp-macros-note">lisp macros</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="backquote-comma"></a><a href="#backquote-comma-note">backquote and comma</a></td>
+<td>#backquote-comma</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="defmacro"></a><a href="#defmacro-note">defmacro</a></td>
+<td>#defmacro</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="defmacro-backquote"></a><a href="#defmacro-backquote-note">defmacro w/ backquote</a></td>
+<td>#defmacro-backquote</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="macro-predicate"></a><a href="#macro-predicate-note">macro predicate</a></td>
+<td>#macro-predicate</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="macroexpand"></a><a href="#macroexpand-note">macroexpand</a></td>
+<td>#macroexpand</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="splice-quote"></a><a href="#splice-quote-note">splice quote</a></td>
+<td>#splice-quote</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="recursive-macro"></a><a href="#recursive-macro-note">recursive macro</a></td>
+<td>#recursive-macro</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="hygienic"></a><a href="#hygienic-note">hygienic</a></td>
+<td>#hygienic</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="local-values"></a><a href="#local-values-note">local values</a></td>
+<td>#local-values</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="java-interop"></a><a href="#java-interop-note">java interop</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="java-version"></a><a href="#java-version-note">version</a></td>
+<td>#java-version</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-repl"></a><a href="#java-repl-note">repl</a></td>
+<td>#java-repl</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-interpreter"></a><a href="#java-interpreter-note">interpreter</a></td>
+<td>#java-interpreter</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-compiler"></a><a href="#java-compiler-note">compiler</a></td>
+<td>#java-compiler</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-new"></a><a href="#java-new-note">new</a></td>
+<td>#java-new</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-import"></a><a href="#java-import-note">import</a></td>
+<td>#java-import</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-non-bundled"></a><a href="#java-non-bundled-note">non-bundled java libraries</a></td>
+<td>#java-non-bundled</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-shadow"></a><a href="#java-shadow-note">shadowing avoidance</a></td>
+<td>#java-shadow</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-to-array"></a><a href="#java-to-array-note">convert native array to java array</a></td>
+<td>#java-to-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-subclassable"></a><a href="#java-subclassable-note">are java classes subclassable?</a></td>
+<td>#java-subclassable</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="java-open"></a><a href="#java-open-note">are java class open?</a></td>
+<td>#java-open</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3">TABLES</th>
+</tr>
+<tr>
+<th colspan="3"><a name="tables"></a><a href="#tables-note">tables</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="table-from-col-arrays"></a><a href="#table-from-col-arrays-note">construct from column arrays</a></td>
+<td>#table-from-col-arrays</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="table-from-row-tuples"></a><a href="#table-from-row-tuples-note">construct from row tuples</a></td>
+<td>#table-from-row-tuples</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="categorical-var-col"></a><a href="#categorical-var-col-note">categorical variable column</a></td>
+<td>#categorical-var-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="col-names-as-array"></a><a href="#col-names-as-array-note">column names as array</a></td>
+<td>#col-names-as-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="extract-col-as-array"></a><a href="#extract-col-as-array-note">extract column as array</a></td>
+<td>#extract-col-as-array</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="extract-row-as-tuple"></a><a href="#extract-row-as-tuple-note">extract row as tuple</a></td>
+<td>#extract-row-as-tuple</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="lookup-datum"></a><a href="#lookup-datum-note">lookup datum</a></td>
+<td>#lookup-datum</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="order-rows"></a><a href="#order-rows-note">order rows by column</a></td>
+<td>#order-rows</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="order-rows-multiple-col"></a><a href="#order-rows-multiple-col-note">order rows by multiple columns</a></td>
+<td>#order-rows-multiple-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="order-rows-desc"></a><a href="#order-rows-desc-note">order rows in descending order</a></td>
+<td>#order-rows-desc</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="limit-rows"></a><a href="#limit-rows-note">limit rows</a></td>
+<td>#limit-rows</td>
+<td>i.e slice first n rows</td>
+</tr>
+<tr>
+<td><a name="offset-rows"></a><a href="#offset-rows-note">offset rows</a></td>
+<td>#offset-rows</td>
+<td>i.e. slice rows starting from n</td>
+</tr>
+<tr>
+<td><a name="attach-col"></a><a href="#attach-col-note">attach columns</a></td>
+<td>#attach-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="detach-col"></a><a href="#detach-col-note">detach columns</a></td>
+<td>#detach-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="spreadsheet-editor"></a><a href="#spreadsheet-editor-note">spreadsheet editor</a></td>
+<td>#spreadsheet-editor</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="import-export"></a><a href="#import-export-note">import and export</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="import-tab-delimited"></a><a href="#import-tab-delimited-note">import tab delimited</a></td>
+<td>#import-tab-delimited</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="import-csv"></a><a href="#import-csv-note">import csv</a></td>
+<td>#import-csv</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="set-col-separator"></a><a href="#set-col-separator-note">set column separator</a></td>
+<td>#set-col-separator</td>
+<td>can it be multiple characters or a regex?</td>
+</tr>
+<tr>
+<td><a name="set-col-separator-whitesp"></a><a href="#set-col-separator-whitesp-note">set column separator to whitespace</a></td>
+<td>#set-col-separator-whitesp</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="set-quote-char"></a><a href="#set-quote-char-note">set quote character</a></td>
+<td>#set-quote-char</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="import-file-no-header"></a><a href="#import-file-no-header-note">import file without header</a></td>
+<td>#import-file-no-header</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="set-col-names"></a><a href="#set-col-names-note">set column names</a></td>
+<td>#set-col-names</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="set-col-types"></a><a href="#set-col-types-note">set column types</a></td>
+<td>#set-col-types</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="recognize-null-val"></a><a href="#recognize-null-val-note">recognize null values</a></td>
+<td>#recognize-null-val</td>
+<td>what values are recognized by default</td>
+</tr>
+<tr>
+<td><a name="change-decimal-mark"></a><a href="#change-decimal-mark-note">change decimal mark</a></td>
+<td>#change-decimal-mark</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="recognize-thousands-separator"></a><a href="#recognize-thousands-separator-note">recognize thousands separator</a></td>
+<td>#recognize-thousands-separator</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="unequal-row-len-behavior"></a><a href="#unequal-row-len-behavior-note">unequal row length behavior</a></td>
+<td>#unequal-row-len-behavior</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="skip-comment-lines"></a><a href="#skip-comment-lines-note">skip comment lines</a></td>
+<td>#skip-comment-lines</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="skip-rows"></a><a href="#skip-rows-note">skip rows</a></td>
+<td>#skip-rows</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="max-rows-to-read"></a><a href="#max-rows-to-read-note">max rows to read</a></td>
+<td>#max-rows-to-read</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="index-col"></a><a href="#index-col-note">index column</a></td>
+<td>#index-col</td>
+<td>multiple columns for hierarchical index?</td>
+</tr>
+<tr>
+<td><a name="export-tab-delimited"></a><a href="#export-tab-delimited-note">export tab delimited</a></td>
+<td>#export-tab-delimited</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="export-csv"></a><a href="#export-csv-note">export csv</a></td>
+<td>#export-csv</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="relational-algebra"></a><a href="#relational-algebra-note">relational algebra</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="project-col-by-name"></a><a href="#project-col-by-name-note">project columns by name</a></td>
+<td>#project-col-by-name</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="project-col-by-position"></a><a href="#project-col-by-position-note">project columns by position</a></td>
+<td>#project-col-by-position</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="project-expr"></a><a href="#project-expr-note">project expression</a></td>
+<td>#project-expr</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="project-all-col"></a><a href="#project-all-col-note">project all columns</a></td>
+<td>#project-all-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rename-col"></a><a href="#rename-col-note">rename columns</a></td>
+<td>#rename-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="select-rows"></a><a href="#select-rows-note">select rows</a></td>
+<td>#select-rows</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="select-distinct-rows"></a><a href="#select-distinct-rows-note">select distinct rows</a></td>
+<td>#select-distinct-rows</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="split-rows"></a><a href="#split-rows-note">split rows</a></td>
+<td>#split-rows</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="inner-join"></a><a href="#inner-join-note">inner join</a></td>
+<td>#inner-join</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="null-join-val"></a><a href="#null-join-val-note">nulls as join values</a></td>
+<td>#null-join-val</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="left-join"></a><a href="#left-join-note">left join</a></td>
+<td>#left-join</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="full-join"></a><a href="#full-join-note">full join</a></td>
+<td>#full-join</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="antijoin"></a><a href="#antijoin-note">antijoin</a></td>
+<td>#antijoin</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="cross-join"></a><a href="#cross-join-note">cross join</a></td>
+<td>#cross-join</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="aggregation"></a><a href="#aggregation-note">aggregation</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="row-count"></a><a href="#row-count-note">row count</a></td>
+<td>#row-count</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="group-by-col"></a><a href="#group-by-col-note">group by column</a></td>
+<td>#group-by-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="group-by-multiple-col"></a><a href="#group-by-multiple-col-note">group by multiple columns</a></td>
+<td>#group-by-multiple-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="aggregation-func"></a><a href="#aggregation-func-note">aggregation functions</a></td>
+<td>#aggregation-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="null-aggregation-func"></a><a href="#null-aggregation-func-note">nulls and aggregation functions</a></td>
+<td>#null-aggregation-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="rank"></a><a href="#rank-note">rank</a></td>
+<td>#rank</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="quantile"></a><a href="#quantile-note">quantile</a></td>
+<td>#quantile</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="having"></a><a href="#having-note">having</a></td>
+<td>#having</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3">MATHEMATICS</th>
+</tr>
+<tr>
+<th colspan="3"><a name="vectors"></a><a href="#vectors-note">vectors</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="vec-literal"></a><a href="#vec-literal-note">vector literal</a></td>
+<td>#vec-literal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="vec-elem-wise-op"></a><a href="#vec-elem-wise-op-note">element-wise arithmetic operators</a></td>
+<td>#vec-elem-wise-op</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="vec-len-mismatch"></a><a href="#vec-len-mismatch-note">result of vector length mismatch</a></td>
+<td>#vec-len-mismatch</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="vec-scalar-mult"></a><a href="#vec-scalar-mult-note">scalar multiplication</a></td>
+<td>#vec-scalar-mult</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="vec-dot"></a><a href="#vec-dot-note">dot product</a></td>
+<td>#vec-dot</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="vec-cross"></a><a href="#vec-cross-note">cross product</a></td>
+<td>#vec-cross</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="vec-norm"></a><a href="#vec-norm-note">norms</a></td>
+<td>#vec-norm</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="matrices"></a><a href="#matrices-note">matrices</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="matrix-literal-constructor"></a><a href="#matrix-literal-constructor-note">literal or constructor</a></td>
+<td>#matrix-literal-constructor</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="constant-matrices"></a><a href="#constant-matrices-note">constant matrices</a><br />
+<span style="color: gray"><em>all zeros, all ones</em></span></td>
+<td>#constant-matrices</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="diagonal-matrices"></a><a href="#diagonal-matrices-note">diagonal matrices</a><br />
+<span style="color: gray"><em>and identity</em></span></td>
+<td>#diagonal-matrices</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-dim"></a><a href="#matrix-dim-note">dimensions</a></td>
+<td>#matrix-dim</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-lookup"></a><a href="#matrix-lookup-note">element lookup</a></td>
+<td>#matrix-lookup</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="extract-matrix-row"></a><a href="#extract-matrix-row-note">extract row</a></td>
+<td>#extract-matrix-row</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="extract-matrix-col"></a><a href="#extract-matrix-col-note">extract column</a></td>
+<td>#extract-matrix-col</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="extract-submatrix"></a><a href="#extract-submatrix-note">extract submatrix</a></td>
+<td>#extract-submatrix</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-scalar-mult"></a><a href="#matrix-scalar-mult-note">scalar multiplication</a></td>
+<td>#matrix-scalar-mult</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-elem-wise-op"></a><a href="#matrix-elem-wise-op-note">element-wise operators</a></td>
+<td>#matrix-elem-wise-op</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-mult"></a><a href="#matrix-mult-note">multiplication</a></td>
+<td>#matrix-mult</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-power"></a><a href="#matrix-power-note">power</a></td>
+<td>#matrix-power</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="kronecker-prod"></a><a href="#kronecker-prod-note">kronecker product</a></td>
+<td>#kronecker-prod</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-comparison"></a><a href="#matrix-comparison-note">comparison</a></td>
+<td>#matrix-comparison</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-norms"></a><a href="#matrix-norms-note">norms</a></td>
+<td>#matrix-norms</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-transpose"></a><a href="#matrix-transpose-note">transpose</a></td>
+<td>#matrix-transpose</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-conjugate-transpose"></a><a href="#matrix-conjugate-transpose-note">conjugate transpose</a></td>
+<td>#matrix-conjugate-transpose</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-inverse"></a><a href="#matrix-inverse-note">inverse</a></td>
+<td>#matrix-inverse</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pseudoinverse"></a><a href="#pseudoinverse-note">pseudoinverse</a></td>
+<td>#pseudoinverse</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="determinant"></a><a href="#determinant-note">determinant</a></td>
+<td>#determinant</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="trace"></a><a href="#trace-note">trace</a></td>
+<td>#trace</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="eigenval"></a><a href="#eigenval-note">eigenvalues</a></td>
+<td>#eigenval</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="eigenvec"></a><a href="#eigenvec-note">eigenvectors</a></td>
+<td>#eigenvec</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="svd"></a><a href="#svd-note">singular value decomposition</a></td>
+<td>#svd</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="matrix-solution"></a><a href="#matrix-solution-note">solve system of equations</a></td>
+<td>#matrix-solution</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sparse-matrix-construction"></a><a href="#sparse-matrix-construction-note">sparse matrix construction</a></td>
+<td>#sparse-matrix-construction</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sparse-matrix-decomposition"></a><a href="#sparse-matrix-decomposition-note">sparse matrix decomposition</a></td>
+<td>#sparse-matrix-decomposition</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sparse-identity-matrix"></a><a href="#sparse-identity-matrix-note">sparse identity matrix</a></td>
+<td>#sparse-identity-matrix</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="dense-matrix-to-sparse-matrix"></a><a href="#dense-matrix-to-sparse-matrix-note">dense matrix to sparse matrix</a><br />
+<span style="color: gray"><em>and back</em></span></td>
+<td>#dense-matrix-to-sparse-matrix</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="sparse-matrix-storage"></a><a href="#sparse-matrix-storage-note">sparse matrix storage</a></td>
+<td>#sparse-matrix-storage</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="symbolic-expressions"></a><a href="#symbolic-expressions-note">symbolic expressions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="calculus"></a><a href="#calculus-note">calculus</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="equations-unknowns"></a><a href="#equations-unknowns-note">equations and unknowns</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="optimization"></a><a href="#optimization-note">optimization</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="number-theory"></a><a href="#number-theory-note">number theory</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="elliptic-curves"></a><a href="#elliptic-curves-note">elliptic curves</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="algebraic-numbers"></a><a href="#algebraic-numbers-note">algebraic numbers</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="polynomials"></a><a href="#polynomials-note">polynomials</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="rings"></a><a href="#rings-note">rings</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="power-series"></a><a href="#power-series-note">power series</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="special-functions"></a><a href="#special-functions-note">special functions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="permutations"></a><a href="#permutations-note">permutations</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="groups"></a><a href="#groups-note">groups</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="subgroups"></a><a href="#subgroups-note">subgroups</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="group-homomorphisms"></a><a href="#group-homomorphisms-note">group homomorphisms</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="actions"></a><a href="#actions-note">actions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3"><a name="propositions"></a><a href="#propositions-note">propositions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<th colspan="3">STATISTICS</th>
+</tr>
+<tr>
+<th colspan="3"><a name="descriptive-statistics"></a><a href="#descriptive-statistics-note">descriptive statistics</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="first-moment-stats"></a><a href="#first-moment-stats-note">first moment statistics</a></td>
+<td>#first-moment-stats</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="second-moment-stats"></a><a href="#second-moment-stats-note">second moment statistics</a></td>
+<td>#second-moment-stats</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="second-moment-stats-sample"></a><a href="#second-moment-stats-sample-note">second moment statistics for samples</a></td>
+<td>#second-moment-stats-sample</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="skewness"></a><a href="#skewness-note">skewness</a></td>
+<td>#skewness</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="kurtosis"></a><a href="#kurtosis-note">kurtosis</a></td>
+<td>#kurtosis</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="nth-moment"></a><a href="#nth-moment-note">nth moment and nth central moment</a></td>
+<td>#nth-moment</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="mode"></a><a href="#mode-note">mode</a></td>
+<td>#mode</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="quantile-stats"></a><a href="#quantile-stats-note">quantile statistics</a></td>
+<td>#quantile-stats</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="bivariate-stats"></a><a href="#bivariate-stats-note">bivariate statistiscs</a><br />
+<span style="color: gray"><em>correlation, covariance</em></span></td>
+<td>#bivariate-stats</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="correlation-matrix"></a><a href="#correlation-matrix-note">correlation matrix</a></td>
+<td>#correlation-matrix</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="freq-table"></a><a href="#freq-table-note">data set to frequency table</a></td>
+<td>#freq-table</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="invert-freq-table"></a><a href="#invert-freq-table-note">frequency table to data set</a></td>
+<td>#invert-freq-table</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="bin"></a><a href="#bin-note">bin</a></td>
+<td>#bin</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="distributions"></a><a href="#distributions-note">distributions</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="binomial"></a><a href="#binomial-note">binomial</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#binomial</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="poisson"></a><a href="#poisson-note">poisson</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#poisson</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="normal"></a><a href="#normal-note">normal</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#normal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="gamma"></a><a href="#gamma-note">gamma</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#gamma</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="exponential"></a><a href="#exponential-note">exponential</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#exponential</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="chi-squared"></a><a href="#chi-squared-note">chi-squared</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#chi-squared</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="beta"></a><a href="#beta-note">beta</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#beta</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="uniform"></a><a href="#uniform-note">uniform</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#uniform</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="students-t"></a><a href="#students-t-note">student t</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#students-t</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="snedecors-f"></a><a href="#snedecors-f-note">snedecor F</a><br />
+<span style="color: gray"><em>density, cumulative, quantile,<br />
+sample of 10</em></span></td>
+<td>#snedecors-f</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="empirical-density-func"></a><a href="#empirical-density-func-note">empirical density function</a></td>
+<td>#empirical-density-func</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="empirical-cumulative-distribution"></a><a href="#empirical-cumulative-distribution-note">empirical cumulative distribution</a></td>
+<td>#empirical-cumulative-distribution</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="empirical-quantile-func"></a><a href="#empirical-quantile-func-note">empirical quantile function</a></td>
+<td>#empirical-quantile-func</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="linear-regression"></a><a href="#linear-regression-note">linear regression</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="simple-linear-regression"></a><a href="#simple-linear-regression-note">simple linear regression</a><br />
+<span style="color: gray"><em>coefficient, intercept, and residuals</em></span></td>
+<td>#simple-linear-regression</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="linear-regression-no-intercept"></a><a href="#linear-regression-no-intercept-note">no intercept</a></td>
+<td>#linear-regression-no-intercept</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="multiple-linear-regression"></a><a href="#multiple-linear-regression-note">multiple linear regression</a></td>
+<td>#multiple-linear-regression</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="polynomial-regression"></a><a href="#polynomial-regression-note">polynomial regression</a></td>
+<td>#polynomial-regression</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="logistic-regression"></a><a href="#logistic-regression-note">logistic regression</a></td>
+<td>#logistic-regression</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="statistical-tests"></a><a href="#statistical-tests-note">statistical tests</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="wilcoxon"></a><a href="#wilcoxon-note">wilcoxon signed-rank test</a><br />
+<span style="color: gray"><em>variable is symmetric around zero</em></span></td>
+<td>#wilcoxon</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="kruskal"></a><a href="#kruskal-note">kruskal-wallis rank sum test</a><br />
+<span style="color: gray"><em>variables have same location parameter</em></span></td>
+<td>#kruskal</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="kolmogorov-smirnov-test"></a><a href="#kolmogorov-smirnov-test-note">kolmogorov-smirnov test</a><br />
+<span style="color: gray"><em>variables have same distribution</em></span></td>
+<td>#kolmogorov-smirnov-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="one-sample-t-test"></a><a href="#one-sample-t-test-note">one-sample t-test</a><br />
+<span style="color: gray"><em>mean of normal variable with unknown variance is zero</em></span></td>
+<td>#one-sample-t-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="independent-two-sample-t-test"></a><a href="#independent-two-sample-t-test-note">independent two-sample t-test</a><br />
+<span style="color: gray"><em>two normal variables have same mean</em></span></td>
+<td>#independent-two-sample-t-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="one-sample-binomial-test"></a><a href="#one-sample-binomial-test-note">one-sample binomial test</a><br />
+<span style="color: gray"><em>binomial variable parameter is as given</em></span></td>
+<td>#one-sample-binomial-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="two-sample-binomial-test"></a><a href="#two-sample-binomial-test-note">two-sample binomial test</a><br />
+<span style="color: gray"><em>parameters of two binomial variables are equal</em></span></td>
+<td>#two-sample-binomial-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="chi-squared-test"></a><a href="#chi-squared-test-note">chi-squared test</a><br />
+<span style="color: gray"><em>parameters of multinomial variable are all equal</em></span></td>
+<td>#chi-squared-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="poisson-test"></a><a href="#poisson-test-note">poisson test</a><br />
+<span style="color: gray"><em>parameter of poisson variable is as given</em></span></td>
+<td>#poisson-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="f-test"></a><a href="#f-test-note">F test</a><br />
+<span style="color: gray"><em>ratio of variance of normal variables is as given</em></span></td>
+<td>#f-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="pearson-product-moment-test"></a><a href="#pearson-product-moment-test-note">pearson product moment test</a><br />
+<span style="color: gray"><em>normal variables are not correlated</em></span></td>
+<td>#pearson-product-moment-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="shapiro-wilk-test"></a><a href="#shapiro-wilk-test-note">shapiro-wilk test</a><br />
+<span style="color: gray"><em>variable has normal distribution</em></span></td>
+<td>#shapiro-wilk-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="bartletts-test"></a><a href="#bartletts-test-note">bartlett test</a><br />
+<span style="color: gray"><em>two or more normal variables have same variance</em></span></td>
+<td>#bartletts-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="levene-test"></a><a href="#levene-test-note">levene test</a><br />
+<span style="color: gray"><em>two or more variables have same variance</em></span></td>
+<td>#levene-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="one-way-anova"></a><a href="#one-way-anova-note">one-way anova</a><br />
+<span style="color: gray"><em>two or more normal variables have same mean</em></span></td>
+<td>#one-way-anova</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="time-series"></a><a href="#time-series-note">time series</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><a name="time-series-construction"></a><a href="#time-series-construction-note">time series</a></td>
+<td>#time-series-construction</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="monthly-time-series"></a><a href="#monthly-time-series-note">monthly time series</a></td>
+<td>#monthly-time-series</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="time-series-lookup-time"></a><a href="#time-series-lookup-time-note">lookup by time</a></td>
+<td>#time-series-lookup-time</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="time-series-lookup-position"></a><a href="#time-series-lookup-position-note">lookup by position in series</a></td>
+<td>#time-series-lookup-position</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="aligned-arithmetic"></a><a href="#aligned-arithmetic-note">aligned arithmetic</a></td>
+<td>#aligned-arithmetic</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="lagged-difference"></a><a href="#lagged-difference-note">lagged difference</a></td>
+<td>#lagged-difference</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="simple-moving-avg"></a><a href="#simple-moving-avg-note">simple moving average</a></td>
+<td>#simple-moving-avg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="weighted-moving-avg"></a><a href="#weighted-moving-avg-note">weighted moving average</a></td>
+<td>#weighted-moving-avg</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="exponential-smoothing"></a><a href="#exponential-smoothing-note">exponential smoothing</a></td>
+<td>#exponential-smoothing</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="least-squares-exponential-smoothing"></a><a href="#least-squares-exponential-smoothing-note">exponential smoothing with best least squares fit</a></td>
+<td>#least-squares-exponential-smoothing</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="decompose-seasonal-trend"></a><a href="#decompose-seasonal-trend-note">decompose into seasonal and trend</a></td>
+<td>#decompose-seasonal-trend</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="correlogram"></a><a href="#correlogram-note">correlogram</a></td>
+<td>#correlogram</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="stationarity-test"></a><a href="#stationarity-test-note">test for stationarity</a></td>
+<td>#stationarity-test</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="arma"></a><a href="#arma-note">arma</a></td>
+<td>#arma</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="arima"></a><a href="#arima-note">arima</a></td>
+<td>#arima</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="automatic-arima"></a><a href="#automatic-arima-note">arima with automatic model selection</a></td>
+<td>#automatic-arima</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3">CHARTS</th>
+</tr>
+<tr>
+<th colspan="3"><a name="univariate-charts"></a><a href="#univariate-charts-note">univariate charts</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><img src="http://farm5.static.flickr.com/4090/5039793334_f76edece33_m.jpg" alt="http://farm5.static.flickr.com/4090/5039793334_f76edece33_m.jpg" class="image" /><br />
+<a name="bar-chart"></a><a href="#bar-chart-note">vertical bar chart</a></td>
+<td>#bar-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm5.static.flickr.com/4092/5039776078_cc38a4ff5f_m.jpg" alt="http://farm5.static.flickr.com/4092/5039776078_cc38a4ff5f_m.jpg" class="image" /><br />
+<a name="horizontal-bar-chart"></a><a href="#horizontal-bar-chart-note">horizontal bar chart</a></td>
+<td>#horizontal-bar-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm5.static.flickr.com/4145/5037819710_d932767cd5_m.jpg" alt="http://farm5.static.flickr.com/4145/5037819710_d932767cd5_m.jpg" class="image" /><br />
+<a name="pie-chart"></a><a href="#pie-chart-note">pie chart</a></td>
+<td>#pie-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm5.static.flickr.com/4089/5037399669_13c8e585e0_m.jpg" alt="http://farm5.static.flickr.com/4089/5037399669_13c8e585e0_m.jpg" class="image" /><br />
+<a name="stem-leaf-plot"></a><a href="#stem-leaf-plot-note">stem-and-leaf plot</a></td>
+<td>#stem-leaf-plot</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm5.static.flickr.com/4106/5037415497_4c6fbfcab2_m.jpg" alt="http://farm5.static.flickr.com/4106/5037415497_4c6fbfcab2_m.jpg" class="image" /><br />
+<a name="histogram"></a><a href="#histogram-note">histogram</a></td>
+<td>#histogram</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm5.static.flickr.com/4106/5037525393_7ac86e81c3_m.jpg" alt="http://farm5.static.flickr.com/4106/5037525393_7ac86e81c3_m.jpg" class="image" /><br />
+<a name="box-plot"></a><a href="#box-plot-note">box plot</a></td>
+<td>#box-plot</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="chart-title"></a><a href="#chart-title-note">chart title</a></td>
+<td>#chart-title</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm8.staticflickr.com/7551/15816199467_a0a0f159d0_t.jpg" alt="http://farm8.staticflickr.com/7551/15816199467_a0a0f159d0_t.jpg" class="image" /><br />
+<a name="subplot-grid"></a><a href="#subplot-grid-note">grid of subplots</a></td>
+<td>#subplot-grid</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="new-plot-window"></a><a href="#new-plot-window-note">open new plot window</a></td>
+<td>#new-plot-window</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="save-plot-as-png"></a><a href="#save-plot-as-png-note">save plot as png</a></td>
+<td>#save-plot-as-png</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="bivariate-charts"></a><a href="#bivariate-charts-note">bivariate charts</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><img src="http://farm5.static.flickr.com/4154/5039126187_e340b3f4aa_m.jpg" alt="http://farm5.static.flickr.com/4154/5039126187_e340b3f4aa_m.jpg" class="image" /><br />
+<a name="stacked-bar-chart"></a><a href="#stacked-bar-chart-note">stacked bar chart</a></td>
+<td>#stacked-bar-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm8.staticflickr.com/7490/15814685770_09478e1222_t.jpg" alt="http://farm8.staticflickr.com/7490/15814685770_09478e1222_t.jpg" class="image" /><br />
+<a name="grouped-bar-chart"></a><a href="#grouped-bar-chart-note">grouped bar chart</a></td>
+<td>#grouped-bar-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm6.static.flickr.com/5044/5267212089_a7749bbe3e_s.jpg" alt="http://farm6.static.flickr.com/5044/5267212089_a7749bbe3e_s.jpg" class="image" /><br />
+<a name="scatter-plot"></a><a href="#scatter-plot-note">scatter plot</a></td>
+<td>#scatter-plot</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="point-types"></a><a href="#point-types-note">point types</a></td>
+<td>#point-types</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm9.staticflickr.com/8568/16001259452_55e23d1303_t.jpg" alt="http://farm9.staticflickr.com/8568/16001259452_55e23d1303_t.jpg" class="image" /><br />
+<a name="hexbin"></a><a href="#hexbin-note">hexagonal binning</a></td>
+<td>#hexbin</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm6.static.flickr.com/5089/5267975488_2216ae147e_s.jpg" alt="http://farm6.static.flickr.com/5089/5267975488_2216ae147e_s.jpg" class="image" /><br />
+<a name="linear-regression-line"></a><a href="#linear-regression-line-note">linear regression line</a></td>
+<td>#linear-regression-line</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm6.static.flickr.com/5125/5267434941_f8537c9d26_s.jpg" alt="http://farm6.static.flickr.com/5125/5267434941_f8537c9d26_s.jpg" class="image" /><br />
+<a name="polygonal-plot"></a><a href="#polygonal-plot-note">polygonal line plot</a></td>
+<td>#polygonal-plot</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="line-types"></a><a href="#line-types-note">line types</a></td>
+<td>#line-types</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm6.static.flickr.com/5204/5268208606_b745646ea6_s.jpg" alt="http://farm6.static.flickr.com/5204/5268208606_b745646ea6_s.jpg" class="image" /><br />
+<a name="function-plot"></a><a href="#function-plot-note">function plot</a></td>
+<td>#function-plot</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm6.static.flickr.com/5048/5267567389_27a19429e4_s.jpg" alt="http://farm6.static.flickr.com/5048/5267567389_27a19429e4_s.jpg" class="image" /><br />
+<a name="qq-plot"></a><a href="#qq-plot-note">quantile-quantile plot</a></td>
+<td>#qq-plot</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="axis-labels"></a><a href="#axis-labels-note">axis labels</a></td>
+<td>#axis-labels</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="axis-limits"></a><a href="#axis-limits-note">axis limits</a></td>
+<td>#axis-limits</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="logarithmic-y-axis"></a><a href="#logarithmic-y-axis-note">logarithmic y-axis</a></td>
+<td>#logarithmic-y-axis</td>
+<td> </td>
+</tr>
+<tr>
+<th colspan="3"><a name="multivariate-charts"></a><a href="#multivariate-charts-note">multivariate charts</a></th>
+</tr>
+<tr>
+<th>title </th>
+<th>anchor</th>
+<th>description</th>
+</tr>
+<tr>
+<td><img src="http://farm6.static.flickr.com/5245/5268191292_a75a367c39_s.jpg" alt="http://farm6.static.flickr.com/5245/5268191292_a75a367c39_s.jpg" class="image" /><br />
+<a name="additional-line"></a><a href="#additional-line-note">additional line set</a></td>
+<td>#additional-line</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="colors"></a><a href="#colors-note">colors</a></td>
+<td>#colors</td>
+<td> </td>
+</tr>
+<tr>
+<td><a name="superimposed-plots"></a><a href="#superimposed-plots-note">superimposed plots with different y-axis scales</a></td>
+<td>#superimposed-plots</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm8.staticflickr.com/7461/15382318933_b4ba583034_t.jpg" alt="http://farm8.staticflickr.com/7461/15382318933_b4ba583034_t.jpg" class="image" /><br />
+<a name="legend"></a><a href="#legend-note">legend</a></td>
+<td>#legend</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm9.staticflickr.com/8600/15814685890_69b3f21697_t.jpg" alt="http://farm9.staticflickr.com/8600/15814685890_69b3f21697_t.jpg" class="image" /><br />
+<a name="additional-point"></a><a href="#additional-point-note">additional point set</a></td>
+<td>#additional-point</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm6.static.flickr.com/5041/5268071368_75c3aee42e_t.jpg" alt="http://farm6.static.flickr.com/5041/5268071368_75c3aee42e_t.jpg" class="image" /><br />
+<a name="area-chart"></a><a href="#area-chart-note">stacked area chart</a></td>
+<td>#area-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm8.staticflickr.com/7557/15815944099_9b56eb2af4_t.jpg" alt="http://farm8.staticflickr.com/7557/15815944099_9b56eb2af4_t.jpg" class="image" /><br />
+<a name="overlapping-area-chart"></a><a href="#overlapping-area-chart-note">overlapping area chart</a></td>
+<td>#overlapping-area-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm9.staticflickr.com/8611/15814558578_f6b4f8d3b0_t.jpg" alt="http://farm9.staticflickr.com/8611/15814558578_f6b4f8d3b0_t.jpg" class="image" /><br />
+<a name="scatter-plot-3d"></a><a href="#scatter-plot-3d-note">3d scatter plot</a></td>
+<td>#scatter-plot-3d</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm9.staticflickr.com/8591/15999976481_b2082d7d5b_t.jpg" alt="http://farm9.staticflickr.com/8591/15999976481_b2082d7d5b_t.jpg" class="image" /><br />
+<a name="bubble-chart"></a><a href="#bubble-chart-note">bubble chart</a></td>
+<td>#bubble-chart</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm8.staticflickr.com/7521/15976165976_636a08e4e8_t.jpg" alt="http://farm8.staticflickr.com/7521/15976165976_636a08e4e8_t.jpg" class="image" /><br />
+<a name="scatter-plot-matrix"></a><a href="#scatter-plot-matrix-note">scatter plot matrix</a></td>
+<td>#scatter-plot-matrix</td>
+<td> </td>
+</tr>
+<tr>
+<td><img src="http://farm8.staticflickr.com/7496/15814558718_3f63b8e371_t.jpg" alt="http://farm8.staticflickr.com/7496/15814558718_3f63b8e371_t.jpg" class="image" /><br />
+<a name="contour-plot"></a><a href="#contour-plot-note">contour plot</a></td>
+<td>#contour-plot</td>
+<td> </td>
+</tr>
+<tr>
+<th></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">____________________________________________</span></span></th>
+<th></th>
+</tr>
+</table>
