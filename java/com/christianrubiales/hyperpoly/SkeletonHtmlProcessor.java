@@ -36,7 +36,9 @@ public class SkeletonHtmlProcessor {
 						contents = "";
 					} else if (line.startsWith("<th colspan=\"3")) {
 						contents = contents.replace("<tr>", "<tr class='header'>");
-						contents += "<th class='header'>";
+						contents += "<th class='header' name='" 
+								+ line.substring(line.lastIndexOf("\"#") + 2, line.lastIndexOf("\">")).replace("-note", "")
+								+ "'>";
 						contents += line.substring(line.lastIndexOf("\">") + 2).replace("</a>", "");
 						contents += in.nextLine();
 						write(out, contents);
@@ -83,7 +85,7 @@ public class SkeletonHtmlProcessor {
 	}
 	
 	public static void write(FileWriter out, String string) throws IOException {
-//		System.out.println(string);
+		System.out.println(string);
 		out.write(string + "\n");
 		out.flush();
 	}

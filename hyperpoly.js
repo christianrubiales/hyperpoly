@@ -8,7 +8,7 @@ $(document).ready(function(){
     		var json;
     		if (!jsons.hasOwnProperty(technology)) {
     			$.ajax({
-    				url: 'http://localhost:8000/json/' + technology + '.json',
+    				url: './json/' + technology + '.json',
 				    dataType: 'json',
 				    async: false,
     				success: function(data) {
@@ -21,7 +21,7 @@ $(document).ready(function(){
 	    	var parentClazz;
 	    	$('tr').each(function() {
 	    		if ($(this).prop('class') == 'header') {
-	    			parentClazz = $(this).find('th:first-child').text();
+	    			parentClazz = $(this).find('th:first-child').attr('name');
 	    			$(this).append('<td class="' + technology + '"><b>' + technology + '</b></td>');
 	    		} else {
 	    			var clazz = $(this).prop('class');
