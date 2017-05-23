@@ -3,11 +3,13 @@ package com.christianrubiales.hyperpoly;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class HyperpolyglotHtmlToJson {
 
 	public static void main(String[] args) throws IOException {
+		System.out.println("HyperpolyglotHtmlToJson " + Arrays.deepToString(args));
 		FileWriter[] out = new FileWriter[args.length - 1];
 		for (int i = 0; i < args.length - 1; i++) {
 			out[i] = new FileWriter(args[i + 1]);
@@ -58,6 +60,7 @@ public class HyperpolyglotHtmlToJson {
 									contents += line;
 								}
 								write(out[tdIndex - 1], "\"" + contents.replace("</td>", "").replace("\"", "\\\"") + "\",\n");
+
 								tdIndex++;
 							}
 						}
@@ -69,7 +72,7 @@ public class HyperpolyglotHtmlToJson {
 	}
 
 	public static void write(FileWriter[] out, String string) throws IOException {
-		// System.out.print(string);
+//		System.out.print(string);
 		for (FileWriter writer : out) {
 			writer.write(string);
 			writer.flush();
@@ -77,7 +80,7 @@ public class HyperpolyglotHtmlToJson {
 	}
 
 	public static void write(FileWriter out, String string) throws IOException {
-		// System.out.print(string);
+//		System.out.print(string);
 		out.write(string);
 		out.flush();
 	}
