@@ -1,0 +1,2237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<link rel="icon" type="image/gif" href="/favicon.gif"/>
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<title>Command Line Interpreters: POSIX Shell, Cmd.exe, PowerShell - Hyperpolyglot</title>
+<style type="text/css" id="internal-style">
+@import url(hyperpolyglot.css);
+</style>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="content-language" content="en"/>
+</head>
+<body>
+<div id="container-wrap-wrap">
+  <div id="container-wrap">
+    <div id="container">
+      <div id="header">
+        <h1><a href="/"><span>Hyperpolyglot</span></a></h1>
+      </div>
+      <div id="content-wrap">
+        <div id="main-content">
+<div id="page-title">
+                            Command Line Interpreters: POSIX Shell, Cmd.exe, PowerShell
+                        </div>
+<div id="page-content">
+                        
+
+<p><em>a side-by-side reference sheet</em></p>
+<p><a href="#grammar-execution">grammar and execution</a> | <a href="#var-expr">variables and expression</a> | <a href="#arithmetic-logic">arithmetic and logic</a> | <a href="#strings">strings</a> | <a href="#regexes">regexes</a> | <a href="#dates-time">dates and time</a> | <a href="#arrays">arrays</a> | <a href="#functions">functions</a> | <a href="#execution-control">execution control</a> | <a href="#exceptions">exceptions</a> | <a href="#streams">streams</a> | <a href="#files">files</a> | <a href="#directories">directories</a> | <a href="#processes-environment">processes and environment</a> | <a href="#libraries-namespaces">libraries and namespaces</a> | <a href="#reflection">reflection</a> | <a href="#debugging-profiling">debugging and profiling</a></p>
+<table class="wiki-content-table">
+<tr>
+<th><a name="general" id="general"></a></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="version-used" id="version-used"></a><a href="#version-used-note">version used</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>dash; POSIX 2008</em></span></td>
+<td><span style="color: gray"><em>6.3</em></span></td>
+<td><span style="color: gray"><em>4.0</em></span></td>
+</tr>
+<tr>
+<td><a name="version" id="version"></a><a href="#version-note">show version</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td><span style="color: gray"><em>displayed at startup</em></span></td>
+<td>$host.version</td>
+</tr>
+<tr>
+<th colspan="4"><a name="grammar-execution" id="grammar-execution"></a><a href="#grammar-execution-note">grammar and execution</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="interpreter" id="interpreter"></a><a href="#interpreter-note">interpreter</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ dash foo.sh</td>
+<td><span style="color: gray"><em>when foo.bat is in the search path:</em></span><br />
+<span style="white-space: pre-wrap;">&gt;</span> foo</td>
+<td><span style="white-space: pre-wrap;">PS&gt;</span> .\foo.ps1<br />
+<br />
+<span style="white-space: pre-wrap;">DOS&gt;</span> powershell -file foo.ps1</td>
+</tr>
+<tr>
+<td><a name="repl" id="repl"></a><a href="#repl-note">repl</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ dash</td>
+<td><span style="white-space: pre-wrap;">&gt;</span> cmd</td>
+<td><span style="white-space: pre-wrap;">&gt;</span> powershell</td>
+</tr>
+<tr>
+<td><a name="exec-and-exit" id="exec-and-exit"></a><a href="#exec-and-exit-note">execute command and exit</a></td>
+<td>$ dash -c 'echo hi'</td>
+<td><span style="white-space: pre-wrap;">&gt;</span> cmd /c "echo hi"</td>
+<td><span style="white-space: pre-wrap;">&gt;</span> powershell -command 'write-output "hi"'</td>
+</tr>
+<tr>
+<td><a name="stmt-separator" id="stmt-separator"></a><a href="#stmt-separator-note">statement separator</a></td>
+<td><span style="color: gray"><em>pipelines separated by</em></span><br />
+; &amp; &amp;&amp; <span style="white-space: pre-wrap;">||</span><br />
+<br />
+<span style="color: gray"><em>lists of pipelines separated by newlines unless newline is preceded by a backslash or inside these characters:</em></span><br />
+"" '' <span style="white-space: pre-wrap;">``</span> ()</td>
+<td><span style="color: gray"><em>pipelines separated by</em></span> &amp; &amp;&amp; <span style="white-space: pre-wrap;">||</span><br />
+<br />
+<span style="color: gray"><em>lists of pipelines separated by newline unless preceded by caret ^ which is not inside double quote "</em></span></td>
+<td>; <span style="color: gray"><em>or newline; a newline can be escaped with a backtick:</em></span> <span style="white-space: pre-wrap;">`</span> <span style="color: gray"><em>newlines are permitted in double quotes and after a pipe:</em></span> |</td>
+</tr>
+<tr>
+<td><a name="word-separator" id="word-separator"></a><a href="#word-separator-note">word separators</a></td>
+<td>| &amp; ; ( ) &lt; &gt; <span style="color: gray"><em>space tab</em></span></td>
+<td>| &amp; &lt; &gt; <span style="color: gray"><em>space tab</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="esc-special-char" id="esc-special-char"></a><a href="#esc-special-char-note">escape special character</a></td>
+<td><span style="color: gray"># write "foo" to foo.txt:</span><br />
+echo foo &gt; foo.txt<br />
+<br />
+<span style="color: gray"># write "foo &gt; foo.txt" to stdout:</span><br />
+echo foo \&gt; foo.txt</td>
+<td><span style="color: gray">rem write "foo" to foo.txt</span><br />
+echo foo &gt; foo.txt<br />
+<br />
+<span style="color: gray">rem write "foo &gt; foo.txt" to stdout:</span><br />
+echo foo ^&gt; foo.txt</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="block-delimiters" id="block-delimiters"></a><a href="#block-delimiters-note">block delimiters</a></td>
+<td>{<span style="color: gray"><em>…</em></span>}<br />
+(<span style="color: gray"><em>…</em></span>)<br />
+do <span style="color: gray"><em>…</em></span> done</td>
+<td>( <span style="color: gray"><em>…</em></span> )</td>
+<td>{ <span style="color: gray"><em>…</em></span> }</td>
+</tr>
+<tr>
+<td><a href="#expression-statement">are expressions statements</a></td>
+<td><span style="color: gray"><em>no</em></span></td>
+<td><span style="color: gray"><em>no<br />
+<br />
+relational expressions can only be used in the conditional of an</em> if <em>statement<br />
+<br />
+arithmetic expressions can only be assigned to a variable using</em> set /a</span></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+</tr>
+<tr>
+<td><a name="comment" id="comment"></a><a href="#comment-note">end-of-line comment</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td># <span style="color: gray"><em>comment</em></span></td>
+<td>rem <span style="color: gray"><em>comment</em></span><br />
+<br />
+:: <span style="color: gray"><em>comment</em></span></td>
+<td># <span style="color: gray"><em>comment</em></span></td>
+</tr>
+<tr>
+<td><a name="multiline-comment" id="multiline-comment"></a><a href="#multiline-comment-note">comment out multiple lines</a></td>
+<td><span style="white-space: pre-wrap;">&lt;&lt;</span>EOF<br />
+<span style="color: gray"><em>comment</em></span><br />
+<span style="color: gray"><em>another comment</em></span><br />
+EOF</td>
+<td>goto comment<br />
+<span style="color: gray"><em>comment</em></span><br />
+<span style="color: gray"><em>another comment</em></span><br />
+:comment</td>
+<td>&lt;# <span style="color: gray"><em>comment</em></span><br />
+<span style="color: gray"><em>another comment</em></span> #&gt;</td>
+</tr>
+<tr>
+<th colspan="4"><a name="var-expr" id="var-expr"></a><a href="#var-expr-note">variables and expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="assignment" id="assignment"></a><a href="#assignment-note">assignment</a></td>
+<td>a=1<br />
+<span style="color: gray"><em>whitespace next to</em></span> = <span style="color: gray"><em>not permitted</em></span></td>
+<td>set a=1</td>
+<td>$a = 1</td>
+</tr>
+<tr>
+<td><a name="parallel-assignment" id="parallel-assignment"></a><a href="#parallel-assignment-note">parallel assignment</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>$a, $b = 1, 2</td>
+</tr>
+<tr>
+<td><a name="swap" id="swap"></a><a href="#swap-note">swap</a></td>
+<td>tmp=$a<br />
+a=$b<br />
+b=$tmp</td>
+<td>set tmp=%a%<br />
+set a=%b%<br />
+set b=%tmp%</td>
+<td>$a, $b = $b, $a</td>
+</tr>
+<tr>
+<td><a name="compound-assignment" id="compound-assignment"></a><a href="#compound-assignment-note">compound assignment operators: arithmetic, string, bit</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>+= -= *= /= %=<br />
+<span style="color: gray"><em>none</em></span><br />
+«= »= &amp;= |= ^=</td>
+<td>+= -= *= /= %=<br />
++= *=<br />
+<span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="incr-decr" id="incr-decr"></a><a href="#incr-decr-note">increment and decrement</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>$x = 1<br />
+$x<span style="white-space: pre-wrap;">++</span><br />
+$x<span style="white-space: pre-wrap;">--</span></td>
+</tr>
+<tr>
+<td><a name="var-decl" id="var-decl"></a><a href="#var-decl-note">variable declaration</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>assignment</em></span>, export, readonly</td>
+<td><span style="color: gray"><em>assignment</em></span></td>
+<td><span style="color: gray"><em>assignment</em></span></td>
+</tr>
+<tr>
+<td><a name="identifiers-case-sensitive" id="identifiers-case-sensitive"></a><a href="#identifiers-case-sensitive-note">are identifiers case sensitive?</a></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+<td><span style="color: gray"><em>no</em></span></td>
+<td><span style="color: gray"><em>no</em></span></td>
+</tr>
+<tr>
+<td><a name="null" id="null"></a><a href="#null-note">null</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>''</td>
+<td><span style="color: gray"><em>Variables must contain a non-empty string. This deletes the variable x:</em></span><br />
+set x=</td>
+<td>$null</td>
+</tr>
+<tr>
+<td><a name="null-test" id="null-test"></a><a href="#null-test-note">null test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>if [ -z $v ]<br />
+then<br />
+<span style="white-space: pre-wrap;">  </span>echo not defined<br />
+fi</td>
+<td>if not defined v echo not defined</td>
+<td>$v -eq $null</td>
+</tr>
+<tr>
+<th colspan="4"><a name="arithmetic-logic" id="arithmetic-logic"></a><a href="#arithmetic-logic-note">arithmetic and logic</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="true-false" id="true-false"></a><a href="#true-false-note">true and false</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>status codes:</em></span><br />
+true false<br />
+<br />
+<span style="color: gray"><em>inside</em> [ ]:</span><br />
+1 ''</td>
+<td><span style="color: gray"><em>no booleans; conditional of if statement must contain a relational expression</em></span></td>
+<td>$true $false</td>
+</tr>
+<tr>
+<td><a name="falsehoods" id="falsehoods"></a><a href="#falsehoods-note">falsehoods</a></td>
+<td><span style="color: gray"><em>status codes:<br />
+nonzero integers</em></span><br />
+<br />
+<span style="color: gray"><em>inside</em> [ ]:</span><br />
+''</td>
+<td><span style="color: gray"><em>relational expressions which evaluate to false</em></span></td>
+<td>0 0.0 "" ''</td>
+</tr>
+<tr>
+<td><a name="logical-ops" id="logical-ops"></a><a href="#logical-ops-note">logical operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>status codes:</em></span><br />
+&amp;&amp; <span style="white-space: pre-wrap;">||</span> !<br />
+<br />
+<span style="color: gray"><em>inside</em> [ ]:</span><br />
+-a -o !</td>
+<td><span style="color: gray"><em>short-circuit operators:</em></span><br />
+&amp;&amp; <span style="white-space: pre-wrap;">||</span><br />
+<br />
+<span style="color: gray"><em>inside conditional of if:</em></span><br />
+not</td>
+<td>-and -or -not</td>
+</tr>
+<tr>
+<td><a name="conditional-expr" id="conditional-expr"></a><a href="#conditional-expr-note">conditional expression</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$(( x&gt;0 ? x : -x ))</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a href="#relational-expr">relational expression</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>[ $a -gt 3 ]</td>
+<td>%a% gtr 3</td>
+<td>$a -gt 3</td>
+</tr>
+<tr>
+<td><a href="#relational-operators">relational operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>integers:</em></span><br />
+-eq -ne -gt -lt -ge -le<br />
+<br />
+<span style="color: gray"><em>strings:</em></span><br />
+<span style="white-space: pre-wrap;">=</span> != &gt; &lt; <span style="color: gray"><em>none</em></span> <span style="color: gray"><em>none</em></span></td>
+<td>equ neq gtr lss geq leq</td>
+<td>-eq -ne -gt -lt -ge -le</td>
+</tr>
+<tr>
+<td><a href="#arithmetic-expr">arithmetic expression</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$(( 1 + 3 ))</td>
+<td><span style="color: gray"><em>arithmetic expression must be stored in a variable:</em></span><br />
+set /a "foo=1+3"</td>
+<td>1 + 3</td>
+</tr>
+<tr>
+<td><a href="#arithmetic-operators">arithmetic operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>+ - * <span style="color: gray"><em>none</em></span> / % <span style="white-space: pre-wrap;">**</span><br />
+<br />
+<span style="color: gray"><em>operators are integer-only in most shells; use</em> bc <em>for float arithmetic</em></span></td>
+<td>+ - * <span style="color: gray"><em>none</em></span> / % <span style="color: gray"><em>none</em></span><br />
+<br />
+<span style="color: gray"><em>operators only work on integers</em></span></td>
+<td>+ - * / <span style="color: gray"><em>??</em></span> % <span style="color: gray"><em>??</em></span></td>
+</tr>
+<tr>
+<td><a href="#integer-division">integer division</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$(( $a / $b ))</td>
+<td>set /a "result=7/3"</td>
+<td>$rem = $null<br />
+$quot = [Math]::DivRem($a, $b, [ref] $rem)</td>
+</tr>
+<tr>
+<td><a name="int-div-zero" id="int-div-zero"></a><a href="#int-div-zero-note">integer division by zero</a></td>
+<td><span style="color: gray"><em>writes "division by 0" error message; statement terminates with a 1 status</em></span></td>
+<td><span style="color: gray"><em>Writes "Divide by zero error." and sets %errorlevel% to nonzero value.</em></span></td>
+<td><span style="color: gray"><em>error: Attempted to divide by zero</em></span></td>
+</tr>
+<tr>
+<td><a href="#float-division">float division</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="white-space: pre-wrap;">`</span>echo " scale=5; $a / $b " | bc<span style="white-space: pre-wrap;">`</span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>$a / $b</td>
+</tr>
+<tr>
+<td><a name="float-div-zero" id="float-div-zero"></a><a href="#float-div-zero-note">float division by zero</a></td>
+<td><span style="color: gray"><em>writes "division by 0" error message; statement terminates with a 1 status</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>evaluates to</em> Infinity <em>which is not a float literal</em></span></td>
+</tr>
+<tr>
+<td><a name="power" id="power"></a><a href="#power-note">power</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>[Math]::pow(2, 32)</td>
+</tr>
+<tr>
+<td><a name="sqrt" id="sqrt"></a><a href="#sqrt-note">sqrt</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>[Math]::sqrt(2)</td>
+</tr>
+<tr>
+<td><a href="#sqrt-negative-two">sqrt -2</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>no sqrt</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>evaluates to</em> NaN <em>which is not a float literal</em></span></td>
+</tr>
+<tr>
+<td><a href="#transcendental-func">transcendental functions</a></td>
+<td>e l s c <span style="color: gray"><em>none</em></span> <span style="color: gray"><em>none</em></span> <span style="color: gray"><em>none</em></span> a <span style="color: gray"><em>none</em></span><br />
+<span style="color: gray"><em>how to use:</em></span><br />
+<span style="white-space: pre-wrap;">`</span>echo 'e(2)' | bc -l<span style="white-space: pre-wrap;">`</span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>[Math]::exp [Math]::log<br />
+[Math]::sin [Math]::cos [Math]::tan<br />
+[Math]::asin [Math]::acos [Math]::atan<br />
+[Math]::atan2</td>
+</tr>
+<tr>
+<td><a href="#float-truncation">float truncation</a><br />
+<span style="color: gray"><em>round towards zero, round to nearest integer, round down, round up</em></span></td>
+<td><span style="color: gray"><em>none and no floats</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>[Math]::truncate(3.14)<br />
+[Math]::round(3.14)<br />
+[Math]::floor(3.14)<br />
+[Math]::ceiling(3.14)</td>
+</tr>
+<tr>
+<td><a name="abs-val" id="abs-val"></a><a href="#abs-val-note">absolute value</a><br />
+<span style="color: gray"><em>and signum</em></span></td>
+<td></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>[Math]::abs(-7)<br />
+[Math]::sign(-7)</td>
+</tr>
+<tr>
+<td><a href="#integer-overflow">integer overflow</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>modular arithmetic</em></span></td>
+<td><span style="color: gray"><em>sometimes modular arithmetic; sometimes writes error message and sets %errorlevel% to nonzero value.</em></span></td>
+<td><span style="color: gray"><em>converts to float</em></span></td>
+</tr>
+<tr>
+<td><a href="#float-overflow">float overflow</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>no floats</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>evaluates to</em> Infinity <em>which is not a float literal</em></span></td>
+</tr>
+<tr>
+<td><a href="#random">random integer, uniform float</a></td>
+<td>echo $RANDOM <span style="color: gray"><em>15 bit integer</em></span></td>
+<td><span style="color: gray">rem integer in range 0 to 32767:</span><br />
+echo %random%</td>
+<td>random 100<br />
+random 1.0</td>
+</tr>
+<tr>
+<td><a href="#seed-random">seed random numbers</a></td>
+<td>RANDOM=17<br />
+r=$RANDOM</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>$r = random -setseed 17</td>
+</tr>
+<tr>
+<td><a href="#bit-operators">bit operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="white-space: pre-wrap;">&lt;&lt; &gt;&gt; &amp; | ^ ~</span></td>
+<td><span style="color: gray"><em>use with</em> set /a:</span><br />
+<span style="white-space: pre-wrap;">&lt;&lt; &gt;&gt; &amp; | ^ ~</span></td>
+<td><span style="color: gray"><em>none</em></span> <span style="color: gray"><em>none</em></span> -band -bor -bxor -bnot<br />
+<br />
+<span style="color: gray"># powershell 3.0:</span><br />
+-lsl -lsr</td>
+</tr>
+<tr>
+<th colspan="4"><a name="strings" id="strings"></a><a href="#strings-note">strings</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a href="#string-literal">string literal</a></td>
+<td>'don'\''t say "no"'<br />
+"don't say \"no\""<br />
+$'don\'t say "no"'</td>
+<td><span style="color: gray"><em>None; barewords are used for strings.</em></span><br />
+<br />
+<span style="color: gray"><em>Double quotes are used for file names which contain spaces and other special characters. However, the double quotes are stored in the variables and passed to commands.</em></span></td>
+<td>'don''t say "no"'<br />
+"don't say <span style="white-space: pre-wrap;">`</span>"no<span style="white-space: pre-wrap;">`</span>""</td>
+</tr>
+<tr>
+<td><a href="#string-literal-newline">newline in literal</a></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+<td><span style="color: gray"><em>No; a bareword string can be continued on the following line by ending a line with ^; the CRLF is not part of the value of the string; it is not possible to store a CRLF in a variable.</em></span></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+</tr>
+<tr>
+<td><a href="#barewords">barewords</a></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+</tr>
+<tr>
+<td><a name="bareword-esc-char" id="bareword-esc-char"></a><a href="#bareword-esc-char-note">bareword escape character</a></td>
+<td><span style="color: gray"><em>backslash:</em></span> \;</td>
+<td><span style="color: gray"><em>caret:</em></span> ^&lt;<br />
+<br />
+<span style="color: gray"><em>Characters special to the interpreter can be stored in a variable by preceding them by a caret: ^; the interpreter will attempt to interpret them when the variable is dereferenced, however.</em></span></td>
+<td><span style="color: gray"><em>backquote:</em>: <span style="white-space: pre-wrap;">`</span>$</span></td>
+</tr>
+<tr>
+<td><a href="#string-escapes">escapes</a></td>
+<td>gray|<em>in double quotes</em>##<br />
+\\ \"<br />
+<span style="color: gray"><em>in</em></span> $' ' <span style="color: gray"><em>quotes:</em></span><br />
+\a \b \e \f \n \r \t \v \\ \' \c<span style="color: gray"><em>c</em></span> \x<span style="color: gray"><em>hh</em></span> \<span style="color: gray"><em>ooo</em></span></td>
+<td></td>
+<td><span style="white-space: pre-wrap;">`</span>' <span style="white-space: pre-wrap;">`</span>" <span style="white-space: pre-wrap;">``</span><br />
+<span style="white-space: pre-wrap;">`</span>0 <span style="white-space: pre-wrap;">`</span>a <span style="white-space: pre-wrap;">`</span>b <span style="white-space: pre-wrap;">`</span>f <span style="white-space: pre-wrap;">`</span>n <span style="white-space: pre-wrap;">`</span>r <span style="white-space: pre-wrap;">`</span>t <span style="white-space: pre-wrap;">`</span>v<br />
+<span style="color: gray"><em>in other backtick sequences the backtick is ignored</em></span></td>
+</tr>
+<tr>
+<td><a href="#variable-interpolation">variable interpolation</a></td>
+<td>count=3<br />
+item=ball<br />
+"$count ${item}s"</td>
+<td></td>
+<td>$count = 3<br />
+$item = "ball"<br />
+"$count $($item)s"</td>
+</tr>
+<tr>
+<td><a href="#string-length">length</a></td>
+<td>s="hello"<br />
+${#s}</td>
+<td><span style="color: gray"><em>see footnote</em></span></td>
+<td>$s = "hello"<br />
+$s.length</td>
+</tr>
+<tr>
+<td><a href="#string-comparison">string comparison</a></td>
+<td>[ $USER = foo ]<br />
+[ $USER != foo ]</td>
+<td></td>
+<td><span style="color: gray"># case insensitive:</span><br />
+-eq -ne -gt -lt -ge -le<br />
+<br />
+<span style="color: gray"># case sensitive:</span><br />
+-ceq -cne -cgt -clt -cge -cle</td>
+</tr>
+<tr>
+<td><a href="#index-substring">index of substring</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td><span style="color: gray"><em>returns -1 if not found:</em></span><br />
+"foo bar".indexof("bar")</td>
+</tr>
+<tr>
+<td><a href="#extract-substring">extract substring</a></td>
+<td>s="foo bar"<br />
+${s:4:3}</td>
+<td>set s=foo bar<br />
+echo %s:~4:3%</td>
+<td>"foo bar".substring(4, 3)</td>
+</tr>
+<tr>
+<td><a href="#string-concatenation">string concatenation</a></td>
+<td>c="hello, ""world"</td>
+<td><span style="color: gray">rem trailing whitespace is stored:</span><br />
+set part1=hello,<span style="white-space: pre-wrap;"> </span><br />
+set part2=world<br />
+echo %part1%%part2%</td>
+<td>$c = "hello, " + "world"</td>
+</tr>
+<tr>
+<td><a href="#string-replication">string replication</a></td>
+<td></td>
+<td></td>
+<td>$hbar = "-" * 80</td>
+</tr>
+<tr>
+<td><a href="#split">split</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td>"foo,bar,baz" -split ","</td>
+</tr>
+<tr>
+<td><a href="#join">join</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td>@("foo","bar","baz") -join ","</td>
+</tr>
+<tr>
+<td><a href="#sprintf">sprintf</a></td>
+<td><span style="white-space: pre-wrap;">`</span>printf "tie: %s %d %f" "Spain" 13 3.7<span style="white-space: pre-wrap;">`</span></td>
+<td></td>
+<td>$a = "Spain", 13, 3.7<br />
+"tie: {0} {1} {2}" -f $a</td>
+</tr>
+<tr>
+<td><a href="#case">case manipulation</a></td>
+<td>echo "hello" | tr [a-z] [A-Z]<br />
+echo "HELLO" | tr [A-Z] [a-z]<br />
+A=hello<br />
+echo -n ${A:0:1} | tr [a-z] [A-Z]; echo -n ${A:1}</td>
+<td></td>
+<td>"hello".toupper()<br />
+"HELLO".tolower()</td>
+</tr>
+<tr>
+<td><a href="#strip">strip</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td>" hello ".trim()</td>
+</tr>
+<tr>
+<td><a href="#pad">pad on right, pad on left</a></td>
+<td><span style="white-space: pre-wrap;">`</span>printf "%-10s" "hello"<span style="white-space: pre-wrap;">`</span><br />
+<span style="white-space: pre-wrap;">`</span>printf "%10s" "hello"<span style="white-space: pre-wrap;">`</span></td>
+<td></td>
+<td>$s = "hello"<br />
+$s + " " * (10 - $s.length)<br />
+" " * (10 - $s.length) + $s</td>
+</tr>
+<tr>
+<td><a href="#string-to-number">string to number</a></td>
+<td>A="12"<br />
+$(( 7 + $A ))<br />
+<br />
+B=".037"<br />
+<span style="white-space: pre-wrap;">`</span>echo 73.9 + $B | bc<span style="white-space: pre-wrap;">`</span></td>
+<td>set x="12"<br />
+set /a "result=7+%x%"</td>
+<td>7 + "12"<br />
+<br />
+73.9 + ".037"</td>
+</tr>
+<tr>
+<td><a href="#number-to-string">number to string</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>all values are strings</em></span></td>
+<td><span style="color: gray"><em>all values are strings</em></span></td>
+<td>[convert]::tostring(7) + " items"<br />
+<br />
+<span style="color: gray"># or use variable interpolation</span></td>
+</tr>
+<tr>
+<th colspan="4"><a name="regexes" id="regexes"></a><a href="#regex-note">regular expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="regex-match" id="regex-match"></a><a href="#regex-match-note">regex match</a></td>
+<td>s=hello<br />
+rx='[a-z][a-z]*'<br />
+if expr $s : $rx &gt; /dev/null<br />
+then<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>…</em></span><br />
+fi</td>
+<td>set s=hello<br />
+echo %s%|findstr /r "[a-z][a-z]*" &amp;&amp; (echo match ) ^<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">||</span> (echo does not match)</td>
+<td>if ("hello" -match "^[a-z][a-z]*$") {<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>…</em></span><br />
+}</td>
+</tr>
+<tr>
+<td><a name="single-subst" id="single-subst"></a><a href="#single-subst-note">single substitution</a></td>
+<td>s='do re mi mi mi'<br />
+s=$(echo $s | sed s/mi/ma/)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="global-subst" id="global-subst"></a><a href="#global-subst-note">global substitution</a></td>
+<td>s='do re mi mi mi'<br />
+s=$(echo $s | sed s/mi/ma/g)</td>
+<td>set "s=do re mi mi mi"<br />
+echo %s:mi=ma%</td>
+<td>$s = "do re mi mi mi"<br />
+$s = $s -replace "mi", "ma"</td>
+</tr>
+<tr>
+<th colspan="4"><a name="dates-time" id="dates-time"></a><a href="#dates-time-note">dates and time</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="current-datetime" id="current-datetime"></a><a href="#current-datetime-note">current datetime</a></td>
+<td>date +'%Y-%m-%d %H:%M:%S'</td>
+<td>date /t &amp;&amp; time /t</td>
+<td>get-date -format 'yyyy-MM-dd HH:mm:ss'<br />
+get-date -uformat '%Y-%m-%d %H:%M:%S'</td>
+</tr>
+<tr>
+<td><a name="current-unix-epoch" id="current-unix-epoch"></a><a href="#current-unix-epoch-note">current unix epoch</a></td>
+<td>date +'%s'</td>
+<td></td>
+<td>get-date -uformat %s</td>
+</tr>
+<tr>
+<td><a name="fmt-datetime" id="fmt-datetime"></a><a href="#fmt-datetime-note">format datetime</a></td>
+<td>date -d '1970-01-01 00:00:00 UTC' +'%s'</td>
+<td></td>
+<td>get-date -date '1970-01-01 00:00:00' -uformat %s</td>
+</tr>
+<tr>
+<th colspan="4"><a name="arrays" id="arrays"></a><a href="#arrays-note">arrays</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="resizable-array-literal" id="resizable-array-literal"></a><a href="#resizable-array-literal-note">literal</a></td>
+<td>nums=(1 2 3 4)</td>
+<td>set nums=(1 2 3 4)</td>
+<td>$nums = 1 ,2 ,3, 4<br />
+$nums = @(1 ,2, 3, 4)</td>
+</tr>
+<tr>
+<td><a name="resizable-array-size" id="resizable-array-size"></a><a href="#resizable-array-size-note">size</a></td>
+<td>${#nums[@]}</td>
+<td>set numsc=0<br />
+for %i in %nums% do set /a numsc+=1<br />
+echo %numsc%</td>
+<td>$nums.Length</td>
+</tr>
+<tr>
+<td><a name="resizable-array-lookup" id="resizable-array-lookup"></a><a href="#resizable-array-lookup-note">lookup</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>${nums[0]}</td>
+<td></td>
+<td>$nums[0]</td>
+</tr>
+<tr>
+<td><a name="resizable-array-update" id="resizable-array-update"></a><a href="#resizable-array-update-note">update</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>nums[1]=5</td>
+<td></td>
+<td>$nums[0] = 5</td>
+</tr>
+<tr>
+<td><a href="#array-slice">slice</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>${nums[@]:1:2}</td>
+<td></td>
+<td>$nums[1..2]</td>
+</tr>
+<tr>
+<td><a href="#array-concatenation">concatenate</a></td>
+<td>a=(1 2 3)<br />
+b=(4 5 6)<br />
+c=(${a[@]} ${b[@]})</td>
+<td></td>
+<td>@(1, 2, 3) + @(4, 5, 6)</td>
+</tr>
+<tr>
+<td><a href="#array-iteration">iterate over elements</a></td>
+<td>for i in ${nums[@]}<br />
+do echo $i<br />
+done</td>
+<td></td>
+<td>foreach ($i in $nums) {<br />
+<span style="white-space: pre-wrap;">  </span>write-output $i<br />
+}</td>
+</tr>
+<tr>
+<td><a href="#array-sort">sort</a></td>
+<td></td>
+<td></td>
+<td>$a = 3, 2, 4, 1<br />
+$b = $a | Sort-Object</td>
+</tr>
+<tr>
+<td><a href="#array-reverse">reverse</a></td>
+<td></td>
+<td></td>
+<td>$a = 1, 2, 3<br />
+[array]::reverse($a)</td>
+</tr>
+<tr>
+<th colspan="4"><a name="functions" id="functions"></a><a href="#functions-note">functions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="def-func" id="def-func"></a><a href="#def-func-note">define</a></td>
+<td>add() { echo $(( $1 + $2 )); }<br />
+<span style="color: gray"><em>or</em></span><br />
+function add { echo $(( $1 + $2 )); }</td>
+<td>goto:eof<br />
+:add<br />
+<span style="white-space: pre-wrap;">  </span>set /a sum=%~1+%~2<br />
+<span style="white-space: pre-wrap;">  </span>echo %sum%<br />
+goto:eof</td>
+<td>function add {<br />
+<span style="white-space: pre-wrap;">  </span>param ($a, $b)<br />
+<span style="white-space: pre-wrap;">  </span>$a + $b<br />
+}</td>
+</tr>
+<tr>
+<td><a name="call-func" id="call-func"></a><a href="#call-func-note">call</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>add 1 2</td>
+<td>call:add 1 2</td>
+<td>add 1 2</td>
+</tr>
+<tr>
+<td><a name="missing-arg" id="missing-arg"></a><a href="#missing-arg-note">missing argument behavior</a></td>
+<td>''</td>
+<td><span style="color: gray"><em>parameter treated as undefined variable or as containing the empty string</em></span></td>
+<td>$null</td>
+</tr>
+<tr>
+<td><a name="extra-arg" id="extra-arg"></a><a href="#extra-arg-note">extra argument behavior</a></td>
+<td><span style="color: gray"><em>ignored</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>ignored</em></span></td>
+</tr>
+<tr>
+<td><a name="default-arg" id="default-arg"></a><a href="#default-arg-note">default argument</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>function add {<br />
+<span style="white-space: pre-wrap;">  </span>param ($a=0, $b=0)<br />
+<span style="white-space: pre-wrap;">  </span>$a + $b<br />
+}</td>
+</tr>
+<tr>
+<td><a name="named-param" id="named-param"></a><a href="#named-param-note">named parameters</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>add -a 1 -b 2</td>
+</tr>
+<tr>
+<td><a name="retval" id="retval"></a><a href="#retval-note">return value</a></td>
+<td>return <span style="color: gray"><em>arg available in</em></span> $? <span style="color: gray"><em>variable if a positive integer smaller than 256</em></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="anon-func-literal" id="anon-func-literal"></a><a href="#anon-func-literal-note">anonymous function literal</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>$f = { write-output "foo" }</td>
+</tr>
+<tr>
+<td><a name="call-anon-func" id="call-anon-func"></a><a href="#call-anon-func-note">call anonymous function</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>&amp; $f<br />
+<span style="color: gray"><em>or</em></span><br />
+$x.invoke()</td>
+</tr>
+<tr>
+<td><a href="#default-scope">default scope</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>global</em></span></td>
+<td><span style="color: gray"><em>global</em></span></td>
+<td><span style="color: gray"><em>local</em></span></td>
+</tr>
+<tr>
+<td><a name="nest-func" id="nest-func"></a><a href="#nest-func-note">nest</a></td>
+<td><span style="color: gray"><em>Nested function visible outside containing function.</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>function add {<br />
+<span style="white-space: pre-wrap;">  </span>param ($a, $b)<br />
+<span style="white-space: pre-wrap;">  </span>function add2 {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>param ($a2, $b2)<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>$a2 + $b2<br />
+<span style="white-space: pre-wrap;">  </span>}<br />
+<span style="white-space: pre-wrap;">  </span>add2 $a $b<br />
+}<br />
+<br />
+<span style="color: gray"># Nested function not visible outside of containing<br />
+# function; nested function can see local variables<br />
+# of containing function.</span></td>
+</tr>
+<tr>
+<th colspan="4"><a name="execution-control" id="execution-control"></a><a href="#execution-control-note">execution control</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="if" id="if"></a><a href="#if-note">if</a></td>
+<td>if [ $n -eq 0 ]<br />
+then<br />
+<span style="white-space: pre-wrap;">  </span>echo "no hits"<br />
+elif [ $n -eq 1 ]<br />
+then<br />
+<span style="white-space: pre-wrap;">  </span>echo "1 hit"<br />
+else<br />
+<span style="white-space: pre-wrap;">  </span>echo $n " hits"<br />
+fi</td>
+<td>if %n% equ 0 (<br />
+<span style="white-space: pre-wrap;">  </span>echo no hits<br />
+) else (<br />
+<span style="white-space: pre-wrap;">  </span>if %n% equ 1 (<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>echo one hit<br />
+<span style="white-space: pre-wrap;">  </span>) else (<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>echo %n% hits<br />
+<span style="white-space: pre-wrap;">  </span>)<br />
+)</td>
+<td>if ($n -eq 0) {<br />
+<span style="white-space: pre-wrap;">  </span>write-output "no hits"<br />
+} elseif ($n -eq 1) {<br />
+<span style="white-space: pre-wrap;">  </span>write-output "one hit"<br />
+} else {<br />
+<span style="white-space: pre-wrap;">  </span>write-output "$n hits"<br />
+}</td>
+</tr>
+<tr>
+<td><a name="while" id="while"></a><a href="#while-note">while</a></td>
+<td>i=0<br />
+while [ $i -lt 10 ]<br />
+do i=$(($i + 1))<br />
+<span style="white-space: pre-wrap;">  </span>echo $i<br />
+done</td>
+<td>set i=0<br />
+:loop<br />
+<span style="white-space: pre-wrap;">  </span>set /a i+=1<br />
+<span style="white-space: pre-wrap;">  </span>echo %i%<br />
+if %i% lss 10 goto :loop</td>
+<td>$i = 0<br />
+while ($i -lt 10) {<br />
+<span style="white-space: pre-wrap;">  </span>write-output (++$i)<br />
+}</td>
+</tr>
+<tr>
+<td><a name="for" id="for"></a><a href="#for-note">for</a></td>
+<td>for i in 1 2 3<br />
+do<br />
+<span style="white-space: pre-wrap;">  </span>echo $i<br />
+done</td>
+<td>set nums=(1 2 3 4)<br />
+for %%n in %nums% do echo %%n</td>
+<td>for ($i=1; $i -le 3; $i++) {<br />
+<span style="white-space: pre-wrap;">  </span>write-output $i<br />
+}</td>
+</tr>
+<tr>
+<td><a name="break" id="break"></a><a href="#break-note">break</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>break</td>
+<td></td>
+<td>break</td>
+</tr>
+<tr>
+<td><a name="continue" id="continue"></a><a href="#continue-note">continue</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>continue</td>
+<td></td>
+<td>continue</td>
+</tr>
+<tr>
+<th colspan="4"><a name="exceptions" id="exceptions"></a><a href="#exceptions-note">exceptions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="raise-exc" id="raise-exc"></a><a href="#raise-exc-note">raise</a></td>
+<td><span style="color: gray"><em>Commands which fail return nonzero exit status.<br />
+<br />
+Exit status of last command stored in $?</em></span></td>
+<td><span style="color: gray"><em>Commands which fail return nonzero exit status.<br />
+<br />
+Exit status of last command stored in %errorlevel%</em></span></td>
+<td>throw "bam!"</td>
+</tr>
+<tr>
+<td><a name="handle-exc" id="handle-exc"></a><a href="#handle-exc-note">handle</a></td>
+<td>trap 'echo "risky failed"' ERR<br />
+risky</td>
+<td>risky<br />
+<br />
+if errorlevel 1 (<br />
+<span style="white-space: pre-wrap;">  </span>echo risky failed<br />
+)</td>
+<td>try {<br />
+<span style="white-space: pre-wrap;">  </span>throw "bam!"<br />
+}<br />
+catch {<br />
+<span style="white-space: pre-wrap;">  </span>write-output "caught!"<br />
+}</td>
+</tr>
+<tr>
+<td><a name="uncaught-exc" id="uncaught-exc"></a><a href="#uncaught-exc-note">uncaught exception behavior</a></td>
+<td><span style="color: gray"><em>stderr and continue</em></span></td>
+<td><span style="color: gray"><em>stderr and continue</em></span></td>
+<td><span style="color: gray"><em>script exits</em></span></td>
+</tr>
+<tr>
+<th colspan="4"><a name="concurrency" id="concurrency"></a><a href="#concurrency-note">concurrency</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="sleep" id="sleep"></a><a href="#sleep-note">sleep</a></td>
+<td>sleep 10</td>
+<td><span style="color: gray"><em>vista and later:</em></span><br />
+timeout 10</td>
+<td>timeout 10</td>
+</tr>
+<tr>
+<th colspan="4"><a name="streams" id="streams"></a><a href="#streams-note">streams</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="read-line-stdin" id="read-line-stdin"></a><a href="#read-line-stdin-note">read line from stdin</a></td>
+<td><span style="color: gray"># stored in $ine:</span><br />
+read line<br />
+<br />
+<span style="color: gray"># with prompt:</span><br />
+read -p 'line: ' line</td>
+<td><span style="color: gray">rem stored in %line%:</span><br />
+set /p line=<br />
+<br />
+<span style="color: gray">rem with prompt:</span><br />
+set /p line="line: "</td>
+<td>$line = read-host<br />
+<br />
+<span style="color: gray"># with prompt:</span><br />
+$line = read-host 'line'</td>
+</tr>
+<tr>
+<td><a name="write-line-stdout" id="write-line-stdout"></a><a href="#write-line-stdout-note">write line to stdout</a></td>
+<td>echo "hi world"</td>
+<td>echo hi world</td>
+<td>write-output "hi world"</td>
+</tr>
+<tr>
+<td><a name="printf" id="printf"></a><a href="#printf-note">write formatted string to stdout</a></td>
+<td>printf '%.2f\n' 3.1415</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-file-stdout" id="write-file-stdout"></a><a href="#write-file-stdout-note">write file to stdout</a></td>
+<td>cat foo.txt</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-stderr" id="write-stderr"></a><a href="#write-stderr-note">write to standard error</a></td>
+<td>echo "hi world" &gt;&amp;2</td>
+<td>echo hi world &gt;&amp;2</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="file-iterate" id="file-iterate"></a><a href="#file-iterate-note">iterate over file by line</a></td>
+<td>awk 'length($0) &gt; 70 {print $0}' /etc/passwd</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-proc" id="write-proc"></a><a href="#write-proc-note">write to process</a></td>
+<td>echo "hi world" | wc</td>
+<td>echo hi world | find /c hi</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#write-file">write to file</a></td>
+<td>echo "hello" &gt; /tmp/a</td>
+<td>echo hello &gt; \tmp\a</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#append-file">append to file</a></td>
+<td>echo "hello" <span style="white-space: pre-wrap;">&gt;&gt;</span> /tmp/a</td>
+<td>echo hello <span style="white-space: pre-wrap;">&gt;&gt;</span> \tmp\a</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="files" id="files"></a><a href="#files-note">files</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="create-empty-file" id="create-empty-file"></a><a href="#create-empty-file-note">create empty file</a></td>
+<td><span style="color: gray"># does not overwrite existing file, but updates<br />
+# last mod. time:</span><br />
+touch foo.txt</td>
+<td><span style="color: gray">rem overwrites existing file:</span><br />
+type nul &gt; foo.txt</td>
+<td><span style="color: gray"># error if file exists:</span><br />
+new-item -type file foo.txt</td>
+</tr>
+<tr>
+<td><a name="file-test" id="file-test"></a><a href="#file-test-note">file exists test, file regular test</a></td>
+<td>if [ -e foo.txt ]; then echo "exists"; fi<br />
+if [ -f foo.txt ]; then echo "regular"; fi</td>
+<td>if exist foo.txt ( echo exists )<br />
+<br />
+<span style="color: gray"><em>??</em></span></td>
+<td>if (test-path foo.txt) { write-output "exists" }<br />
+<br />
+if (test-path -pathtype leaf) {<br />
+<span style="white-space: pre-wrap;">  </span>write-output "regular"<br />
+}</td>
+</tr>
+<tr>
+<td><a name="file-size" id="file-size"></a><a href="#file-size-note">file size</a></td>
+<td>ls -l foo.txt</td>
+<td>dir foo.txt</td>
+<td>get-childitem foo.txt</td>
+</tr>
+<tr>
+<td><a name="readable-writeable-executable" id="readable-writeable-executable"></a><a href="#readable-writeable-executable-note">is readable, is writeable, is executable</a></td>
+<td>if [ -r /etc/passwd ]; then echo readable; fi<br />
+if [ -w /tmp ]; then echo writeable; fi<br />
+if [ -x /bin/ls ]; then echo executable; fi</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="chmod" id="chmod"></a><a href="#chmod-note">set file permisions</a></td>
+<td>chmod 0600 foo.txt</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="last-modification-time" id="last-modification-time"></a><a href="#last-modification-time-note">last modification time</a></td>
+<td>ls -l foo.txt</td>
+<td>dir foo.txt</td>
+<td>get-childitem foo.txt</td>
+</tr>
+<tr>
+<td><a name="file-cp-rm-mv" id="file-cp-rm-mv"></a><a href="#file-cp-rm-mv-note">copy file, remove file, rename file</a></td>
+<td>cp /tmp/foo.txt /tmp/bar.txt<br />
+rm /tmp/foo.txt<br />
+mv /tmp/bar.txt /tmp/foo.txt</td>
+<td>copy foo.txt bar.txt<br />
+del foo.txt<br />
+move bar.txt foo.txt</td>
+<td>copy-item foo.txt bar.txt<br />
+remove-item foo.txt<br />
+move-item bar.txt foo.txt</td>
+</tr>
+<tr>
+<td><a name="symlink" id="symlink"></a><a href="#symlink-note">create symlink, symlink test, readlink</a></td>
+<td>ln -s /etc/passwd /tmp/passwd<br />
+if [ -h /tmp/passwd ]; then echo "symlink"; fi<br />
+readlink /tmp/passwd</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="unused-file-name" id="unused-file-name"></a><a href="#unused-file-name-note">generate unused file name</a></td>
+<td>mktemp /tmp/fooXXXXX</td>
+<td></td>
+<td>[System.IO.Path]::GetTempFileName()</td>
+</tr>
+<tr>
+<th colspan="4"><a name="directories" id="directories"></a><a href="#directories-note">directories</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="working-dir" id="working-dir"></a><a href="#working-dir-note">working directory</a><br />
+<span style="color: grey"><em>get and set</em></span></td>
+<td>echo $(pwd)<br />
+echo $PWD<br />
+<br />
+cd /tmp</td>
+<td>echo %cd%<br />
+<br />
+chdir \windows</td>
+<td>$loc = get-location<br />
+echo $loc<br />
+<br />
+set-location \windows</td>
+</tr>
+<tr>
+<td><a name="program-dir" id="program-dir"></a><a href="#program-dir-note">program directory</a></td>
+<td><span style="color: gray"><em>bash only:</em></span><br />
+"$( cd "$( dirname "${BASH_SOURCE[0]}" )" &amp;&amp; pwd )"</td>
+<td>echo %~dp0</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="direname-basename" id="direname-basename"></a><a href="#dirname-basename-note">dirname and basename</a></td>
+<td>dirname /etc/hosts<br />
+basename /etc/hosts</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="iterate-dir" id="iterate-dir"></a><a href="#iterate-dir-note">iterate over directory by file</a></td>
+<td>for f in /etc/*<br />
+do<br />
+<span style="white-space: pre-wrap;">  </span>echo $f<br />
+done</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="mkdir" id="mkdir"></a><a href="#mkdir-note">make directory</a></td>
+<td>mkdir /tmp/foo.d</td>
+<td>mkdir foo</td>
+<td>new-item -type directory foo</td>
+</tr>
+<tr>
+<td><a name="recursive-cp" id="recursive-cp"></a><a href="#recursive-cp-note">recursive copy</a></td>
+<td>cp -R /tmp/foo.d /tmp/bar.d</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="rmdir" id="rmdir"></a><a href="#rmdir-note">remove empty directory</a></td>
+<td>rmdir /tmp/foo.d</td>
+<td>rmdir foo</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="rm-rf" id="rm-rf"></a><a href="#rm-rf-note">remove directory and contents</a></td>
+<td>rm -rf /tmp/foo.d</td>
+<td>rmdir /s /q foo</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dir-test" id="dir-test"></a><a href="#dir-test-note">directory test</a></td>
+<td>if [ -d /tmp ]; then echo directory; fi</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="processes-environment" id="processes-environment"></a><a href="#processes-environment-note">processes and environment</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="cmd-line-arg" id="cmd-line-arg"></a><a href="#cmd-line-arg-note">command line args</a></td>
+<td>$1<br />
+$2<br />
+<span style="color: gray"><em>…</em></span><br />
+<br />
+<span style="color: gray"># number of args:</span><br />
+$#<br />
+<br />
+<span style="color: gray"># pass args as $# words to twiddle</span><br />
+twiddle "$@"<br />
+<br />
+<span style="color: gray"># pass args as one word to twiddle</span><br />
+twiddle "$*"</td>
+<td>%1<br />
+%2<br />
+<span style="color: gray"><em>…</em></span><br />
+<br />
+<span style="color: gray">rem number of args:</span><br />
+set #=0<br />
+for %%i in %* do set /a #+=1<br />
+echo %#%<br />
+<br />
+<span style="color: gray">rem no way to pass argument with space</span><br />
+twiddle %*</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="program-name" id="program-name"></a><a href="#program-name-note">program name</a></td>
+<td>$0</td>
+<td>%0</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="env-var" id="env-var"></a><a href="#env-var-note">environment variable</a><br />
+<span style="color: gray"><em>get, set, clear</em></span></td>
+<td><span style="color: gray"><em>shell variables are environment variables</em></span><br />
+$HOME</td>
+<td></td>
+<td>$env:home</td>
+</tr>
+<tr>
+<td><a name="user-id-name" id="user-id-name"></a><a href="#user-id-name-note">user id and name</a></td>
+<td>id<br />
+<br />
+<span style="color: gray"># user name only; most systems:</span><br />
+whoami</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="exit" id="exit"></a><a href="#exit-note">exit</a></td>
+<td>exit 0</td>
+<td><span style="color: gray">rem batch script exits:</span><br />
+exit /b 0<br />
+<br />
+<span style="color: gray">rem also closes cmd.exe window:</span><br />
+exit 0</td>
+<td>exit</td>
+</tr>
+<tr>
+<td><a name="external-cmd" id="external-cmd"></a><a href="#external-cmd-note">external command</a></td>
+<td>ls</td>
+<td>dir</td>
+<td>dir</td>
+</tr>
+<tr>
+<td><a name="cmd-subst" id="cmd-subst"></a><a href="#cmd-subst-note">command substitution</a></td>
+<td>s=$(ls)</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>$s=dir</td>
+</tr>
+<tr>
+<td><a href="#speech">speech</a></td>
+<td><span style="color: gray"><em>mac only:</em></span><br />
+say "I'm a Mac"</td>
+<td></td>
+<td>$sp = new-object -comobject "SAPI.SpVoice"<br />
+$sp.speak("I'm a PC")</td>
+</tr>
+<tr>
+<td><a href="#command-path">command path</a></td>
+<td>which ping</td>
+<td></td>
+<td>get-command ping</td>
+</tr>
+<tr>
+<td><a href="#set-signal-handler">set signal handler</a></td>
+<td>function int_handler {<br />
+<span style="white-space: pre-wrap;">  </span>echo "exiting…";<br />
+<span style="white-space: pre-wrap;">  </span>exit<br />
+}<br />
+<br />
+trap int_handler INT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="send-signal" id="send-signal"></a><a href="#send-signal-note">send signal</a></td>
+<td>kill -INT 1234<br />
+kill -KILL 1234</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#start-background-job">start job in background</a></td>
+<td>sleep 1000 &amp;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#suspend-job">suspend current job</a></td>
+<td><span style="color: gray"><em>^Z</em></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="terminate-job" id="terminate-job"></a><a href="#terminate-job-note">terminate job</a></td>
+<td>kill %1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#list-jobs">list jobs</a></td>
+<td>jobs</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#background-suspended-job">background suspended job</a></td>
+<td>bg %1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#foreground-background-job">bring background job into foreground</a></td>
+<td>fg %1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#disown-job">disown job</a></td>
+<td>disown %1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="libraries-namespaces" id="libraries-namespaces"></a><a href="#libraries-namespaces-note">libraries and namespaces</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a href="#library">library</a></td>
+<td>$ cat foo.sh<br />
+function add() {<br />
+<span style="white-space: pre-wrap;">  </span>echo $(($1 + $2));<br />
+}</td>
+<td></td>
+<td><span style="color: gray"><em>from directory in search path:</em></span><br />
+<br />
+<span style="white-space: pre-wrap;">&gt;</span> type Modules\Foo\Foo.psm1<br />
+function add {<br />
+<span style="white-space: pre-wrap;">  </span>param ($a, $b)<br />
+<span style="white-space: pre-wrap;">  </span>$a + $b<br />
+}</td>
+</tr>
+<tr>
+<td><a href="#import-library">import library</a></td>
+<td>source foo.sh<br />
+add 3 7</td>
+<td></td>
+<td>import-module foo<br />
+<br />
+add 1 2</td>
+</tr>
+<tr>
+<td><a href="#library-path-env">library path environment variable</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td>$env:psmodulepath</td>
+</tr>
+<tr>
+<th colspan="4"><a name="reflection" id="reflection"></a><a href="#reflection-note">reflection</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<td><a name="cmd-line-doc" id="cmd-line-doc"></a><a href="#cmd-line-doc-note">command line documentation</a></td>
+<td>man ls</td>
+<td>help dir</td>
+<td>get-help get-childitem</td>
+</tr>
+<tr>
+<td><a href="#list-variables">list defined variables</a></td>
+<td>printenv</td>
+<td>set</td>
+<td>get-variable</td>
+</tr>
+<tr>
+<td><a href="#list-available-lib-note">list available libraries</a></td>
+<td></td>
+<td></td>
+<td>get-module -listavailable</td>
+</tr>
+<tr>
+<th colspan="4"><a name="debugging-profiling" id="debugging-profiling"></a><a href="#debugging-profiling-note">debugging and profiling</a></th>
+</tr>
+<tr>
+<td><a name="check-syntax" id="check-syntax"></a><a href="#check-syntax-note">check syntax</a></td>
+<td>$ apt-get install shellcheck<br />
+$ shellcheck foo.sh</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="stronger-err" id="stronger-err"></a><a href="#strong-err-note">flags for stronger errors</a></td>
+<td><span style="color: gray"><em>bash only:</em></span><br />
+bash -eu -o pipefail<br />
+<br />
+<span style="color: gray">-e: <em>exit with nonzero status if command fails</em><br />
+-u: <em>exit with nonzero status if undefined variable accessed</em><br />
+-o pipefail: <em>exit with nonzero status if command in pipeline fails</em></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="cpu-usage" id="cpu-usage"></a><a href="#cpu-usage-note">cpu usage</a></td>
+<td>time ls</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th></th>
+<th><a href="#posix">posix shell</a></th>
+<th><a href="#cmd-prompt">cmd.exe</a></th>
+<th><a href="#powershell">powershell</a></th>
+</tr>
+<tr>
+<th></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">__________________________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">__________________________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">__________________________________________________________</span></span></th>
+</tr>
+</table>
+<p><a name="general-note" id="general-note"></a></p>
+<h1 id="toc0"><span><a href="#general">General</a></span></h1>
+<p><a name="version-used-note" id="version-used-note"></a></p>
+<h2 id="toc1"><span><a href="#version-used">version used</a></span></h2>
+<p>The version of the language used for verifying the examples in the reference sheet.</p>
+<p><a name="version-note" id="version-note"></a></p>
+<h2 id="toc2"><span><a href="#version">show version</a></span></h2>
+<p>How to get the version.</p>
+<p><strong>cmd.exe</strong></p>
+<p>The version number displayed at start up is the Windows kernel version. 6.3 is the Windows 8.1 kernel version number.</p>
+<p><a name="grammar-execution-note" id="grammar-execution-note"></a></p>
+<h1 id="toc3"><span><a href="#grammar-execution">Grammar and Execution</a></span></h1>
+<p><a name="interpreter-note" id="interpreter-note"></a></p>
+<h2 id="toc4"><span><a href="#interpreter">interpreter</a></span></h2>
+<p>The customary name of the interpreter and how to invoke it.</p>
+<p><strong>posix shell:</strong></p>
+<p>On Unix, scripts are executing by passing the file containing the script to the interpreter as an argument:</p>
+<div class="code">
+<pre>
+<code>$ dash ~/configure.sh</code>
+</pre></div>
+<p>If the executable bit is set, the file can be run directly:</p>
+<div class="code">
+<pre>
+<code>$ ~/configure.sh</code>
+</pre></div>
+<p>To determine the name of the interpreter that will process the script, Unix will look for the presence of a shebang (#!) at the start of the file. If the pathname to a command follows the shebang, it will be used to interpret the script. If no shebang is present, the script will be interpreted with <tt>/bin/sh</tt> which is <tt>bash</tt> on Mac OS X and Cygwin and <tt>dash</tt> on Ubuntu.</p>
+<p>Command line arguments which set the positional parameters $1, $2, and so on can be set upon invocation as follows:</p>
+<div class="code">
+<pre>
+<code>$ dash ~/configure.sh arg1 arg2
+$ ~/configure.sh arg1 arg2</code>
+</pre></div>
+<p>Arguments can also be put on the shebang line, but this is only useful for passing options to the shell. If the file <tt>foo.sh</tt> contains</p>
+<div class="code">
+<pre>
+<code>#!/bin/sh -x</code>
+</pre></div>
+<p>then invoking it as</p>
+<div class="code">
+<pre>
+<code>./foo.sh</code>
+</pre></div>
+<p>is equivalent to</p>
+<div class="code">
+<pre>
+<code>/bin/sh -x foo.sh</code>
+</pre></div>
+<p>Hardcoding a full path in a shebang is a common cause of portability problems because different systems may install the interpreter in different locations. The <tt>env</tt> command avoids the problem by searching the PATH directories for the command:</p>
+<div class="code">
+<pre>
+<code>#!/usr/bin/env lua</code>
+</pre></div>
+<p><strong>powershell:</strong></p>
+<p>On Windows, a file is a PowerShell script if it has a <tt>.ps1</tt> suffix. There is no need to mark the script as executable. However, PowerShell is not configured to run scripts by default. To change the configuration, start a PowerShell as an Administrator and run the following command:</p>
+<div class="code">
+<pre>
+<code>set-executionpolicy remotesigned</code>
+</pre></div>
+<p>It is possible to invoke a PowerShell script by specifying the PowerShell interpreter as the command and the script as an argument, but the suffix of the file must still be <tt>ps1</tt>:</p>
+<div class="code">
+<pre>
+<code>powershell -file .\test.ps1</code>
+</pre></div>
+<p><a name="repl-note" id="repl-note"></a></p>
+<h2 id="toc5"><span><a href="#repl">repl</a></span></h2>
+<p>How to invoke the REPL.</p>
+<p><a name="exec-and-exit-note" id="exec-and-exit-note"></a></p>
+<h2 id="toc6"><span><a href="#exec-and-exit">execute command and exit</a></span></h2>
+<p>How to pass a single command to be executed as a command line argument.</p>
+<p><a name="stmt-separator-note" id="stmt-separator-note"></a></p>
+<h2 id="toc7"><span><a href="#stmt-separator">statement separator</a></span></h2>
+<p>How the parser determines the end of a statement.</p>
+<p><strong>posix shell:</strong></p>
+<p>A posix shell <em>simple command</em> consists of optional variable assignments, followed by a command and zero or more arguments and redirections. The command can be an external command, user defined function, or built-in.</p>
+<p>A posix shell <em>pipeline</em> is a sequence of one or more <em>simple commands</em> joined by pipes |. The shell executes the commands in parallel and redirects the stdout of each command to the stdin of the following command. The exit status is the status of the last command.</p>
+<p>The <em>control operators</em> ; &amp; &amp;&amp; || are <em>pipeline</em> separators. The semicolon ; enforces sequential execution. The ampersand &amp; executes in parallel. The &amp;&amp; executes to the first <em>pipeline</em> that returns a nonzero status. The || executes to the first <em>pipeline</em> that returns a zero status.</p>
+<p>A <em>list</em> is one or more <em>pipelines</em> joined by <em>control operators</em>. A <em>list</em> can have a semicolon ; or ampersand &amp; at the end. A <em>list</em> is terminated by a newline.</p>
+<p>A newline does not terminate a <em>list</em> when:</p>
+<ul>
+<li>inside single quotes '', double quotes "", backticks <span style="white-space: pre-wrap;">``</span>, or parens ()</li>
+<li>inside a block started by the keywords: for, select, case, if, while, until</li>
+</ul>
+<p>A newline that would normally terminate a statement can be escaped with a backslash.</p>
+<p>Multiple lists can be grouped inside parens ( ) or curly brackets { }. When grouped inside parens, the lists are executed inside a subshell. The curly brackets, but not the parens, must be separated from their contents by white space. Also, within curly brackets, but not within parens, the last list must be terminated by a semicolon or newline.</p>
+<p><a name="word-separator-note" id="word-separator-note"></a></p>
+<h2 id="toc8"><span><a href="#word-separator">word separators</a></span></h2>
+<p><a name="esc-special-char-note" id="esc-special-char-note"></a></p>
+<h2 id="toc9"><span><a href="#esc-special-char">escape special character</a></span></h2>
+<p>How to escape a special character.</p>
+<p><a name="block-delimiters-note" id="block-delimiters-note"></a></p>
+<h2 id="toc10"><span><a href="#block-delimiters">block delimiters</a></span></h2>
+<p>How blocks are delimited.</p>
+<p><strong>posix shell:</strong></p>
+<p>Blocks can be delimited with {}, (), or the <em>do</em>,<em>done</em> keywords.</p>
+<p>If a block is started with an open curly bracket {, then the block must be terminated with a line containing a close curly bracket by itself }.</p>
+<p>If a block is delimited by (), then the commands in the block are executed in a subshell.</p>
+<p>A block is delimited by <em>do</em> and <em>done</em> when using the execution control keywords <em>for</em>, <em>select</em>, <em>while</em>, and <em>until</em>.</p>
+<p>The <em>then</em> and <em>else</em> keywords of an <em>if</em> statement start blocks which are terminated by a following <em>elif</em>, <em>else</em>, or <em>fi</em>.</p>
+<p>The <em>function</em> and <em>if</em> keywords open blocks which are terminated by <em>end</em> keywords. The <em>repeat</em> keyword opens a block which is terminated by <em>until</em>.</p>
+<p><a name="comment-note" id="comment-note"></a></p>
+<h2 id="toc11"><span><a href="#comment">to end-of-line comment</a></span></h2>
+<p>How to make the remainder of the line a comment.</p>
+<p><a name="multiline-comment-note" id="multiline-comment-note"></a></p>
+<h2 id="toc12"><span><a href="#multiline-comment">multiline comment</a></span></h2>
+<p>How to comment out multiple lines.</p>
+<p><strong>posix shell:</strong></p>
+<p>The method described is the syntax for a here document, which is a multiline string literal.</p>
+<p><a name="var-expr-note" id="var-expr-note"></a></p>
+<h1 id="toc13"><span><a href="#var-expr">Variables and Expressions</a></span></h1>
+<p><a name="assignment-note" id="assignment-note"></a></p>
+<h2 id="toc14"><span><a href="#assignment">assignment</a></span></h2>
+<p>How to assign a value to a variable.</p>
+<p><a name="parallel-assignment-note" id="parallel-assignment-note"></a></p>
+<h2 id="toc15"><span><a href="#parallel-assignment">parallel assignment</a></span></h2>
+<p>How to assign values to variables in parallel.</p>
+<p><a name="swap-note" id="swap-note"></a></p>
+<h2 id="toc16"><span><a href="#swap">swap</a></span></h2>
+<p>How to exchange the values held by two variables.</p>
+<p><a name="compound-assignment-note" id="compound-assignment-note"></a></p>
+<h2 id="toc17"><span><a href="#compound-assignment">compound assignment operators: arithmetic, string, bit</a></span></h2>
+<p>The compound assignment operators for arithmetic, string, and bit operations</p>
+<p><strong>powershell:</strong></p>
+<p>Note that <tt>/=</tt> performs float division, even when both operands are integers.</p>
+<p>When the left operand is a string, <tt>+=</tt> concatenates the right operand to the left operand.</p>
+<p>When the left operand is a string and the right operand an integer, <tt>*=</tt> concatenates the left operand with itself <em>right operand</em> times.</p>
+<p><a name="incr-decr-note" id="incr-decr-note"></a></p>
+<h2 id="toc18"><span><a href="#incr-decr">increment and decrement</a></span></h2>
+<p>The C-style increment and decrement operators which can be used in expressions.</p>
+<p><a name="var-decl-note" id="var-decl-note"></a></p>
+<h2 id="toc19"><span><a href="#var-decl">variable declaration</a></span></h2>
+<p>How to declare a variable.</p>
+<p><strong>posix shell:</strong></p>
+<p>The following three lines have identical behavior:</p>
+<div class="code">
+<pre>
+<code>A="hello, world"
+declare A="hello, world"
+typeset A="hello, world"</code>
+</pre></div>
+<p>It is possible to make a read only variable. Again there are three ways:</p>
+<div class="code">
+<pre>
+<code>readonly A="can't change"
+declare -r A="can't change"
+typeset -r A="can't change"</code>
+</pre></div>
+<p>Variables are not exported to subprocesses unless declared to be exported:</p>
+<div class="code">
+<pre>
+<code>export A="exported to subprocess"
+declare -x A="exported to subprocess"
+typeset -x A="exported to subprocess"</code>
+</pre></div>
+<p>Variables assigned on the same line as a command are not created, only exported to the subprocess that instantiates the command:</p>
+<div class="code">
+<pre>
+<code>EDITOR=emacs svn commit</code>
+</pre></div>
+<p>By default variables defined inside functions are global. They can be declared to be local:</p>
+<div class="code">
+<pre>
+<code>function foo () {
+  local b=17
+  # echoes 17:
+  echo $b
+}
+# echoes nothing:
+echo $b</code>
+</pre></div>
+<p><a name="identifiers-case-sensitive-note" id="identifiers-case-sensitive-note"></a></p>
+<h2 id="toc20"><span><a href="#identifiers-case-sensitive">are identifiers case sensitive?</a></span></h2>
+<p><strong>powershell:</strong></p>
+<p>PowerShell identifiers are case insensitive.</p>
+<p><a name="null-note" id="null-note"></a></p>
+<h2 id="toc21"><span><a href="#null">null</a></span></h2>
+<p>The null literal.</p>
+<p><a name="null-test-note" id="null-test-note"></a></p>
+<h2 id="toc22"><span><a href="#null-test">null test</a></span></h2>
+<p>How to test if a value is null.</p>
+<p><a name="arithmetic-logic-note" id="arithmetic-logic-note"></a></p>
+<h1 id="toc23"><span><a href="#arithmetic-logic">Arithmetic and Logic</a></span></h1>
+<p><strong>posix shell:</strong></p>
+<p>The POSIX shell provides at least three different environments for logical expressions, each with their own operators and values for true and false.</p>
+<p>Logical expressions are usually encountered in the conditionals of <tt>if</tt>, <tt>elif</tt>, <tt>while</tt>, and <tt>until</tt>. A command is expected as the conditional expression. The command is executed, and a return value of zero is treated as true and nonzero as false.</p>
+<table class="wiki-content-table">
+<tr>
+<th></th>
+<th>status codes</th>
+<th>[ ]</th>
+<th>$(( ))</th>
+</tr>
+<tr>
+<td>where used</td>
+<td>command</td>
+<td>command</td>
+<td>argument</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td><span style="color: gray"><em>no canonical true value</em></span></td>
+<td>1</td>
+</tr>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>''</td>
+<td>0</td>
+</tr>
+<tr>
+<td>falsehoods</td>
+<td><span style="color: gray"><em>nonzero exit status</em></span></td>
+<td>''</td>
+<td>0</td>
+</tr>
+<tr>
+<td>logical operators</td>
+<td>&amp;&amp; <span style="white-space: pre-wrap;">||</span> !</td>
+<td>-a -o !</td>
+<td>&amp;&amp; <span style="white-space: pre-wrap;">||</span> !</td>
+</tr>
+<tr>
+<td>grouping</td>
+<td>{ }</td>
+<td>\( \)</td>
+<td>( )</td>
+</tr>
+<tr>
+<td>string relational operators</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>= != \&lt; \&gt;</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td>arithmetic relational operators</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>-eq -ne -lt -gt -le -ge</td>
+<td>== != &lt; &gt; &lt;= &gt;=</td>
+</tr>
+<tr>
+<td>arithmetic operators</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>+ - * / % **</td>
+</tr>
+<tr>
+<td>bit operators</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="white-space: pre-wrap;"> &lt;&lt; </span> <span style="white-space: pre-wrap;"> &gt;&gt; </span> &amp; | ^ ~</td>
+</tr>
+</table>
+<p><strong>posix shell: status codes:</strong></p>
+<p>Logical expressions can be formed using status codes returned by commands. The commands can be external, built-in, or user defined functions. A status code of zero is used to indicate success, and for the purpose of logic zero is treated as true and all other status codes as false.</p>
+<p>The &amp;&amp; and <span style="white-space: pre-wrap;">||</span> operators are short circuit operators. An exclamation point ! can be used to negate the status code of a command. It is not necessary to separate &amp;&amp; and <span style="white-space: pre-wrap;">||</span> from their operands with whitespace, but it is necessary to mark off a ! used as negation with whitespace.</p>
+<p><strong>posix shell: test command:</strong></p>
+<p><strong>posix shell: arithmetic expansion:</strong></p>
+<p><a name="true-false-note" id="true-false-note"></a></p>
+<h2 id="toc24"><span><a href="#true-false">true and false</a></span></h2>
+<p>The literals for true and false.</p>
+<p><a name="falsehoods-note" id="falsehoods-note"></a></p>
+<h2 id="toc25"><span><a href="#falsehoods">falsehoods</a></span></h2>
+<p>Values which are false in conditional expressions.</p>
+<p><a name="logical-ops-note" id="logical-ops-note"></a></p>
+<h2 id="toc26"><span><a href="#logical-ops">logical operators</a></span></h2>
+<p>Logical and, or, and not.</p>
+<p><strong>posix shell:</strong></p>
+<p>&amp;&amp; || and ! are available inside [[ ]], (( )), and $(( )) expressions. Inside [ ] expressions use -a, -o, and !.</p>
+<p><a name="conditional-expr-note" id="conditional-expr-note"></a></p>
+<h2 id="toc27"><span><a href="#conditional-expr">conditional expression</a></span></h2>
+<p>The syntax for a conditional expression.</p>
+<p><a name="expression-statement" id="expression-statement"></a></p>
+<h2 id="toc28"><span>are expressions statements</span></h2>
+<p>Whether an expression can be used where a statement is expected.</p>
+<p><a name="relational-expr" id="relational-expr"></a></p>
+<h2 id="toc29"><span>relational expressions</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>Bash has three types of relational expressions: [[ ]], [ ], and (( )). For a description of [ ], read the <a href="http://www.google.com/search?q=man+test">man page for test</a>.</p>
+<p>(( )) evaluates its contents in the same manner as the arithmetic expansion $(( )). If the result is zero, it returns 1 (false). Otherwise it returns 0 (true).</p>
+<p>[[ $a == <span style="color: gray"><em>pattern</em></span> ]] and [[ $a != <span style="color: gray"><em>pattern</em></span> ]] interpret * and ? on the right side as patterns. Thus "hello" == "hell*" is true. For numeric comparison, use [ $a -eq <span style="color: gray"><em>num</em></span> ] or [ $a -ne <span style="color: gray"><em>num</em></span> ].</p>
+<p><a href="#bash-expressions">Bash expressions</a> discusses the different types of bash expressions in more detail.</p>
+<p><a name="relational-operators" id="relational-operators"></a></p>
+<h2 id="toc30"><span>relational operators</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>If == and =! have an unquoted string on the right, then * and ? within the string will be treated as wild cards for matching.</p>
+<p><a name="string-to-number" id="string-to-number"></a></p>
+<h2 id="toc31"><span>convert from string</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>All values are strings. The $(( )) operator will interpolate any variables and then evaluate the resulting string as an arithmetic expression composed of integers. The variables are not limited to containing integers. The following script outputs 10:</p>
+<div class="code">
+<pre>
+<code>A=7+3
+echo $(($A))</code>
+</pre></div>
+<p>To perform floating point arithmetic, bash must shell out to a floating point utility such as <em>bc</em>.</p>
+<p><a name="number-to-string" id="number-to-string"></a></p>
+<h2 id="toc32"><span>convert to string</span></h2>
+<p><a name="arithmetic-expr" id="arithmetic-expr"></a></p>
+<h2 id="toc33"><span>arithmetic expressions</span></h2>
+<p>How to evaluate an arithmetic expression.</p>
+<p><strong>posix shell:</strong></p>
+<p>Bash arithmetic is available within $(( )) and (( )). The latter form evaluates the arithmetic expression and returns status 1 if the result zero, and 0 otherwise.</p>
+<p>Bash only has integer arithmetic. For floating point arithmetic, use the external commands <em>bc</em> or <em>dc</em>.</p>
+<p><a name="arithmetic-operators" id="arithmetic-operators"></a></p>
+<h2 id="toc34"><span>arithmetic operators</span></h2>
+<p>The operators for addition, subtraction, multiplication, float division, integer division, modulus, and exponentiation. Some languages provide a function <em>pow</em> instead of an operator for exponentiation.</p>
+<p><strong>posix shell:</strong></p>
+<p>arithmetic operators are available in $(( )) and (( )).</p>
+<p><a name="integer-division" id="integer-division"></a></p>
+<h2 id="toc35"><span>integer division</span></h2>
+<p>How to perform integer division.</p>
+<p><a name="float-division" id="float-division"></a></p>
+<h2 id="toc36"><span>float division</span></h2>
+<p>How to perform floating point division, even if the operands might be integers.</p>
+<p><strong>posix shell:</strong></p>
+<p>The bash shell lacks built-in floating point arithmetic. <em>bc</em> is an arbitrary precision calculator, and <em>scale</em> is the number of digits to the right of the decimal point. If scale is not specified, it defaults to zero, which results in integer division.</p>
+<p>It is also possible to use <em>dc</em>, which is a reverse polish notation arbitrary precision calculator:</p>
+<div class="code">
+<pre>
+<code>`echo " 5 k $a $b / p " | dc`</code>
+</pre></div>
+<p><a name="arithmetic-functions" id="arithmetic-functions"></a></p>
+<h2 id="toc37"><span>arithmetic functions</span></h2>
+<p>Functions for computing square root, natural exponent, natural logarithm, sine, cosine, tangent, arcsine, arccosine, arctangent, and <em>atan2</em>.</p>
+<p>The trigonometric functions are all in radians. <em>atan2</em> takes two arguments which are the x and y co-ordinates of a vector in the Cartesian plane. It returns<br />
+the angle to the positive x-axis made by the vector.</p>
+<p><a name="arithmetic-truncation" id="arithmetic-truncation"></a></p>
+<h2 id="toc38"><span>arithmetic truncation</span></h2>
+<p><a name="division-zero" id="division-zero"></a></p>
+<h2 id="toc39"><span>division by zero</span></h2>
+<p><a name="integer-overflow" id="integer-overflow"></a></p>
+<h2 id="toc40"><span>integer overflow</span></h2>
+<p><a name="float-overflow" id="float-overflow"></a></p>
+<h2 id="toc41"><span>float overflow</span></h2>
+<p><a name="sqrt-negative-two" id="sqrt-negative-two"></a></p>
+<h2 id="toc42"><span>sqrt -2</span></h2>
+<p>The result of taking the square root of -2.</p>
+<p><a name="random" id="random"></a></p>
+<h2 id="toc43"><span>random integer, uniform float</span></h2>
+<p>The examples show how to generate a uniform random integer in the range from 0 to 99, inclusive; how to generate a uniform float in the range 0.0 to 1.0; how to generate a float from a standard normal distribution</p>
+<p><strong>posix shell:</strong></p>
+<p>$RANDOM evaluates to a random integer between 0 and 32767 inclusive.</p>
+<p><a name="seed-random" id="seed-random"></a></p>
+<h2 id="toc44"><span>seed random numbers</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>Bash 3.2.48 seeds the random number at start up using the current time and the PID:</p>
+<div class="code">
+<pre>
+<code>  /* Seed the random number generator. */
+  sbrand (dollar_dollar_pid + shell_start_time);</code>
+</pre></div>
+<p>Here is the random number generation code:</p>
+<div class="code">
+<pre>
+<code>/* A linear congruential random number generator based on the example
+   one in the ANSI C standard.  This one isn't very good, but a more
+   complicated one is overkill. */
+
+/* Returns a pseudo-random number between 0 and 32767. */
+static int
+brand ()
+{
+  rseed = rseed * 1103515245 + 12345;
+  return ((unsigned int)((rseed &gt;&gt; 16) &amp; 32767));    /* was % 32768 */
+}</code>
+</pre></div>
+<p><strong>powershell:</strong></p>
+<p>The initial seed is set to a value that varies each time PowerShell is started up.</p>
+<p>If a repeatable sequence of random numbers is desired, the seed can be set to a specific value using the <tt>-setseed</tt> option on the first call to <tt>random</tt>.</p>
+<p><a name="bit-operators" id="bit-operators"></a></p>
+<h2 id="toc45"><span>bit operators</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>The bit operators are available in $(( )) and (( )).</p>
+<p><a name="strings-note" id="strings-note"></a></p>
+<h1 id="toc46"><span><a href="#strings">Strings</a></span></h1>
+<p><a name="string-literal" id="string-literal"></a></p>
+<h2 id="toc47"><span>string literal</span></h2>
+<p>The syntax for a string literal and how to escape the delimiter.</p>
+<p><a name="string-literal-newline" id="string-literal-newline"></a></p>
+<h2 id="toc48"><span>newline in literal</span></h2>
+<p>Whether a newline character sequence can be included in a string.</p>
+<p>For all the languages described in this reference sheet a string literal is permitted to encompass multiple lines in the source code and the resulting string will contain the same number of lines.</p>
+<p><a name="string-escapes" id="string-escapes"></a></p>
+<h2 id="toc49"><span>escapes</span></h2>
+<p>Character escape sequences which can be used in string literals.</p>
+<p><a name="variable-interpolation" id="variable-interpolation"></a></p>
+<h2 id="toc50"><span>variable interpolation</span></h2>
+<p>How to interpolate variables in a string.</p>
+<p><strong>posix shell:</strong></p>
+<p>A dollar sign <tt>$</tt> can be backslash escaped to prevent variable interpolation:</p>
+<div class="code">
+<pre>
+<code>echo "the value of \$a is $a"</code>
+</pre></div>
+<p><strong>powershell:</strong></p>
+<p>A dollar sign <tt>$</tt> can be backtick escaped to prevent variable interpolation:</p>
+<div class="code">
+<pre>
+<code>write-output "the value of @@`@@$a is $a"</code>
+</pre></div>
+<p><a name="string-length" id="string-length"></a></p>
+<h2 id="toc51"><span>length</span></h2>
+<p>How to get the length of a string.</p>
+<p><strong>cmd.exe:</strong></p>
+<div class="code">
+<pre>
+<code>:strLen string len -- returns the length of a string
+::                 -- string [in]  - variable name containing the string being measured for length
+::                 -- len    [out] - variable to be used to return the string length
+(   SETLOCAL ENABLEDELAYEDEXPANSION
+    set "str=A!%~1!"&amp;
+    set "len=0"
+    for /L %%A in (12,-1,0) do (
+        set /a "len|=1&lt;&lt;%%A"
+        for %%B in (!len!) do if "!str:~%%B,1!"=="" set /a "len&amp;=~1&lt;&lt;%%A"
+    )
+)
+( ENDLOCAL
+    IF "%~2" NEQ "" SET /a %~2=%len%
+)
+EXIT /b</code>
+</pre></div>
+<p><a name="string-comparison" id="string-comparison"></a></p>
+<h2 id="toc52"><span>string comparison</span></h2>
+<p>How to determine if two strings are equal or unequal.</p>
+<p><a name="index-substring" id="index-substring"></a></p>
+<h2 id="toc53"><span>index substring</span></h2>
+<p>How to find the index of the start of a substring in a string.</p>
+<p><a name="extract-substring" id="extract-substring"></a></p>
+<h2 id="toc54"><span>extract substring</span></h2>
+<p><a name="string-concatenation" id="string-concatenation"></a></p>
+<h2 id="toc55"><span>string concatenation</span></h2>
+<p>The string concatenation operator.</p>
+<p><a name="split" id="split"></a></p>
+<h2 id="toc56"><span>split</span></h2>
+<p>How to split a string into an array of strings.</p>
+<p><strong>powershell:</strong></p>
+<p>When splitting a string into words, no delimiter need be specified and the string to be split can follow the <tt>-split</tt> operator:</p>
+<div class="code">
+<pre>
+<code>-split "foo bar baz"</code>
+</pre></div>
+<p><a name="join" id="join"></a></p>
+<h2 id="toc57"><span>join</span></h2>
+<p>How to concatenate the elements of an array into a string with a separator.</p>
+<p><a name="scan" id="scan"></a></p>
+<h2 id="toc58"><span>scan</span></h2>
+<p><a name="sprintf" id="sprintf"></a></p>
+<h2 id="toc59"><span>sprintf</span></h2>
+<p>How to create a string using a printf style format.</p>
+<p><a name="case" id="case"></a></p>
+<h2 id="toc60"><span>case manipulation</span></h2>
+<p><a name="strip" id="strip"></a></p>
+<h2 id="toc61"><span>strip</span></h2>
+<p><a name="pad" id="pad"></a></p>
+<h2 id="toc62"><span>pad on right, pad on left</span></h2>
+<p><a name="regex-note" id="regex-note"></a></p>
+<h1 id="toc63"><span><a href="#regexes">Regular Expressions</a></span></h1>
+<p><a name="regex-match-note" id="regex-match-note"></a></p>
+<h2 id="toc64"><span><a href="#regex-match">regex match</a></span></h2>
+<p>How to test whether a regular expression matches a string.</p>
+<p><strong>posix shell:</strong></p>
+<p>The double square bracket operator <tt>[[ ]]</tt> is not part of the POSIX standard but it is a feature of <tt>bash</tt>, <tt>ksh</tt>, and <tt>zsh</tt>. It supports a match test operator:</p>
+<div class="code">
+<pre>
+<code>if [[ "hello" =~ ^[a-z][a-z]*$ ]]; then</code>
+</pre></div>
+<p><a name="single-subst-note" id="single-subst-note"></a></p>
+<h2 id="toc65"><span><a href="#single-subst">single substitution</a></span></h2>
+<p>How to replace the first occurrence of a pattern in a string.</p>
+<p><strong>posix shell:</strong></p>
+<p>The following parameter expansion is not part of the POSIX standard but provided by <tt>bash</tt>, <tt>ksh</tt>, and <tt>zsh</tt>:</p>
+<div class="code">
+<pre>
+<code>str='do re mi mi mi'
+echo ${str/mi/ma}</code>
+</pre></div>
+<p><a name="global-subst-note" id="global-subst-note"></a></p>
+<h2 id="toc66"><span><a href="#global-subst">global substitution</a></span></h2>
+<p>How to replace all occurrences of a pattern in a string.</p>
+<p><strong>posix shell:</strong></p>
+<p>The following parameter expansion is not part of the POSIX standard but provided by <tt>bash</tt>, <tt>ksh</tt>, and <tt>zsh</tt>:</p>
+<div class="code">
+<pre>
+<code>str='do re mi mi mi'
+echo ${str//mi/ma}</code>
+</pre></div>
+<p><a name="dates-time-note" id="dates-time-note"></a></p>
+<h1 id="toc67"><span><a href="#dates-time">Dates and Time</a></span></h1>
+<p><a name="arrays-note" id="arrays-note"></a></p>
+<h1 id="toc68"><span><a href="#arrays">Arrays</a></span></h1>
+<p><a name="array-literal" id="array-literal"></a></p>
+<h2 id="toc69"><span>array literal</span></h2>
+<p>Array literal syntax.</p>
+<p><a name="array-size" id="array-size"></a></p>
+<h2 id="toc70"><span>array size</span></h2>
+<p>How to get the number of elements in an array.</p>
+<p><a name="array-lookup" id="array-lookup"></a></p>
+<h2 id="toc71"><span>array lookup</span></h2>
+<p>How to access a value in an array by index.</p>
+<p><a name="array-slice" id="array-slice"></a></p>
+<h2 id="toc72"><span>array slice</span></h2>
+<p>How to slice a subarray from an array.</p>
+<p><a name="array-iteration" id="array-iteration"></a></p>
+<h2 id="toc73"><span>array iteration</span></h2>
+<p><a name="membership" id="membership"></a></p>
+<h2 id="toc74"><span>membership</span></h2>
+<p>How to test for membership in an array.</p>
+<p><a name="intersection" id="intersection"></a></p>
+<h2 id="toc75"><span>intersection</span></h2>
+<p>How to compute an intersection.</p>
+<p><a name="union" id="union"></a></p>
+<h2 id="toc76"><span>union</span></h2>
+<p><a name="map" id="map"></a></p>
+<h2 id="toc77"><span>map</span></h2>
+<p><a name="filter" id="filter"></a></p>
+<h2 id="toc78"><span>filter</span></h2>
+<p><a name="reduce" id="reduce"></a></p>
+<h2 id="toc79"><span>reduce</span></h2>
+<p><a name="universal-predicate" id="universal-predicate"></a></p>
+<h2 id="toc80"><span>universal predicate</span></h2>
+<p>How to test whether a condition holds for all members of an array. Always true for an empty array.</p>
+<p><a name="existential-predicate" id="existential-predicate"></a></p>
+<h2 id="toc81"><span>existential predicate</span></h2>
+<p>How to test whether an item in an array exists for which a condition holds. Always false for an empty array.</p>
+<p><a name="dictionary-literal" id="dictionary-literal"></a></p>
+<h2 id="toc82"><span>dictionary literal</span></h2>
+<p><a name="dictionary-size" id="dictionary-size"></a></p>
+<h2 id="toc83"><span>dictionary size</span></h2>
+<p><a name="dictionary-lookup" id="dictionary-lookup"></a></p>
+<h2 id="toc84"><span>dictionary lookup</span></h2>
+<p><a name="dictionary-iteration" id="dictionary-iteration"></a></p>
+<h2 id="toc85"><span>dictionary iteration</span></h2>
+<p><a name="out-of-bounds" id="out-of-bounds"></a></p>
+<h2 id="toc86"><span>out of bounds behavior</span></h2>
+<p><a name="functions-note" id="functions-note"></a></p>
+<h1 id="toc87"><span><a href="#functions">Functions</a></span></h1>
+<p>Python has both functions and methods. Ruby only has methods: functions defined at the top level are in fact methods on a special main object. Perl subroutines can be invoked with a function syntax or a method syntax.</p>
+<p><a name="function-definition" id="function-definition"></a></p>
+<h2 id="toc88"><span>function definition</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>A bash function definition can alternately be preceded by the keyword <em>function</em>, and when used, the parens following the function name are prohibited.</p>
+<p><a name="function-invocation" id="function-invocation"></a></p>
+<h2 id="toc89"><span>function invocation</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>The syntax for invoking a function is the same as the syntax for invoking a command. If a function is defined with the same name as a command in the search path, the function will be executed.</p>
+<p><a name="missing-argument" id="missing-argument"></a></p>
+<h2 id="toc90"><span>missing argument value</span></h2>
+<p>Value of an argument variable if a function is invoked with fewer arguments than are declared.</p>
+<p><a name="extra-arguments" id="extra-arguments"></a></p>
+<h2 id="toc91"><span>extra arguments</span></h2>
+<p>If a function is invoked with more arguments than are declared, how the function can access them.</p>
+<p><a name="default-argument" id="default-argument"></a></p>
+<h2 id="toc92"><span>default argument value</span></h2>
+<p>How to declare a default value for an argument.</p>
+<p><a name="variable-arguments" id="variable-arguments"></a></p>
+<h2 id="toc93"><span>variable number of arguments</span></h2>
+<p>How to write a function which accepts a variable number of argument.</p>
+<p><a name="named-parameters" id="named-parameters"></a></p>
+<h2 id="toc94"><span>named parameters</span></h2>
+<p>How to write a function which uses named parameters.</p>
+<p><a name="return-value" id="return-value"></a></p>
+<h2 id="toc95"><span>return value</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>Bash functions can only return small integers via return. However, a function can echo to stdout and the caller can invoke it with backticks to get a string value.</p>
+<p><a name="lambda-declaration" id="lambda-declaration"></a></p>
+<h2 id="toc96"><span>lambda declaration</span></h2>
+<p>How to define a lambda function.</p>
+<p><a name="lambda-invocation" id="lambda-invocation"></a></p>
+<h2 id="toc97"><span>lambda invocation</span></h2>
+<p><a name="default-scope" id="default-scope"></a></p>
+<h2 id="toc98"><span>default scope</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>By default, bash and variables inside functions have global scope.</p>
+<p><a name="execution-control-note" id="execution-control-note"></a></p>
+<h1 id="toc99"><span><a href="#execution-control">Execution Control</a></span></h1>
+<p><a name="if" id="if"></a></p>
+<h2 id="toc100"><span>if</span></h2>
+<p>Some optional branching constructs:</p>
+<p><strong>posix shell:</strong></p>
+<div class="code">
+<pre>
+<code>case $a in (0) echo "no";; (1) echo "yes";; (2) echo "maybe";; (*) echo "error";; esac</code>
+</pre></div>
+<p><a name="while" id="while"></a></p>
+<h2 id="toc101"><span>while</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>Also has an <em>until</em> loop.</p>
+<p><a name="break-continue" id="break-continue"></a></p>
+<h2 id="toc102"><span>break/continue/redo</span></h2>
+<p><em>break</em> exits a <em>for</em> or <em>while</em> loop immediately. <em>continue</em> goes to the next iteration of the loop. <em>redo</em> goes back to the beginning of the current iteration.</p>
+<p><a name="for" id="for"></a></p>
+<h2 id="toc103"><span>for</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>A C-style for loop:</p>
+<div class="code">
+<pre>
+<code>for ((i=0; i&lt;10; i++ )); do echo $i; done</code>
+</pre></div>
+<p><a name="exceptions-note" id="exceptions-note"></a></p>
+<h1 id="toc104"><span><a href="#exceptions">Exceptions</a></span></h1>
+<p><a name="raise-exception" id="raise-exception"></a></p>
+<h2 id="toc105"><span>raise exception</span></h2>
+<p>How to raise an exception.</p>
+<p><a name="catch-exception" id="catch-exception"></a></p>
+<h2 id="toc106"><span>catch exception</span></h2>
+<p>How to handle an exception.</p>
+<p><a name="uncaught-exception" id="uncaught-exception"></a></p>
+<h2 id="toc107"><span>uncaught exception behavior</span></h2>
+<p>System behavior if an exception goes uncaught. Most interpreters print the exception message to stderr and exit with a nonzero status.</p>
+<p><strong>posix shell:</strong></p>
+<p>The bash interpreter writes a message to stderr whenever a command returns a nonzero status. By default, the interpreter does not exit, but if this behavior is desired, then the following should be put at the top of the script:</p>
+<div class="code">
+<pre>
+<code>trap exit ERR</code>
+</pre></div>
+<p><a name="wait-on-thread" id="wait-on-thread"></a></p>
+<h2 id="toc108"><span>wait on thread</span></h2>
+<p><a name="streams-note" id="streams-note"></a></p>
+<h1 id="toc109"><span><a href="#streams">Streams</a></span></h1>
+<p><a name="print-to-stdout" id="print-to-stdout"></a></p>
+<h2 id="toc110"><span>write to standard out</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>To prevent <em>echo</em> from appending a newline to the output, use</p>
+<div class="code">
+<pre>
+<code>echo -n "hello"</code>
+</pre></div>
+<p><a name="standard-filehandles" id="standard-filehandles"></a></p>
+<h2 id="toc111"><span>standard filehandles</span></h2>
+<p><a name="read-line" id="read-line"></a></p>
+<h2 id="toc112"><span>read line</span></h2>
+<p><a name="read-file" id="read-file"></a></p>
+<h2 id="toc113"><span>read file</span></h2>
+<p><a name="write-file" id="write-file"></a></p>
+<h2 id="toc114"><span>write to file</span></h2>
+<p><a name="append-file" id="append-file"></a></p>
+<h2 id="toc115"><span>append to file</span></h2>
+<p><a name="files-note" id="files-note"></a></p>
+<h1 id="toc116"><span><a href="#files">Files</a></span></h1>
+<p><a name="directories-note" id="directories-note"></a></p>
+<h1 id="toc117"><span><a href="#directories">Directories</a></span></h1>
+<p><a name="processes-environment-note" id="processes-environment-note"></a></p>
+<h1 id="toc118"><span><a href="#processes-environment">Processes and Environment</a></span></h1>
+<p><a name="external-command" id="external-command"></a></p>
+<h2 id="toc119"><span>external command</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>The syntax for calling an external command is the same as the syntax for invoking a function. If a function is defined with the same name as an external command in the search path, the function is invoked.</p>
+<p><a name="backticks" id="backticks"></a></p>
+<h2 id="toc120"><span>backticks</span></h2>
+<p><a name="command-line-args" id="command-line-args"></a></p>
+<h2 id="toc121"><span>command line args</span></h2>
+<p><a name="speech" id="speech"></a></p>
+<h2 id="toc122"><span>speech</span></h2>
+<p>How to make the computer talk.</p>
+<p><strong>posix shell:</strong></p>
+<p>On Mac OSX the command <tt>say</tt> can also be executed from the bash or zsh prompt:</p>
+<div class="code">
+<pre>
+<code>say "I'm a Mac"</code>
+</pre></div>
+<p>On Ubuntu Linux this command can be used:</p>
+<div class="code">
+<pre>
+<code>espeak "I'm Unix"</code>
+</pre></div>
+<p><a name="environment-variable" id="environment-variable"></a></p>
+<h2 id="toc123"><span>environment variable</span></h2>
+<p><a name="command-path" id="command-path"></a></p>
+<h2 id="toc124"><span>command path</span></h2>
+<p>The directory containing a command. Also indicates if the command is a built-in, alias, or function. Shows the definition of aliases and functions.</p>
+<p><a name="exit" id="exit"></a></p>
+<h2 id="toc125"><span>exit</span></h2>
+<p><strong>posix shell:</strong></p>
+<p>The exit status of a bash script is the return status of the last command executed, or the argument of <em>exit</em>.</p>
+<p><a name="set-signal-handler" id="set-signal-handler"></a></p>
+<h2 id="toc126"><span>set signal handler</span></h2>
+<p><a name="libraries-namespaces-note" id="libraries-namespaces-note"></a></p>
+<h1 id="toc127"><span><a href="#libraries-namespaces">Libraries and Namespaces</a></span></h1>
+<p><a name="library" id="library"></a></p>
+<h2 id="toc128"><span>library</span></h2>
+<p>What a library looks like.</p>
+<p><a name="import-library" id="import-library"></a></p>
+<h2 id="toc129"><span>import library</span></h2>
+<p><a name="library-path" id="library-path"></a></p>
+<h2 id="toc130"><span>library path</span></h2>
+<p><a name="namespace-declaration" id="namespace-declaration"></a></p>
+<h2 id="toc131"><span>namespace declaration</span></h2>
+<p><a name="namespace-separator" id="namespace-separator"></a></p>
+<h2 id="toc132"><span>namespace separator</span></h2>
+<p><a name="reflection-note" id="reflection-note"></a></p>
+<h1 id="toc133"><span><a href="#reflection">Reflection</a></span></h1>
+<p><a name="class" id="class"></a></p>
+<h2 id="toc134"><span>class</span></h2>
+<p><a name="debugging-profiling-note" id="debugging-profiling-note"></a></p>
+<h1 id="toc135"><span><a href="#debugging-profiling">Debugging and Profiling</a></span></h1>
+<p><a name="posix" id="posix"></a></p>
+<h1 id="toc136"><span><a href="#top">POSIX Shell</a></span></h1>
+<p><a href="http://pubs.opengroup.org/onlinepubs/9699919799/idx/xcu.html">POSIX 2008: Shell &amp; Utilities</a></p>
+<p><a name="cmd-prompt" id="cmd-prompt"></a></p>
+<h1 id="toc137"><span><a href="#top">Command Prompt</a></span></h1>
+<p><a href="http://technet.microsoft.com/en-us/library/bb490890.aspx">Command-line reference A-Z</a></p>
+<p><a name="powershell" id="powershell"></a></p>
+<h1 id="toc138"><span><a href="#top">PowerShell</a></span></h1>
+<p><a href="http://technet.microsoft.com/en-us/library/cc196356.aspx">Windows PowerShell User's Guide</a></p>
+
+                    </div>
+        </div>
+      </div>
+      <div id="license-area" class="license-area">
+        <a href="https://github.com/clarkgrubb/hyperpolyglot/issues">issue tracker</a> |
+        content of this page licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+        creative commons attribution-sharealike 3.0</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17129977-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

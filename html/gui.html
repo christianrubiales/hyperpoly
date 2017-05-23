@@ -1,0 +1,3510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<link rel="icon" type="image/gif" href="/favicon.gif"/>
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<title>GUI Scripting: JavaScript, Smalltalk, Tcl, AutoHotkey - Hyperpolyglot</title>
+<style type="text/css" id="internal-style">
+@import url(hyperpolyglot.css);
+</style>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="content-language" content="en"/>
+</head>
+<body>
+<div id="container-wrap-wrap">
+  <div id="container-wrap">
+    <div id="container">
+      <div id="header">
+        <h1><a href="/"><span>Hyperpolyglot</span></a></h1>
+      </div>
+      <div id="content-wrap">
+        <div id="main-content">
+<div id="page-title">
+                            GUI Scripting: JavaScript, Smalltalk, Tcl, AutoHotkey
+                        </div>
+<div id="page-content">
+                        
+
+<p><em>a side-by-side reference sheet</em></p>
+<p><a href="#grammar-invocation">grammar and invocation</a> | <a href="#var-expr">variables and expression</a> | <a href="#arithmetic-logic">arithmetic and logic</a> | <a href="#strings">strings</a> | <a href="#regexes">regexes</a> | <a href="#dates-time">dates and time</a> | <a href="#arrays">arrays</a> | <a href="#dictionaries">dictionaries</a> | <a href="#functions">functions</a> | <a href="#execution-control">execution control</a> | <a href="#exceptions">exceptions</a> | <a href="#streams">streams</a> | <a href="#files">files</a> | <a href="#file-fmt">file formats</a> | <a href="#directories">directories</a> | <a href="#processes-environment">processes and environment</a> | <a href="#libraries-namespaces">libraries and namespaces</a> | <a href="#objects">objects</a> | <a href="#inheritance-polymorphism">inheritance and polymorphism</a> | <a href="#reflection">reflection</a> | <a href="#gui">gui</a> | <a href="#net-web">net and web</a></p>
+<table class="wiki-content-table">
+<tr>
+<th><a name="general" id="general"></a></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="version-used" id="version-used"></a><a href="#version-used-note">version used</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>ECMAScript 5</em></span></td>
+<td><span style="color: gray"><em>Pharo 3.0</em></span></td>
+<td><span style="color: gray"><em>8.5</em></span></td>
+<td><span style="color: gray"><em>1.1</em></span></td>
+</tr>
+<tr>
+<td><a name="show-version" id="show-version"></a><a href="#show-version-note">show version</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><a href="http://kangax.github.io/compat-table/es5/">ECMAScript 5 compatibility</a></td>
+<td>SmalltalkImage current aboutThisSystem.<br />
+<br />
+<span style="color: gray"><em>at command line:</em></span><br />
+$ ./pharo Pharo.image printVersion</td>
+<td>$ tclsh<br />
+% info tclversion</td>
+<td>msgbox % a_ahkversion</td>
+</tr>
+<tr>
+<th colspan="5"><a name="grammar-invocation" id="grammar-invocation"></a><a href="#grammar-invocation-note">grammar and invocation</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="interpreter" id="interpreter"></a><a href="#interpreter-note">interpreter</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td>$ tclsh foo.tcl</td>
+<td><span style="white-space: pre-wrap;">&gt;</span> autohotkey foo.ahk</td>
+</tr>
+<tr>
+<td><a name="repl" id="repl"></a><a href="#repl-note">repl</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>Javascript Console:</em><br />
+<br />
+<span style="white-space: pre-wrap;">  </span>Chrome (Mac): ⌥⌘J<br />
+<span style="white-space: pre-wrap;">  </span>Chrome (Win): Ctrl+Shift+J<br />
+<span style="white-space: pre-wrap;">  </span>Firefox (Mac): ⌥⌘K<br />
+<span style="white-space: pre-wrap;">  </span>Firefox (Win): Ctrl+Shift+K</span></td>
+<td></td>
+<td>$ tclsh</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="cmd-line-program" id="cmd-line-program"></a><a href="#cmd-line-program-note">command line program</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>$ Pharo <span style="white-space: pre-wrap;">--</span>headless Pharo.image eval '1 + 1.'</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="stmt-separator" id="stmt-separator"></a><a href="#stmt-separator-note">statement separator</a></td>
+<td><span style="color: gray"><em>; or newline<br />
+<br />
+newline not separator inside (), [], {}, "", '', or after binary operator<br />
+<br />
+newline sometimes not separator when following line would not parse as a valid statement</em></span></td>
+<td><span style="color: gray"><em>period:</em></span> .</td>
+<td><span style="color: gray"><em>newline or</em> ;</span><br />
+<br />
+<span style="color: gray"><em>newline not a separator inside {}, "", [] or after backslash: \</em></span></td>
+<td><span style="color: gray"><em>sometimes newline</em></span><br />
+<br />
+<span style="color: gray"><em>newline does not terminate statement:<br />
+<br />
+<span style="white-space: pre-wrap;">  </span>(1) inside parens<br />
+<span style="white-space: pre-wrap;">  </span>(2) when following line starts with binary operator</em></span></td>
+</tr>
+<tr>
+<td><a name="block-delimiters" id="block-delimiters"></a><a href="#block-delimiters-note">block delimiters</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>{}</td>
+<td>[ ]</td>
+<td>{} <span style="color: gray"><em>or</em></span> ""</td>
+<td>{ }</td>
+</tr>
+<tr>
+<td><a name="local-scope-regions" id="local-scope-regions"></a><a href="#local-scope-regions-note">regions which define lexical scope</a></td>
+<td><span style="color: gray"><em>top level:<br />
+<span style="white-space: pre-wrap;">  </span>html page<br />
+<br />
+nestable:<br />
+<span style="white-space: pre-wrap;">  </span>function</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="expr-stmt" id="expr-stmt"></a><a href="#expr-stmt-note">are expressions statements</a><br />
+<span style="white-space: pre-wrap;">  </span></td>
+<td></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+<td><span style="color: gray"><em>no</em></span></td>
+<td><span style="color: gray"><em>no</em></span></td>
+</tr>
+<tr>
+<td><a name="eol-comment" id="eol-comment"></a><a href="#eol-comment-note">end-of-line comment</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> comment</span></td>
+<td><span style="color: gray"><em>no</em></span></td>
+<td><span style="color: gray"># comment</span></td>
+<td>; <span style="color: gray"><em>comment</em></span></td>
+</tr>
+<tr>
+<td><a name="multiple-line-comment" id="multiple-line-comment"></a><a href="#multiple-line-comment-note">multiple line comment</a></td>
+<td><span style="color: gray">/* line<br />
+another line */</span></td>
+<td>"<span style="color: gray"><em>comment<br />
+another comment</em></span>"</td>
+<td>if (0) {<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>commented out</em></span><br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>can contain {} if balanced</em></span><br />
+}</td>
+<td>/*<br />
+<span style="color: gray"><em>comment</em></span><br />
+<span style="color: gray"><em>another comment</em></span><br />
+*/</td>
+</tr>
+<tr>
+<th colspan="5"><a name="var-expr" id="var-expr"></a><a href="#var-expr-note">variables and expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="local-var" id="local-var"></a><a href="#local-var-note">local variable</a></td>
+<td>var x = 1;<br />
+<br />
+var y = 2, z = 3;</td>
+<td></td>
+<td><span style="color: gray"># set variable inside procedure:</span><br />
+proc foo {<span style="color: gray"><em>args</em></span>} {<br />
+<span style="white-space: pre-wrap;">  </span>set x 1<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>…</em></span><br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="global-var" id="global-var"></a><a href="#global-var-note">global variable</a></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> assign without using var</span><br />
+g = 1;<br />
+<br />
+function incr_global () { g++; }</td>
+<td></td>
+<td><span style="color: gray"># set variable outside procedure:</span><br />
+set g 1<br />
+<br />
+proc incr_global {} {<br />
+<span style="white-space: pre-wrap;">  </span>global g<br />
+<span style="white-space: pre-wrap;">  </span>incr g<br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="assignment" id="assignment"></a><a href="#assignment-note">assignment</a></td>
+<td>x = 1;</td>
+<td>a := 1.</td>
+<td>set x 1</td>
+<td>s1 := PATH<br />
+s2 := "foo bar"<br />
+<br />
+<span style="color: gray">; traditional style:</span><br />
+s1 = %PATH%<br />
+s2 = foo bar</td>
+</tr>
+<tr>
+<td><a name="parallel-assignment" id="parallel-assignment"></a><a href="#parallel-assignment-note">parallel assignment</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>lassign {1 2 3} x y z<br />
+<br />
+<span style="color: gray"># 3 is discarded:</span><br />
+lassign {1 2 3} x y<br />
+<br />
+<span style="color: gray"># z is set to "":</span><br />
+lassign {1 2} x y z</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="swap" id="swap"></a><a href="#swap-note">swap</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>tmp = x;<br />
+x = y;<br />
+y = tmp;</td>
+<td></td>
+<td>lassign "$x $y" y x</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="compound-assignment" id="compound-assignment"></a><a href="#compound-assignment-note">compound assignment</a><br />
+<span style="color: gray"><em>arithmetic, string, bit</em></span></td>
+<td>+= -= *= /= <span style="color: gray"><em>none</em></span> %=<br />
++=<br />
+<span style="color: gray"><em>none</em></span><br />
+<span style="white-space: pre-wrap;">&lt;&lt;= &gt;&gt;= </span>&amp;= |= ^=</td>
+<td></td>
+<td></td>
+<td>+= -= *= /= <span style="white-space: pre-wrap;">//</span>=<br />
+.=<br />
+<span style="white-space: pre-wrap;">&lt;&lt;= &gt;&gt;=</span> &amp;= |= ^=</td>
+</tr>
+<tr>
+<td><a name="incr-decr" id="incr-decr"></a><a href="#incr-decr-note">increment and decrement</a></td>
+<td>var x = 1;<br />
+var y = ++x;<br />
+var z = <span style="white-space: pre-wrap;">--</span>y;</td>
+<td></td>
+<td></td>
+<td><span style="color: gray"><em>premodifiers:</em></span><br />
+++i <span style="white-space: pre-wrap;">--</span>i<br />
+<br />
+<span style="color: gray"><em>postmodifiers:</em></span><br />
+i++ i<span style="white-space: pre-wrap;">--</span></td>
+</tr>
+<tr>
+<td><a name="var-decl" id="var-decl"></a><a href="#var-decl-note">variable declaration</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="null" id="null"></a><a href="#null-note">null</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>null</td>
+<td>nil</td>
+<td>""</td>
+<td>""</td>
+</tr>
+<tr>
+<td><a name="null-test" id="null-test"></a><a href="#null-test-note">null test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>v === null</td>
+<td>v = nil</td>
+<td>v eq ""</td>
+<td>v == ""<br />
+<br />
+<span style="color: gray">; traditional style:</span><br />
+v =</td>
+</tr>
+<tr>
+<td><a name="undef-var" id="undef-var"></a><a href="#undef-var-note">undefined variable</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>undefined</td>
+<td><span style="color: gray"><em>evaluates as</em> nil</span></td>
+<td><span style="color: gray"><em>error</em></span></td>
+<td><span style="color: gray"><em>evaluates as empty string</em></span></td>
+</tr>
+<tr>
+<td><a name="conditional-expr" id="conditional-expr"></a><a href="#conditional-expr-note">conditional expression</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>x &gt; 0 ? x : -x</td>
+<td>x &gt; 0 ifTrue: [x] ifFalse: [0 - x]</td>
+<td>expr $x &gt; 0 ? $x : -$x</td>
+<td>x &gt; 0 ? x : -x</td>
+</tr>
+<tr>
+<th colspan="5"><a name="arithmetic-logic" id="arithmetic-logic"></a><a href="#arithmetic-logic-note">arithmetic and logic</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="true-false" id="true-false"></a><a href="#true-false-note">true and false</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>true false</td>
+<td>true false</td>
+<td>1 0</td>
+<td>1 0<br />
+<br />
+<span style="color: gray"><em>synonyms:</em></span><br />
+true false</td>
+</tr>
+<tr>
+<td><a name="falsehoods" id="falsehoods"></a><a href="#falsehoods-note">falsehoods</a></td>
+<td>false null undefined "" 0 NaN</td>
+<td>false</td>
+<td>0 "false" "no"<br />
+<span style="color: gray"><em>most strings cause error in boolean context; nonzero numbers are true</em></span></td>
+<td>0 ""</td>
+</tr>
+<tr>
+<td><a name="logical-op" id="logical-op"></a><a href="#logical-op-note">logical operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="white-space: pre-wrap;">&amp;&amp; ||</span> !</td>
+<td>&amp; | not</td>
+<td>&amp;&amp; <span style="white-space: pre-wrap;">||</span> !</td>
+<td>and or not<br />
+<br />
+<span style="color: gray"><em>synonyms:</em></span><br />
+<span style="white-space: pre-wrap;">&amp;&amp; || !</span></td>
+</tr>
+<tr>
+<td><a name="relational-expr" id="relational-expr"></a><a href="#relational-expr-note">relational expression</a></td>
+<td></td>
+<td></td>
+<td>if {$x &gt; 3} {…}<br />
+<span style="color: gray"># outside of conditionals use expr:</span><br />
+expr $x &gt; 3</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="relational-op" id="relational-op"></a><a href="#relational-op-note">relational operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="white-space: pre-wrap;">===</span> !== &lt; &gt; &gt;= &lt;=<br />
+<br />
+<span style="color: gray"><em>perform type coercion:</em></span><br />
+<span style="white-space: pre-wrap;">==</span> !=</td>
+<td><span style="white-space: pre-wrap;">=</span> ~= &gt; &lt; &gt;= &lt;=</td>
+<td>== != &gt; &lt; &gt;= &lt;=<br />
+<br />
+<span style="color: gray"># string comparison:</span><br />
+eq ne</td>
+<td>== != &gt; &lt; &gt;= &lt;=<br />
+<br />
+<span style="color: gray"><em>case insensitive equality:</em></span><br />
+<span style="white-space: pre-wrap;">=</span></td>
+</tr>
+<tr>
+<td><a name="min-max" id="min-max"></a><a href="#min-max-note">min and max</a></td>
+<td>Math.min(1, 2, 3)<br />
+Math.max(1, 2, 3)<br />
+<br />
+Math.min.apply(Math, [1, 2, 3])<br />
+Math.max.apply(Math, [1, 2, 3])</td>
+<td></td>
+<td>expr min(1, 2, 3)<br />
+expr max(1, 2, 3)</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="arith-expr" id="arith-expr"></a><a href="#arith-expr-note">arithmetic expression</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>1 + 3<br />
+<br />
+<span style="color: gray">"Binary operators are evaluated left to right.<br />
+This is 20:"</span><br />
+1 + 3 * 5</td>
+<td>expr 1 + 3<br />
+<span style="color: gray"># expr not needed in conditionals:</span><br />
+if {1 + 3} {<span style="color: gray"><em>…</em></span>}</td>
+<td>1 + 3</td>
+</tr>
+<tr>
+<td><a name="arith-op" id="arith-op"></a><a href="#arith-op-note">arithmetic operators</a><br />
+<span style="color: gray"><em>addition, subtraction, multiplication, float division, quotient, remainder</em></span></td>
+<td>+ - * / <span style="color: gray"><em>none</em></span> %</td>
+<td>+ - * / <span style="white-space: pre-wrap;">//</span> \\</td>
+<td>+ - * <span style="color: gray"><em>none</em></span> / %</td>
+<td>+ - * / <span style="white-space: pre-wrap;">//</span> <span style="color: gray"><em>none</em></span> <span style="white-space: pre-wrap;">**</span><br />
+<br />
+<span style="color: gray"><em>modulo function:</em></span> mod(m, n)</td>
+</tr>
+<tr>
+<td><a name="int-dvi" id="int-dvi"></a><a href="#int-div-node">integer division</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>Math.floor(x / y)</td>
+<td>7 <span style="white-space: pre-wrap;">//</span> 3</td>
+<td>expr $x / $y</td>
+<td>7 <span style="white-space: pre-wrap;">//</span> 3</td>
+</tr>
+<tr>
+<td><a name="int-div-zero" id="int-div-zero"></a><a href="#int-div-zero-note">integer division by zero</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>returns assignable value Infinity, NaN, or -Infinity depending upon whether dividend is positive, zero, or negative.<br />
+<br />
+There are literals for Infinity and NaN.</em></span></td>
+<td><span style="color: gray">ZeroDivide <em>exception</em></span></td>
+<td><span style="color: gray"><em>error</em></span></td>
+<td><span style="color: gray"><em>evaluates to empty string</em></span></td>
+</tr>
+<tr>
+<td><a name="float-div" id="float-div"></a><a href="#float-div-note">float division</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>13 / 5</td>
+<td>7 / 3 asFloat.<br />
+<br />
+<span style="color: gray">"exact rational:"</span><br />
+7 / 3</td>
+<td>expr $x * 1.0 / $y</td>
+<td>7 / 3</td>
+</tr>
+<tr>
+<td><a name="float-div-zero" id="float-div-zero"></a><a href="#float-div-zero-note">float division by zero</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>same behavior as for integers</em></span></td>
+<td><span style="color: gray">ZeroDivide <em>exception</em></span></td>
+<td><span style="color: gray"><em>returns assignable value</em> Inf <em>if dividend is positive and</em> -Inf <em>if negative. Raises error if dividend is zero.<br />
+<br />
+There is a literal for</em> Inf.</span></td>
+<td><span style="color: gray"><em>evaluates to empty string</em></span></td>
+</tr>
+<tr>
+<td><a name="power" id="power"></a><a href="#power-note">power</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>Math.pow(2, 32)</td>
+<td>2 raisedTo 32</td>
+<td>expr 2 <span style="white-space: pre-wrap;">**</span> 32<br />
+expr pow(2, 32)</td>
+<td>2 ** 32</td>
+</tr>
+<tr>
+<td><a name="sqrt" id="sqrt"></a><a href="#sqrt-note">sqrt</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>Math.sqrt(2)</td>
+<td>2 sqrt</td>
+<td><span style="color: purple">expr</span> sqrt(2)</td>
+<td>sqrt(2)</td>
+</tr>
+<tr>
+<td><a href="#sqrt-negative-one">sqrt -1</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>NaN</td>
+<td><span style="color: gray"><em>raises</em> DomainError</span></td>
+<td><span style="color: gray"><em>error</em></span></td>
+<td><span style="color: gray"><em>evaluates to empty string</em></span></td>
+</tr>
+<tr>
+<td><a href="#transcendental-func">transcendental functions</a></td>
+<td>Math.exp Math.log Math.sin Math.cos Math.tan Math.asin Math.acos Math.atan Math.atan2</td>
+<td>exp ln<br />
+sin cos tan<br />
+arcSin arcCos arcTan</td>
+<td>exp log sin cos tan asin acos atan atan2<br />
+<br />
+<span style="color: gray"># how to use math functions:</span><br />
+expr exp(2)<br />
+expr atan2(1, 1)<br />
+::tcl::mathfunc::exp 2<br />
+::tcl::mathfunc::atan2 1 1</td>
+<td>exp ln<br />
+sin cos tan<br />
+asin acos atan</td>
+</tr>
+<tr>
+<td><a name="transcendental-const" id="transcendental-const"></a><a href="#transcendental-const-note">transcendental constants</a></td>
+<td>Math.PI<br />
+Math.E</td>
+<td>Float pi<br />
+Float e</td>
+<td>expr 4 * atan(1)<br />
+expr exp(1)</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#float-truncation">float truncation</a><br />
+<span style="color: gray"><em>round towards zero, round to nearest integer, round down, round up</em></span></td>
+<td><span style="color: gray"><em>none</em></span><br />
+Math.round(3.1)<br />
+Math.floor(3.1)<br />
+Math.ceil(3.1)</td>
+<td>3.14 asInteger<br />
+3.14 rounded<br />
+3.14 ceiling<br />
+31.4 floor</td>
+<td>expr int(3.1)<br />
+expr round(3.1)<br />
+expr floor(3.1)<br />
+expr ceil(3.1)</td>
+<td><span style="color: gray"><em>none</em></span><br />
+round(3.14)<br />
+floor(3.14)<br />
+ceil(3.14)</td>
+</tr>
+<tr>
+<td><a name="abs-val" id="abs-val"></a><a href="#abs-val-note">absolute value</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>Math.abs(-3)</td>
+<td>-7 abs</td>
+<td>expr abs(-7)</td>
+<td>abs(-7)</td>
+</tr>
+<tr>
+<td><a href="#integer-overflow">integer overflow</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>all numbers are floats</em></span></td>
+<td><span style="color: gray"><em>converted to</em> LargePositiveInteger <em>or</em> LargeNegativeInteger</span></td>
+<td><span style="color: gray"><em>arbitrary length integers since 8.5</em></span></td>
+<td><span style="color: gray"><em>signed modular arithmetic</em></span></td>
+</tr>
+<tr>
+<td><a href="#float-overflow">float overflow</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>Infinity</td>
+<td>Float infinity <span style="color: gray"><em>or</em></span> Float infinity negated</td>
+<td><span style="color: gray"><em>error</em></span></td>
+<td><span style="color: gray"><em>evaluates to string value such as:</em></span><br />
+1.#INF00</td>
+</tr>
+<tr>
+<td><a href="#random">random integer, uniform float</a></td>
+<td>Math.floor(Math.random() * 100)<br />
+Math.random()</td>
+<td>rnd := Random new.<br />
+<br />
+rnd next.<br />
+(rnd nextInt: 100) - 1.</td>
+<td>expr int(rand() * 100)<br />
+expr rand()<br />
+none</td>
+<td><span style="color: gray">; store results in n and x:</span><br />
+random, n, 0, 99<br />
+random, x, 0.0, 1.0</td>
+</tr>
+<tr>
+<td><a href="#seed-random">seed random numbers</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>rnd := Random new.<br />
+rnd :seed 17.</td>
+<td>expr srand(17)</td>
+<td>random, , 17</td>
+</tr>
+<tr>
+<td><a href="#bit-operators">bit operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="white-space: pre-wrap;">&lt;&lt; &gt;&gt; &amp; | ^ ~</span></td>
+<td>5 bitShift: 1<br />
+5 bitShift: -1<br />
+5 bitAnd: 1<br />
+5 bitOr: 1<br />
+5 bitInvert</td>
+<td><span style="white-space: pre-wrap;">&lt;&lt; &gt;&gt; &amp; | ^ ~</span></td>
+<td><span style="white-space: pre-wrap;">&lt;&lt; &gt;&gt; &amp; | ^ ~</span></td>
+</tr>
+<tr>
+<td><a name="binary-octal-hex-literals" id="binary-octal-hex-literals"></a><a href="#binary-octal-hex-literals-note">binary, octal, and hex literals</a></td>
+<td><span style="color: gray"><em>none</em></span><br />
+052 <span style="color: gray"><span style="white-space: pre-wrap;">//</span> deprecated</span><br />
+0x2a</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="radix" id="radix"></a><a href="#radix-note">radix</a><br />
+<span style="color: gray"><em>convert integer to and from string with radix</em></span></td>
+<td>(42).toString(7)<br />
+<span style="color: gray"><em>??</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="strings" id="strings"></a><a href="#strings-note">strings</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="str-type" id="str-type"></a><a href="#str-type-note">string type</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>String</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-literal" id="str-literal"></a><a href="#str-literal-note">string literal</a></td>
+<td>"don't say \"no\""<br />
+'don\'t say "no"'</td>
+<td>'don''t say "no"'.</td>
+<td>"don't say \"no\""<br />
+{don't say "no"}</td>
+<td>"don't say ""no"""</td>
+</tr>
+<tr>
+<td><a name="new-line-in-str-literal" id="new-line-in-str-literal"></a><a href="#newline-in-str-literal-note">newline in literal</a></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+<td><span style="color: gray"><em>no</em></span><br />
+<br />
+<span style="color: gray">" print newline in Transcript:"</span><br />
+Transcript cr.</td>
+<td><span style="color: gray"><em>yes</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-literal-esc" id="str-literal-esc"></a><a href="#str-literal-esc-note">literal escapes</a></td>
+<td><span style="color: gray"><em>single and double quotes:</em></span><br />
+\b \f \n \r \t \v \uhhhh \xhh \" \' \\</td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>in double quotes:</em></span><br />
+\a \b \f \n \r \t \v \\ \" \oooo \uhhhh \xhh</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="var-interpolation" id="var-interpolation"></a><a href="#var-interpolation-note">variable interpolation</a></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> None; use string concatenation.<br />
+<span style="white-space: pre-wrap;">//</span> Both of these expressions are '11':</span><br />
+1 + "1"<br />
+"1" + 1</td>
+<td></td>
+<td>set count 3<br />
+set item "ball"<br />
+"$count ${item}s"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-concat" id="str-concat"></a><a href="#str-concat-note">string concatenate</a></td>
+<td>s = "Hello, " + "World!";</td>
+<td>'hello, ', 'world'</td>
+<td>set s1 "Hello, "<br />
+set s2 "World!"<br />
+set s $s1$s2</td>
+<td>"hello, " . "world"</td>
+</tr>
+<tr>
+<td><a name="str-replicate" id="str-replicate"></a><a href="#str-replicate-note">string replicate</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>var hbar = Array(80).join("-");</td>
+<td></td>
+<td>set hbar [string repeat "-" 80]</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-join" id="str-join"></a><a href="#str-join-note">string join</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>["do", "re", "mi"].join(" ")</td>
+<td></td>
+<td>join [list "do" "re" "mi"] " "</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="split" id="split"></a><a href="#split-note">split</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> [ "do", "re", "", "mi", "" ]:</span><br />
+"do re<span style="white-space: pre-wrap;">  </span>mi ".split(" ")<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> [ "do", "re", "mi", "" ]:</span><br />
+"do re<span style="white-space: pre-wrap;">  </span>mi ".split(/\s+/)</td>
+<td></td>
+<td>split "do re mi"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="fmt-str" id="fmt-str"></a><a href="#fmt-str-note">format string</a></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> None; use string concatenation.<br />
+<span style="white-space: pre-wrap;">//</span> Evaluates to "12.35":</span><br />
+12.3456.toFixed(2)</td>
+<td></td>
+<td>set fmt "lorem %s %d %.2f"<br />
+format $fmt "ipsum" 13 3.7</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="translate-case" id="translate-case"></a><a href="#translate-case-note">translate case</a><br />
+<span style="color: gray"><em>to upper, to lower</em></span></td>
+<td>"lorem".toUpperCase()<br />
+"LOREM".toLowerCase()</td>
+<td>'hello' asUppercase<br />
+'HELLO' asLowercase</td>
+<td>string toupper "lorem"<br />
+string tolower "LOREM"</td>
+<td>s1 := "Hello"<br />
+stringupper, s2, s1<br />
+stringlower, s3, s2</td>
+</tr>
+<tr>
+<td><a name="trim" id="trim"></a><a href="#trim-note">trim</a></td>
+<td>" lorem ".trim()<br />
+<span style="color: gray"># some browsers:</span><br />
+" lorem".trimLeft()<br />
+"lorem ".trimRight()</td>
+<td></td>
+<td>string trim " lorem "<br />
+string trimleft " lorem"<br />
+string trimright "lorem "</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pad" id="pad"></a><a href="#pad-note">pad</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td>format "%10s" "lorem"<br />
+format "%-10s" "lorem"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-to-num" id="str-to-num"></a><a href="#str-to-num-note">string to number</a></td>
+<td>7 + parseInt("12", 10)<br />
+73.9 + parseFloat(".037")<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> 12:</span><br />
+parseInt("12A")<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> NaN:</span><br />
+parseInt("A")</td>
+<td>12' asInteger + 7</td>
+<td><span style="color: gray"># use expr to interpret as numbers:</span><br />
+set x "12"<br />
+expr 7 + $x<br />
+set y ".037"<br />
+expr 73.9 + $y</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="num-to-str" id="num-to-str"></a><a href="#num-to-str-note">number to string</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>"value: " + 8</td>
+<td>7 printString, ' items'</td>
+<td><span style="color: gray"><em>all values are strings</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="prefix-suffix-test" id="prefix-suffix-test"></a><a href="#prefix-suffix-test-note">prefix and suffix test</a></td>
+<td>"foobar".startsWith("foo")<br />
+"foobar".endsWith("bar")</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-len" id="str-len"></a><a href="#str-len-note">length</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>"lorem".length</td>
+<td>'hello' byteSize</td>
+<td>string length "lorem"</td>
+<td>strlen("hello")</td>
+</tr>
+<tr>
+<td><a name="index-substr" id="index-substr"></a><a href="#index-substr-note">index of substring</a></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> returns -1 if not found:</span><br />
+"lorem ipsum".indexOf("ipsum")</td>
+<td>'foo bar' indexOfAnyOf: 'bar'</td>
+<td>string first "ipsum" "lorem ipsum"</td>
+<td><span style="color: gray">; returns 5:</span><br />
+instr("foo bar", "bar")</td>
+</tr>
+<tr>
+<td><a name="extract-substr" id="extract-substr"></a><a href="#extract-substr-note">extract substring</a></td>
+<td>"lorem ipsum".substr(6, 5)<br />
+"lorem ipsum".substring(6, 11)</td>
+<td>'foo bar' copyFrom: 5 to: 7</td>
+<td>string range "lorem ipsum" 6 10</td>
+<td>substr("foo bar", 5, 3)</td>
+</tr>
+<tr>
+<td><a name="char-literal" id="char-literal"></a><a href="#char-literal-note">character literal</a></td>
+<td></td>
+<td>$A</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="lookup-char" id="lookup-char"></a><a href="#lookup-char-note">character lookup</a></td>
+<td>"lorem ipsum"[6]</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="chr-ord" id="chr-ord"></a><a href="#chr-ord-note">chr and ord</a></td>
+<td>String.fromCharCode(65)<br />
+"A".charCodeAt(0)</td>
+<td>65 asCharacter<br />
+$A asciiValue</td>
+<td>format %c 65<br />
+scan A %c ascii_value</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-to-char-array" id="str-to-char-array"></a><a href="#str-to-char-array-note">to array of characters</a></td>
+<td>"abcd".split("")</td>
+<td></td>
+<td>split "abcd" ""</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="regexes" id="regexes"></a><a href="#regex-note">regular expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="regex-match" id="regex-match"></a><a href="#regex-match-note">regex match</a></td>
+<td>if (s.match(/1999/)) {<br />
+<span style="white-space: pre-wrap;">  </span>alert("party!");<br />
+}</td>
+<td></td>
+<td>if [regexp <span style="white-space: pre-wrap;">--</span> {1999} $s] {<br />
+<span style="white-space: pre-wrap;">  </span>puts "party!"<br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="regex-literal" id="regex-literal"></a><a href="#regex-literal-note">literal, custom delimited literal</a></td>
+<td>/lorem|ipsum/</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="char-class-abbrev" id="char-class-abbrev"></a><a href="#char-class-abbrev-note">character class abbreviations and anchors</a></td>
+<td>. \d \D \s \S \w \W</td>
+<td></td>
+<td><span style="color: gray"><em>char class abbrevs:</em></span><br />
+. \d \D \s \S \w \W<br />
+<br />
+<span style="color: gray"><em>anchors:</em></span> ^ $ \A \m \M \y \Y \Z</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="regex-anchors" id="regex-anchors"></a><a href="#regex-anchors-note">anchors</a></td>
+<td>^ $ \b \B</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="case-insensitive-regex" id="case-insensitive-regex"></a><a href="#case-insensitive-regex-note">case insensitive match test</a></td>
+<td>"Lorem".match(/lorem/i)</td>
+<td></td>
+<td>regexp -nocase <span style="white-space: pre-wrap;">--</span> {lorem} "Lorem"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="regex-modifiers" id="regex-modifiers"></a><a href="#regex-modifiers-note">modifiers</a></td>
+<td>g i m</td>
+<td></td>
+<td>-all -expanded -indices -inline<br />
+-line -lineanchor -linestop -nocase</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="subst" id="subst"></a><a href="#subst-note">substitution</a></td>
+<td>s = "do re mi mi mi";<br />
+s.replace(/mi/g, "ma");</td>
+<td></td>
+<td>set s "do re mi mi mi"<br />
+regsub -all <span style="white-space: pre-wrap;">--</span> "mi" $s "ma"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="match-prematch-postmatch" id="match-prematch-postmatch"></a><a href="#match-prematch-postmatch-note">match, prematch, postmatch</a></td>
+<td><span style="color: per">m</span> = /\d{4}/.exec(s);<br />
+if (m) {<br />
+<span style="white-space: pre-wrap;">  </span>match = m[0];<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"># no prematch or postmatch</span><br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="group-capture" id="group-capture"></a><a href="#group-capture-note">group capture</a></td>
+<td>rx = /^(\d{4})-(\d{2})-(\d{2})$/;<br />
+m = rx.exec('2009-06-03');<br />
+yr = m[1];<br />
+mo = m[2];<br />
+dy = m[3];</td>
+<td></td>
+<td>set s "2009-06-03"<br />
+set rx {^(\d{4})-(\d{2})-(\d{2})$}<br />
+regexp <span style="white-space: pre-wrap;">--</span> $rx $s - yr mo dy</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="named-grouped-capture" id="named-grouped-capture"></a><a href="#named-group-capture-note">named group capture</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="scan" id="scan"></a><a href="#scan-note">scan</a></td>
+<td>var a = "dolor sit amet".match(/\w+/g);</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="backreference" id="backreference"></a><a href="#backreference-note">backreference</a><br />
+<span style="color: gray"><em>in regex, in substitution string</em></span></td>
+<td>/(\w+) \1/.exec("do do")<br />
+<br />
+"do re".replace(/(\w+) (\w+)/, '$2 $1')</td>
+<td></td>
+<td>regexp <span style="white-space: pre-wrap;">--</span> {(\w+) \1} "do do"<br />
+<br />
+set rx {(\w+) (\w+)}<br />
+regsub -all <span style="white-space: pre-wrap;">--</span> $rx "do re" {\2 \1}</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="dates-time" id="dates-time"></a><a href="#dates-time-note">dates and time</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="broken-down-datetime-type" id="broken-down-datetime-type"></a><a href="#broken-down-datetime-type-note">broken-down datetime type</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>Date</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="current-datetime" id="current-datetime"></a><a href="#current-datetime-note">current date/time</a></td>
+<td>var t = new Date();</td>
+<td>Date today.<br />
+Time now.</td>
+<td>set t [clock seconds]</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="unix-epoch" id="unix-epoch"></a><a href="#unix-epoch-note">to unix epoch, from unix epoch</a></td>
+<td>Math.round(t.getTime() / 1000)<br />
+<br />
+var epoch = 1315716177;<br />
+var t2 = new Date(epoch * 1000);</td>
+<td></td>
+<td>t<br />
+set t2 1315716177</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="current-unix-epoch" id="current-unix-epoch"></a><a href="#current-unix-epoch-note">current unix epoch</a></td>
+<td>(<span style="color: purple">new</span> <span style="color: green">Date</span>()).getTime() / 1000</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="strftime" id="strftime"></a><a href="#strftime-note">strftime</a></td>
+<td></td>
+<td></td>
+<td>set fmt "%Y-%m-%d %H:%M:%S"<br />
+clock format $t -format $fmt</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="strptime" id="strptime"></a><a href="#strptime-note">strptime</a></td>
+<td></td>
+<td></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="parse-date" id="parse-date"></a><a href="#parse-date-note">parse date w/o format</a></td>
+<td>var t = new Date("July 7, 1999");</td>
+<td></td>
+<td>set t [clock scan "July 7, 1999"]</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="get-date-parts" id="get-date-parts"></a><a href="#get-date-parts-note">get date parts</a></td>
+<td>t.getFullYear()<br />
+t.getMonth() + 1<br />
+t.getDate() <span style="color: gray"><span style="white-space: pre-wrap;">//</span> getDay() is day of week</span></td>
+<td></td>
+<td>clock format $t -format "%Y"<br />
+clock format $t -format "%m"<br />
+clock format $t -format "%d"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="get-time-parts" id="get-time-parts"></a><a href="#get-time-parts-note">get time parts</a></td>
+<td>t.getHours()<br />
+t.getMinutes()<br />
+t.getSeconds()</td>
+<td></td>
+<td>clock format $t -format "%H"<br />
+clock format $t -format "%M"<br />
+clock format $t -format "%S"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="date-from-parts" id="date-from-parts"></a><a href="#date-from-parts-note">build date/time from parts</a></td>
+<td>var yr = 1999;<br />
+var mo = 9;<br />
+var dy = 10;<br />
+var hr = 23;<br />
+var mi = 30;<br />
+var ss = 0;<br />
+var t = new Date(yr, mo - 1, dy, hr, mi, ss);</td>
+<td></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="date-subtraction" id="date-subtraction"></a><a href="#date-subtraction-note">result of date subtraction</a></td>
+<td><span style="color: gray"><em>number containing time difference in milliseconds</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="add-time-duration" id="add-time-duration"></a><a href="#add-time-duration-note">add time duration</a></td>
+<td>var t1 = new Date();<br />
+var delta = (10 * 60 + 3) * 1000;<br />
+var t2 = new Date(t1.getTime() + delta);</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="local-tmz" id="local-tmz"></a><a href="#local-tmz-note">local timezone</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="tmz-offset" id="tmz-offset"></a><a href="#tmz-offset-note">timezone name; offset from UTC; is daylight savings?</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="microseconds" id="microseconds"></a><a href="#microseconds-note">microseconds</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="sleep" id="sleep"></a><a href="#sleep-note">sleep</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td>after 500</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="timeout" id="timeout"></a><a href="#timeout-note">timeout</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="arrays" id="arrays"></a><a href="#arrays-note">arrays</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="resizable-array-literal" id="resizable-array-literal"></a><a href="#resizable-array-literal-note">literal</a></td>
+<td>a = [1, 2, 3, 4]</td>
+<td>nums := OrderedCollection new.<br />
+nums add: 1; add: 2; add: 3; add: 4.<br />
+<br />
+<span style="color: gray">"creates immutable array:"</span><br />
+nums := #(1 2 3 4)</td>
+<td>set a [list 1 2 3 4]<br />
+set a {1 2 3 4}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="resizable-array-size" id="resizable-array-size"></a><a href="#resizable-array-size-note">size</a></td>
+<td>a.length</td>
+<td>nums size</td>
+<td>llength $a</td>
+<td></td>
+</tr>
+<tr>
+<td>empty test</td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> TypeError if a is null or undefined:</span><br />
+a.length === 0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="resizable-array-lookup" id="resizable-array-lookup"></a><a href="#resizable-array-lookup-note">lookup</a></td>
+<td>a[0]</td>
+<td>nums at: 1</td>
+<td>lindex $a 0</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="resizable-array-update" id="resizable-array-update"></a><a href="#resizable-array-update-note">update</a></td>
+<td>a[0] = "lorem"</td>
+<td></td>
+<td><span style="color: gray"># provide start and end index:<br />
+# of elements to replace:</span><br />
+set a [lreplace $a 1 1 "lorem"]</td>
+<td></td>
+</tr>
+<tr>
+<td>out-of-bounds behavior</td>
+<td><span style="color: gray"><em>returns</em> undefined</span></td>
+<td></td>
+<td><span style="color: gray"><em>returns</em> ""</span></td>
+<td></td>
+</tr>
+<tr>
+<td>index of element<br />
+<span style="color: gray"><em>first and last occurrence</em></span></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> returns -1 if not found:</span><br />
+[6, 7, 7, 8].indexOf(7)<br />
+[6, 7, 7, 8].lastIndexOf(7)</td>
+<td></td>
+<td>lsearch {6 7 7 8} 7<br />
+lindex [lsearch -all {6 7 7 8} 7] end<br />
+<span style="color: gray"># returns -1 if not found</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-slice">slice</a></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> select 3rd and 4th elements:</span><br />
+["a", "b", "c", "d"].slice(2, 4)</td>
+<td>nums copyFrom: 2 to: 3</td>
+<td>lrange $a 1 2</td>
+<td></td>
+</tr>
+<tr>
+<td>slice to end</td>
+<td>["a", "b", "c", "d"].slice(1)</td>
+<td></td>
+<td>lrange {"a" "b" "c" "d"} 1 end</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-concatenation">concatenation</a></td>
+<td>a = [1, 2, 3].concat([4, 5, 6]);</td>
+<td></td>
+<td>set a [concat {1 2 3} {4 5 6}]</td>
+<td></td>
+</tr>
+<tr>
+<td>copy</td>
+<td>a = [1, 2, [3, 4]];<br />
+a2 = a;<br />
+a3 = a.slice(0);<br />
+a4 = JSON.parse(JSON.stringify(a));</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-back">manipulate back of array</a></td>
+<td>a = [6, 7, 8];<br />
+a.push(9);<br />
+i = a.pop();</td>
+<td>a := OrderedCollection new.<br />
+a add: 6; add: 7; add: 8.<br />
+<br />
+a add: 9.<br />
+a removeLast.</td>
+<td>set a {6 7 8}<br />
+lappend a 9<br />
+set i [lindex $a end]<br />
+set a [lreplace $a end end]</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-front">manipulate front of array</a></td>
+<td>a = [6, 7, 8];<br />
+a.unshift(5);<br />
+i = a.shift();</td>
+<td>a := OrderedCollection new.<br />
+a add: 6; add: 7; add: 8.<br />
+<br />
+a addFirst: 5.<br />
+a removeFirst.</td>
+<td>set a {6 7 8}<br />
+set a [concat {5} $a]<br />
+set a [lassign $a i]</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-iteration">array iteration</a></td>
+<td>[1, 2, 3].forEach(function(n) {<br />
+<span style="white-space: pre-wrap;">  </span>alert(n);<br />
+});</td>
+<td>nums do: [:o| Transcript show: o printString; cr]</td>
+<td>foreach i $a { puts $i }</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-reverse">reverse</a></td>
+<td>var a = [1, 2, 3];<br />
+a.reverse();</td>
+<td></td>
+<td>set a {1 2 3}<br />
+set a [lreverse $a]</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-sort">sort</a></td>
+<td>var a = [3, 1, 4, 2];<br />
+a.sort();</td>
+<td></td>
+<td>set a {3 1 4 2}<br />
+set a [lsort $a]</td>
+<td></td>
+</tr>
+<tr>
+<td>dedupe</td>
+<td></td>
+<td></td>
+<td>lsort -unique {1 2 2 3}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#membership">membership</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>nums includes: 7</td>
+<td>expr {7 in $a}<br />
+expr {7 ni $a}</td>
+<td></td>
+</tr>
+<tr>
+<td>intersection</td>
+<td></td>
+<td></td>
+<td>package require struct::set<br />
+<br />
+::struct::set intersect {1 2} {2 3}</td>
+<td></td>
+</tr>
+<tr>
+<td>union</td>
+<td></td>
+<td></td>
+<td>package require struct::set<br />
+<br />
+::struct::set union {1 2} {2 3 4}</td>
+<td></td>
+</tr>
+<tr>
+<td>relative complement</td>
+<td></td>
+<td></td>
+<td>package require struct::set<br />
+<br />
+::struct::set difference {1 2 3} {2}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#map">map</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> callback gets 3 args:<br />
+<span style="white-space: pre-wrap;">//</span> value, index, array</span><br />
+a.map(function(x) { return x * x })</td>
+<td>#(1 2 3) collect: [ :o | o*o ]</td>
+<td>package require struct::list<br />
+<br />
+proc sqr {x} {return [expr $x * $x]}<br />
+::struct::list map {1 2 3} sqr</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#filter">filter</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>a.filter(function(x) { return x &gt; 1 })</td>
+<td>#(1 2 3) select: [:o | o &gt; 1]</td>
+<td>package require struct::list<br />
+<br />
+proc gt1 {x} {return [expr $x &gt; 1]}<br />
+::struct::list filter {1 2 3} gt1</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#reduce">reduce</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>a.reduce(function(m, o) {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>return m + o;<br />
+<span style="white-space: pre-wrap;">  </span>}, 0)</td>
+<td>#(1 2 3) inject: 0 into: [:m :o| m + o]</td>
+<td>package require struct::list<br />
+<br />
+::struct::list fold {1 2 3} 0<br />
+::tcl::mathop::+</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#universal-test">universal test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>#(1 2 3 4) allSatisfy: [:o | o even]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#existential-test">existential test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>var a = [1, 2, 3, 4];<br />
+var even = function(x) {<br />
+<span style="white-space: pre-wrap;">  </span>return x % 2 == 0;<br />
+};<br />
+<br />
+a.every(even)<br />
+a.some(even)</td>
+<td>#(1 2 3 4) anySatisfy: [:o | o even]</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="dictionaries" id="dictionaries"></a><a href="#dictionaries-note">dictionaries</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="dict-ctorl" id="dict-ctorl"></a><a href="#dict-ctor-note">constructor</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>d = {"t": 1, "f": 0};<br />
+<span style="color: gray">// keys do not need to be quoted if they<br />
+// are a legal JavaScript variable name<br />
+<em>and not a reserved word</em></span></td>
+<td>h := Dictionary new add: <span style="color: maroon">'t'</span>-&gt;1; add: <span style="color: maroon">'f'</span>-&gt;0; yourself</td>
+<td>set d [dict create t 1 f 0]</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-size" id="dict-size"></a><a href="#dict-size-note">dictionary size</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>var size = 0;<br />
+for (var k in d) {<br />
+<span style="white-space: pre-wrap;">  </span>if (d.hasOwnProperty(k)) size++;<br />
+}</td>
+<td>h size</td>
+<td>dict size $d</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-lookup" id="dict-lookup"></a><a href="#dict-lookup-note">lookup</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>d.t<br />
+d["t"]</td>
+<td>h at: <span style="color: maroon">'t'</span></td>
+<td>dict get $d t</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-update" id="dict-update"></a><a href="#dict-update-note">update</a></td>
+<td>d["t"] = 2;<br />
+d.t = 2;</td>
+<td></td>
+<td>dict set d t 2</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-missing-key" id="dict-missing-key"></a><a href="#dict-missing-key-note">missing key behavior</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>var d = {};<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> sets s to undefined:</span><br />
+var s = d["lorem"];<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> adds key/value pair:</span><br />
+d["lorem"] = "ipsum";</td>
+<td>raises exception</td>
+<td>error</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-is-key-present" id="dict-is-key-present"></a><a href="#dict-is-key-present-note">is key present</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>d.hasOwnProperty("t");</td>
+<td></td>
+<td>dict exists $d t</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-delete" id="dict-delete"></a><a href="#dict-delete-note">delete</a></td>
+<td>delete d["t"];<br />
+delete d.t;</td>
+<td></td>
+<td>dict unset d t</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-iter" id="dict-iter"></a><a href="#dict-iter-note">iterate</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>for (var k in d) {<br />
+<span style="white-space: pre-wrap;">  </span>use k or d[k]<br />
+}</td>
+<td>h keysAndValuesDo: [:k :v| code ]</td>
+<td>foreach {k v} $d {<br />
+<span style="white-space: pre-wrap;">  </span>code<br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dict-key-val-arrays" id="dict-key-val-arrays"></a><a href="#dict-key-val-arrays-note">keys and values as arrays</a></td>
+<td></td>
+<td>h keys<br />
+h values</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="functions" id="functions"></a><a href="#functions-note">functions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="def-func" id="def-func"></a><a href="#def-func-note">define</a></td>
+<td>function add(x, y) {<br />
+<span style="white-space: pre-wrap;">  </span>return x+y;<br />
+}</td>
+<td>add := [ :a :b | a + b ]</td>
+<td>proc add { x y } {<br />
+<span style="white-space: pre-wrap;">  </span>expr $x + $y<br />
+}</td>
+<td>add(x, y) {<br />
+<span style="white-space: pre-wrap;">  </span>return x + y<br />
+}</td>
+</tr>
+<tr>
+<td><a name="call-func" id="call-func"></a><a href="#call-func-note">call</a></td>
+<td>add(1, 2)</td>
+<td>add value: 1 value: 2</td>
+<td><span style="color: gray"># statement position:</span><br />
+add 1 2<br />
+<br />
+<span style="color: gray"># argument position:</span><br />
+set a [ add 1 2 ]</td>
+<td>x := add(1, 2)</td>
+</tr>
+<tr>
+<td><a name="missing-arg" id="missing-arg"></a><a href="#missing-arg-note">missing argument behavior</a></td>
+<td>set to// undefined</td>
+<td><span style="color: gray"><em>raises</em> BlockClosure <em>exception</em></span></td>
+<td><span style="color: gray"><em>error</em></span></td>
+<td><span style="color: gray"><em>error</em></span></td>
+</tr>
+<tr>
+<td><a name="extra-arg" id="extra-arg"></a><a href="#extra-arg-note">extra argument behavior</a></td>
+<td><span style="color: gray"><em>ignored</em></span></td>
+<td><span style="color: gray"><em>raises</em> BlockClosure <em>exception</em></span></td>
+<td><span style="color: gray"><em>error</em></span></td>
+<td><span style="color: gray"><em>error</em></span></td>
+</tr>
+<tr>
+<td><a name="default-arg" id="default-arg"></a><a href="#default-arg-note">default argument</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td>proc log {x {base 10 }} { <span style="color: gray"><em>…</em></span> }</td>
+<td>fapprox(x, y, eps=0.001) {<br />
+<span style="white-space: pre-wrap;">  </span>return abs(x - y) &lt; eps<br />
+}</td>
+</tr>
+<tr>
+<td><a href="#named-parameters">named parameters</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="variadic-func" id="variadic-func"></a><a href="#variadic-func-note">variadic function</a></td>
+<td><span style="color: gray"><em>args in</em></span> arguments[0], arguments[1], <span style="color: gray"><em>… with number of args in</em></span> arguments.length</td>
+<td></td>
+<td><span style="color: gray"><em>last arg contains list of remaining values</em></span>|f(args*) {<br />
+<span style="white-space: pre-wrap;">  </span>return args.maxindex()<br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pass-by-ref" id="pass-by-ref"></a><a href="#pass-by-ref-note">pass by reference</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td>swap(byref v1, byref v2) {<br />
+<span style="white-space: pre-wrap;">  </span>tmp := v1<br />
+<span style="white-space: pre-wrap;">  </span>v1 := v2<br />
+<span style="white-space: pre-wrap;">  </span>v2 := tmp<br />
+}</td>
+</tr>
+<tr>
+<td><a href="#return-value">return value</a></td>
+<td><span style="color: gray">Return <em>arg or</em> undefined. <em>If invoked with</em> new <em>and</em> return <em>value not an object, returns</em> this.</span></td>
+<td></td>
+<td>return <span style="color: gray"><em>arg or empty string</em></span></td>
+<td><span style="color: gray"><em>argument of</em> return</span></td>
+</tr>
+<tr>
+<td><a name="nested-func" id="nested-func"></a><a href="#nested-func-note">nested function</a></td>
+<td></td>
+<td></td>
+<td><span style="color: gray"><em>defined when containing function executes; visible outside containing function</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="anon-func-literal" id="anon-func-literal"></a><a href="#anon-func-literal-note">anonymous function literal</a></td>
+<td>var sqr = function(x) { return x*x; }</td>
+<td></td>
+<td>set sqr <span style="white-space: pre-wrap;">{{x}</span> {return [expr $x*$x]<span style="white-space: pre-wrap;">}}</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="call-anon-func" id="call-anon-func"></a><a href="#call-anon-func-note">call anonymous function</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>sqr(2)</td>
+<td></td>
+<td>apply $sqr 2</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="private-state-func" id="private-state-func"></a><a href="#private-state-func-note">function with private state</a></td>
+<td>function counter() {<br />
+<span style="white-space: pre-wrap;">  </span>counter.i += 1;<br />
+<span style="white-space: pre-wrap;">  </span>return counter.i;<br />
+}<br />
+<br />
+counter.i = 0;<br />
+alert(counter());</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="closure" id="closure"></a><a href="#closure-note">closure</a></td>
+<td>function make_counter() {<br />
+<span style="white-space: pre-wrap;">  </span>var i = 0;<br />
+<br />
+<span style="white-space: pre-wrap;">  </span>return function() {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>i += 1;<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>return i;<br />
+<span style="white-space: pre-wrap;">  </span>}<br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="execution-control" id="execution-control"></a><a href="#execution-control-note">execution control</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="if" id="if"></a><a href="#if-note">if</a></td>
+<td>if (0 == n) {<br />
+<span style="white-space: pre-wrap;">  </span>alert("no hits");<br />
+} else if (1 == n) {<br />
+<span style="white-space: pre-wrap;">  </span>alert("1 hit");<br />
+} else {<br />
+<span style="white-space: pre-wrap;">  </span>alert(n + " hits");<br />
+}</td>
+<td>msg := [ :s | Transcript show: s. Transcript cr ]<br />
+<br />
+n = 0<br />
+ifTrue: [<br />
+<span style="white-space: pre-wrap;">  </span>msg value: 'no hits' ]<br />
+ifFalse: [<br />
+<span style="white-space: pre-wrap;">  </span>n = 1<br />
+<span style="white-space: pre-wrap;">  </span>ifTrue: [<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>msg value: '1 hit' ]<br />
+<span style="white-space: pre-wrap;">  </span>fFalse: [<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>msg value: n printString, ' hits' ]].</td>
+<td>if { 0 == $n } {<br />
+<span style="white-space: pre-wrap;">  </span>puts "no hits"<br />
+} elseif { 1 == $n } {<br />
+<span style="white-space: pre-wrap;">  </span>puts "1 hit"<br />
+} else {<br />
+<span style="white-space: pre-wrap;">  </span>puts "$n hits"<br />
+}</td>
+<td>if (n = 0) {<br />
+<span style="white-space: pre-wrap;">  </span>msgbox % "zero hits"<br />
+}<br />
+else if (n = 1) {<br />
+<span style="white-space: pre-wrap;">  </span>msgbox % "one hit"<br />
+}<br />
+else {<br />
+<span style="white-space: pre-wrap;">  </span>msgbox % n . " hits"<br />
+}</td>
+</tr>
+<tr>
+<td><a name="switch" id="switch"></a><a href="#switch-note">switch</a></td>
+<td>switch (n) {<br />
+case 0:<br />
+<span style="white-space: pre-wrap;">  </span>alert("no hits\n");<br />
+<span style="white-space: pre-wrap;">  </span>break;<br />
+case 1:<br />
+<span style="white-space: pre-wrap;">  </span>alert("one hit\n");<br />
+<span style="white-space: pre-wrap;">  </span>break;<br />
+default:<br />
+<span style="white-space: pre-wrap;">  </span>alert(n + " hits\n");<br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="while" id="while"></a><a href="#while-note">while</a></td>
+<td>while (i &lt; 100) {<br />
+<span style="white-space: pre-wrap;">  </span>i += 1;<br />
+}</td>
+<td>[ i &lt; 100 ]<br />
+whileTrue: [<br />
+<span style="white-space: pre-wrap;">  </span>i := i + 1 ].</td>
+<td>while { $i &lt; 100 } {<br />
+<span style="white-space: pre-wrap;">  </span>incr i<br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="break-continue" id="break-continue"></a><a href="#break-continue-note">break/continue</a></td>
+<td>break continue</td>
+<td></td>
+<td>break continue</td>
+<td>exit 0</td>
+</tr>
+<tr>
+<td><a name="for" id="for"></a><a href="#for-note">for</a></td>
+<td>for (var i = 0; i &lt; 10; i++) {<br />
+<span style="white-space: pre-wrap;">  </span>alert(i);<br />
+}</td>
+<td>1 to: 100 do: [ :i |<br />
+<span style="white-space: pre-wrap;">  </span>msg value: i printString ].</td>
+<td>for {set i 0} {$i &lt; 10} {incr i} {<br />
+<span style="white-space: pre-wrap;">  </span>puts $i<br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="exceptions" id="exceptions"></a><a href="#exceptions-note">exceptions</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="base-exc" id="base-exc"></a><a href="#base-exc-note">base exception</a></td>
+<td><span style="color: gray"><em>Any value can be thrown.</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="predefined-exc" id="predefined-exc"></a><a href="#predefined-exc-note">predefined exceptions</a></td>
+<td>Error<br />
+<span style="white-space: pre-wrap;">  </span>EvalError<br />
+<span style="white-space: pre-wrap;">  </span>RangeError<br />
+<span style="white-space: pre-wrap;">  </span>ReferenceError<br />
+<span style="white-space: pre-wrap;">  </span>SyntaxError<br />
+<span style="white-space: pre-wrap;">  </span>TypeError<br />
+<span style="white-space: pre-wrap;">  </span>URIError</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#raise-exception">raise exception</a></td>
+<td>throw new Error("bad arg");</td>
+<td>Exception raiseSignal: 'bam!'.</td>
+<td>error "bad arg"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="catch-all-handler" id="catch-all-handler"></a><a href="#catch-all-handler-note">catch-all handler</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>try {<br />
+<span style="white-space: pre-wrap;">  </span>risky();<br />
+}<br />
+catch (e) {<br />
+<span style="white-space: pre-wrap;">  </span>alert("risky failed: " + e.message);<br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#uncaught-exception">uncaught exception behavior</a></td>
+<td></td>
+<td></td>
+<td><span style="color: gray"><em>stderr and exit</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="re-raise-exc" id="re-raise-exc"></a><a href="#re-raise-exc-note">re-raise exception</a></td>
+<td>try {<br />
+<span style="white-space: pre-wrap;">  </span>throw new Error("bam!");<br />
+}<br />
+catch (e) {<br />
+<span style="white-space: pre-wrap;">  </span>alert("re-raising<span style="white-space: pre-wrap;">...</span>");<br />
+<span style="white-space: pre-wrap;">  </span>throw e;<br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="last-exc-global" id="last-exc-global"></a><a href="#last-exc-global-note">global variable for last exception</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="def-exc" id="def-exc"></a><a href="#def-exc-note">define exception</a></td>
+<td>function Bam(msg) {<br />
+<span style="white-space: pre-wrap;">  </span>this.message = msg;<br />
+}<br />
+<br />
+Bam.prototype = new Error;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="handle-exc" id="handle-exc"></a><a href="#handle-exc-note">handle exception</a></td>
+<td>try {<br />
+<span style="white-space: pre-wrap;">  </span>throw new Bam("bam!");<br />
+}<br />
+catch (e) {<br />
+<span style="white-space: pre-wrap;">  </span>if (e instanceof Bam) {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>alert(e.message);<br />
+<span style="white-space: pre-wrap;">  </span>}<br />
+<span style="white-space: pre-wrap;">  </span>else {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>throw e;<br />
+<span style="white-space: pre-wrap;">  </span>}<br />
+}</td>
+<td>[ o risky ] on: Exception do: [ :ex |<br />
+<span style="white-space: pre-wrap;">  </span>Transcript show: 'risky failed' ]</td>
+<td>catch risky retval<br />
+if { retval != 0 } {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>puts "risky failed"<br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="finally-block" id="finally-block"></a><a href="#finally-block-note">finally block</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>acquire_resource();<br />
+try {<br />
+<span style="white-space: pre-wrap;">  </span>risky();<br />
+}<br />
+finally {<br />
+<span style="white-space: pre-wrap;">  </span>release_resource();<br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="streams" id="streams"></a><a href="#streams-note">streams</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="standard-file-handles" id="standard-file-handles"></a><a href="#standard-file-handles-note">standard file handles</a></td>
+<td></td>
+<td></td>
+<td>stdin<br />
+stdout<br />
+stderr</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="read-stdin" id="read-stdin"></a><a href="#read-stdin-note">read line from stdin</a></td>
+<td></td>
+<td></td>
+<td>gets stdin line</td>
+<td></td>
+</tr>
+<tr>
+<td>end-of-file behavior</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chomp</td>
+<td></td>
+<td></td>
+<td>string trimright $line "\r\n"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="print-to-stdout" id="print-to-stdout"></a><a href="#print-to-stdout-note">write line to stdout</a></td>
+<td></td>
+<td></td>
+<td>puts "Hello, World!"</td>
+<td></td>
+</tr>
+<tr>
+<td>write formatted string to stdout</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="open-file" id="open-file"></a><a href="#open-file-note">open file for reading</a></td>
+<td></td>
+<td></td>
+<td>set f [open "/tmp/foo"]</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="open-file-write" id="open-file-write"></a><a href="#open-file-write-note">open file for writing</a></td>
+<td></td>
+<td></td>
+<td>set f [open "/tmp/foo" "w"]</td>
+<td></td>
+</tr>
+<tr>
+<td>set file handle encoding</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open file for appending</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="close-file" id="close-file"></a><a href="#close-file-note">close file</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td>close $f</td>
+<td></td>
+</tr>
+<tr>
+<td>close file implicitly</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>i/o error</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>encoding error</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="read-line" id="read-line"></a><a href="#read-line-note">read line</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td>gets $f</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="file-iter" id="file-iter"></a><a href="#file-iter-note">iterate over file by line</a></td>
+<td></td>
+<td></td>
+<td>while { [gets $f s] &gt;= 0 } {<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>use s</em></span><br />
+}</td>
+<td></td>
+</tr>
+<tr>
+<td>read file into array of strings</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>read file into string</td>
+<td></td>
+<td></td>
+<td>set s [ read $f]</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-file" id="write-file"></a><a href="#write-file-note">write string</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td>puts -nonewline $f "lorem ipsum"</td>
+<td></td>
+</tr>
+<tr>
+<td>write line</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="flush-file" id="flush-file"></a><a href="#flush-file-note">flush file handle</a></td>
+<td></td>
+<td></td>
+<td>flush $f</td>
+<td></td>
+</tr>
+<tr>
+<td>end-of-file test</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>get and set file handle position</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open temporary file</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>in memory file</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="files" id="files"></a><a href="#file-note">files</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="file-test" id="file-test"></a><a href="#file-test-note">file exists test, file regular test</a></td>
+<td></td>
+<td></td>
+<td>file exists "/etc/hosts"<br />
+file isfile "/etc/hosts"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="file-size" id="file-size"></a><a href="#file-size-note">file size</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="readable-writable-executable" id="readable-writable-executable"></a><a href="#readable-writable-executable-note">is file readable, writable, executable</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="chmod" id="chmod"></a><a href="#chmod-note">set file permissions</a></td>
+<td></td>
+<td></td>
+<td>set s "/tmp/foo"<br />
+file attributes $s -permissions 0755</td>
+<td></td>
+</tr>
+<tr>
+<td>last modification time</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="file-cp-rm-mv" id="file-cp-rm-mv"></a><a href="#file-cp-rm-mv-note">copy file, remove file, rename file</a></td>
+<td></td>
+<td></td>
+<td>file copy "/tmp/foo" "/tmp/bar"<br />
+file delete "/tmp/foo"<br />
+file rename "/tmp/bar" "/tmp/foo"</td>
+<td></td>
+</tr>
+<tr>
+<td>create symlink, symlink test, readlink</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="tmpfile" id="tmpfile"></a><a href="#tmpfile-note">generate unused file name</a></td>
+<td></td>
+<td></td>
+<td>set tmp [::fileutil::tempfile foo]<br />
+set f [open $tmp "w"]<br />
+puts $f "lorem ipsum"<br />
+close $f<br />
+puts "tmp file: $tmp"</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="file-fmt" id="file-fmt"></a><a href="#file-fmt-note">file formats</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="parse-json" id="parse-json"></a><a href="#parse-json-note">parse json</a></td>
+<td>var s1 = '{"t":1,"f":0}';<br />
+var d1 = JSON.parse(s1);</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="generate-json" id="generate-json"></a><a href="#generate-json-note">generate json</a></td>
+<td>var d2 = {'t': 1, 'f': 0};<br />
+var s2 = JSON.stringify(d1);</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="directories" id="directories"></a><a href="#directories-note">directories</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td>working directory<br />
+<span style="color: gray"><em>get and set</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="build-pathname" id="build-pathname"></a><a href="#build-pathname-note">build pathname</a></td>
+<td></td>
+<td></td>
+<td>file join "/etc" "hosts"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dirname-basename" id="dirname-basename"></a><a href="#dirname-basename-note">dirname and basename</a></td>
+<td></td>
+<td></td>
+<td>file dirname "/etc/hosts"<br />
+file tail "/etc/hosts"</td>
+<td></td>
+</tr>
+<tr>
+<td>absolute pathname</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dir-iter" id="dir-iter"></a><a href="#dir-iter-note">iterate over directory by file</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>glob paths</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="mkdir" id="mkdir"></a><a href="#mkdir-note">make directory</a></td>
+<td></td>
+<td></td>
+<td>file mkdir "/tmp/foo/bar"</td>
+<td></td>
+</tr>
+<tr>
+<td>recursive copy</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="rmdir" id="rmdir"></a><a href="#rmdir-note">remove empty directory</a></td>
+<td></td>
+<td></td>
+<td>file delete "/tmp/foodir"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="rm-rf" id="rm-rf"></a><a href="#rm-rf-note">remove directory and contents</a></td>
+<td></td>
+<td></td>
+<td>file delete -force "/tmp/foodir"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dir-test" id="dir-test"></a><a href="#dir-test-note">directory test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td>file isdirectory "/tmp"</td>
+<td></td>
+</tr>
+<tr>
+<td>generate unused directory</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>system temporary file directory</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="processes-environment" id="processes-environment"></a><a href="#processes-environment-note">processes and environment</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="cmd-line-arg" id="cmd-line-arg"></a><a href="#cmd-line-arg-note">command line arguments</a></td>
+<td></td>
+<td></td>
+<td>[lindex $argv 0]<br />
+[lindex $argv 1]<br />
+<span style="color: gray"><em>…</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="env-var" id="env-var"></a><a href="#env-var-note">environment variable</a><br />
+<span style="color: gray"><em>get, set</em></span></td>
+<td></td>
+<td></td>
+<td>$env(HOME)</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pid" id="pid"></a><a href="#pid-note">get pid, parent pid</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="exit" id="exit"></a><a href="#exit-note">exit</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td>exit 0</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="external-cmd" id="external-cmd"></a><a href="#external-cmd-note">external command</a></td>
+<td></td>
+<td></td>
+<td>exec ls</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="cmd-subst" id="cmd-subst"></a><a href="#cmd-subst-note">command substitution</a></td>
+<td></td>
+<td></td>
+<td>set f [ open |ls ]<br />
+read f</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="libraries-namespaces" id="libraries-namespaces"></a><a href="#libraries-namespaces-note">libraries and namespaces</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="load-lib" id="load-lib"></a><a href="#load-lib-note">load library</a></td>
+<td></td>
+<td></td>
+<td>source foo.tcl<br />
+add 3 7</td>
+<td></td>
+</tr>
+<tr>
+<td>load library in subdirectory</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hot patch</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>load error</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>main routine in library</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="lib-path" id="lib-path"></a><a href="#lib-path-note">library path</a></td>
+<td></td>
+<td></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="lib-path-env" id="lib-path-env"></a><a href="#lib-path-env-note">library path environment variable</a></td>
+<td></td>
+<td></td>
+<td>TCLLIBPATH</td>
+<td></td>
+</tr>
+<tr>
+<td>library path command line option</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>simple global identifiers</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>multiple label identifiers</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="label-separator" id="label-separator"></a><a href="#label-separator-note">label separator</a></td>
+<td></td>
+<td></td>
+<td>::</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="namespace-decl" id="namespace-decl"></a><a href="#namespace-decl-note">namespace declaration</a></td>
+<td></td>
+<td></td>
+<td>namespace</td>
+<td></td>
+</tr>
+<tr>
+<td>child namespace declaration</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unqualified import of namespace</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unqualified import of definitions</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pkg-management" id="pkg-management"></a><a href="#pkg-management-note">list installed packaged, install a package</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="objects" id="objects"></a><a href="#objects-note">objects</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="def-class" id="def-class"></a><a href="#def-class-note">define class</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>function Int(i) {<br />
+<span style="white-space: pre-wrap;">  </span>this.value = i === undefined ? 0 : i;<br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="create-obj" id="create-obj"></a><a href="#create-obj-note">create object</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>var i = new Int();<br />
+var i2 = new Int(7);</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="instance-var" id="instance-var"></a><a href="#instance-var-note">instance variable visibility</a></td>
+<td><span style="color: gray"><em>public</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="getter-setter" id="getter-setter"></a><a href="#getter-setter-note">get and set instance variable</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>var v = i.value;<br />
+i.value = v + 1;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="def-method" id="def-method"></a><a href="#def-method-note">define method</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> inside constructor:</span><br />
+this.plus = function(v) {<br />
+<span style="white-space: pre-wrap;">  </span>return this.value + v;<br />
+};<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> outside constructor:</span><br />
+Int.prototype.plus = function (v) {<br />
+<span style="white-space: pre-wrap;">  </span>return this.value + v;<br />
+}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="invoke-method" id="invoke-method"></a><a href="#invoke-method-note">invoke method</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>i.plus(3);</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="inheritance-polymorphism" id="inheritance-polymorphism"></a><a href="#inheritance-polymorphism-note">inheritance and polymorphism</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="inheritance" id="inheritance"></a><a href="#inheritance-note">subclass</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="mixin" id="mixin"></a><a href="#mixin-note">mixin</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="op-overload" id="op-overload"></a><a href="#op-overload-note">overload operator</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="reflection" id="reflection"></a><a href="#reflection-note">reflection</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="object-id" id="object-id"></a><a href="#object-id-note">object id</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="inspect-type" id="inspect-type"></a><a href="#inspect-type-note">inspect type</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>typeof([]) === 'object'</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="types" id="types"></a><a href="#types-note">basic types</a></td>
+<td>number<br />
+string<br />
+boolean<br />
+undefined<br />
+function<br />
+object<br />
+<br />
+<span style="color: gray"># these evaluate as 'object':</span><br />
+typeof(null)<br />
+typeof([])<br />
+typeof({})</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="inspect-class" id="inspect-class"></a><a href="#inspect-class-note">inspect class</a></td>
+<td><span style="color: gray"><span style="white-space: pre-wrap;">//</span> returns prototype object:</span><br />
+Object.getPrototypeOf(o)</td>
+<td>'hello' class</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="inspect-class-hierarchy" id="inspect-class-hierarchy"></a><a href="#inspect-class-hierarchy-note">inspect class hierarchy</a></td>
+<td>var pa = Object.getPrototypeOf(o)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span>prototype's of prototype object:</span><br />
+var grandpa = Object.getPrototypeOf(pa)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="has-method" id="has-method"></a><a href="#has-method-note">has method?</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>o.reverse &amp;&amp; typeof(o.reverse) === 'function'</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="msg-passing" id="msg-passing"></a><a href="#msg-passing-note">message passing</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>not a standard feature</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="eval" id="eval"></a><a href="#eval-note">eval</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>eval('1 + 1')</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="list-obj-methods" id="list-obj-methods"></a><a href="#list-obj-methods-note">list object methods</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>1 class selectors.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="list-obj-attr" id="list-obj-attr"></a><a href="#list-obj-attr-note">list object attributes</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="list-loaded-lib" id="list-loaded-lib"></a><a href="#list-loaded-lib-note">list loaded libraries</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="list-loaded-namespaces" id="list-loaded-namespaces"></a><a href="#list-loaded-namespaces-note">list loaded namespaces</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="inspect-namespace" id="inspect-namespace"></a><a href="#inspect-namespace-note">inspect namespace</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pretty-print" id="pretty-print"></a><a href="#pretty-print-note">pretty-print</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>var d = {"lorem": 1, "ipsum": [2, 3]};<br />
+console.log(JSON.stringify(d, null, 2));</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="src-line-file" id="src-line-file"></a><a href="#src-line-file-note">source line number and file name</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="cmd-line-doc" id="cmd-line-doc"></a><a href="#cmd-line-doc-note">command line documentation</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="gui" id="gui"></a><a href="#gui-note">gui</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td>pop-up box</td>
+<td>var app = Application.currentApplication()<br />
+app.includeStandardAdditions = true<br />
+app.displayAlert('hi world')</td>
+<td></td>
+<td>package require Tk<br />
+<br />
+wm title .<br />
+grid [ttk::frame .f -padding "10 10 10 10"]<br />
+grid [ttk::label .f.t -text "hi world"]</td>
+<td>msgbox % "hi world"</td>
+</tr>
+<tr>
+<td>button</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>text entry</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>frame</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>label</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>image</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="5"><a name="net-web" id="net-web"></a><a href="#net-web-note">net and web</a></th>
+</tr>
+<tr>
+<th></th>
+<th><a href="#javascript">javascript</a></th>
+<th><a href="#smalltalk">smalltalk</a></th>
+<th><a href="#tcl">tcl</a></th>
+<th><a href="#autohotkey">autohotkey</a></th>
+</tr>
+<tr>
+<td><a name="hostname-ip" id="hostname-ip"></a><a href="#hostname-ip-note">get local hostname, dns lookup, reverse dns lookup</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="http-get" id="http-get"></a><a href="#http-get-note">http get</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="http-post" id="http-post"></a><a href="#http-post-note">http post</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="serve-pwd" id="serve-pwd"></a><a href="#serve-pwd-note">serve working directory</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="absolute-url" id="absolute-url"></a><a href="#absolute-url-note">absolute url</a><br />
+<span style="color: gray"><em>from base and relative url</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="parse-url" id="parse-url"></a><a href="#parse-url-note">parse url</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="url-encode" id="url-encode"></a><a href="#url-encode-note">url encode/decode</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="html-escape" id="html-escape"></a><a href="#html-escape-note">html escape</a><br />
+<span style="color: gray"><em>escape character data, escape attribute value, unescape html entities</em></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="base64" id="base64"></a><a href="#base64-note">base64 encode/decode</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">____________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">____________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">____________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">____________________________________________</span></span></th>
+</tr>
+</table>
+<p><a name="general-note" id="general-note"></a></p>
+<h1 id="toc0"><span><a href="#general">General</a></span></h1>
+<p><a name="version-used-note" id="version-used-note"></a></p>
+<h2 id="toc1"><span><a href="#version-used">version used</a></span></h2>
+<p>The version of the language used for verifying the examples in the reference sheet.</p>
+<p><a name="version-note" id="version-note"></a></p>
+<h2 id="toc2"><span><a href="#version">show version</a></span></h2>
+<p>How to get the version.</p>
+<p><a name="grammar-invocation-note" id="grammar-invocation-note"></a></p>
+<h1 id="toc3"><span><a href="#grammar-invocation">Grammar and Invocation</a></span></h1>
+<p><a name="interpreter-note" id="interpreter-note"></a></p>
+<h2 id="toc4"><span><a href="#interpreter">interpreter</a></span></h2>
+<p>The customary name of the interpreter and how to invoke it.</p>
+<p><a name="cmd-line-program-note" id="cmd-line-program-note"></a></p>
+<h2 id="toc5"><span><a href="#cmd-line-program">command line program</a></span></h2>
+<p>How to pass a single command to be executed as a command line argument.</p>
+<p><a name="stmt-separator-note" id="stmt-separator-note"></a></p>
+<h2 id="toc6"><span><a href="#stmt-separator">statement separator</a></span></h2>
+<p>How the parser determines the end of a statement.</p>
+<p><strong>tcl:</strong></p>
+<p>Code fragments such as</p>
+<div class="code">
+<pre>
+<code>1 + 1</code>
+</pre></div>
+<p>or</p>
+<div class="code">
+<pre>
+<code>[expr 1 + 1]</code>
+</pre></div>
+<p>result in <tt>invalid command name</tt> errors when used as statements.</p>
+<p>The following is a valid statement:</p>
+<div class="code">
+<pre>
+<code>expr 1 + 1</code>
+</pre></div>
+<p>The above cannot be used as an argument to a command without putting it inside square brackets, however.</p>
+<p>Since the constructs which can be used as statements and the constructs which can be used in the positions where expressions are normally used are disjoint, we claim that expressions are not statements in Tcl.</p>
+<p><a name="block-delimiters-note" id="block-delimiters-note"></a></p>
+<h2 id="toc7"><span><a href="#block-delimiters">block delimiters</a></span></h2>
+<p>How blocks are delimited.</p>
+<p><strong>tcl:</strong></p>
+<p>The block delimiters {} and "" are the same as the string delimiters. Double quotes "" cause variable interpolation and as a result they are not often used to delimit blocks.</p>
+<p>The following three lines of code behave the same:</p>
+<div class="code">
+<pre>
+<code>if {true} {puts "true"}
+
+if "true" "puts \"true\""
+
+if "true" "puts {true}"</code>
+</pre></div>
+<p><a name="expr-stmt-note" id="expr-stmt-note"></a></p>
+<h2 id="toc8"><span><a href="#expr-stmt">are expressions statements</a></span></h2>
+<p>Whether an expression can be used where a statement is expected.</p>
+<p><a name="comment-note" id="comment-note"></a></p>
+<h2 id="toc9"><span><a href="#comment">to end-of-line comment</a></span></h2>
+<p>How to make the remainder of the line a comment.</p>
+<p><a name="multiline-comment-note" id="multiline-comment-note"></a></p>
+<h2 id="toc10"><span><a href="#multiline-comment">multiline comment</a></span></h2>
+<p>How to comment out multiple lines.</p>
+<p><strong>tcl:</strong></p>
+<p>The method described requires that there not be an unmatched right curly bracket in the comment.</p>
+<p><a name="var-expr-note" id="var-expr-note"></a></p>
+<h1 id="toc11"><span><a href="#var-expr">Variables and Expressions</a></span></h1>
+<p><a name="identifiers-case-sensitive-note" id="identifiers-case-sensitive-note"></a></p>
+<h2 id="toc12"><span><a href="#identifiers-case-sensitive">are identifiers case sensitive</a></span></h2>
+<p><a name="assignment-note" id="assignment-note"></a></p>
+<h2 id="toc13"><span><a href="#assignment">assignment</a></span></h2>
+<p>How to assign a value to a variable.</p>
+<p><a name="parallel-assignment-note" id="parallel-assignment-note"></a></p>
+<h2 id="toc14"><span><a href="#parallel-assignment">parallel assignment</a></span></h2>
+<p>How to assign values to variables in parallel.</p>
+<p><a name="swap-note" id="swap-note"></a></p>
+<h2 id="toc15"><span><a href="#swap">swap</a></span></h2>
+<p>How to exchange the values held by two variables.</p>
+<p><a name="compound-assignment-note" id="compound-assignment-note"></a></p>
+<h2 id="toc16"><span><a href="#compound-assignment">compound assignment</a></span></h2>
+<p>The compound assignment operators for arithmetic, string, and bit operations</p>
+<p><a name="incr-decr-note" id="incr-decr-note"></a></p>
+<h2 id="toc17"><span><a href="#incr-decr">increment and decrement</a></span></h2>
+<p>The C-style increment and decrement operators which can be used in expressions.</p>
+<p><a name="var-decl-note" id="var-decl-note"></a></p>
+<h2 id="toc18"><span><a href="#var-decl">variable declaration</a></span></h2>
+<p>How to declare a variable.</p>
+<p><a name="null-note" id="null-note"></a></p>
+<h2 id="toc19"><span><a href="#null">null</a></span></h2>
+<p>The null literal.</p>
+<p><strong>tcl</strong></p>
+<p>Tcl has has no null value.</p>
+<p><a name="null-test-note" id="null-test-note"></a></p>
+<h2 id="toc20"><span><a href="#null-test">null test</a></span></h2>
+<p>How to test if a value is null.</p>
+<p><a name="undef-access-note" id="undef-access-note"></a></p>
+<h2 id="toc21"><span><a href="#undef-access">undefined variable</a></span></h2>
+<p>The value of an undefined variable, or the behavior if there is no such value.</p>
+<p><strong>tcl:</strong></p>
+<p>The following test can be used to determine if a variable is defined:</p>
+<div class="code">
+<pre>
+<code>expr ![info exists v]</code>
+</pre></div>
+<p><a name="arithmetic-logic-note" id="arithmetic-logic-note"></a></p>
+<h1 id="toc22"><span><a href="#arithmetic-logic">Arithmetic and Logic</a></span></h1>
+<p><a name="true-false-note" id="true-false-note"></a></p>
+<h2 id="toc23"><span><a href="#true-false">true and false</a></span></h2>
+<p>The literals for true and false.</p>
+<p><a name="falsehoods-note" id="falsehoods-note"></a></p>
+<h2 id="toc24"><span><a href="#falsehoods">falsehoods</a></span></h2>
+<p>Values which are false in conditional expressions.</p>
+<p><strong>tcl:</strong></p>
+<p>0 is false and all other numeric values are true. For non-numeric strings, "no" and "false" are false, and "yes" and "true" are true. The comparison is case insensitive. All other non-numeric strings raise an error when evaluated in a boolean context.</p>
+<p><a name="logical-ops-note" id="logical-ops-note"></a></p>
+<h2 id="toc25"><span><a href="#logical-ops">logical operators</a></span></h2>
+<p>Logical and, or, and not.</p>
+<p><a name="conditional-expr-note" id="conditional-expr-note"></a></p>
+<h2 id="toc26"><span><a href="#conditional-expr">conditional expression</a></span></h2>
+<p>The syntax for a conditional expression.</p>
+<p><a name="relational-expr-note" id="relational-expr-note"></a></p>
+<h2 id="toc27"><span><a href="#relational-expr">relational expression</a></span></h2>
+<p><strong>tcl</strong></p>
+<p>To evaluate a relational expression outside of the the conditional of an <tt>if</tt> statement, the <tt>expr</tt> command can be used.</p>
+<p>Use square brackets to make an expression an argument of a command:</p>
+<div class="code">
+<pre>
+<code>puts [expr $x&gt;1]</code>
+</pre></div>
+<p><a name="relational-operators" id="relational-operators"></a></p>
+<h2 id="toc28"><span>relational operators</span></h2>
+<p><strong>tcl:</strong></p>
+<p>The <tt>eq</tt> and <tt>ne</tt> operators always perform comparisons on their operators as strings. If the arguments are numeric, they are converted to a standard floating point representation.</p>
+<div class="code">
+<pre>
+<code>% expr {"0" eq "00"}
+0
+% expr {"0" == "00"}
+1</code>
+</pre></div>
+<p>The <tt>==</tt> and <tt>!=</tt> operators try to convert their arguments to a numeric form for the purpose of comparison. String comparison is used when no numeric conversion is possible:</p>
+<div class="code">
+<pre>
+<code>% expr {"lorem" == "ipsum"}
+0</code>
+</pre></div>
+<p>The relational operators can be invoked as commands in the following manner:</p>
+<div class="code">
+<pre>
+<code>% ::tcl::mathop::== 1 1
+1
+% ::tcl::mathop::!= 1 1
+0
+% ::tcl::mathop::&gt; 1 1
+%::tcl::mathop::&lt; 1 1
+0
+% ::tcl::mathop::&gt;= 1 1
+1
+% ::tcl::mathop::&lt;= 1 1
+1
+% ::tcl::mathop::eq "lorem" "ipsum"
+0
+%::tcl::mathop::ne "lorem" "ipsum"
+1</code>
+</pre></div>
+<p><strong>autohotkey:</strong></p>
+<p><tt>&lt;&gt;</tt> is a synonym for <tt>!=</tt>.</p>
+<p><a name="string-to-number" id="string-to-number"></a></p>
+<h2 id="toc29"><span>convert from string</span></h2>
+<p><a name="number-to-string" id="number-to-string"></a></p>
+<h2 id="toc30"><span>convert to string</span></h2>
+<p><a name="arithmetic-expr" id="arithmetic-expr"></a></p>
+<h2 id="toc31"><span>arithmetic expressions</span></h2>
+<p>How to evaluate an arithmetic expression.</p>
+<p><strong>tcl:</strong></p>
+<p>Arithmetic expressions are normally evaluated with the <tt>expr</tt> command. However, the conditional argument of an <tt>if</tt> statement is always evaluated as an expression.</p>
+<p><a name="arithmetic-operators" id="arithmetic-operators"></a></p>
+<h2 id="toc32"><span>arithmetic operators</span></h2>
+<p>The operators for addition, subtraction, multiplication, float division, integer division, modulus, and exponentiation. Some languages provide a function <em>pow</em> instead of an operator for exponentiation.</p>
+<p><strong>tcl:</strong></p>
+<p>Arithmetic operators are normally used as arguments to <tt>expr</tt>, but commands also exist for each of them:</p>
+<div class="code">
+<pre>
+<code>::tcl::mathop::+
+::tcl::mathop::-
+::tcl::mathop::*
+::tcl::mathop::/
+::tcl::mathop::**
+::tcl::mathop::%</code>
+</pre></div>
+<p><a name="integer-division" id="integer-division"></a></p>
+<h2 id="toc33"><span>integer division</span></h2>
+<p>How to perform integer division.</p>
+<p><a name="float-division" id="float-division"></a></p>
+<h2 id="toc34"><span>float division</span></h2>
+<p>How to perform floating point division, even if the operands might be integers.</p>
+<p><a name="arithmetic-functions" id="arithmetic-functions"></a></p>
+<h2 id="toc35"><span>arithmetic functions</span></h2>
+<p>Functions for computing square root, natural exponent, natural logarithm, sine, cosine, tangent, arcsine, arccosine, arctangent, and <em>atan2</em>.</p>
+<p>The trigonometric functions are all in radians. <em>atan2</em> takes two arguments which are the x and y co-ordinates of a vector in the Cartesian plane. It returns<br />
+the angle to the positive x-axis made by the vector.</p>
+<p><a name="arithmetic-truncation" id="arithmetic-truncation"></a></p>
+<h2 id="toc36"><span>arithmetic truncation</span></h2>
+<p><a name="division-zero" id="division-zero"></a></p>
+<h2 id="toc37"><span>division by zero</span></h2>
+<p><a name="integer-overflow" id="integer-overflow"></a></p>
+<h2 id="toc38"><span>integer overflow</span></h2>
+<p><a name="float-overflow" id="float-overflow"></a></p>
+<h2 id="toc39"><span>float overflow</span></h2>
+<p><a name="sqrt-negative-two" id="sqrt-negative-two"></a></p>
+<h2 id="toc40"><span>sqrt -2</span></h2>
+<p>The result of taking the square root of -2.</p>
+<p><a name="random" id="random"></a></p>
+<h2 id="toc41"><span>random integer, uniform float</span></h2>
+<p>The examples show how to generate a uniform random integer in the range from 0 to 99, inclusive; how to generate a uniform float in the range 0.0 to 1.0; how to generate a float from a standard normal distribution</p>
+<p><a name="seed-random" id="seed-random"></a></p>
+<h2 id="toc42"><span>seed random numbers</span></h2>
+<p><a name="bit-operators" id="bit-operators"></a></p>
+<h2 id="toc43"><span>bit operators</span></h2>
+<p><a name="strings-note" id="strings-note"></a></p>
+<h1 id="toc44"><span><a href="#strings">Strings</a></span></h1>
+<p><a name="string-literal" id="string-literal"></a></p>
+<h2 id="toc45"><span>string literal</span></h2>
+<p>The syntax for a string literal and how to escape the delimiter.</p>
+<p><a name="string-literal-newline" id="string-literal-newline"></a></p>
+<h2 id="toc46"><span>newline in literal</span></h2>
+<p>Whether a newline character sequence can be included in a string.</p>
+<p>For all the languages described in this reference sheet a string literal is permitted to encompass multiple lines in the source code and the resulting string will contain the same number of lines.</p>
+<p><a name="string-escapes" id="string-escapes"></a></p>
+<h2 id="toc47"><span>escapes</span></h2>
+<p>Character escape sequences which can be used in string literals.</p>
+<p><a name="variable-interpolation" id="variable-interpolation"></a></p>
+<h2 id="toc48"><span>variable interpolation</span></h2>
+<p>How to interpolate variables in a string.</p>
+<p><a name="string-length" id="string-length"></a></p>
+<h2 id="toc49"><span>length</span></h2>
+<p>How to get the length of a string.</p>
+<p><a name="index-substring" id="index-substring"></a></p>
+<h2 id="toc50"><span>index substring</span></h2>
+<p>How to find the index of the start of a substring in a string.</p>
+<p><a name="extract-substring" id="extract-substring"></a></p>
+<h2 id="toc51"><span>extract substring</span></h2>
+<p><a name="string-concatenation" id="string-concatenation"></a></p>
+<h2 id="toc52"><span>string concatenation</span></h2>
+<p>The string concatenation operator.</p>
+<p><a name="split" id="split"></a></p>
+<h2 id="toc53"><span>split</span></h2>
+<p>How to split a string into an array of strings.</p>
+<p><strong>tcl:</strong></p>
+<p><em>split</em> takes an optional 2nd argument which is a string containing the characters to split on. <em>split</em> can only split on characters, not strings or regular expressions. For each pair of adjacent splitting characters in the input string, there will be an empty string in the result list.</p>
+<p><a name="join" id="join"></a></p>
+<h2 id="toc54"><span>join</span></h2>
+<p>How to concatenate the elements of an array into a string with a separator.</p>
+<p><a name="scan" id="scan"></a></p>
+<h2 id="toc55"><span>scan</span></h2>
+<p><a name="sprintf" id="sprintf"></a></p>
+<h2 id="toc56"><span>sprintf</span></h2>
+<p>How to create a string using a printf style format.</p>
+<p><a name="case" id="case"></a></p>
+<h2 id="toc57"><span>case manipulation</span></h2>
+<p><a name="strip" id="strip"></a></p>
+<h2 id="toc58"><span>strip</span></h2>
+<p><a name="pad" id="pad"></a></p>
+<h2 id="toc59"><span>pad on right, pad on left</span></h2>
+<p><a name="str-to-num-note" id="str-to-num-note"></a></p>
+<h2 id="toc60"><span><a href="#str-to-num">string to number</a></span></h2>
+<p><strong>tcl:</strong></p>
+<p>All values are strings. The <em>expr</em> function will concatenate the arguments together and then evaluate the string as a numerical expression. If all the numbers are integers, the expression is computed using integer arithmetic. Otherwise floating point arithmetic is used. The variables can contain compound arithmetic expressions; the following script outputs 10:</p>
+<div class="code">
+<pre>
+<code>set a "7+3"
+puts [expr $a]</code>
+</pre></div>
+<p><a name="regex-note" id="regex-note"></a></p>
+<h1 id="toc61"><span><a href="#regexes">Regular Expressions</a></span></h1>
+<p><a name="regex-match-note" id="regex-match-note"></a></p>
+<h2 id="toc62"><span><a href="#regex-match">regex match</a></span></h2>
+<p>How to test whether a regular expression matches a string.</p>
+<p><a name="regex-modifiers-note" id="regex-modifiers-note"></a></p>
+<h2 id="toc63"><span><a href="#regex-modifiers">modifiers</a></span></h2>
+<p><strong>tcl:</strong></p>
+<table class="wiki-content-table">
+<tr>
+<th>modifier</th>
+<th>description</th>
+</tr>
+<tr>
+<td>-all</td>
+<td>causes regexp to return number of matches in string; causes regsub to replace all occurrences of match</td>
+</tr>
+<tr>
+<td>-expanded</td>
+<td>ignore whitespace in patten</td>
+</tr>
+<tr>
+<td>-indices</td>
+<td>modifies group capture: returns start and end indices of the substring instead of the substring itself</td>
+</tr>
+<tr>
+<td>-inline</td>
+<td>return the total match and each of the group captures as a list. Normally the number of matches is returned</td>
+</tr>
+<tr>
+<td>-line</td>
+<td>same as using -lineanchor and -linestop</td>
+</tr>
+<tr>
+<td>-lineanchor</td>
+<td>causes ^ and $ to match the beginning and ending of lines (\A and \Z still match beginning and ending of string)</td>
+</tr>
+<tr>
+<td>-linestop</td>
+<td>causes . to not matcch a newline</td>
+</tr>
+<tr>
+<td>-nocase</td>
+<td>makes matching case insensitive</td>
+</tr>
+</table>
+<p><a name="single-subst-note" id="single-subst-note"></a></p>
+<h2 id="toc64"><span><a href="#single-subst">single substitution</a></span></h2>
+<p>How to replace the first occurrence of a pattern in a string.</p>
+<p><strong>tcl:</strong></p>
+<p>To replace only the first occurrence of the pattern, omit the <tt>-all</tt> flag:</p>
+<div class="code">
+<pre>
+<code>set s "do re mi mi mi"
+regsub "mi" $s "ma"</code>
+</pre></div>
+<p><a name="global-subst-note" id="global-subst-note"></a></p>
+<h2 id="toc65"><span><a href="#global-subst">global substitution</a></span></h2>
+<p>How to replace all occurrences of a pattern in a string.</p>
+<p><a name="dates-time-note" id="dates-time-note"></a></p>
+<h1 id="toc66"><span><a href="#dates-time">Dates and Time</a></span></h1>
+<p>The Unix epoch is the number of seconds since January 1, 1970 UTC. In the case of Lua, the native date/time object is the Unix epoch, so no conversion is needed.</p>
+<p><a name="arrays-note" id="arrays-note"></a></p>
+<h1 id="toc67"><span><a href="#arrays">Arrays</a></span></h1>
+<p><strong>tcl:</strong></p>
+<p>Tcl arrays are associative arrays. The dict type is new in Tcl 8.5. See the documentation for <a href="http://www.tcl.tk/man/tcl8.5/TclCmd/array.htm">array</a> and <a href="http://www.tcl.tk/man/tcl8.5/TclCmd/dict.htm">dict</a>.</p>
+<p><a name="array-literal" id="array-literal"></a></p>
+<h2 id="toc68"><span>array literal</span></h2>
+<p>Array literal syntax.</p>
+<p><a name="array-size" id="array-size"></a></p>
+<h2 id="toc69"><span>array size</span></h2>
+<p>How to get the number of elements in an array.</p>
+<p><a name="array-lookup" id="array-lookup"></a></p>
+<h2 id="toc70"><span>array lookup</span></h2>
+<p>How to access a value in an array by index.</p>
+<p><strong>tcl:</strong></p>
+<p>Does not support negative indices. To change the 2nd element in the list <em>a</em> to 8, use</p>
+<div class="code">
+<pre>
+<code>lset a 1 8</code>
+</pre></div>
+<p><em>lset</em> will not increase the size of the list if the index is out of bounds. For more list manipulation commands see <a href="http://www.tcl.tk/man/tcl/tutorial/Tcl15.html">http://www.tcl.tk/man/tcl/tutorial/Tcl15.html</a>.</p>
+<p><a name="array-slice" id="array-slice"></a></p>
+<h2 id="toc71"><span>array slice</span></h2>
+<p>How to slice a subarray from an array.</p>
+<p><a name="array-iteration" id="array-iteration"></a></p>
+<h2 id="toc72"><span>array iteration</span></h2>
+<p><a name="membership" id="membership"></a></p>
+<h2 id="toc73"><span>membership</span></h2>
+<p>How to test for membership in an array.</p>
+<p><a name="intersection" id="intersection"></a></p>
+<h2 id="toc74"><span>intersection</span></h2>
+<p>How to compute an intersection.</p>
+<p><a name="union" id="union"></a></p>
+<h2 id="toc75"><span>union</span></h2>
+<p><a name="map" id="map"></a></p>
+<h2 id="toc76"><span>map</span></h2>
+<p><a name="filter" id="filter"></a></p>
+<h2 id="toc77"><span>filter</span></h2>
+<p><a name="reduce" id="reduce"></a></p>
+<h2 id="toc78"><span>reduce</span></h2>
+<p><a name="universal-predicate" id="universal-predicate"></a></p>
+<h2 id="toc79"><span>universal predicate</span></h2>
+<p>How to test whether a condition holds for all members of an array. Always true for an empty array.</p>
+<p><a name="existential-predicate" id="existential-predicate"></a></p>
+<h2 id="toc80"><span>existential predicate</span></h2>
+<p>How to test whether an item in an array exists for which a condition holds. Always false for an empty array.</p>
+<p><a name="dictionaries-note" id="dictionaries-note"></a></p>
+<h1 id="toc81"><span><a href="#dictionaries">Dictionaries</a></span></h1>
+<p><strong>tcl:</strong></p>
+<p>The <tt>dict</tt> type was introduced in Tcl 8.5.</p>
+<p>In earlier versions of Tcl associative arrays were used when a dictionary type was needed, and they remain an alternative in Tcl 8.5. Associative arrays are stored in variables as strings. The <tt>array</tt> command is used to treat the string as an associative array:</p>
+<div class="code">
+<pre>
+<code>array set d [list "t" 1 "f" 0]
+array size d
+$d(t)
+array set d [list "t" 2]
+info exists d(t)
+array unset d "t"
+foreach {k v} [array get d] {
+  puts k
+  puts v
+}</code>
+</pre></div>
+<p><a name="dictionary-literal" id="dictionary-literal"></a></p>
+<h2 id="toc82"><span>dictionary literal</span></h2>
+<p><a name="dictionary-size" id="dictionary-size"></a></p>
+<h2 id="toc83"><span>dictionary size</span></h2>
+<p><a name="dictionary-lookup" id="dictionary-lookup"></a></p>
+<h2 id="toc84"><span>dictionary lookup</span></h2>
+<p><a name="dictionary-iteration" id="dictionary-iteration"></a></p>
+<h2 id="toc85"><span>dictionary iteration</span></h2>
+<p><a name="out-of-bounds" id="out-of-bounds"></a></p>
+<h2 id="toc86"><span>out of bounds behavior</span></h2>
+<p><a name="functions-note" id="functions-note"></a></p>
+<h1 id="toc87"><span><a href="#functions">Functions</a></span></h1>
+<p><strong>tcl:</strong></p>
+<p>Tcl variables inside functions have local scope.</p>
+<p><a name="function-definition" id="function-definition"></a></p>
+<h2 id="toc88"><span>function definition</span></h2>
+<p><a name="function-invocation" id="function-invocation"></a></p>
+<h2 id="toc89"><span>function invocation</span></h2>
+<p><a name="missing-argument" id="missing-argument"></a></p>
+<h2 id="toc90"><span>missing argument value</span></h2>
+<p>Value of an argument variable if a function is invoked with fewer arguments than are declared.</p>
+<p><a name="extra-arguments" id="extra-arguments"></a></p>
+<h2 id="toc91"><span>extra arguments</span></h2>
+<p>If a function is invoked with more arguments than are declared, how the function can access them.</p>
+<p><a name="default-argument" id="default-argument"></a></p>
+<h2 id="toc92"><span>default argument value</span></h2>
+<p>How to declare a default value for an argument.</p>
+<p><a name="variable-arguments" id="variable-arguments"></a></p>
+<h2 id="toc93"><span>variable number of arguments</span></h2>
+<p>How to write a function which accepts a variable number of argument.</p>
+<p><a name="named-parameters" id="named-parameters"></a></p>
+<h2 id="toc94"><span>named parameters</span></h2>
+<p>How to write a function which uses named parameters.</p>
+<p><a name="return-value" id="return-value"></a></p>
+<h2 id="toc95"><span>return value</span></h2>
+<p><a name="lambda-declaration" id="lambda-declaration"></a></p>
+<h2 id="toc96"><span>lambda declaration</span></h2>
+<p>How to define a lambda function.</p>
+<p><a name="lambda-invocation" id="lambda-invocation"></a></p>
+<h2 id="toc97"><span>lambda invocation</span></h2>
+<p><a name="default-scope" id="default-scope"></a></p>
+<h2 id="toc98"><span>default scope</span></h2>
+<p><a name="execution-control-note" id="execution-control-note"></a></p>
+<h1 id="toc99"><span><a href="#execution-control">Execution Control</a></span></h1>
+<p><a name="if" id="if"></a></p>
+<h2 id="toc100"><span>if</span></h2>
+<p><strong>tcl:</strong></p>
+<p>Tcl also has a switch:</p>
+<div class="code">
+<pre>
+<code>switch $a 0 { puts "no" } 1 { puts "yes" } 2 { puts "maybe" } default { puts "error" }</code>
+</pre></div>
+<p><strong>autohotkey:</strong></p>
+<p>The traditional style omits the parens around the conditionals.</p>
+<div class="code">
+<pre>
+<code>|if n = 0
+{
+  msgbox % "zero hits"
+} _
+else if n = 1
+{
+  msgbox % "one hit"
+}
+else
+{
+  msgbox % n . " hits"
+}</code>
+</pre></div>
+<p><a name="while" id="while"></a></p>
+<h2 id="toc101"><span>while</span></h2>
+<p><a name="break-continue" id="break-continue"></a></p>
+<h2 id="toc102"><span>break/continue/redo</span></h2>
+<p><em>break</em> exits a <em>for</em> or <em>while</em> loop immediately. <em>continue</em> goes to the next iteration of the loop. <em>redo</em> goes back to the beginning of the current iteration.</p>
+<p><a name="for" id="for"></a></p>
+<h2 id="toc103"><span>for</span></h2>
+<p><a name="exceptions-note" id="exceptions-note"></a></p>
+<h1 id="toc104"><span><a href="#exceptions">Exceptions</a></span></h1>
+<p><a name="raise-exception" id="raise-exception"></a></p>
+<h2 id="toc105"><span>raise exception</span></h2>
+<p>How to raise an exception.</p>
+<p><a name="catch-exception" id="catch-exception"></a></p>
+<h2 id="toc106"><span>catch exception</span></h2>
+<p>How to handle an exception.</p>
+<p><a name="uncaught-exception" id="uncaught-exception"></a></p>
+<h2 id="toc107"><span>uncaught exception behavior</span></h2>
+<p>System behavior if an exception goes uncaught. Most interpreters print the exception message to stderr and exit with a nonzero status.</p>
+<p><strong>tcl:</strong></p>
+<p>A tcl process can have multiple interpreters and multiple threads. However, each interpreter is limited to a single thread.</p>
+<p><a name="wait-on-thread" id="wait-on-thread"></a></p>
+<h2 id="toc108"><span>wait on thread</span></h2>
+<p><a name="file-note" id="file-note"></a></p>
+<h1 id="toc109"><span><a href="#files">Files</a></span></h1>
+<p><a name="print-to-stdout" id="print-to-stdout"></a></p>
+<h2 id="toc110"><span>print to standard out</span></h2>
+<p><strong>tcl:</strong></p>
+<p>To prevent <em>puts</em> from appending a newline to the output, use</p>
+<div class="code">
+<pre>
+<code>puts -nonewline "hello"</code>
+</pre></div>
+<p><a name="standard-filehandles" id="standard-filehandles"></a></p>
+<h2 id="toc111"><span>standard filehandles</span></h2>
+<p><a name="read-line" id="read-line"></a></p>
+<h2 id="toc112"><span>read line</span></h2>
+<p><a name="read-file" id="read-file"></a></p>
+<h2 id="toc113"><span>read file</span></h2>
+<p><a name="write-file" id="write-file"></a></p>
+<h2 id="toc114"><span>write to file</span></h2>
+<p><a name="append-file" id="append-file"></a></p>
+<h2 id="toc115"><span>append to file</span></h2>
+<p><a name="gui-note" id="gui-note"></a></p>
+<h1 id="toc116"><span><a href="#gui">GUI</a></span></h1>
+<p><a name="file-fmt-note" id="file-fmt-note"></a></p>
+<h1 id="toc117"><span><a href="#file-fmt">File Formats</a></span></h1>
+<p><a name="directories-note" id="directories-note"></a></p>
+<h1 id="toc118"><span><a href="#directories">Directories</a></span></h1>
+<p><a name="processes-environment-note" id="processes-environment-note"></a></p>
+<h1 id="toc119"><span><a href="#processes-environment">Processes and Environment</a></span></h1>
+<p><a name="external-command" id="external-command"></a></p>
+<h2 id="toc120"><span>external command</span></h2>
+<p><strong>tcl</strong></p>
+<p>When using tclsh as a shell or repl, external commands that do not have the same name as a built-in or user defined function can be executed directly without using the exec command.</p>
+<p><a name="backticks" id="backticks"></a></p>
+<h2 id="toc121"><span>backticks</span></h2>
+<p><a name="command-line-args" id="command-line-args"></a></p>
+<h2 id="toc122"><span>command line args</span></h2>
+<p><a name="speech" id="speech"></a></p>
+<h2 id="toc123"><span>speech</span></h2>
+<p>How to make the computer talk.</p>
+<p><a name="environment-variable" id="environment-variable"></a></p>
+<h2 id="toc124"><span>environment variable</span></h2>
+<p><a name="command-path" id="command-path"></a></p>
+<h2 id="toc125"><span>command path</span></h2>
+<p>The directory containing a command. Also indicates if the command is a built-in, alias, or function. Shows the definition of aliases and functions.</p>
+<p><a name="exit" id="exit"></a></p>
+<h2 id="toc126"><span>exit</span></h2>
+<p><a name="set-signal-handler" id="set-signal-handler"></a></p>
+<h2 id="toc127"><span>set signal handler</span></h2>
+<p><a name="libraries-namespaces-note" id="libraries-namespaces-note"></a></p>
+<h1 id="toc128"><span><a href="#libraries-namespaces">Libraries and Namespaces</a></span></h1>
+<p><a name="library" id="library"></a></p>
+<h2 id="toc129"><span>library</span></h2>
+<p>What a library looks like.</p>
+<p><a name="import-library" id="import-library"></a></p>
+<h2 id="toc130"><span>import library</span></h2>
+<p><a name="library-path" id="library-path"></a></p>
+<h2 id="toc131"><span>library path</span></h2>
+<p><a name="namespace-declaration" id="namespace-declaration"></a></p>
+<h2 id="toc132"><span>namespace declaration</span></h2>
+<p><a name="namespace-separator" id="namespace-separator"></a></p>
+<h2 id="toc133"><span>namespace separator</span></h2>
+<p><a name="reflection-note" id="reflection-note"></a></p>
+<h1 id="toc134"><span><a href="#reflection">Reflection</a></span></h1>
+<p><a name="class" id="class"></a></p>
+<h2 id="toc135"><span>class</span></h2>
+<p><a name="smalltalk" id="smalltalk"></a></p>
+<h1 id="toc136"><span><a href="#top">Smalltalk</a></span></h1>
+<p><a href="#image-vm">image and virtual machine</a> | <a href="#browser-workspace-transcript">browser, workspace, and transcript</a> | <a href="#the-smalltalk-lang">the smalltalk language</a></p>
+<p><a name="image-vm" id="image-vm"></a></p>
+<h2 id="toc137"><span>image and virtual machine</span></h2>
+<p>Executable Smalltalk consists of an <em>image</em> and a <em>virtual machine</em>. A Smalltalk image is equivalent to a program, except that it also contains the state of a Smalltalk process; a Smalltalk process can save itself as an image at any point in its execution. The Smalltalk image is usually portable, whereas the virtual machine is operating system specific.</p>
+<p>To create a new Smalltalk executable, one copies an existing image, launches it, adds to or modifies the code while the process is running, and then persists the new code and the process state when the executable is done.</p>
+<p>After a fresh installation of Pharo 3.0 on Mac OS X, one has a image named <tt>Pharo.image</tt> and a virtual machine named <tt>Pharo</tt>. One can launch the program at the command line by passing the image to the virtual machine as an argument:</p>
+<div class="code">
+<pre>
+<code>$ ls -l Pharo.image                            
+-rw-rw-r--  1 hpglot  staff  21802780 Dec 12 06:38 Pharo.image
+
+$ ls -l pharo-vm/Pharo.app/Contents/MacOS/Pharo
+-rwxr-xr-x  1 hpglot  staff  867488 May 15  2014 pharo-vm/Pharo.app/Contents/MacOS/Pharo
+
+$ ./pharo-vm/Pharo.app/Contents/MacOS/Pharo Pharo.image</code>
+</pre></div>
+<p>It is worth noting that even after a fresh installation, the image is already much larger than the virtual machine. The standard library and any ofther classes distributed with the implementation are implemented in Smalltalk; they are in the image, not the virtual matchine.</p>
+<p><a name="browser-workspace-transcript" id="browser-workspace-transcript"></a></p>
+<h2 id="toc138"><span>browser, workspace, and transcript</span></h2>
+<p><a name="the-smalltalk-lang" id="the-smalltalk-lang"></a></p>
+<h2 id="toc139"><span>the smalltalk language</span></h2>
+<p>All values which can be stored in variables are objects.</p>
+<p>Every expression and statement is implemented as a message which is sent to an object.</p>
+<p>Messages are classified as <em>unary</em>, <em>binary</em>, or <em>keyword</em>.</p>
+<p>Examples of unary messages:</p>
+<div class="code">
+<pre>
+<code>1 class.
+false not.
+Date today.</code>
+</pre></div>
+<p>Examples of binary messages:</p>
+<div class="code">
+<pre>
+<code>2 * 7.
+true &amp; true.
+3 &lt; 10.
+'Hello, ', 'World!'.</code>
+</pre></div>
+<p>Examples of keyword messages:</p>
+<p>Precedence of messages.</p>
+<p>Cascaded messages.</p>
+<p>No functions, just methods and blocks.</p>
+<p><a name="tcl" id="tcl"></a></p>
+<h1 id="toc140"><span><a href="#top">Tcl</a></span></h1>
+<p><a href="http://tmml.sourceforge.net/doc/tcl/">Tcl Reference Manual</a><br />
+<a href="http://tcllib.sourceforge.net/doc/">Tcl Standard Library</a></p>
+<p>Tcl has some traits which will be familiar to anyone who has done Unix shell script programming:</p>
+<p>(1) variables have a $ prefix except when values are assigned to them, in which case they are used unadorned:</p>
+<div class="code">
+<pre>
+<code>set v 42
+puts $v</code>
+</pre></div>
+<p>(2) statements consist of a command and zero or more arguments. Commands which are not built-in functions or user defined functions are resolved by looking for an external command in the search path and running it.</p>
+<p>(3) the values are always stored in variables as strings. Commands which expect numeric arguments perform an implicit conversion, so there isn't much practical consequence for the developer.</p>
+<p>(4) in the absence of quoting ("", {}, []) the arguments of a command are parsed into words using whitespace; commas are not used to separate arguments.</p>
+<p>(5) square brackets [] must be used to execute a function and use its return value as an argument. A combination of square brackets [] and the <tt>expr</tt> command must be used to evaluate an expression and use its value as an argument:</p>
+<div class="code">
+<pre>
+<code>puts [format "%10s" "lorem"]
+puts [expr 1 + 1]</code>
+</pre></div>
+<p>Square brackets can be used to invoke an external command, but the value of the square brackets containing an external command is always the empty string: "".</p>
+<p>Unlike shells, *, ?, ~ in variable names are not automatically expanded using the filesystem, but this behavior can be invoked with the glob command.</p>
+<p><a name="autohotkey" id="autohotkey"></a></p>
+<h1 id="toc141"><span><a href="#top">AutoHotkey</a></span></h1>
+<p><a href="http://www.autohotkey.com/docs/">Documentation</a></p>
+<p><a name="javascript" id="javascript"></a></p>
+<h1 id="toc142"><span><a href="#top">JavaScript</a></span></h1>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Mozilla Developer Network: JavaScript</a><br />
+<a href="https://developer.apple.com/library/mac/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/">JavaScript for Automation: Release Notes</a><br />
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/document">Mozilla Developer Network: Document</a><br />
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window">Mozilla Document Network: Window</a><br />
+<a href="http://www.w3.org/TR/DOM-Level-3-Core/">W3C: Document Object Model (DOM) Level 3 Core Specification</a><br />
+<a href="http://www.w3.org/TR/DOM-Level-3-Events/">W3C: Document Object Model (DOM) Level 3 Events Specification</a></p>
+<p>Most browsers include a debugger which can be launched with a keystroke:</p>
+<table class="wiki-content-table">
+<tr>
+<th>browser</th>
+<th>mac</th>
+<th>windows</th>
+<th>linux</th>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>⌥⌘J</td>
+<td>Cmd+Shift+J</td>
+<td>Cmd+Shift+J</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>⌥⌘S</td>
+<td>Cmd+Shift+S</td>
+<td>Cmd+Shift+S</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>⌥⌘C</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<p>The debugger has a console pane, which is a JavaScript REPL.</p>
+<div class="code">
+<pre>
+<code>&gt; Math.log(10)
+2.302585092994046
+
+&gt; alert("Hello, World!")</code>
+</pre></div>
+<p>The console provides a global object named <tt>document</tt> which provides access to the DOM of the current page:</p>
+<div class="code">
+<pre>
+<code>&gt; document.getElementsByTagName("div").length
+302</code>
+</pre></div>
+<p><em>TODO: more ways to select node elements. Attributes of node elements.</em></p>
+<p>There is also a global object named <tt>window</tt> which is useful.</p>
+<p>JavaScript can be embedded in an HTML document using the <tt>&lt;script&gt;</tt> tag:</p>
+<div class="code">
+<pre>
+<code>&lt;script&gt;
+  var sum = 1 + 2;
+  alert('the sum is ' + sum);
+&lt;/script&gt;</code>
+</pre></div>
+<p>Alternatively the JavaScript can be in a separate file served by the same server:</p>
+<div class="code">
+<pre>
+<code>&lt;script src="foo.js"&gt;&lt;/script&gt;</code>
+</pre></div>
+<p><tt>&lt;script&gt;</tt> tags can be placed in either the <tt>&lt;head&gt;</tt> or the <tt>&lt;body&gt;</tt> of an <tt>&lt;html&gt;</tt> document. They are executed as they are encountered by the browser. If there is a syntax error, then none of the JavaScript in the <tt>&lt;script&gt;</tt> tag is executed. If there is an unhandled exception, the browser stops execution of the <tt>&lt;script&gt;</tt> at that point. Neither syntax errors nor unhandled exceptions prevent the browser from executing JavaScript in subsequent <tt>&lt;script&gt;</tt> tags.</p>
+<p><em>using JavaScript to modify the DOM</em></p>
+<p><em>waiting for all JavaScript to load</em></p>
+<p><em>javascript URL</em></p>
+<p><em>DOM events</em></p>
+<p>To guard against websites serving malicious JavaScript code, the JavaScript interpreters in browsers do not provide the ability to interact with the local operating system. In particular, client-side JavaScript cannot read or write to files. Client-side JavaScript cannot spawn other processes.</p>
+<p>Client-side JavaScript can make HTTP requests. Client-side JavaScript can modify the DOM of an HTML page which was served from the same <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Same_origin_policy_for_JavaScript">origin</a> as the JavaScript. To be from the same origin, the URLs must have the same protocol, domain, and port. Client-side JavaScript can also get and set cookies which share the same origin. The origin policy for cookies is slightly relaxed, since the JavaScript can also get and set cookies for a parent domain, excluding public top level domains such as <tt>.com</tt>, <tt>.net</tt>, and <tt>.org</tt>.</p>
+
+                    </div>
+        </div>
+      </div>
+      <div id="license-area" class="license-area">
+        <a href="https://github.com/clarkgrubb/hyperpolyglot/issues">issue tracker</a> |
+        content of this page licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+        creative commons attribution-sharealike 3.0</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17129977-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1817 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<link rel="icon" type="image/gif" href="/favicon.gif"/>
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<title>Forth and PostScript - Hyperpolyglot</title>
+<style type="text/css" id="internal-style">
+@import url(hyperpolyglot.css);
+</style>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="content-language" content="en"/>
+</head>
+<body>
+<div id="container-wrap-wrap">
+  <div id="container-wrap">
+    <div id="container">
+      <div id="header">
+        <h1><a href="/"><span>Hyperpolyglot</span></a></h1>
+      </div>
+      <div id="content-wrap">
+        <div id="main-content">
+<div id="page-title">
+                            Forth and PostScript
+                        </div>
+<div id="page-content">
+                        
+
+<p><em>a side-by-side reference sheet</em></p>
+<p><a href="#grammar-invocation">grammar and invocation</a> | <a href="#var-expr">variables and expressions</a> | <a href="#stack">stack</a> | <a href="#arithmetic-logic">arithmetic and logic</a> | <a href="#strings">strings</a> | <a href="#regex">regexes</a><br />
+<a href="#dates-time">dates and time</a> | <a href="#arrays">arrays</a> | <a href="#heap">heap</a> | <a href="#dictionaries">dictionaries</a> | <a href="#functions">functions</a> | <a href="#execution-control">execution control</a> | <a href="#exceptions">exceptions</a> | <a href="#file-handles">file handles</a> | <a href="#files">files</a><br />
+<a href="#directories">directories</a> | <a href="#processes-environment">processes and environment</a> | <a href="#libraries-namespaces">libraries and namespaces</a> | <a href="#reflection">reflection</a> | <a href="#graphics">graphics</a></p>
+<table class="wiki-content-table">
+<tr>
+<th></th>
+<th><a href="#forth">forth</a></th>
+<th><a href="#postscript">postscript</a></th>
+</tr>
+<tr>
+<td><a name="version-used" id="version-used"></a><a href="#version-used-note">version used</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>Gforth 0.70</em></span></td>
+<td><span style="color: gray"><em>Preview 5.0</em></span></td>
+</tr>
+<tr>
+<td><a name="show-version" id="show-version"></a><a href="#show-version-note">show version</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ gforth <span style="white-space: pre-wrap;">--</span>version</td>
+<td><span style="color: gray"><em>select</em> About Preview <em>in</em> Preview <em>menu</em></span></td>
+</tr>
+<tr>
+<th colspan="3"><a name="grammar-invocation" id="grammar-invocation"></a><a href="#grammar-invocation-note">grammar and invocation</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a name="interpreter" id="interpreter"></a><a href="#interpreter-note">interpreter</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ echo "1 1 + . cr bye" &gt; /tmp/add.forth<br />
+<br />
+$ gforth /tmp/add.forth</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="shebang" id="shebang"></a><a href="#shebang-note">shebang</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="repl" id="repl"></a><a href="#repl-note">repl</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ gforth</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="save-image" id="save-image"></a><a href="#save-image-note">save image</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="load-image" id="load-image"></a><a href="#load-image-note">load image</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="identifiers-case-sensitive" id="identifiers-case-sensitive"></a><a href="#identifiers-case-sensitive-note">are identifiers case sensitive</a></td>
+<td><span style="color: gray"><em>no</em></span></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+</tr>
+<tr>
+<td><a name="eol-comment" id="eol-comment"></a><a href="#eol-comment-note">end-of-line comment</a></td>
+<td>1 1 + <span style="color: gray">\ addition</span></td>
+<td>1 1 add <span style="color: gray">% addition</span></td>
+</tr>
+<tr>
+<td><a name="multiple-line-comment" id="multiple-line-comment"></a><a href="#multiple-line-comment-note">multiple line comment</a></td>
+<td>1 1 <span style="color: gray">( comment<br />
+another comment )</span> +</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<th colspan="3"><a name="var-expr" id="var-expr"></a><a href="#var-expr-note">variables and expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#assignment">assignment</a></td>
+<td>variable a<br />
+3 a !<br />
+7 a @ +</td>
+<td>/a 3 def<br />
+7 currentdict /a get add</td>
+</tr>
+<tr>
+<td><a href="#increment-decrement">increment and decrement</a></td>
+<td>7 1+<br />
+7 1-</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#null">null</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>null</td>
+</tr>
+<tr>
+<td><a href="#null-test">null test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#undefined-word">undefined variable access</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="stack" id="stack"></a><a href="#stack-note">stack</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#stacks">stacks</a></td>
+<td><span style="color: gray"><em>data<br />
+floating point<br />
+return<br />
+locals</em></span></td>
+<td><span style="color: gray"><em>operand<br />
+dictionary<br />
+execution<br />
+graphics state<br />
+clipping path</em></span></td>
+</tr>
+<tr>
+<td><a href="#stack-underflow">stack underflow</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#display-stack">display stack</a></td>
+<td>.s<br />
+<span style="color: gray"><em>displays float stack:</em></span><br />
+f.s</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a href="#clear-stack">clear stack</a></td>
+<td><span style="color: gray"><em>clears data stack:</em></span><br />
+clearstack<br />
+<span style="color: gray"><em>clears data and float stack:</em></span><br />
+clearstacks</td>
+<td>clear</td>
+</tr>
+<tr>
+<td><a href="#count-stack">count stack</a></td>
+<td>depth<br />
+fdepth</td>
+<td>count</td>
+</tr>
+<tr>
+<td><a href="#copy-stack">copy stack</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>count copy</td>
+</tr>
+<tr>
+<td><a href="#drop">(a -- )</a></td>
+<td>drop<br />
+<span style="color: gray"><em>displays item being dropped:</em></span><br />
+.<br />
+<span style="color: gray"><em>operate on float stack:</em></span><br />
+fdrop<br />
+f.</td>
+<td>pop</td>
+</tr>
+<tr>
+<td><a href="#dup">(a -- a a)</a></td>
+<td>dup<br />
+fdup</td>
+<td>dup</td>
+</tr>
+<tr>
+<td><a href="#swap">(a b -- b a)</a></td>
+<td>swap<br />
+fswap</td>
+<td>exch</td>
+</tr>
+<tr>
+<td><a href="#nip">(a b -- b)</a></td>
+<td>nip<br />
+fnip</td>
+<td>exch pop</td>
+</tr>
+<tr>
+<td><a href="#over">(a b -- a b a)</a></td>
+<td>over<br />
+fover</td>
+<td>1 index</td>
+</tr>
+<tr>
+<td><a href="#tuck">(a b -- b a b)</a></td>
+<td>tuck<br />
+ftuck</td>
+<td>dup 3 1 roll</td>
+</tr>
+<tr>
+<td><a href="#rot">(a b c -- b c a)</a></td>
+<td>rot<br />
+frot</td>
+<td>3 -1 roll</td>
+</tr>
+<tr>
+<td><a href="#pick">(a b c -- a b c a)</a></td>
+<td>2 pick<br />
+2 fpick</td>
+<td>2 index</td>
+</tr>
+<tr>
+<td><a href="#roll">(a b c d -- b c d a)</a></td>
+<td>3 roll<br />
+3 froll</td>
+<td>4 -1 roll</td>
+</tr>
+<tr>
+<th colspan="3"><a name="arithmetic-logic" id="arithmetic-logic"></a><a href="#arithmetic-logic-note">arithmetic and logic</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a name="true-false" id="true-false"></a><a href="#true-false-note">true and false</a></td>
+<td>true false<br />
+-1 0</td>
+<td>true false</td>
+</tr>
+<tr>
+<td><a name="falsehoods" id="falsehoods"></a><a href="#falsehoods-note">falsehoods</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>false 0</td>
+<td>false</td>
+</tr>
+<tr>
+<td><a name="logical-op" id="logical-op"></a><a href="#logical-op-note">logical operators</a></td>
+<td>and or invert xor</td>
+<td>and or not xor</td>
+</tr>
+<tr>
+<td><a name="relational-op" id="relational-op"></a><a href="#relational-op-note">relational operators</a></td>
+<td><span style="white-space: pre-wrap;">=</span> &lt;&gt; &gt; &lt; &gt;= &lt;=<br />
+f= f&lt;&gt; f&gt; f&lt; f&gt;= f&lt;=</td>
+<td>eq ne gt lt ge le</td>
+</tr>
+<tr>
+<td><a name="min-max" id="min-max"></a><a href="#min-max-note">min and max</a></td>
+<td>1 2 min<br />
+1 2 max</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="three-val-comparision" id="three-val-comparision"></a><a href="#three-val-comparison-note">three value comparison</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="float-literal" id="float-literal"></a><a href="#float-literal-note">float literal</a></td>
+<td><span style="color: gray"><em>must contain an</em> e:</span><br />
+3.14e0</td>
+<td>3.14<br />
+3.14e0</td>
+</tr>
+<tr>
+<td><a name="num-predicates" id="num-predicates"></a><a href="#num-predicates-note">numeric predicates</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="arithmetic-op" id="arithmetic-op"></a><a href="#arithmetic-op-note">arithmetic operators</a></td>
+<td>+ - * <span style="color: gray"><em>??</em></span> / mod <span style="color: gray"><em>??</em></span><br />
+<span style="color: gray"><em>float stack operators:</em></span><br />
+f+ f- f* f/ f</td>
+<td>add sub mul div idiv mod exp</td>
+</tr>
+<tr>
+<td><a name="unary-negation" id="unary-negation"></a><a href="#unary-negation-note">unary negation</a></td>
+<td>negate<br />
+fnegate</td>
+<td>neg</td>
+</tr>
+<tr>
+<td>integer division</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>integer division by zero</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>float division</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>float division by zero</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="power" id="power"></a><a href="#power-note">power</a></td>
+<td>2e0 32e0 f</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="sqrt" id="sqrt"></a><a href="#sqrt-note">sqrt</a></td>
+<td>2e0 fsqrt</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#square-root-negative-2">sqrt(-2)</a></td>
+<td><span style="color: gray"><em>pushes this non-literal value onto stack:</em></span><br />
+-na</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="transcendental-func" id="transcendental-func"></a><a href="#transcendental-func-note">transcendental functions</a></td>
+<td>fexp fln fsin fcos ftan fasin facos fatan fatan2<br />
+<span style="color: gray"><em>also</em> flog <em>for base 10 logarithm</em></span></td>
+<td>sqrt exp ln sin cos <span style="color: gray"><em>none</em></span> <span style="color: gray"><em>none</em></span> <span style="color: gray"><em>none</em></span> <span style="color: gray"><em>none</em></span> atan<br />
+<span style="color: gray"><em>also</em> log <em>for base 10 logarithm</em></span></td>
+</tr>
+<tr>
+<td><a name="transcendental-const" id="transcendental-const"></a><a href="#transcendental-const-note">transcendental constants</a></td>
+<td>pi<br />
+1e0 fexp</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="float-truncation" id="float-truncation"></a><a href="#float-truncation-note">float truncation</a></td>
+<td><span style="color: gray"><em>return floats</em></span><br />
+fround <span style="color: gray"><em>??</em></span> floor <span style="color: gray"><em>??</em></span></td>
+<td>round truncate floor ceiling</td>
+</tr>
+<tr>
+<td><a name="absolute-value" id="absolute-value"></a><a href="#absolute-val-note">absolute value</a><br />
+<span style="color: gray"><em>and signum</em></span></td>
+<td>-7 abs<br />
+-7e0 fabs</td>
+<td>abs</td>
+</tr>
+<tr>
+<td><a name="int-overflow" id="int-overflow"></a><a href="#int-overflow-note">integer overflow</a></td>
+<td><span style="color: gray"><em>modular arithmetic</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#float-overflow">float overflow</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#float-limits">float limits</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="rational-construction" id="rational-construction"></a><a href="#rational-construction-note">rational construction</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="rational-decomposition" id="rational-decomposition"></a><a href="#rational-decomposition-note">rational decomposition</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="complex-construction" id="complex-construction"></a><a href="#complex-construction-note">complex construction</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="complex-conjugation" id="complex-conjugation"></a><a href="#complex-conjugation-note">complex decomposition</a><br />
+<span style="color: gray"><em>real and imaginary component, argument, absolute value, conjugate</em></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#random-num-note">random number</a><br />
+<span style="color: gray"><em>uniform integer, uniform float, normal float</em></span></td>
+<td></td>
+<td><span style="color: gray">rand <em>generates random integer from 0 to 2<sup>31</sup>-1</em>:</span><br />
+rand 100 mod<br />
+<span style="color: gray"><em>none</em></span><br />
+<span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="random-seed" id="random-seed"></a><a href="#random-seed-note">random seed</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>13 srand</td>
+</tr>
+<tr>
+<td><a name="bit-op" id="bit-op"></a><a href="#bit-op-note">bit operators</a></td>
+<td>and or xor invert<br />
+<span style="color: gray"><em>logical shift by 3:</em></span><br />
+7 3 lshift<br />
+7 3 rshift<br />
+<span style="color: gray"><em>arithmetic shift by 1:</em></span><br />
+7 2*<br />
+7 2/</td>
+<td>and or xor not<br />
+<span style="color: gray"><em>logical shift by 3:</em></span><br />
+7 3 bitshift<br />
+7 -3 bitshift</td>
+</tr>
+<tr>
+<td><a name="binary-octal-hex-literals" id="binary-octal-hex-literals"></a><a href="#binary-octal-hex-literals-note">binary, octal, and hex literals</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="radix" id="radix"></a><a href="#radix-note">radix</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="strings" id="strings"></a><a href="#strings-note">strings</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#string-literals">string literals</a></td>
+<td><span style="color: gray"><em>allocates memory for string and pushes address and length onto stack:</em></span><br />
+s\" don't say \"no\""</td>
+<td>(don't say "no")<br />
+<span style="color: gray"><em>parens and backslashes are escaped with backslashes. Balanced parens do not need to be escaped.</em></span></td>
+</tr>
+<tr>
+<td><a href="#string-escapes">string escapes</a></td>
+<td>\a \b \e \f \n \r \t \v \" \\ \, \<span style="color: gray"><em>ooo</em></span> \x<span style="color: gray"><em>xx</em></span></td>
+<td>\b \f \n \r \t \\ \( \) \<span style="color: gray"><em>ooo</em></span></td>
+</tr>
+<tr>
+<td><a href="#string-newline">newline in literal</a></td>
+<td><span style="color: gray"><em>no, use \n</em></span></td>
+<td><span style="color: gray"><em>no, use \n</em></span></td>
+</tr>
+<tr>
+<td><a href="#character-access">character access</a></td>
+<td></td>
+<td>(hello) 0 get</td>
+</tr>
+<tr>
+<td><a href="#string-length">length</a></td>
+<td></td>
+<td>(hello) length</td>
+</tr>
+<tr>
+<td><a href="#string-concatenate">concatenate</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#split">split</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#join">join</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#trim">trim</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#pad">pad</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#number-string-conversion">number to string</a></td>
+<td></td>
+<td>7 (12) cvi add<br />
+73.9 (.037) cvr add</td>
+</tr>
+<tr>
+<td>string to number</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#case-manipulation">case manipulation</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#sprintf">sprintf</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="regex" id="regex"></a><a href="#regex-note">regular expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a name="regex-literal" id="regex-literal"></a><a href="#regex-literal-note">literal</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="char-class-abbrev" id="char-class-abbrev"></a><a href="#char-class-abbrev-note">character class abbreviations</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="regex-anchors" id="regex-anchors"></a><a href="#regex-anchors-note">anchors</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="regex-test" id="regex-test"></a><a href="#regex-test-note">match test</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="case-insensitive-regex" id="case-insensitive-regex"></a><a href="#case-insensitive-regex-note">case insensitive match test</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="regex-modifiers" id="regex-modifiers"></a><a href="#regex-modifiers-note">modifiers</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="subst" id="subst"></a><a href="#subst-note">substitution</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="group-capture" id="group-capture"></a><a href="#group-capture-note">group capture</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="regex-back-ref" id="regex-back-ref"></a><a href="#regex-back-ref-note">back reference in match and substitution</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="dates-time" id="dates-time"></a><a href="#dates-time-note">dates and time</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a name="broken-down-date-time-type" id="broken-down-date-time-type"></a><a href="#broken-down-date-time-type-note">broken-down date and time type</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="current-date-time" id="current-date-time"></a><a href="#current-date-time-note">current date/time</a></td>
+<td><span style="color: gray">\ pushes six values onto stack:</span><br />
+date&amp;time</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="unix-epoch" id="unix-epoch"></a><a href="#unix-epoch-note">to unix epoch, from unix epoch</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="current-unix-epoch" id="current-unix-epoch"></a><a href="#current-unix-epoch-note">current unix epoch</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="date-time-to-str" id="date-time-to-str"></a><a href="#date-time-to-str-note">date and time to string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="format-date" id="format-date"></a><a href="#format-date-note">format date</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="parse-date" id="parse-date"></a><a href="#parse-date-note">parse date</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="date-subtraction" id="date-subtraction"></a><a href="#date-subtraction-note">date subtraction</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="add-duration" id="add-duration"></a><a href="#add-duration-note">add duration</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="date-parts" id="date-parts"></a><a href="#date-parts-note">date parts</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="time-parts" id="time-parts"></a><a href="#time-parts-note">time parts</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="build-date-time" id="build-date-time"></a><a href="#build-date-time-note">build broken-down date and time</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dow-doy" id="dow-doy"></a><a href="#dow-doy-note">day of week and day of year</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="microseconds" id="microseconds"></a><a href="#microseconds-note">microseconds</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="sleep" id="sleep"></a><a href="#sleep-note">sleep</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="timeout" id="timeout"></a><a href="#timeout-note">timeout</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="cpu-usage" id="cpu-usage"></a><a href="#cpu-usage-note">cpu usage</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="arrays" id="arrays"></a><a href="#arrays-note">arrays</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a name="array-literal" id="array-literal"></a><a href="#array-literal-note">literal</a></td>
+<td></td>
+<td>[ 1 2 3 ]</td>
+</tr>
+<tr>
+<td><a name="array-size" id="array-size"></a><a href="#array-size-note">size</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>[ 1 2 3 ] length</td>
+</tr>
+<tr>
+<td><a name="empty-array-test" id="empty-array-test"></a><a href="#empty-array-test-note">empty test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="array-lookup" id="array-lookup"></a><a href="#array-lookup-note">lookup</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>[ 1 2 3 ] 0 get</td>
+</tr>
+<tr>
+<td><a name="array-update" id="array-update"></a><a href="#array-update-note">update</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="array-out-of-bounds" id="array-out-of-bounds"></a><a href="#array-out-of-bounds-note">out-of-bounds behavior</a></td>
+<td></td>
+<td><span style="color: gray">rangecheck <em>error</em></span></td>
+</tr>
+<tr>
+<td><a name="array-element-index" id="array-element-index"></a><a href="#array-element-index-note">element index</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="slice-array" id="slice-array"></a><a href="#slice-array-note">slice</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>slice to end</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>manipulate back</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>manipulate front</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="concatenate-array" id="concatenate-array"></a><a href="#concatenate-array-note">array concatenate</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>replicate</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>copy</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-iteration">array iteration</a></td>
+<td></td>
+<td>[ 50 100 150 ] { 100 moveto (foo) show } forall</td>
+</tr>
+<tr>
+<td>indexed iteration</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>iterate over range</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>instantiate range as array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reverse</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sort</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dedupe</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="membership" id="membership"></a><a href="#membership-note">membership</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="intersection" id="intersection"></a><a href="#intersection-note">intersection</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="union" id="union"></a><a href="#union-note">union</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>relative complement, symmetric difference</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-map">map</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-filter">filter</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#array-reduce">reduce</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>min and max element</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>universal and existential tests</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#sample">sample w/o replacement</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="zip" id="zip"></a><a href="#zip-note">zip</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="heap" id="heap"></a><a href="#heap-note">heap</a></th>
+</tr>
+<tr>
+<td><a href="#allocate">allocate region on heap</a></td>
+<td><span style="color: gray"><em>pushes address and</em> 0 <em>onto stack:</em></span><br />
+10 allocate</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#free">free region on heap</a></td>
+<td>free</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#resize">resize region on heap</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#write">write</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#read">read</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="dictionaries" id="dictionaries"></a><a href="#dictionaries-note">dictionaries</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#dictionary-literal">dictionary literal</a></td>
+<td></td>
+<td><span style="white-space: pre-wrap;"> &lt;&lt; </span>1 (one) 2 (two) 3 (three)<span style="white-space: pre-wrap;"> &gt;&gt; </span></td>
+</tr>
+<tr>
+<td><a href="#dictionary-length">dictionary length</a></td>
+<td></td>
+<td><span style="white-space: pre-wrap;"> &lt;&lt; </span>1 (one) 2 (two)<span style="white-space: pre-wrap;"> &gt;&gt; </span>length</td>
+</tr>
+<tr>
+<td><a href="#dictionary-element-access">dictionary element access</a></td>
+<td></td>
+<td><span style="color: gray"><em>pushes</em> (one) <em>onto stack:</em></span><br />
+<span style="white-space: pre-wrap;"> &lt;&lt; </span>1 (one) 2 (two)<span style="white-space: pre-wrap;"> &gt;&gt; </span>1 get</td>
+</tr>
+<tr>
+<td><a href="#dictionary-element-not-found">element not found behavior</a></td>
+<td></td>
+<td><span style="color: gray">undefined <em>error</em></span></td>
+</tr>
+<tr>
+<td><a href="#dictionary-set-element">set dictionary element</a></td>
+<td></td>
+<td>/h<span style="white-space: pre-wrap;"> &lt;&lt; </span>1 (one) 2 (two)<span style="white-space: pre-wrap;"> &gt;&gt; </span>def<br />
+currentdict /h get 3 (three) put</td>
+</tr>
+<tr>
+<td><a href="#range">range</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="functions" id="functions"></a><a href="#functions-note">functions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a name="def-func" id="def-func"></a><a href="#def-func-note">define function</a></td>
+<td>: add3 + + ;</td>
+<td>/add3 { add add } def</td>
+</tr>
+<tr>
+<td><a name="invoke-func" id="invoke-func"></a><a href="#invoke-func-note">invoke function</a></td>
+<td>3 7 5 add3</td>
+<td>3 7 5 add3</td>
+</tr>
+<tr>
+<td><a name="missing-arg" id="missing-arg"></a><a href="#missing-arg-note">missing argument behavior</a></td>
+<td><span style="color: gray"><em>a stack underflow error results if the expected number of arguments is not on the stack</em></span></td>
+<td><span style="color: gray"><em>a stack underflow error results if the expected number of arguments is not on the stack</em></span></td>
+</tr>
+<tr>
+<td><a name="retval" id="retval"></a><a href="#retval-note">return value</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>values are returned by pushing them onto the stack</em></span></td>
+<td><span style="color: gray"><em>values are returned by pushing them onto the stack</em></span></td>
+</tr>
+<tr>
+<td><a name="multiple-retval" id="multiple-retval"></a><a href="#multiple-retval-note">multiple return values</a></td>
+<td><span style="color: gray"><em>no limit on the number of values a function can leave on the stack</em></span></td>
+<td><span style="color: gray"><em>no limit on the number of values a function can leave on the stack</em></span></td>
+</tr>
+<tr>
+<td><a name="recursive-func" id="recursive-func"></a><a href="#recursive-func-note">recursive function</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="mutually-recursive-func" id="mutually-recursive-func"></a><a href="#mutually-recursive-func-note">mutually recursive functions</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="anonymous-func" id="anonymous-func"></a><a href="#anonymous-func-note">anonymous function</a></td>
+<td></td>
+<td>{ 2 add }</td>
+</tr>
+<tr>
+<td><a name="invoke-anonymous-func" id="invoke-anonymous-func"></a><a href="#invoke-anonymous-func-note">invoke anonymous function</a></td>
+<td></td>
+<td>3 { 2 add } exec</td>
+</tr>
+<tr>
+<td><a name="closure" id="closure"></a><a href="#closure-note">closure</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="func-as-val" id="func-as-val"></a><a href="#func-as-val-note">function as value</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="compose-func" id="compose-func"></a><a href="#compose-func-note">compose functions</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="partial-application" id="partial-application"></a><a href="#partial-application-note">partial application</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="fried-quotation" id="fried-quotation"></a><a href="#fried-quotation-note">fried quotation</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="execution-control" id="execution-control"></a><a href="#execution-control-note">execution control</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#if-note">notes on conditionals</a></td>
+<td><span style="color: gray"><em>conditionals can only be used in word definitions.</em></span><br />
+<span style="color: gray">endif <em>can be used in place of</em> then</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#ifelse">ifelse</a></td>
+<td>: ifelse rot if drop else nip then ;<br />
+x @ 0 &gt; x @ x @ negate ifelse</td>
+<td>x 0 gt { x } { x neg } ifelse</td>
+</tr>
+<tr>
+<td><a href="#if">if</a></td>
+<td><span style="color: gray"><em>bool</em></span><br />
+if<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>if true</em></span><br />
+then</td>
+<td><span style="color: gray"><em>bool</em></span> { <span style="color: gray"><em>if true</em></span> } if</td>
+</tr>
+<tr>
+<td><a href="#if-else">if else</a></td>
+<td><span style="color: gray"><em>bool</em></span><br />
+if<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>if true</em></span><br />
+else<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>if false</em></span><br />
+then</td>
+<td><span style="color: gray"><em>bool</em></span> { <span style="color: gray"><em>if true</em></span> } { <span style="color: gray"><em>if false</em></span> } ifelse</td>
+</tr>
+<tr>
+<td><a href="#loop-note">notes on loops</a></td>
+<td><span style="color: gray"><em>loops can only be used in word definitions.</em></span><br />
+<span style="color: gray">leave <em>can be used with</em> loop <em>to terminate early</em></span></td>
+<td><span style="color: gray">exit <em>terminates innermost</em> for, forall, loop, <em>or</em> repeat</span></td>
+</tr>
+<tr>
+<td><a href="#conditional-loop">conditional loop</a></td>
+<td>begin<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>bool</em></span><br />
+while<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>code</em></span><br />
+repeat</td>
+<td>{<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>bool</em></span> { exit } if<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>code</em></span><br />
+} loop</td>
+</tr>
+<tr>
+<td><a href="#infinite-loop">infinite loop</a></td>
+<td>begin<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>code</em></span><br />
+again</td>
+<td>{ <span style="color: gray"><em>code</em></span> } loop</td>
+</tr>
+<tr>
+<td><a href="#loop-10-times">loop 10 times</a></td>
+<td>10 0 ?do <span style="color: gray"><em>code</em></span> loop</td>
+<td>10 { <span style="color: gray"><em>code</em></span> } repeat</td>
+</tr>
+<tr>
+<td><a href="#for-loop">for loop</a></td>
+<td>10 0 ?do i <span style="color: gray"><em>code</em></span> loop</td>
+<td><span style="color: gray"><em>iterator value on stack</em></span><br />
+0 20 200 { 72 exch moveto (foo) show } for</td>
+</tr>
+<tr>
+<td><a href="#for-loop-step-2">for loop step 2</a></td>
+<td>10 0 +do i <span style="color: gray"><em>code</em></span> 2 +loop</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="exceptions" id="exceptions"></a><a href="#exceptions-note">exceptions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#exception-note">notes on exceptions</a></td>
+<td><span style="color: gray">throw <em>raises an exception if the top of the data stack is nonzero.</em> exception <em>puts a nonzero value on the stack. If the exception is not handled the string will be displayed by the interpreter on exit.</em> catch <em>can only be used in a word definition.</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#raise-exception">raise exception</a></td>
+<td>s" bam!" exception throw</td>
+<td>$error /errorname (foo) put stop</td>
+</tr>
+<tr>
+<td><a href="#handle-exception">handle exception</a></td>
+<td>['] <span style="color: gray"><em>risky word</em></span> catch if <span style="color: gray"><em>handle error</em></span> then</td>
+<td>{<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><em>risky code</em></span><br />
+} stopped { <span style="color: gray"><em>handle error</em></span> }</td>
+</tr>
+<tr>
+<th colspan="3"><a name="file-handles" id="file-handles"></a><a href="#file-handles-note">file handles</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td>standard file handles</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>read line from stdin</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>write line to stdout</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#write-stdout">write to stdout</a></td>
+<td>." hello" cr</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#redirect-to-file">redirect to file</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="files" id="files"></a><a href="#files-note">files</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td>file test, regular file text</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>file size</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>is file readable, writable, executable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>set file permissions</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>touch file</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>copy file, remove file, rename file</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>create symlink, symlink test, readlink</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>generate unused file name</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="directories" id="directories"></a><a href="#directories-note">directories</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td>working directory<br />
+<span style="color: gray"><em>get and set</em></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>build pathname</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dirname and basename</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>absolute pathname</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>make directory</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recursive copy</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>remove empty directory</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>remove directory and contents</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>directory test</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="processes-environment" id="processes-environment"></a><a href="#processes-environment-note">processes and environment</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a name="cmd-line-arg" id="cmd-line-arg"></a><a href="#cmd-line-arg-note">command line arguments</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="program-name" id="program-name"></a><a href="#program-name-note">program name</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="env-var" id="env-var"></a><a href="#env-var-note">environment variable</a><br />
+<span style="color: gray"><em>get, set</em></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="user-id-name" id="user-id-name"></a><a href="#user-id-name-note">user id and name</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="exit" id="exit"></a><a href="#exit-note">exit</a></td>
+<td>bye</td>
+<td>quit</td>
+</tr>
+<tr>
+<td><a name="external-cmd" id="external-cmd"></a><a href="#external-cmd-note">external command</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="backticks" id="backticks"></a><a href="#backticks-note">backticks</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pid" id="pid"></a><a href="#pid-note">pid</a><br />
+<span style="color: gray"><em>and parent pid</em></span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="signal-handler" id="signal-handler"></a><a href="#signal-handler-note">set signal handler</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="send-signal" id="send-signal"></a><a href="#send-signal-note">send signal</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="libraries-namespaces" id="libraries-namespaces"></a><a href="#libraries-namespaces-note">libraries and namespaces</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#interpret-file">interpret file</a></td>
+<td>foo.fs include<br />
+<span style="color: gray"><em>or</em></span><br />
+s" foo.fs" included</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#load-library">load library</a></td>
+<td>require foo.fs<br />
+<span style="color: gray"><em>or</em></span><br />
+s" foo.fs" required</td>
+<td></td>
+</tr>
+<tr>
+<td>hot patch</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>load error</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>main routine in library</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>library path</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>library path environment variable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>namespace declaration</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>unqualified import of namespace</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="reflection" id="reflection"></a><a href="#reflection-note">reflection</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#data-type">query data type</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td>3 type</td>
+</tr>
+<tr>
+<td><a href="#pretty-print">pretty print</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#dump-location-and-stack">dump location and stack</a></td>
+<td><span style="white-space: pre-wrap;">~~</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#show-code">show code</a></td>
+<td>see <span style="color: gray"><em>word</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#function-documentation">documentation</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="graphics" id="graphics"></a><a href="#graphics-note">graphics</a></th>
+</tr>
+<tr>
+<th></th>
+<th>forth</th>
+<th>postscript</th>
+</tr>
+<tr>
+<td><a href="#default-origin">default location of origin</a></td>
+<td></td>
+<td><span style="color: gray"><em>lower left corner of page</em></span></td>
+</tr>
+<tr>
+<td><a href="#default-scale">default scale</a></td>
+<td></td>
+<td><span style="color: gray"><em>72 units per inch</em></span></td>
+</tr>
+<tr>
+<td><a href="#text">text</a></td>
+<td></td>
+<td>72 72 moveto (hello) show</td>
+</tr>
+<tr>
+<td><a href="#render-page">render page and start a new one</a></td>
+<td></td>
+<td>showpage</td>
+</tr>
+<tr>
+<td><a href="#set-font">set current font</a></td>
+<td></td>
+<td>/Helvetica 20 selectfont</td>
+</tr>
+<tr>
+<td><a href="#built-in-fonts">built-in fonts</a></td>
+<td></td>
+<td>/Times-Roman /Times-Italic<br />
+/Times-Bold /Times-BoldItalic<br />
+/Helvetica /Helvetica-Oblique<br />
+/Helvetica-Bold /Helvetica-BoldOblique<br />
+/Courier /Courier-Bold<br />
+/Courier-Oblique /Courier-BoldOblique</td>
+</tr>
+<tr>
+<td><a href="#closed-polygon">closed polygon</a></td>
+<td></td>
+<td><span style="color: gray"><em>creates outline of triangle:</em></span><br />
+newpath<br />
+72 72 moveto<br />
+144 144 lineto<br />
+144 72 lineto<br />
+closepath<br />
+stroke</td>
+</tr>
+<tr>
+<td><a href="#set-line-width">set current line width</a></td>
+<td></td>
+<td><span style="color: gray"><em>default value is 1:</em></span><br />
+2 setlinewidth</td>
+</tr>
+<tr>
+<td><a href="#circle-arc">arc of circle</a></td>
+<td></td>
+<td><span style="color: gray"><em>creates half-circular arc centered at (144,144) with radius 40:</em></span><br />
+newpath<br />
+144 144 40 90 270 arc<br />
+stroke</td>
+</tr>
+<tr>
+<td><a href="#bezier-curve">bezier curve</a></td>
+<td></td>
+<td><span style="color: gray"><em>control points are (144,144), (288,144), (288,288), and (144,288):</em></span><br />
+newpath<br />
+144 144 moveto<br />
+288 144 288 288 144 288 curveto<br />
+stroke</td>
+</tr>
+<tr>
+<td><a href="#filled-polygon">filled polygon</a></td>
+<td></td>
+<td><span style="color: gray"><em>creates solid triangle:</em></span><br />
+newpath<br />
+72 72 moveto<br />
+144 144 lineto<br />
+144 72 lineto<br />
+closepath<br />
+fill</td>
+</tr>
+<tr>
+<td><a href="#set-color">set color</a></td>
+<td></td>
+<td><span style="color: gray"><em>default color is black. Sets current color to red:</em></span><br />
+1.0 0.0 0.0 setrgbcolor</td>
+</tr>
+<tr>
+<td><a href="#translate-coordinates">translate coordinates</a></td>
+<td></td>
+<td><span style="color: gray"><em>move origin 72 units up and to the right:</em></span><br />
+72 72 translate</td>
+</tr>
+<tr>
+<td><a href="#scale-coordinates">scale coordinates</a></td>
+<td></td>
+<td><span style="color: gray"><em>increase size of unit 72-fold:</em></span><br />
+72 72 scale</td>
+</tr>
+<tr>
+<td><a href="#rotate-coordindates">rotate coordinates</a></td>
+<td></td>
+<td><span style="color: gray"><em>rotate coordinates 90 degrees counterclockwise:</em></span><br />
+90 rotate</td>
+</tr>
+<tr>
+<td><a href="#graphics-state">items in graphics state</a></td>
+<td></td>
+<td>currentpoint<br />
+currentrgbcolor<br />
+currentfont<br />
+currentmatrix<br />
+currentlinewidth</td>
+</tr>
+<tr>
+<td><a href="#save-graphics-state">save graphics state</a></td>
+<td></td>
+<td>gsave</td>
+</tr>
+<tr>
+<td><a href="#restore-graphics-state">restore graphics state</a></td>
+<td></td>
+<td>grestore</td>
+</tr>
+<tr>
+<th></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">_____________________________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">_____________________________________________________________</span></span></th>
+</tr>
+</table>
+<p><a name="version-used-note" id="version-used-note"></a></p>
+<h2 id="toc0"><span><a href="#version-used">version used</a></span></h2>
+<p>The version used for the examples in this sheet.</p>
+<p><a name="show-version-note" id="show-version-note"></a></p>
+<h2 id="toc1"><span><a href="#show-version">show version</a></span></h2>
+<p>How to get the version.</p>
+<p><a name="grammar-invocation-note" id="grammar-invocation-note"></a></p>
+<h1 id="toc2"><span><a href="#grammar-invocation">Grammar and Invocation</a></span></h1>
+<p><a name="interpreter-note" id="interpreter-note"></a></p>
+<h2 id="toc3"><span><a href="#interpreter">interpreter</a></span></h2>
+<p>How to invoke the interpreter.</p>
+<p><a name="shebang-note" id="shebang-note"></a></p>
+<h2 id="toc4"><span><a href="#shebang">shebang</a></span></h2>
+<p>How to make a source file executable on a UNIX system.</p>
+<p><a name="repl-note" id="repl-note"></a></p>
+<h2 id="toc5"><span><a href="#repl">repl</a></span></h2>
+<p>How to invoke the REPL.</p>
+<p><a name="save-image-note" id="save-image-note"></a></p>
+<h2 id="toc6"><span><a href="#save-image">save image</a></span></h2>
+<p><a name="load-image-note" id="load-image-note"></a></p>
+<h2 id="toc7"><span><a href="#load-image">load image</a></span></h2>
+<p><a name="identifiers-case-sensitive-note" id="identifiers-case-sensitive-note"></a></p>
+<h2 id="toc8"><span><a href="#identifiers-case-sensitive">are identifiers case sensitive</a></span></h2>
+<p>Are words case sensitive?</p>
+<p><a name="eol-comment-note" id="eol-comment-note"></a></p>
+<h2 id="toc9"><span><a href="#eol-comment">end-of-line comment</a></span></h2>
+<p>The syntax for a comment which ends at the end of the line.</p>
+<p><a name="multiple-line-comment-note" id="multiple-line-comment-note"></a></p>
+<h2 id="toc10"><span><a href="#multiple-line-comment">multiple line comment</a></span></h2>
+<p>The syntax for a comment which can span multiple lines.</p>
+<p><strong>forth:</strong></p>
+<p>Paren delimited comments cannot span multiple lines when using the REPL.</p>
+<p>Paren delimited comments do not nest.</p>
+<p><a name="var-expr-note" id="var-expr-note"></a></p>
+<h1 id="toc11"><span><a href="#var-expr">Variables and Expressions</a></span></h1>
+<p><a name="assignment" id="assignment"></a></p>
+<h2 id="toc12"><span>assignment</span></h2>
+<p><a name="stack-note" id="stack-note"></a></p>
+<h1 id="toc13"><span><a href="#stack">Stack</a></span></h1>
+<p><a name="arithmetic-logic-note" id="arithmetic-logic-note"></a></p>
+<h1 id="toc14"><span><a href="#arithmetic-logic">Arithmetic and Logic</a></span></h1>
+<p><a name="arithmetic-operators" id="arithmetic-operators"></a></p>
+<h2 id="toc15"><span>operators</span></h2>
+<p><a name="strings-note" id="strings-note"></a></p>
+<h1 id="toc16"><span><a href="#strings">Strings</a></span></h1>
+<p><a name="regex-note" id="regex-note"></a></p>
+<h1 id="toc17"><span><a href="#regex">Regular Expressions</a></span></h1>
+<p><a name="regex-literal-note" id="regex-literal-note"></a></p>
+<h2 id="toc18"><span><a href="#regex-literal">literal</a></span></h2>
+<p>The syntax for a regular expression value.</p>
+<p><a name="char-class-abbrev-note" id="char-class-abbrev-note"></a></p>
+<h2 id="toc19"><span><a href="#char-class-abbrev">character class abbreviations</a></span></h2>
+<p><a name="regex-anchors-note" id="regex-anchors-note"></a></p>
+<h2 id="toc20"><span><a href="#regex-anchors">anchors</a></span></h2>
+<p><a name="regex-test-note" id="regex-test-note"></a></p>
+<h2 id="toc21"><span><a href="#regex-test">match test</a></span></h2>
+<p><a name="case-insensitive-regex-note" id="case-insensitive-regex-note"></a></p>
+<h2 id="toc22"><span><a href="#case-insensitive-regex">case insensitive match test</a></span></h2>
+<p><a name="regex-modifiers-note" id="regex-modifiers-note"></a></p>
+<h2 id="toc23"><span><a href="#regex-modifiers">modifiers</a></span></h2>
+<p><a name="subst-note" id="subst-note"></a></p>
+<h2 id="toc24"><span><a href="#subst">substitution</a></span></h2>
+<p><a name="group-capture-note" id="group-capture-note"></a></p>
+<h2 id="toc25"><span><a href="#group-capture">group capture</a></span></h2>
+<p><a name="regex-back-ref-note" id="regex-back-ref-note"></a></p>
+<h2 id="toc26"><span><a href="#regex-back-ref">back reference in match and substitution</a></span></h2>
+<p><a name="dates-time-note" id="dates-time-note"></a></p>
+<h1 id="toc27"><span><a href="#dates-time">Dates and Time</a></span></h1>
+<p><a name="broken-down-date-time-type-note" id="broken-down-date-time-type-note"></a></p>
+<h2 id="toc28"><span><a href="#broken-down-date-time-type">broken-down date and time type</a></span></h2>
+<p><a name="current-date-time-note" id="current-date-time-note"></a></p>
+<h2 id="toc29"><span><a href="#current-date-time">current date/time</a></span></h2>
+<p><a name="unix-epoch-note" id="unix-epoch-note"></a></p>
+<h2 id="toc30"><span><a href="#unix-epoch">to unix epoch, from unix epoch</a></span></h2>
+<p><a name="current-unix-epoch-note" id="current-unix-epoch-note"></a></p>
+<h2 id="toc31"><span><a href="#current-unix-epoch">current unix epoch</a></span></h2>
+<p><a name="date-time-to-str-note" id="date-time-to-str-note"></a></p>
+<h2 id="toc32"><span><a href="#date-time-to-str">date and time to string</a></span></h2>
+<p><a name="format-date-note" id="format-date-note"></a></p>
+<h2 id="toc33"><span><a href="#format-date">format date</a></span></h2>
+<p><a name="parse-date-note" id="parse-date-note"></a></p>
+<h2 id="toc34"><span><a href="#parse-date">parse date</a></span></h2>
+<p><a name="date-subtraction-note" id="date-subtraction-note"></a></p>
+<h2 id="toc35"><span><a href="#date-subtraction">date subtraction</a></span></h2>
+<p><a name="add-duration-note" id="add-duration-note"></a></p>
+<h2 id="toc36"><span><a href="#add-duration">add duration</a></span></h2>
+<p><a name="date-parts-note" id="date-parts-note"></a></p>
+<h2 id="toc37"><span><a href="#date-parts">date parts</a></span></h2>
+<p><a name="time-parts-note" id="time-parts-note"></a></p>
+<h2 id="toc38"><span><a href="#time-parts">time parts</a></span></h2>
+<p><a name="build-date-time-note" id="build-date-time-note"></a></p>
+<h2 id="toc39"><span><a href="#build-date-time">build broken-down date and time</a></span></h2>
+<p><a name="dow-doy-note" id="dow-doy-note"></a></p>
+<h2 id="toc40"><span><a href="#dow-doy">day of week and day of year</a></span></h2>
+<p><a name="microseconds-note" id="microseconds-note"></a></p>
+<h2 id="toc41"><span><a href="#microseconds">microseconds</a></span></h2>
+<p><a name="sleep-note" id="sleep-note"></a></p>
+<h2 id="toc42"><span><a href="#sleep">sleep</a></span></h2>
+<p><a name="timeout-note" id="timeout-note"></a></p>
+<h2 id="toc43"><span><a href="#timeout">timeout</a></span></h2>
+<p><a name="cpu-usage-note" id="cpu-usage-note"></a></p>
+<h2 id="toc44"><span><a href="#cpu-usage">cpu usage</a></span></h2>
+<p><a name="arrays-note" id="arrays-note"></a></p>
+<h1 id="toc45"><span><a href="#arrays">Arrays</a></span></h1>
+<p><a name="array-literal-note" id="array-literal-note"></a></p>
+<h2 id="toc46"><span><a href="#array-literal">literal</a></span></h2>
+<p>Syntax for an array literal.</p>
+<p><a name="array-size-note" id="array-size-note"></a></p>
+<h2 id="toc47"><span><a href="#array-size">size</a></span></h2>
+<p>How to get the length of an array.</p>
+<p><a name="empty-array-test-note" id="empty-array-test-note"></a></p>
+<h2 id="toc48"><span><a href="#empty-array-test">empty test</a></span></h2>
+<p>How to test whether an array is empty.</p>
+<p><a name="array-lookup-note" id="array-lookup-note"></a></p>
+<h2 id="toc49"><span><a href="#array-lookup">lookup</a></span></h2>
+<p>How to look up the value stored at an index.</p>
+<p><a name="array-update-note" id="array-update-note"></a></p>
+<h2 id="toc50"><span><a href="#array-update">update</a></span></h2>
+<p>How to set the value stored at an index.</p>
+<p><a name="array-out-of-bounds-note" id="array-out-of-bounds-note"></a></p>
+<h2 id="toc51"><span><a href="#array-out-of-bounds">out-of-bounds behavior</a></span></h2>
+<p>What happens when an attempt is made to access the value at a non-existent index.</p>
+<p><a name="zip-note" id="zip-note"></a></p>
+<h2 id="toc52"><span><a href="#zip">zip</a></span></h2>
+<p>How to convert two sequences into a sequence of pairs.</p>
+<p><a name="heap-note" id="heap-note"></a></p>
+<h1 id="toc53"><span><a href="#heap">Heap</a></span></h1>
+<p><a name="dictionaries-note" id="dictionaries-note"></a></p>
+<h1 id="toc54"><span><a href="#dictionaries">Dictionaries</a></span></h1>
+<p><a name="functions-note" id="functions-note"></a></p>
+<h1 id="toc55"><span><a href="#functions">Functions</a></span></h1>
+<p><a name="def-func-note" id="def-func-note"></a></p>
+<h2 id="toc56"><span><a href="#def-func">define function</a></span></h2>
+<p>How to define a function.</p>
+<p><a name="invoke-func-note" id="invoke-func-note"></a></p>
+<h2 id="toc57"><span><a href="#invoke-func">invoke function</a></span></h2>
+<p>How to invoke a function.</p>
+<p><a name="missing-arg-note" id="missing-arg-note"></a></p>
+<h2 id="toc58"><span><a href="#missing-arg">missing argument behavior</a></span></h2>
+<p>What happens when too few arguments are passed to a function.</p>
+<p>It is an error in stack-oriented languages when a function tries to read more values from a stack than are there. Since the stack may have had values in it which were not intended for the function, so in general stack-oriented languages cannot detect when too few arguments are passed to a function.</p>
+<p><a name="retval-note" id="retval-note"></a></p>
+<h2 id="toc59"><span><a href="#retval">return value</a></span></h2>
+<p>How to return a value from a function.</p>
+<p><a name="multiple-retval-note" id="multiple-retval-note"></a></p>
+<h2 id="toc60"><span><a href="#multiple-retval">multiple return values</a></span></h2>
+<p><a name="recursive-func-note" id="recursive-func-note"></a></p>
+<h2 id="toc61"><span><a href="#recursive-func">recursive function</a></span></h2>
+<p><a name="mutually-recursive-func-note" id="mutually-recursive-func-note"></a></p>
+<h2 id="toc62"><span><a href="#mutually-recursive-func">mutually recursive functions</a></span></h2>
+<p><a name="anonymous-func-note" id="anonymous-func-note"></a></p>
+<h2 id="toc63"><span><a href="#anonymous-func">anonymous function</a></span></h2>
+<p><a name="invoke-anonymous-func-note" id="invoke-anonymous-func-note"></a></p>
+<h2 id="toc64"><span><a href="#invoke-anonymous-func">invoke anonymous function</a></span></h2>
+<p><a name="closure-note" id="closure-note"></a></p>
+<h2 id="toc65"><span><a href="#closure">closure</a></span></h2>
+<p><a name="func-as-val-note" id="func-as-val-note"></a></p>
+<h2 id="toc66"><span><a href="#func-as-val">function as value</a></span></h2>
+<p>How to treat a function as a value.</p>
+<p><a name="compose-func-note" id="compose-func-note"></a></p>
+<h2 id="toc67"><span><a href="#compose-func">compose functions</a></span></h2>
+<p><a name="partial-application-note" id="partial-application-note"></a></p>
+<h2 id="toc68"><span><a href="#partial-application">partial application</a></span></h2>
+<p><a name="fried-quotation-note" id="fried-quotation-note"></a></p>
+<h2 id="toc69"><span><a href="#fried-quotation">fried quotation</a></span></h2>
+<p><a name="execution-control-note" id="execution-control-note"></a></p>
+<h1 id="toc70"><span><a href="#execution-control">Execution Control</a></span></h1>
+<p><a name="exceptions-note" id="exceptions-note"></a></p>
+<h1 id="toc71"><span><a href="#exceptions">Exceptions</a></span></h1>
+<p><a name="file-handles-note" id="file-handles-note"></a></p>
+<h1 id="toc72"><span><a href="#file-handles">File Handles</a></span></h1>
+<p><a name="files-note" id="files-note"></a></p>
+<h1 id="toc73"><span><a href="#files">Files</a></span></h1>
+<p><a name="directories-note" id="directories-note"></a></p>
+<h1 id="toc74"><span><a href="#directories">Directories</a></span></h1>
+<p><a name="processes-environment-note" id="processes-environment-note"></a></p>
+<h1 id="toc75"><span><a href="#processes-environment">Processes and Environment</a></span></h1>
+<p><a name="cmd-line-arg-note" id="cmd-line-arg-note"></a></p>
+<h2 id="toc76"><span><a href="#cmd-line-arg">command line arguments</a></span></h2>
+<p><a name="program-name-note" id="program-name-note"></a></p>
+<h2 id="toc77"><span><a href="#program-name">program name</a></span></h2>
+<p><a name="env-var-note" id="env-var-note"></a></p>
+<h2 id="toc78"><span><a href="#env-var">environment variable</a></span></h2>
+<p><a name="user-id-name-note" id="user-id-name-note"></a></p>
+<h2 id="toc79"><span><a href="#user-id-name">user id and name</a></span></h2>
+<p><a name="exit-note" id="exit-note"></a></p>
+<h2 id="toc80"><span><a href="#exit">exit</a></span></h2>
+<p><a name="external-cmd-note" id="external-cmd-note"></a></p>
+<h2 id="toc81"><span><a href="#external-cmd">external command</a></span></h2>
+<p><a name="backticks-note" id="backticks-note"></a></p>
+<h2 id="toc82"><span><a href="#backticks">backticks</a></span></h2>
+<p><a name="pid-note" id="pid-note"></a></p>
+<h2 id="toc83"><span><a href="#pid">pid</a></span></h2>
+<p><a name="signal-handler-note" id="signal-handler-note"></a></p>
+<h2 id="toc84"><span><a href="#signal-handler">set signal handler</a></span></h2>
+<p><a name="send-signal-note" id="send-signal-note"></a></p>
+<h2 id="toc85"><span><a href="#send-signal">send signal</a></span></h2>
+<p><a name="libraries-namespaces-note" id="libraries-namespaces-note"></a></p>
+<h1 id="toc86"><span><a href="#libraries-namespaces">Libraries and Namespaces</a></span></h1>
+<p><a name="reflection-note" id="reflection-note"></a></p>
+<h1 id="toc87"><span><a href="#reflection">Reflection</a></span></h1>
+<p><a name="graphics-note" id="graphics-note"></a></p>
+<h1 id="toc88"><span><a href="#graphics">Graphics</a></span></h1>
+<p><a name="forth" id="forth"></a></p>
+<h1 id="toc89"><span><a href="#top">Forth</a></span></h1>
+<p><a href="http://www.complang.tuwien.ac.at/forth/gforth/Docs-html/">Gforth User Manual</a><br />
+<a href="http://galileo.phys.virginia.edu/classes/551.jvn.fall01/primer.htm">A Beginner's Guide to Forth</a><br />
+<a href="http://thinking-forth.sourceforge.net/">Thinking Forth</a><br />
+<a href="http://lars.nocrew.org/dpans/dpans.htm">ANS Forth</a></p>
+<p>The data stack used by Forth procedures to pass operands consists of cells of machine words. These will be interpreted as signed integers, unsigned integers, or memory addresses, depending upon the operator invoked on them. A Forth interpreter does not perform any checks to ensure type safety.</p>
+<p>To work with strings and arrays, a Forth programmer must allocate and free space on the heap with the <em>allocate</em> and <em>free</em> commands. Strings are then represented on the data stack with two cells: the address of the string and the length of the string. To make working with these string representations easier, there are operators which manipulate the stack two cells at a time: <em>2drop</em>, <em>2dup</em>, <em>2swap</em>.</p>
+<p>Most Forth implementations support floating point numbers. Floats are kept on a separate stack, and many data stack operators have a floating point stack analogue. Floating point operators have an "f" prefix: <em>fdrop</em>, <em>fdup</em>, <em>fswap</em>, <em>f+</em>, <em>f*</em>, <em>f&lt;</em>.</p>
+<p><a name="postscript" id="postscript"></a></p>
+<h1 id="toc90"><span><a href="#top">PostScript</a></span></h1>
+<p><a href="http://partners.adobe.com/public/developer/en/ps/PLRM.pdf">PostScript Language Reference (pdf)</a><br />
+<a href="http://www.adobe.com/devnet/acrobat/pdfs/pdf_reference_1-7.pdf">PDF Reference (pdf)</a></p>
+<p>PostScript is a commonly used page description language. It has programming language features one might not expect to find in such a special purpose language such as looping and branching commands, arrays and dictionaries, and even commands which read from standard input and write to standard out.</p>
+<p>Like Forth, PostScript is a language with built-in operators that add value to or remove values from an operand stack. Unlike Forth, PostScript keeps track of the type of each value in the operand stack, and it will raise an error if an operator is called on an operand of the wrong type. PostScript also offers string, array, and dictionary data types so that direct access to memory is not needed or even supported.</p>
+<p>A PostScript document consists of a sequence of pages, one for each execution of the <em>showpage</em> operator. PostScript provides a selection of operators which paint marks such as letters, shapes, or lines onto the page. The painted marks are collected in a buffer. When a <em>showpage</em> operator is invoked, the marks are rendered on the page and the buffer is cleared. If two marks overlap, the mark which was painted last will be completely visible, and the earlier mark will be partially or completely obscured as if it had been painted over.</p>
+<p>The coordinate system used for determining the location of a painting mark places the origin in the lower left corner of the pa by default. The scale is 72 units per inch, with the x coordinate increasing in a rightward direction and the y coordinate increasing in an upward direction. The program may scale, rotate, or translate the coordinate system as pleased as long as the transformation is linear. The size of the page depends on the output device. Although the origin is by default the lower left corner of the physical page, some printers cannot print on the margin of the page; such printers cannot place a mark at or near the origin. The portions of marks which are outside the renderable window of the output device are ignored.</p>
+<p>Some of the behavior of the painting operands is governed by the current graphics state. This reduces the number of operands that must be pushed onto the stack when calling a painting operator. The most commonly used parameters in the current graphics state are the current position, path, color, font, line width, coordinate transformation matrix. The <em>gsave</em> and <em>grestore</em> will push the current graphics state onto a stack or pop and restore the top value of the graphics state from the same stack.</p>
+<h1 id="toc91"><span>PostScript Development</span></h1>
+<p><a href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a><br />
+<a href="http://www.quite.com/psalter/">PSAlter</a><br />
+<a href="http://en.wikipedia.org/wiki/Preview_(software)">Preview</a></p>
+<p>One can test PostScript code by sending it to a printer, but it is better to have an application which can render the PostScript on a screen. Ghostscript is free and runs on Unix and Linux. PSAlter can be purchased for Windows.</p>
+<p>Mac OS X includes an application called <em>Preview</em> which renders PDF documents on the screen. It can also be used to render PostScript which it accomplishes by automatically converting the PostScript to PDF. <em>Preview</em> doesn't provide informative error messages. The following PostScript shows how to use the <em>stopped</em> operator to catch an error and display the error name and the command that caused the error:</p>
+<div class="code">
+<pre>
+<code>%!PS
+/showobject { () exch 40 string cvs show } bind readonly def
+/showerror {
+    /saved_errorname $error /errorname get def
+    /saved_command $error /command get def
+    initgraphics
+    /Helvetica 20 selectfont
+    72 644 moveto (this error occurred: ) show
+    144 572 moveto currentdict /saved_errorname get showobject
+    72 504 moveto (operator causing the error: ) show
+    144 432 moveto currentdict /saved_command  get showobject
+    $error /newerror false put
+    showpage } bind readonly def
+
+{
+    /Helvetica-Bold 20 selectfont
+    72 576 moveto
+    /h &lt;&lt; 1 (one) 2 (two) &gt;&gt; def
+    currentdict /h get 3 get show showpage
+
+} stopped { showerror } if</code>
+</pre></div>
+
+                    </div>
+        </div>
+      </div>
+      <div id="license-area" class="license-area">
+        <a href="https://github.com/clarkgrubb/hyperpolyglot/issues">issue tracker</a> |
+        content of this page licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+        creative commons attribution-sharealike 3.0</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17129977-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

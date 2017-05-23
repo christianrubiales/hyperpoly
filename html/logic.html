@@ -1,0 +1,1680 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<link rel="icon" type="image/gif" href="/favicon.gif"/>
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<title>Prolog, Erlang, Elixir - Hyperpolyglot</title>
+<style type="text/css" id="internal-style">
+@import url(hyperpolyglot.css);
+</style>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="content-language" content="en"/>
+</head>
+<body>
+<div id="container-wrap-wrap">
+  <div id="container-wrap">
+    <div id="container">
+      <div id="header">
+        <h1><a href="/"><span>Hyperpolyglot</span></a></h1>
+      </div>
+      <div id="content-wrap">
+        <div id="main-content">
+<div id="page-title">
+                            Prolog, Erlang, Elixir
+                        </div>
+<div id="page-content">
+                        
+
+<p><em>a side-by-side reference sheet</em></p>
+<p><a name="top" id="top"></a><a href="#grammar-invocation">grammar and invocation</a> | <a href="#var-expr">variables and expressions</a> | <a href="#arithmetic-logic">arithmetic and logic</a> | <a href="#strings">strings</a> | <a href="#regex">regexes</a> | <a href="#date-time">dates and time</a> | <a href="#lists">lists</a> | <a href="#tuples">tuples</a> | <a href="#dictionaries">dictionaries</a> | <a href="#algebraic-data-types">algebraic data types</a> | <a href="#functions">functions</a> | <a href="#execution-control">execution control</a> | <a href="#file-handles">file handles</a> | <a href="#files">files</a> | <a href="#directories">directories</a> | <a href="#processes-environment">processes and environment</a> | <a href="#libraries-namespaces">libraries and namespaces</a> | <a href="#reflection">reflection</a> | <a href="#repl">repl</a></p>
+<table class="wiki-content-table">
+<tr>
+<th></th>
+<th><a href="#prolog">prolog</a></th>
+<th><a href="#erlang">erlang</a></th>
+<th><a href="#elixir">elixir</a></th>
+</tr>
+<tr>
+<td><a name="version-used" id="version-used"></a><a href="#version-used-note">version used</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>SWI Prolog 7.2</em></span></td>
+<td><span style="color: gray"><em>8.0</em></span></td>
+<td><span style="color: gray"><em>1.3</em></span></td>
+</tr>
+<tr>
+<td><a name="show-version" id="show-version"></a><a href="#show-version-note">show version</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ swipl <span style="white-space: pre-wrap;">--</span>version</td>
+<td>$ erl -version</td>
+<td>$ elixir -v</td>
+</tr>
+<tr>
+<th colspan="4"><a name="grammar-invocation" id="grammar-invocation"></a><a href="#grammar-invocation-note">grammar and invocation</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a name="hello-world" id="hello-world"></a><a href="#hello-world-note">hello world</a></td>
+<td>$ cat ./hello.pl<br />
+hello :-<br />
+<span style="white-space: pre-wrap;">  </span>format('Hello, World!~n'),<br />
+<span style="white-space: pre-wrap;">  </span>halt.<br />
+<br />
+$ swipl -q -t hello -f ./hello.pl<br />
+Hello, World!</td>
+<td>$ cat hello.erl<br />
+-module(hello).<br />
+-export([hello_world/0]).<br />
+<br />
+hello_world() -&gt;<br />
+<span style="white-space: pre-wrap;">  </span>io:format("Hello, World!~n"),<br />
+<span style="white-space: pre-wrap;">  </span>halt(0).<br />
+<br />
+$ erlc hello.erl<br />
+<br />
+$ erl -noshell -run hello hello_world<br />
+Hello, World!</td>
+<td>$ cat hello.exs<br />
+IO.puts "Hello, World!"<br />
+<br />
+$ elixir hello.exs<br />
+Hello, World!</td>
+</tr>
+<tr>
+<td><a name="compiler" id="compiler"></a><a href="#compiler-note">compiler</a></td>
+<td></td>
+<td><span style="color: gray"><em>does not create a stand-alone executable:</em></span><br />
+$ erlc +native foo.erl</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="bytecode-compiler" id="bytecode-compiler"></a><a href="#bytecode-compiler-note">bytecode compiler</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>$ erlc foo.erl</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="interpreter" id="interpreter"></a><a href="#interpreter-note">interpreter</a></td>
+<td>$ cat arg-analyzer<br />
+main :-<br />
+<span style="white-space: pre-wrap;">  </span>current_prolog_flag(argv, Args),<br />
+<span style="white-space: pre-wrap;">  </span>(<span style="white-space: pre-wrap;">  </span> Args = [Arg]<br />
+<span style="white-space: pre-wrap;">  </span>-&gt; format('argument was: ~w~n', [Arg])<br />
+<span style="white-space: pre-wrap;">  </span>;<span style="white-space: pre-wrap;">  </span> format('Usage: arg-analyzer ARG~n') ).<br />
+<br />
+:- main, halt(0).<br />
+<br />
+$ swipl -s arg-analyzer foo<br />
+argument was: foo</td>
+<td>$ cat arg-analyzer<br />
+%%!<br />
+main([String]) -&gt;<br />
+<span style="white-space: pre-wrap;">  </span>io:format("argument was: ~s\n", [String]);<br />
+main(_) -&gt;<br />
+<span style="white-space: pre-wrap;">  </span>io:format("Usage: arg-analyzer ARG\n").<br />
+<br />
+$ escript arg-analyzer foo<br />
+argument was: foo</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="shebang" id="shebang"></a><a href="#shebang-note">shebang</a></td>
+<td>$ cat arg-analyzer<br />
+#!/usr/bin/env swipl<br />
+<br />
+main :-<br />
+<span style="white-space: pre-wrap;">  </span>current_prolog_flag(argv, Args),<br />
+<span style="white-space: pre-wrap;">  </span>(<span style="white-space: pre-wrap;">  </span> Args = [Arg]<br />
+<span style="white-space: pre-wrap;">  </span>-&gt; format('argument was: ~w~n', [Arg])<br />
+<span style="white-space: pre-wrap;">  </span>;<span style="white-space: pre-wrap;">  </span> format('Usage: arg-analyzer ARG~n') ).<br />
+<br />
+:- main, halt(0).<br />
+<br />
+$ ./arg-analyzer foo<br />
+argument was: foo</td>
+<td>$ cat arg-analyzer<br />
+#!/usr/bin/env escript<br />
+%%!<br />
+main([String]) -&gt;<br />
+<span style="white-space: pre-wrap;">  </span>io:format("argument was: ~s\n", [String]);<br />
+main(_) -&gt;<br />
+<span style="white-space: pre-wrap;">  </span>io:format("Usage: arg-analyzer ARG\n").<br />
+<br />
+$ ./arg-analyzer foo<br />
+argument was: foo</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="invoke-repl" id="invoke-repl"></a><a href="#invoke-repl-note">repl</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ swipl</td>
+<td>$ erl</td>
+<td>$ iex</td>
+</tr>
+<tr>
+<td><a name="block-delimiters" id="block-delimiters"></a><a href="#block-delimiters-note">block delimiters</a></td>
+<td>( )</td>
+<td>if ; end<br />
+case ; end<br />
+try catch end<br />
+fun ; end<br />
+receive end</td>
+<td>do ; end</td>
+</tr>
+<tr>
+<td><a name="stmt-terminator" id="stmt-terminator"></a><a href="#stmt-terminator-note">statement terminator</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>.</td>
+<td>.</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="eol-comment" id="eol-comment"></a><a href="#eol-comment-note">end-of-line comment</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>% <span style="color: gray"><em>a comment</em></span></td>
+<td>% <span style="color: gray"><em>a comment</em></span></td>
+<td># <span style="color: gray"><em>a comment</em></span></td>
+</tr>
+<tr>
+<td><a name="multiple-line-comment" id="multiple-line-comment"></a><a href="#multiple-line-comment-note">multiple line comment</a></td>
+<td>/* <span style="color: gray"><em>comment line<br />
+comment line</em></span> */</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="var-expr" id="var-expr"></a><a href="#var-expr-note">variables and expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a name="var-def" id="var-def"></a><a href="#var-def-note">variable identifier</a></td>
+<td><span style="color: gray"><em>upper case letter followed by alphanumeric characters and underscores</em></span></td>
+<td><span style="color: gray"><em>upper case letter following by alphanumeric characters and underscores.</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-once-var" id="write-once-var"></a><a href="#write-once-var">write once variable</a></td>
+<td></td>
+<td><span style="color: gray"><em>previously unused variables on the left side of an equal sign will be assigned to values that make the left match the right</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="assignment" id="assignment"></a><a href="#assignment-note">assignment</a></td>
+<td>X = 3.<br />
+4 = Y.</td>
+<td>X = 3.</td>
+<td>x = 3</td>
+</tr>
+<tr>
+<td><a name="parallel-assignment" id="parallel-assignment"></a><a href="#parallel-assignment-note">parallel assignment</a></td>
+<td>(X, Y) = (1, 2).<br />
+[X, Y] = [1, 2].<br />
+{X, Y} = {1, 2}.<br />
+foo(X, Y) = foo(1, 2).</td>
+<td>{X, Y} = {1, 2}.<br />
+[Z, W] = [1, 2].</td>
+<td>{x, y} = {1, 2}<br />
+[z, w] = [1, 2]</td>
+</tr>
+<tr>
+<td><a name="non-referential-id" id="non-referential-id"></a><a href="#non-referential-id-note">non-referential identifier</a></td>
+<td><span style="color: gray"><em>lower case letter followed by alphanumeric characters; can also include underscore: _</em></span></td>
+<td><span style="color: gray"><em>lower case letter followed by alphanumeric characters; can also include period: . at-sign: @ underscore: _</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="quoted-non-referential-id" id="quoted-non-referential-id"></a><a href="#quoted-non-referential-id-note">quoted non-referential identifier</a></td>
+<td><span style="color: gray"><em>any printable characters inside single quotes; use backslash to escape a single quote.</em></span></td>
+<td><span style="color: gray"><em>any printable characters inside single quotes; use backslash or two single quotes to escape a single quote.</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="cond-expr" id="cond-expr"></a><a href="#cond-expr-note">conditional expression</a></td>
+<td>X = -3, (<br />
+<span style="white-space: pre-wrap;">  </span>X &gt; 0 -&gt; Result = 1;<br />
+<span style="white-space: pre-wrap;">  </span>X = 0 -&gt; Result = X;<br />
+<span style="white-space: pre-wrap;">  </span>X &lt; 0 -&gt; Result = -1<br />
+).</td>
+<td>if<br />
+<span style="white-space: pre-wrap;">  </span>X &gt; 0 -&gt; 1;<br />
+<span style="white-space: pre-wrap;">  </span>X == 0 -&gt; X;<br />
+<span style="white-space: pre-wrap;">  </span>X &lt; 0 -&gt; -1<br />
+end</td>
+<td>if x &gt; 0 do 1 else if x &lt; 0 do -1 else 0 end end</td>
+</tr>
+<tr>
+<td><a href="#case">case</a></td>
+<td>(<span style="white-space: pre-wrap;">  </span>X = 1 -&gt; Result = true<br />
+;<span style="white-space: pre-wrap;">  </span>X = 0 -&gt; Result = false ).<br />
+<span style="color: gray"><em>or:</em></span><br />
+member(X-Result, [<br />
+<span style="white-space: pre-wrap;">  </span>1-true,<br />
+<span style="white-space: pre-wrap;">  </span>0-false]).</td>
+<td>case X of<br />
+<span style="white-space: pre-wrap;">  </span>1 -&gt; true;<br />
+<span style="white-space: pre-wrap;">  </span>0 -&gt; false<br />
+end</td>
+<td>case x do<br />
+<span style="white-space: pre-wrap;">  </span>1 -&gt; true<br />
+<span style="white-space: pre-wrap;">  </span>0 -&gt; false<br />
+end</td>
+</tr>
+<tr>
+<th colspan="4"><a name="arithmetic-logic" id="arithmetic-logic"></a><a href="#arithmetic-logic-note">arithmetic and logic</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a name="true-false" id="true-false"></a><a href="#true-false-note">true and false</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>true fail</td>
+<td>true false</td>
+<td>true false</td>
+</tr>
+<tr>
+<td><a name="falsehoods" id="falsehoods"></a><a href="#falsehoods-note">falsehoods</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td><span style="color: gray">false <em>and all non-boolean values</em></span></td>
+<td>false nil</td>
+</tr>
+<tr>
+<td><a name="logical-op" id="logical-op"></a><a href="#logical-op-note">logical operators</a></td>
+<td>, ; <span style="color: gray"><em>??</em></span> <span style="color: gray"><em>??</em></span></td>
+<td>and or xor not<br />
+<span style="color: gray"><em>in guards:</em></span><br />
+, ;</td>
+<td><span style="color: gray"># arguments must be boolean:</span><br />
+and or not<br />
+<br />
+<span style="color: gray"># arguments of any type permitted:</span><br />
+&amp;&amp; <span style="white-space: pre-wrap;">||</span> !</td>
+</tr>
+<tr>
+<td><a name="short-circuit-op" id="short-circuit-op"></a><a href="#short-circuit-op-note">short circuit operators</a></td>
+<td></td>
+<td>andalso orelse</td>
+<td>and or &amp;&amp; <span style="white-space: pre-wrap;">||</span></td>
+</tr>
+<tr>
+<td><a name="relational-op" id="relational-op"></a><a href="#relational-op-note">relational operators</a></td>
+<td>=:= \= &lt; &gt; =&lt; &gt;=</td>
+<td>== /= &lt; &gt; =&lt; &gt;=<br />
+<span style="color: gray"><em>no numeric conversion:</em></span><br />
+=:= =/=</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="arith-expr" id="arith-expr"></a><a href="#arith-expr-note">arithmetic expression</a></td>
+<td>X is 2 + 2.</td>
+<td>2 + 2</td>
+<td>2 + 2</td>
+</tr>
+<tr>
+<td><a name="arith-op" id="arith-op"></a><a href="#arith-op-note">arithmetic operators</a><br />
+<br />
+<span style="color: gray"><em>addition, subtraction, multiplication, float division, integer division, remainder</em></span></td>
+<td>+ - * / <span style="white-space: pre-wrap;">//</span> mod</td>
+<td>+ - * / div rem</td>
+<td>+ - * / div rem<br />
+<br />
+<span style="color: gray"><em>div and rem are functions, not operators</em></span></td>
+</tr>
+<tr>
+<td><a name="int-div" id="int-div"></a><a href="#int-div-note">integer division</a></td>
+<td>X is 7 <span style="white-space: pre-wrap;">//</span> 3.</td>
+<td>7 div 3.</td>
+<td>div 7, 3<br />
+div(7, 3)</td>
+</tr>
+<tr>
+<td><a name="int-div-zero" id="int-div-zero"></a><a href="#int-div-zero-note">integer division by zero</a></td>
+<td><span style="color: gray">zero_divisor <em>error</em></span></td>
+<td><span style="color: gray"><em>bad argument exception</em></span></td>
+<td><span style="color: gray"><em>raises</em> ArithmeticError</span></td>
+</tr>
+<tr>
+<td><a name="float-div" id="float-div"></a><a href="#float-div-note">float division</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>X is 7 / 3.</td>
+<td>7 / 3.</td>
+<td>7 / 3</td>
+</tr>
+<tr>
+<td><a name="float-div-zero" id="float-div-zero"></a><a href="#float-div-zero-note">float division by zero</a></td>
+<td><span style="color: gray">zero_divisor <em>error</em></span></td>
+<td><span style="color: gray"><em>bad argument exception</em></span></td>
+<td><span style="color: gray"><em>raises</em> ArithmeticError</span></td>
+</tr>
+<tr>
+<td><a name="power" id="power"></a><a href="#power-note">power</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>X is 2**32.</td>
+<td>math:pow(2, 32).</td>
+<td>:math.pow(2, 32)</td>
+</tr>
+<tr>
+<td><a name="sqrt" id="sqrt"></a><a href="#sqrt-note">sqrt</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>X is sqrt(2).</td>
+<td>math:sqrt(2).</td>
+<td>:math.sqrt(2)</td>
+</tr>
+<tr>
+<td><a name="sqrt-negative-one" id="sqrt-negative-one"></a><a href="#sqrt-negative-one-note">sqrt -1</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>arithmetic evaluation error: undefined</em></span></td>
+<td><span style="color: gray"><em>raises bad argument exception</em></span></td>
+<td><span style="color: gray"><em>raises</em> ArithmeticError</span></td>
+</tr>
+<tr>
+<td><a name="transcendental-func" id="transcendental-func"></a><a href="#transcendental-func-note">transcendental functions</a></td>
+<td>exp log<br />
+sin cos tan<br />
+asin acos atan<br />
+atan2</td>
+<td>math:exp math:log<br />
+math:sin math:cos math:tan<br />
+math:asin math:acos math:atan<br />
+math:atan2</td>
+<td>:math.exp :math.log<br />
+:math.sin :math.cos :math.tan<br />
+:math.asin :math.acos :math.atan<br />
+:math.atan2</td>
+</tr>
+<tr>
+<td><a name="float-truncation" id="float-truncation"></a><a href="#float-truncation-note">float truncation</a></td>
+<td>truncate round floor ceiling</td>
+<td><span style="color: gray">% 2, 3:</span><br />
+trunc(2.7)<br />
+round(2.7)<br />
+<br />
+<span style="color: gray"><em>none</em></span><br />
+<span style="color: gray"><em>none</em></span></td>
+<td><span style="color: gray"># 2, 3:</span><br />
+trunc(2.7)<br />
+round(2.7)<br />
+<br />
+<span style="color: gray"># 2.0, 3.0:</span><br />
+Float.floor(2.7)<br />
+Float.ceil(2.7)</td>
+</tr>
+<tr>
+<td><a name="absolute-val" id="absolute-val"></a><a href="#absolute-val-note">absolute value</a></td>
+<td>X is abs(-3).<br />
+X is abs(-3.2).</td>
+<td>abs(-3)<br />
+abs(-3.2)</td>
+<td>abs(-3)<br />
+abs(-3.2)</td>
+</tr>
+<tr>
+<td><a name="int-overflow" id="int-overflow"></a><a href="#int-overflow-note">integer overflow</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#float-literal-exponent">float literal with exponent</a></td>
+<td>2.0e2<br />
+-2.0E-2</td>
+<td>2.0e2<br />
+-2.0E-2</td>
+<td>2.0e2<br />
+-2.0e-2</td>
+</tr>
+<tr>
+<td><a name="random-num" id="random-num"></a><a href="#random-num-note">random number</a></td>
+<td>X is random(100).</td>
+<td>random:uniform().<br />
+random:uniform(100).</td>
+<td>:random.uniform<br />
+:random.uniform(100)</td>
+</tr>
+<tr>
+<td><a name="random-seed" id="random-seed"></a><a href="#random-seed-note">random seed</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>set_random(seed(17)).</td>
+<td>random:seed(17, 17, 17).</td>
+<td>:random.seed(17, 17, 17)</td>
+</tr>
+<tr>
+<td><a href="#random-seed-default">result of not seeding</a></td>
+<td><span style="color: gray"><em>seeded using</em> /dev/random <em>or system time</em></span></td>
+<td><span style="color: gray"><em>interpreter uses same seed at startup.</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="bit-op" id="bit-op"></a><a href="#bit-op-note">bit operators</a></td>
+<td>X is 5 <span style="white-space: pre-wrap;">&lt;&lt;</span> 1.<br />
+X is 5 <span style="white-space: pre-wrap;">&gt;&gt; </span> 1.<br />
+X is 5 /\ 1.<br />
+X is 5 \/ 1.<br />
+X is 5 xor 1.<br />
+X is \ 5.</td>
+<td>5 bsl 1<br />
+5 bsr 1<br />
+5 band 1<br />
+5 bor 1<br />
+5 bxor 1<br />
+bnot 5</td>
+<td>import Bitwise<br />
+<br />
+<span style="white-space: pre-wrap;">5 &lt;&lt;&lt; 1</span><br />
+<span style="white-space: pre-wrap;">5 &gt;&gt;&gt; 1</span><br />
+<span style="white-space: pre-wrap;">5 &amp;&amp;&amp; 1</span><br />
+<span style="white-space: pre-wrap;">5 ||| 1</span><br />
+<span style="white-space: pre-wrap;">5 ^^^ 1</span><br />
+<span style="white-space: pre-wrap;">~~~5</span></td>
+</tr>
+<tr>
+<td><a name="binary-octal-hex-literals" id="binary-octal-hex-literals"></a><a href="#binary-octal-hex-literals-note">binary, octal, and hex literals</a></td>
+<td>2'101010<br />
+8'52<br />
+16'2A</td>
+<td>2#101010<br />
+8#52<br />
+16#2A</td>
+<td>0b101010<br />
+0o52<br />
+0x2A</td>
+</tr>
+<tr>
+<th colspan="4"><a name="strings" id="strings"></a><a href="#strings-note">strings</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a name="str-literal" id="str-literal"></a><a href="#str-literal-note">string literal</a></td>
+<td><span style="color: gray"><em>list of characters:</em></span><br />
+"don't say \"no\""<br />
+<br />
+<span style="color: gray"><em>quoted atom:</em></span><br />
+'don\'t say "no"'</td>
+<td>"don't say \"no\""</td>
+<td>"don't say \"no\""</td>
+</tr>
+<tr>
+<td><a name="str-literal-newline" id="str-literal-newline"></a><a href="#str-literal-newline-note">newline in literal</a></td>
+<td><span style="color: gray"><em>yes; and \n notation can also be used</em></span></td>
+<td><span style="color: gray"><em>yes; and \n notation can also be used</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="char-esc" id="char-esc"></a><a href="#char-esc-note">character escapes</a></td>
+<td>\a \b \e \f \n \r \s \t \v \x<span style="color: gray"><em>hh…</em></span>\ \u<span style="color: gray"><em>hhhh</em></span> \U<span style="color: gray"><em>hhhhhhhh</em></span> \<span style="color: gray"><em>ooo</em></span> \\ \' \"</td>
+<td><span style="color: gray">\d <em>is delete;</em> \s <em>is space</em></span><br />
+\b \d \e \f \n \q \r \s \t \u \v \x<span style="color: gray"><em>hh</em></span> \x{<span style="color: gray"><em>hh…</em></span>} \<span style="color: gray"><em>ooo</em></span> \' \" \\</td>
+<td>\" \' \\ \a \b \d \e \f \n \r \s \t \v \0<br />
+\x<span style="color: gray"><em>hh</em></span> \u<span style="color: gray"><em>hhhh</em></span> \u{<span style="color: gray"><em>h</em></span>…}</td>
+</tr>
+<tr>
+<td><a name="str-concat" id="str-concat"></a><a href="#str-concat-note">concatenate</a></td>
+<td>append("one ", "two ", Y), append(Y, "three", X).</td>
+<td>"one " ++ "two " ++ "three"<br />
+<br />
+string:concat("one ", string:concat("two ", "three"))<br />
+<br />
+<span style="color: gray"><em>concatenates double quoted string literals only:</em></span><br />
+"one " "two " "three"</td>
+<td>"one " &lt;&gt; "two " &lt;&gt; "three"</td>
+</tr>
+<tr>
+<td><a name="str-replicate" id="str-replicate"></a><a href="#str-replicate-note">replicate</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>list from single characters:</em></span><br />
+length(Hbar, 80), maplist(=('-'), Hbar).</td>
+<td>Hbar = string:copies("-", 80).</td>
+<td>:binary.copy("-", 80)</td>
+</tr>
+<tr>
+<td><a name="trim" id="trim"></a><a href="#trim-note">trim</a><br />
+<span style="color: gray"><em>both sides, left side, right side</em></span></td>
+<td>normalize_space(string(Result), " lorem ").</td>
+<td>string:strip(" lorem ")<br />
+string:strip(" lorem", left)<br />
+string:strip("lorem ", right)</td>
+<td>String.trim(" lorem ")</td>
+</tr>
+<tr>
+<td><a name="pad" id="pad"></a><a href="#pad-note">pad</a><br />
+<span style="color: gray"><em>on right, on left, both sides</em></span></td>
+<td>format(string(Result), 'lorem~10|', []).<br />
+<span style="color: gray"><em>Result = "lorem<span style="white-space: pre-wrap;">     </span>".</em></span><br />
+<br />
+format(string(Result), '~tlorem~10|', []).<br />
+<span style="color: gray"><em>Result = "<span style="white-space: pre-wrap;">   &amp;nbsp </span>lorem".</em></span><br />
+<br />
+format(string(Result), '~tlorem~t~10|', []).<br />
+<span style="color: gray"><em>Result = "<span style="white-space: pre-wrap;">  </span>lorem<span style="white-space: pre-wrap;">   </span>".</em></span></td>
+<td>string:right("lorem", 10, $ )<br />
+string:left("lorem", 10, $ )<br />
+string:centre("lorem", 10, $ )</td>
+<td>String.pad_leading("lorem", 10, ["$"])<br />
+String.pad_trailing("lorem", 10, ["$"])</td>
+</tr>
+<tr>
+<td><a name="num-to-str" id="num-to-str"></a><a href="#num-to-str-note">number to string</a></td>
+<td>number_string(8, String).<br />
+number_string(3.14, String).</td>
+<td>"value: " ++ integer_to_list(8)<br />
+"value: " ++ float_to_list(3.14)</td>
+<td>"value: " &lt;&gt; Integer.to_string(8)<br />
+"value: " &lt;&gt; Float.to_string(3.14)</td>
+</tr>
+<tr>
+<td><a name="str-to-num" id="str-to-num"></a><a href="#str-to-num-note">string to number</a></td>
+<td>number_string(N, "12"), X is 7 + N.<br />
+number_string(N, "0.039"), X is 73.9 + N.</td>
+<td>7 + list_to_integer("12")<br />
+73.9 + list_to_float("0.039")</td>
+<td>7 + String.to_integer("12")<br />
+73.9 + String.to_float("0.039")</td>
+</tr>
+<tr>
+<td><a name="atom-to-str" id="atom-to-str"></a><a href="#atom-to-str-note">non-referential identifier to string</a></td>
+<td>name(foo, X).</td>
+<td>atom_to_list(foo)</td>
+<td>Atom.to_string(:foo)</td>
+</tr>
+<tr>
+<td><a name="str-to-atom" id="str-to-atom"></a><a href="#str-to-atom-note">string to non-referential identifier</a></td>
+<td>string_to_atom("foo", X).</td>
+<td>list_to_existing_atom("foo")</td>
+<td>String.to_atom("foo")</td>
+</tr>
+<tr>
+<td><a name="translate-case" id="translate-case"></a><a href="#translate-case-note">translate case</a><br />
+<span style="color: gray"><em>to upper, to lower</em></span></td>
+<td>upcase_atom('lorem', X).<br />
+downcase_atom('LOREM', X).</td>
+<td>string:to_upper("lorem")<br />
+string:to_lower("LOREM")</td>
+<td>String.downcase("LOREM")<br />
+String.upcase("lorem")<br />
+String.capitalize("lorem")</td>
+</tr>
+<tr>
+<td><a name="split" id="split"></a><a href="#split-note">split</a></td>
+<td>split_string("foo bar baz", " ", "", Result).</td>
+<td>string:tokens("foo bar baz", " ")<br />
+<br />
+{ok, Rx} = re:compile("\s+").<br />
+re:split("foo bar baz", Rx, [{return, list}])</td>
+<td>String.split("foo bar baz")<br />
+Regex.split(~r/ /, "foo bar baz")</td>
+</tr>
+<tr>
+<td><a name="join" id="join"></a><a href="#join-note">join</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>atomics_to_string(["foo", "bar", "baz"], " ", Result).</td>
+<td>string:join(["foo", "bar", "baz"], " ")</td>
+<td>String.join(["foo", "bar", "baz"])</td>
+</tr>
+<tr>
+<td><a href="#character-literal">character literal</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>0'A <span style="color: gray"><em>(character code 65)</em></span><br />
+'A' <span style="color: gray"><em>(atom 'A')</em></span></td>
+<td>$A</td>
+<td>'A'</td>
+</tr>
+<tr>
+<td><a href="#string-length">string length</a></td>
+<td>length("hello", X).<br />
+<br />
+atom_length('hello', X).</td>
+<td>length("hello")</td>
+<td>String.length("hello")</td>
+</tr>
+<tr>
+<td><a name="index-substr" id="index-substr"></a><a href="#index-substr-note">index of substring</a><br />
+<span style="color: gray"><em>first, last</em></span></td>
+<td>sub_string("foo bar bar", CharsBefore, _, _, "bar"),<br />
+Index is CharsBefore + 1.<br />
+<span style="color: gray"><em>all solutions enumerated on backtracking: CharsBefore = 4, Index = 5 ; CharsBefore = 8, Index = 9</em></span></td>
+<td><span style="color: gray">% 5:</span><br />
+string:str("foo bar bar", "bar")<br />
+<br />
+<span style="color: gray">% 9:</span><br />
+string:rstr("foo bar bar", "bar")</td>
+<td><span style="color: gray"># {4, 3}:</span><br />
+:binary.match("foo bar baz", "bar")<br />
+<br />
+<span style="color: gray"><em>??</em></span></td>
+</tr>
+<tr>
+<td><a name="extract-substr" id="extract-substr"></a><a href="#extract-substr-note">extract substring</a></td>
+<td>sub_string("foo bar bar", 4, 3, _, Result).</td>
+<td>string:substr("foo bar bar", 5, 3)</td>
+<td>String.slice("foo bar baz", 5..3)</td>
+</tr>
+<tr>
+<td><a href="#chr-ord">chr and ord</a></td>
+<td>char_code(X, 65).<br />
+char_code('A', X).</td>
+<td>[65]<br />
+lists:nth(1, "A")</td>
+<td>List.to_string([65])<br />
+Enum.at('A', 0)</td>
+</tr>
+<tr>
+<th colspan="4"><a name="regex" id="regex"></a><a href="#regex-note">regular expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a name="regex-literal" id="regex-literal"></a><a href="#regex-literal-note">literal</a></td>
+<td></td>
+<td><span style="color: gray">% none; strings are used:</span><br />
+"lorem|ipsum"<br />
+<br />
+<span style="color: gray">% can be compiled to RE object:</span><br />
+Rx = re:compile("lorem|ispum").</td>
+<td>~r/lorem|ipsum/</td>
+</tr>
+<tr>
+<td><a name="char-class-abbrev" id="char-class-abbrev"></a><a href="#char-class-abbrev-note">character class abbreviations</a></td>
+<td></td>
+<td>. \d \D \h \H \s \S \v \V \w \W</td>
+<td>. \d \D \h \H \s \S \v \V \w \W</td>
+</tr>
+<tr>
+<td><a name="regex-anchors" id="regex-anchors"></a><a href="#regex-anchors-note">anchors</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>^ $ \A \b \B \G \z \Z</td>
+<td>^ $ \A \b \B \G \z \Z</td>
+</tr>
+<tr>
+<td><a name="match-test" id="match-test"></a><a href="#match-test-note">match test</a></td>
+<td></td>
+<td>{ok, Rx} = re:compile(".*1999.*").<br />
+<br />
+case re:run("it's 2000", Rx) of<br />
+<span style="white-space: pre-wrap;">  </span>{match, _} -&gt; io:format("party!");<br />
+<span style="white-space: pre-wrap;">  </span>nomatch -&gt; io:format("work")<br />
+end.</td>
+<td>Regex.match?(~r/.*1999/, "it's 2000")<br />
+String.match?("it's 2000", ~r/.*1999/)</td>
+</tr>
+<tr>
+<td><a name="case-insensitive-regex" id="case-insensitive-regex"></a><a href="#case-insensitive-regex-note">case insensitive match test</a></td>
+<td></td>
+<td>{ok, Rx} = re:compile("lorem", [caseless]).<br />
+<br />
+case re:run("Lorem", Rx) of<br />
+<span style="white-space: pre-wrap;">  </span>{match, _} -&gt; io:format("matches");<br />
+<span style="white-space: pre-wrap;">  </span>nomatch -&gt; io:format("doesn't match")<br />
+end.</td>
+<td>Regex.match?(~r/lorem/i, "Lorem")<br />
+String.match?("Lorem", ~r/lorem/i)</td>
+</tr>
+<tr>
+<td><a name="regex-modifiers" id="regex-modifiers"></a><a href="#regex-modifiers-note">modifiers</a></td>
+<td></td>
+<td>unicode<br />
+caseless<br />
+dotall<br />
+multiline<br />
+extended<br />
+firstline<br />
+ungreedy</td>
+<td>u i s m x f U</td>
+</tr>
+<tr>
+<td><a name="subst" id="subst"></a><a href="#subst-note">substitution</a></td>
+<td></td>
+<td>{ok, Rx} = re:compile("mi").<br />
+<br />
+NewStr = re:replace("do re mi mi mi", Rx, "ma",<br />
+<span style="white-space: pre-wrap;">  </span>[global, {return,list}]).</td>
+<td>Regex.replace(~r/mi/, "do re mi mi mi", "ma")<br />
+String.replace("do re mi mi mi", ~r/mi/, "ma")</td>
+</tr>
+<tr>
+<td><a name="match-prematch-postmatch" id="match-prematch-postmatch"></a><a href="#match-prematch-postmatch-note">match, prematch, postmatch</a></td>
+<td></td>
+<td>S = "It's 1999!".<br />
+Rx = "(\\d{4})".<br />
+[Pre, Match, Post] = re:split(S, Rx, [{return, list}]).</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="group-capture" id="group-capture"></a><a href="#group-capture-note">group capture</a></td>
+<td></td>
+<td>S = "2010-06-03".<br />
+Rx = "(\\d{4})-(\\d{2})-(\\d{2})".<br />
+Opts = [{capture, all_but_first, list}].<br />
+{match, [Yr, Mn, Dy]} = re:run(S, Rx, Opts).</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="named-group-capture" id="named-group-capture"></a><a href="#named-group-capture-note">named group capture</a></td>
+<td></td>
+<td>S = "foo.txt".<br />
+Rx = "^(?&lt;file&gt;.+)\\.(?&lt;suffix&gt;.+)$".<br />
+Opts = [{capture, [file, suffix], list}].<br />
+{match, [File, Suffix]} = re:run(S, Rx, Opts).</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="scan" id="scan"></a><a href="#scan-note">scan</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="backreference-match" id="backreference-match"></a><a href="#backreference-match-note">backreference in match</a></td>
+<td></td>
+<td>S = "do do".<br />
+Rx = "(\\w+) \\1".<br />
+{match, _} = re:run(S, Rx).</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="backreference-subst" id="backreference-subst"></a><a href="#backreference-subst-note">backreference in substitution</a></td>
+<td></td>
+<td>S = "do re".<br />
+Rx = "(\\w+) (\\w+)".<br />
+Opts = [{return, list}].<br />
+S2 = re:replace(S, Rx, "\\2 \\1", Opts).</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="date-time" id="date-time"></a><a href="#date-time-note">dates and time</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td>current date/time</td>
+<td>get_time(TimeStamp), stamp_date_time(TimeStamp, date(YY,MM,DD,H,M,S,_,_,_), local).<br />
+get_time(TimeStamp), stamp_date_time(TimeStamp, date(YY,MM,DD,H,M,S,_,_,_), 'UTC').</td>
+<td><span style="white-space: pre-wrap;">{</span>{YYYY,MM,DD}, {HH,MI,SS<span style="white-space: pre-wrap;">}</span>} = calendar:universal_time().<br />
+<span style="white-space: pre-wrap;">{</span>{YYYY,MM,DD}, {HH,MI,SS<span style="white-space: pre-wrap;">}</span>} = calendar:local_time().</td>
+<td>DateTime.utc_now</td>
+</tr>
+<tr>
+<th colspan="4"><a name="lists" id="lists"></a><a href="#lists-note">lists</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a href="#list-literal">list literal</a></td>
+<td>[1, 2, 3]</td>
+<td>[1, 2, 3]</td>
+<td>[1, 2, 3]</td>
+</tr>
+<tr>
+<td><a href="#cons">cons</a></td>
+<td>X = [4 | [3, 2, 1]].</td>
+<td>[4 | [3, 2, 1]]</td>
+<td>[4 | [3, 2, 1]]</td>
+</tr>
+<tr>
+<td><a href="#head">head</a></td>
+<td>[X | _] = [1, 2, 3].</td>
+<td>hd([1 ,2, 3])<br />
+<span style="color: gray">% or use pattern matching:</span><br />
+[Head | _] = [1 ,2, 3].<br />
+Head</td>
+<td>hd([1, 2, 3])<br />
+[head | _] = [1, 2, 3]<br />
+List.first [1, 2, 3]</td>
+</tr>
+<tr>
+<td><a href="#tail">tail</a></td>
+<td>[_ | X] = [1, 2, 3].</td>
+<td>tl([1, 2, 3])<br />
+<span style="color: gray">% or use pattern matching:</span><br />
+[_ | Tail] = [1, 2, 3].<br />
+Tail</td>
+<td>tl([1, 2, 3])<br />
+[_ | tail] = [1, 2, 3]</td>
+</tr>
+<tr>
+<td><a href="#length">length</a></td>
+<td>length([1, 2, 3], X).</td>
+<td>length([1, 2, 3])</td>
+<td>length([1, 2, 3])<br />
+Enum.count([1, 2, 3])</td>
+</tr>
+<tr>
+<td><a href="#append">append</a></td>
+<td>append([1, 2], [3, 4], List).</td>
+<td>[1, 2] ++ [3, 4]</td>
+<td>[1, 2] ++ [3, 4]</td>
+</tr>
+<tr>
+<td><a href="#sort">sort</a></td>
+<td>sort([1, 3, 2, 4], X).</td>
+<td>lists:sort([1, 3, 2, 4]).</td>
+<td>Enum.sort([1, 3, 2, 4])</td>
+</tr>
+<tr>
+<td><a href="#reverse">reverse</a></td>
+<td>reverse([1, 2, 3, 4], X).</td>
+<td>lists:reverse([1, 2, 3, 4]).</td>
+<td>Enum.reverse([1, 2, 3, 4])</td>
+</tr>
+<tr>
+<td><a href="#membership-note">membership</a></td>
+<td>member(1, [1, 2, 3]).</td>
+<td></td>
+<td>Enum.member?([1, 2, 3], 1)</td>
+</tr>
+<tr>
+<td><a href="#zip">zip</a></td>
+<td></td>
+<td>lists:zip([1, 2, 3], ["a", "b", "c"]).</td>
+<td>Enum.zip([1, 2, 3], ["a", "b", "c"])</td>
+</tr>
+<tr>
+<td><a href="#map">map</a></td>
+<td></td>
+<td>lists:map(fun(X) -&gt; X * X end, [1, 2, 3]).</td>
+<td>Enum.map([1, 2, 3], fn x -&gt; x * x end)</td>
+</tr>
+<tr>
+<td><a href="#filter">filter</a></td>
+<td></td>
+<td>lists:filter(fun(X) -&gt; X &gt; 2 end, [1, 2, 3]).</td>
+<td>Enum.filter([1, 2, 3], fn x -&gt; x &gt; 2 end)</td>
+</tr>
+<tr>
+<td><a href="#reduce">reduce</a></td>
+<td></td>
+<td><span style="color: gray">% 2:</span><br />
+lists:foldl(fun(X, Y) -&gt; X - Y end, 0, [1, 2, 3, 4]).<br />
+<br />
+<span style="color: gray">% -2:</span><br />
+lists:foldr(fun(X, Y) -&gt; X - Y end, 0, [1, 2, 3, 4]).</td>
+<td><span style="color: gray"># 2:</span><br />
+Enum.reduce([1, 2, 3], fn x, y -&gt; x - y end)</td>
+</tr>
+<tr>
+<th colspan="4"><a name="tuples" id="tuples"></a><a href="#tuples-note">tuples</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a href="#tuple-literal">tuple literal</a></td>
+<td>(1, "hello", 3.14) <span style="color: gray"><em>or any arbitrary function symbol</em></span></td>
+<td>{1, "foo", 3.14}</td>
+<td>{1, "foo", 3.14}</td>
+</tr>
+<tr>
+<td><a href="#tuple-access">tuple element access</a></td>
+<td>arg(2, tuple(1, "foo", 3.14), Element).<br />
+<span style="color: gray"><em>Element = "foo".</em></span></td>
+<td><span style="color: gray">% "foo":</span><br />
+element(1, {1, "foo", 3.14})<br />
+<br />
+<span style="color: gray">% {1, "bar", 3.14}:</span><br />
+setelement(2, {1, "foo", 3.14}, "bar")</td>
+<td><span style="color: gray"># "foo":</span><br />
+elem({1, "foo", 3.14}, 2)<br />
+<br />
+<span style="color: gray"># 1, "bar", 3.14}:</span><br />
+put_elem({1, "foo", 3.14}, 2, "bar")</td>
+</tr>
+<tr>
+<td><a href="#tuple-length">tuple length</a></td>
+<td>functor(tuple(1, "foo", 3.14), _, Length).<br />
+<span style="color: gray"><em>Length = 3.</em></span></td>
+<td>tuple_size({1, "foo", 3.14})</td>
+<td>tuple_size({1, "foo", 3.14})</td>
+</tr>
+<tr>
+<th colspan="4"><a name="dictionaries" id="dictionaries"></a><a href="#dictionaries-note">dictionaries</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td>literal</td>
+<td></td>
+<td></td>
+<td>%{"t" =&gt; 1, "f" =&gt; 0}</td>
+</tr>
+<tr>
+<td>size</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lookup</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>update</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>missing key behavior</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>is key present</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>iterate</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="algebraic-data-types" id="algebraic-data-types"></a><a href="#algebraic-data-types-note">algebraic data types</a></th>
+</tr>
+<tr>
+<td><a href="#record">record</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<th colspan="4"><a name="functions" id="functions"></a><a href="#functions-note">functions</a></th>
+</tr>
+<tr>
+<td><a href="#function-definition">function definition</a></td>
+<td>factorial(0,1).<br />
+factorial(N, F) :- N1 is N - 1, factorial(N1, F1), F is N * F1.</td>
+<td>factorial(0) -&gt; 1;<br />
+factorial(N) -&gt; N * factorial(N-1).</td>
+<td>def factorial(0), do: 1<br />
+def factorial(n), do: n * factorial(n - 1)</td>
+</tr>
+<tr>
+<td><a href="#function-definition-guards">function definition with guards</a></td>
+<td>factorial(N, F) :- N &gt; 0, N1 is N - 1, factorial(N1, F1), F is N * F1.<br />
+factorial(0, 1).</td>
+<td>factorial(N) when N &gt; 0 -&gt; N * factorial(N-1);<br />
+factorial(0) -&gt; 1.</td>
+<td>def factorial(n) when n &gt; 0, do: n * factorial(n - 1)<br />
+def factorial(0), do: 1</td>
+</tr>
+<tr>
+<td><a href="#anonymous-function">anonymous function</a></td>
+<td></td>
+<td>fun(X, Y) -&gt; X + Y end</td>
+<td>fn(x, y) -&gt; x + y end</td>
+</tr>
+<tr>
+<td><a href="#piecewise-anonymous-function">piecewise defined anonymous function</a></td>
+<td></td>
+<td>fun([]) -&gt; null;<br />
+<span style="white-space: pre-wrap;">  </span>([X|_]) -&gt; X<br />
+end</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="execution-control" id="execution-control"></a><a href="#execution-control-note">execution control</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a href="#if">if</a></td>
+<td>( X = 0 -&gt; format('no hits~n')<br />
+; X = 1 -&gt; format('one hit~n')<br />
+; X &gt; 1 -&gt; format('~w hits~n', [X]) ).</td>
+<td>if<br />
+<span style="white-space: pre-wrap;">  </span>X == 0 -&gt; io:format("no hits~n");<br />
+<span style="white-space: pre-wrap;">  </span>X == 1 -&gt; io:format("one hit~n");<br />
+<span style="white-space: pre-wrap;">  </span>X &gt; 1 -&gt; io:format("~w hits~n", [X])<br />
+end.</td>
+<td>if x == 0 do<br />
+<span style="white-space: pre-wrap;">  </span>IO.puts "no hits"<br />
+else<br />
+<span style="white-space: pre-wrap;">  </span>IO.puts "hits"<br />
+end</td>
+</tr>
+<tr>
+<td><a href="#for">for</a></td>
+<td>between(1, 10, X), writeln(X), false; true.</td>
+<td></td>
+<td>for x &lt;- 1..10, do: IO.puts(x)</td>
+</tr>
+<tr>
+<td><a href="#try-catch">try/catch</a></td>
+<td>X = 0,<br />
+catch(Y is 7 div X,<br />
+<span style="white-space: pre-wrap;">  </span>error(evaluation_error(zero_divisor), _),<br />
+<span style="white-space: pre-wrap;">  </span>Y is 0).</td>
+<td>X = 0.<br />
+try (7 div X) of<br />
+<span style="white-space: pre-wrap;">  </span>Val -&gt; Val<br />
+catch<br />
+<span style="white-space: pre-wrap;">  </span>error:badarith -&gt; 0<br />
+end.</td>
+<td>try do<br />
+<span style="white-space: pre-wrap;">  </span>div(7, 0)<br />
+<span style="white-space: pre-wrap;">  </span>:ok<br />
+catch<br />
+<span style="white-space: pre-wrap;">  </span>_, _ -&gt; :failed<br />
+end</td>
+</tr>
+<tr>
+<td><a href="#receive-message">receive message</a></td>
+<td></td>
+<td>-module(echo).<br />
+-export([loop/0]).<br />
+<span style="white-space: pre-wrap;"> </span><br />
+loop() -&gt;<br />
+<span style="white-space: pre-wrap;">  </span>receive<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>{From, Msg} -&gt;<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>From ! { self(), Msg},<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>loop();<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>stop -&gt;<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>true<br />
+<span style="white-space: pre-wrap;">  </span>end.</td>
+<td>receive do<br />
+<span style="white-space: pre-wrap;">  </span>{:ok, some_value} -&gt; :yay<br />
+<span style="white-space: pre-wrap;">  </span>{:error, val} when val &gt; 0 -&gt; :meh<br />
+<span style="white-space: pre-wrap;">  </span>{:error, oh_no} -&gt; :aw<br />
+end</td>
+</tr>
+<tr>
+<td><a href="#spawn-process">spawn process</a></td>
+<td></td>
+<td>Pid = spawn(echo, loop, []).</td>
+<td>pid = spawn(fn -&gt; :ok end)</td>
+</tr>
+<tr>
+<td><a href="#send-message">send message</a></td>
+<td></td>
+<td>Pid ! {self(), hello}.</td>
+<td>send(pid, :hello)</td>
+</tr>
+<tr>
+<td><a href="#list-processes">list processes</a></td>
+<td></td>
+<td>processes().</td>
+<td>Process.list</td>
+</tr>
+<tr>
+<th colspan="4"><a name="file-handles" id="file-handles"></a><a href="#file-handles-note">file handles</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td>read line from stdin</td>
+<td></td>
+<td></td>
+<td><span style="color: gray"># returns newline terminated string:</span><br />
+s = IO.gets("&gt; ")</td>
+</tr>
+<tr>
+<td>write line to stdout</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>write line to stderr</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#open-file-read">open file for reading</a></td>
+<td>open('foo.txt', read, Fd).</td>
+<td></td>
+<td>{:ok, f} = File.open("/etc/hosts", [:read])</td>
+</tr>
+<tr>
+<td><a href="#read-line">read line</a></td>
+<td></td>
+<td>X = io:get_line("type line: ").</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#read-char">read character</a></td>
+<td>get_char(X).</td>
+<td>X = io:get_chars("type char: ", 1).</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#read-term">read term</a></td>
+<td>read(X).</td>
+<td>{ok, X} = io:read("type term: ").</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#open-file-write">open file for writing</a></td>
+<td>open('foo.txt', write, Fd).</td>
+<td></td>
+<td>{:ok, f} = File.open("/tmp/foo.txt", [:write])</td>
+</tr>
+<tr>
+<td>open file for appending</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#write-line">write line</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#write-char">write character</a></td>
+<td>put_char("A").<br />
+put_char(65)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#write-term">write term</a></td>
+<td>X = hello, write(X).</td>
+<td>io:write(X).</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#printf">printf</a></td>
+<td>format('foo: ~s ~2f ~w~n', ["bar", 3.1415, 7]).</td>
+<td>io:format("foo: ~s ~.2f ~w~n", ["bar", 3.1415, 7]).</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#close-file">close file</a></td>
+<td>close(Fd).</td>
+<td></td>
+<td>:ok = File.close(f)</td>
+</tr>
+<tr>
+<th colspan="4"><a name="files" id="files"></a><a href="#files-note">files</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a name="file-test" id="file-test"></a><a href="#file-test-note">file test, regular file test</a></td>
+<td></td>
+<td>filelib:is_file("/etc/hosts")<br />
+filelib:is_regular("/etc/hosts")</td>
+<td>File.regular? "/etc/hosts"</td>
+</tr>
+<tr>
+<td><a name="file-size" id="file-size"></a><a href="#file-size-note">file size</a></td>
+<td></td>
+<td>filelib:file_size("/etc/hosts")</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="directories" id="directories"></a><a href="#directories-note">directories</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a name="build-pathname" id="build-pathname"></a><a href="#build-pathname-note">build pathname</a></td>
+<td></td>
+<td>filename:join("/etc", "passwd")</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="dirname-basename" id="dirname-basename"></a><a href="#dirname-basename-note">dirname and basename</a></td>
+<td></td>
+<td>filename:dirname("/etc/passwd")<br />
+filename:basename("/etc/passwd")</td>
+<td>File.dirname "/etc/hosts"<br />
+File.basename "/etc/hosts"</td>
+</tr>
+<tr>
+<td><a name="absolute-pathname" id="absolute-pathname"></a><a href="#absolute-pathname-note">absolute pathname</a></td>
+<td></td>
+<td>filename:absname("..")</td>
+<td>File.absname "/etc/hosts"</td>
+</tr>
+<tr>
+<td><a name="glob" id="glob"></a><a href="#glob-note">glob paths</a></td>
+<td></td>
+<td><span style="color: gray"><em>returns list of strings:</em></span><br />
+filelib:wildcard("/etc/*")</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="mkdir" id="mkdir"></a><a href="#mkdir-note">make directory</a></td>
+<td></td>
+<td>filelib:ensure_dir("/tmp/foo/bar/")</td>
+<td>File.mkdir_p("/tmp/foo/bar")</td>
+</tr>
+<tr>
+<td><a name="dir-test" id="dir-test"></a><a href="#dir-test-note">directory test</a></td>
+<td></td>
+<td>filelib:is_dir("/tmp")</td>
+<td>File.dir? "/tmp"</td>
+</tr>
+<tr>
+<th colspan="4"><a name="processes-environment" id="processes-environment"></a><a href="#processes-environment-note">processes and environment</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td>command line arguments</td>
+<td><span style="color: gray"><em>binds</em> Argv <em>to list of atoms representing command line args:</em></span><br />
+current_prolog_flag(argv, Argv).</td>
+<td><span style="color: gray"><em>when invoked by</em> escript <em>the command line arguments are passed to the function</em> main <em>in the invoked file as a list of strings.</em></span></td>
+<td>System.argv</td>
+</tr>
+<tr>
+<td>program name</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>exit</td>
+<td>halt(1).</td>
+<td>halt(1).</td>
+<td>System.halt</td>
+</tr>
+<tr>
+<th colspan="4"><a name="libraries-namespaces" id="libraries-namespaces"></a><a href="#libraries-namespaces-note">libraries and namespaces</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a href="#load-file">load file</a></td>
+<td><span style="color: gray"><em>ways to load file</em> data.pl:</span><br />
+[data].<br />
+['data.pl'].<br />
+consult(data)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#define-namespace">define namespace</a></td>
+<td>:- module(factorial, [factorial/1]).</td>
+<td><span style="color: gray"><em>in file</em> factorial.erl</span><br />
+-module(factorial).<br />
+-export([factorial/1]).<br />
+<span style="color: gray"><em>definition of</em> factorial</span></td>
+<td>defmodule Factorial do<br />
+end</td>
+</tr>
+<tr>
+<td><a href="#compile-namespace">compile namespace</a></td>
+<td></td>
+<td>c(factorial).</td>
+<td>c("factorial.ex")</td>
+</tr>
+<tr>
+<td><a href="#use-namespace">use function in namespace</a></td>
+<td></td>
+<td>factorial:factorial(7).</td>
+<td>Factorial.fact 7</td>
+</tr>
+<tr>
+<th colspan="4"><a name="reflection" id="reflection"></a><a href="#reflection-note">reflection</a></th>
+</tr>
+<tr>
+<th></th>
+<th>prolog</th>
+<th>erlang</th>
+<th>elixir</th>
+</tr>
+<tr>
+<td><a href="#inspect-namespace">inspect namespace</a></td>
+<td></td>
+<td>factorial:module_info().</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="4"><a name="repl" id="repl"></a><a href="#repl-note">repl</a></th>
+</tr>
+<tr>
+<td>help</td>
+<td>help.<br />
+apropos(keyword).</td>
+<td>help().</td>
+<td>h</td>
+</tr>
+<tr>
+<td><a href="#clear-variable">clear variable</a></td>
+<td></td>
+<td>f(X).</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#clear-all-variables">clear all variables</a></td>
+<td></td>
+<td>f().</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#display-processes">display processes</a></td>
+<td></td>
+<td>i().</td>
+<td></td>
+</tr>
+<tr>
+<th></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">__________________________________________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">__________________________________________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">__________________________________________________________________________</span></span></th>
+</tr>
+</table>
+<p><a name="general-note" id="general-note"></a></p>
+<p><a name="version-used-note" id="version-used-note"></a></p>
+<h2 id="toc0"><span><a href="#version-used">version used</a></span></h2>
+<p>Version used for testing the examples in the sheet.</p>
+<p><a name="show-version-note" id="show-version-note"></a></p>
+<h2 id="toc1"><span><a href="#show-version">show version</a></span></h2>
+<p>How to determine the version.</p>
+<p><a name="grammar-invocation-note" id="grammar-invocation-note"></a></p>
+<h1 id="toc2"><span><a href="#grammar-invocation">Grammar and Invocation</a></span></h1>
+<p><a name="hello-world-note" id="hello-world-note"></a></p>
+<h2 id="toc3"><span><a href="#hello-world">hello world</a></span></h2>
+<p>A "Hello, World!" program.</p>
+<p><a name="compiler-note" id="compiler-note"></a></p>
+<h2 id="toc4"><span><a href="#compiler">compiler</a></span></h2>
+<p>The native compiler.</p>
+<p><strong>erlang:</strong></p>
+<p>Sometimes the HiPE native compiler must be installed separately.</p>
+<p>Modules can be compiled to native code, but an Erlang runtime is still required to run the code.</p>
+<p><a name="bytecode-compiler-note" id="bytecode-compiler-note"></a></p>
+<h2 id="toc5"><span><a href="#bytecode-compiler">bytecode compiler</a></span></h2>
+<p>The bytecode compiler.</p>
+<p><a name="interpreter-note" id="interpreter-note"></a></p>
+<h2 id="toc6"><span><a href="#interpreter">interpreter</a></span></h2>
+<p>The interpreter.</p>
+<p><a name="shebang-note" id="shebang-note"></a></p>
+<h2 id="toc7"><span><a href="#shebang">shebang</a></span></h2>
+<p>How to associate an interpreter with a file on a Unix system.</p>
+<p><a name="invoke-repl-note" id="invoke-repl-note"></a></p>
+<h2 id="toc8"><span><a href="#invoke-repl">repl</a></span></h2>
+<p>How to run the read-evaluate-print loop.</p>
+<p><a name="block-delimiters-note" id="block-delimiters-note"></a></p>
+<h2 id="toc9"><span><a href="#block-delimiters">block delimiters</a></span></h2>
+<p>How blocks are delimited. A block is a sequence of statements which are executed in order.</p>
+<p><a name="stmt-terminator-note" id="stmt-terminator-note"></a></p>
+<h2 id="toc10"><span><a href="#stmt-terminator">statement terminator</a></span></h2>
+<p>How statements are terminated.</p>
+<p><strong>prolog:</strong></p>
+<p>A prolog program consists of <em>facts</em>, <em>rules</em>, and <em>goals</em>.</p>
+<p>Facts define the data of a Prolog program. They are analogous to variable definitions in other languages.</p>
+<p>Rules define facts in a recursive manner. In this sheet they are discussed in the section on functions.</p>
+<p>Facts and rules usually found in files; they are not entered in the interactive toplevel directly. A fact typed directly into the toplevel is treated as a goal. A rule directly typed into the toplevel results in an error message. However, the <tt>assert</tt> goal can be used to create a fact or rule in the top level.</p>
+<p>Goals are either <em>queries</em> or they have a side effect.</p>
+<p>Queries are handled by the Prolog infererence engine. If the query has an unbound variable, the inference engine searches for values which make the query true. If the query does not have an unbound variable, the inference engine determines whether the query is true or false. Queries are a distinctive feature of logic programming and have no analog in other languages.</p>
+<p>Goals with side effect are analogous to statements with side effect in other languages. They are used in Prolog for I/O. They are used to give instructions to the infererence engine, e.g. the <tt>cut</tt> goal which prevents backtracking. Also, the {{assert} goal described above is a goal with side effect.</p>
+<p>Goals can be typed directly into the toplevel. They can also be placed in a file when preceded by the <tt>:-</tt> notation.</p>
+<p><a name="eol-comment-note" id="eol-comment-note"></a></p>
+<h2 id="toc11"><span><a href="#eol-comment">end-of-line comment</a></span></h2>
+<p>The syntax for a comment which goes to the end of the current line.</p>
+<p><a name="multiple-line-comment-note" id="multiple-line-comment-note"></a></p>
+<h2 id="toc12"><span><a href="#multiple-line-comment">multiple line comment</a></span></h2>
+<p>The syntax for a delimited comment which can span lines.</p>
+<p><a name="var-expr-note" id="var-expr-note"></a></p>
+<h1 id="toc13"><span><a href="#var-expr">Variables and Expressions</a></span></h1>
+<p><a name="arithmetic-logic-note" id="arithmetic-logic-note"></a></p>
+<h1 id="toc14"><span><a href="#arithmetic-logic">Arithmetic and Logic</a></span></h1>
+<p><a name="true-false-note" id="true-false-note"></a></p>
+<h2 id="toc15"><span><a href="#true-false">true and false</a></span></h2>
+<p>The literals for true and false.</p>
+<p><a name="falsehoods-note" id="falsehoods-note"></a></p>
+<h2 id="toc16"><span><a href="#falsehoods">falsehoods</a></span></h2>
+<p>Values which evaluate as false in a boolean context.</p>
+<p><a name="logical-op-note" id="logical-op-note"></a></p>
+<h2 id="toc17"><span><a href="#logical-op">logical operators</a></span></h2>
+<p><a name="short-circuit-op-note" id="short-circuit-op-note"></a></p>
+<h2 id="toc18"><span><a href="#short-circuit-op">short circuit operators</a></span></h2>
+<p><a name="relational-op-note" id="relational-op-note"></a></p>
+<h2 id="toc19"><span><a href="#relational-op">relational operators</a></span></h2>
+<p><strong>erlang:</strong></p>
+<p>Relational operators can be used on values with different types. In this case the precedence is determined by<br />
+the type according to this sequence:</p>
+<div class="code">
+<pre>
+<code>number &lt; atom &lt; reference &lt; fun &lt; port &lt; pid &lt; tuple &lt; list &lt; binary</code>
+</pre></div>
+<p>If a comparison is performed on an integer and a float, the integer will be converted to a float. <em>=:=</em> and <em>=/=</em> do not perform conversions and thus will always return false and true respectively when called on an integer and a float.</p>
+<p><a name="arith-expr-note" id="arith-expr-note"></a></p>
+<h2 id="toc20"><span><a href="#arith-expr">arithmetic expression</a></span></h2>
+<p><a name="arith-op-note" id="arith-op-note"></a></p>
+<h2 id="toc21"><span><a href="#arith-op">arithmetic operators</a></span></h2>
+<p><a name="unary-negation-note" id="unary-negation-note"></a></p>
+<h2 id="toc22"><span><a href="#unary-negation">unary negation</a></span></h2>
+<p><a name="int-div-note" id="int-div-note"></a></p>
+<h2 id="toc23"><span><a href="#int-div">integer division</a></span></h2>
+<p>How to find the quotient of two integers.</p>
+<p><a name="int-div-zero-note" id="int-div-zero-note"></a></p>
+<h2 id="toc24"><span><a href="#int-div-zero">integer division by zero</a></span></h2>
+<p>The result of dividing an integer by zero.</p>
+<p><a name="float-div-note" id="float-div-note"></a></p>
+<h2 id="toc25"><span><a href="#float-div">float division</a></span></h2>
+<p>How to perform float division of two integers.</p>
+<p><a name="float-div-zero-note" id="float-div-zero-note"></a></p>
+<h2 id="toc26"><span><a href="#float-div-zero">float division by zero</a></span></h2>
+<p>The result of dividing a float by zero.</p>
+<p><a name="power-note" id="power-note"></a></p>
+<h2 id="toc27"><span><a href="#power">power</a></span></h2>
+<p><a name="sqrt-note" id="sqrt-note"></a></p>
+<h2 id="toc28"><span><a href="#sqrt">sqrt</a></span></h2>
+<p><a name="sqrt-negative-one-note" id="sqrt-negative-one-note"></a></p>
+<h2 id="toc29"><span><a href="#sqrt-negative-one">sqrt -1</a></span></h2>
+<p><a name="transcendental-func-note" id="transcendental-func-note"></a></p>
+<h2 id="toc30"><span><a href="#transcendental-func">transcendental functions</a></span></h2>
+<p><a name="float-truncation-note" id="float-truncation-note"></a></p>
+<h2 id="toc31"><span><a href="#float-truncation">float truncation</a></span></h2>
+<p><a name="absolute-val-note" id="absolute-val-note"></a></p>
+<h2 id="toc32"><span><a href="#absolute-val">absolute value</a></span></h2>
+<p><a name="random-num-note" id="random-num-note"></a></p>
+<h2 id="toc33"><span><a href="#random-num">random number</a></span></h2>
+<p><a name="random-seed-note" id="random-seed-note"></a></p>
+<h2 id="toc34"><span><a href="#random-seed">random seed</a></span></h2>
+<p><a name="bit-op-note" id="bit-op-note"></a></p>
+<h2 id="toc35"><span><a href="#bit-op">bit operators</a></span></h2>
+<p><a name="strings-note" id="strings-note"></a></p>
+<h1 id="toc36"><span><a href="#strings">Strings</a></span></h1>
+<p><a name="str-literal-note" id="str-literal-note"></a></p>
+<h2 id="toc37"><span><a href="#str-literal">string literal</a></span></h2>
+<p><a name="str-literal-newline-note" id="str-literal-newline-note"></a></p>
+<h2 id="toc38"><span><a href="#str-literal-newline">newline in literal</a></span></h2>
+<p><a name="char-esc-note" id="char-esc-note"></a></p>
+<h2 id="toc39"><span><a href="#char-esc">character escapes</a></span></h2>
+<p><strong>erlang:</strong></p>
+<p>Some of the Erlang backslash escapes are not derived from C:</p>
+<table class="wiki-content-table">
+<tr>
+<td>\d</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>space</td>
+</tr>
+</table>
+<p><a name="str-concat-note" id="str-concat-note"></a></p>
+<h2 id="toc40"><span><a href="#str-concat">concatenate</a></span></h2>
+<p><a name="str-replicate-note" id="str-replicate-note"></a></p>
+<h2 id="toc41"><span><a href="#str-replicate">replicate</a></span></h2>
+<p><a name="trim-note" id="trim-note"></a></p>
+<h2 id="toc42"><span><a href="#trim">trim</a></span></h2>
+<p><a name="pad-note" id="pad-note"></a></p>
+<h2 id="toc43"><span><a href="#pad">pad</a></span></h2>
+<p><a name="num-to-str-note" id="num-to-str-note"></a></p>
+<h2 id="toc44"><span><a href="#num-to-str">number to string</a></span></h2>
+<p><a name="str-to-num-note" id="str-to-num-note"></a></p>
+<h2 id="toc45"><span><a href="#str-to-num">string to number</a></span></h2>
+<h2 id="toc46"><span>atom to string</span></h2>
+<h2 id="toc47"><span>string to atom</span></h2>
+<p><a name="split-note" id="split-note"></a></p>
+<h2 id="toc48"><span><a href="#split">split</a></span></h2>
+<p><a name="join-note" id="join-note"></a></p>
+<h2 id="toc49"><span><a href="#join">join</a></span></h2>
+<p><a name="regex-note" id="regex-note"></a></p>
+<h1 id="toc50"><span><a href="#regex">Regular Expressions</a></span></h1>
+<p><a name="date-time-note" id="date-time-note"></a></p>
+<h1 id="toc51"><span><a href="#date-time">Dates and Time</a></span></h1>
+<p><a name="lists-note" id="lists-note"></a></p>
+<h1 id="toc52"><span><a href="#lists">Lists</a></span></h1>
+<p><a name="tuples-note" id="tuples-note"></a></p>
+<h1 id="toc53"><span><a href="#tuples">Tuples</a></span></h1>
+<p><a name="dictionaries-note" id="dictionaries-note"></a></p>
+<h1 id="toc54"><span><a href="#dictionaries">Dictionaries</a></span></h1>
+<p><a name="algebraic-data-types-note" id="algebraic-data-types-note"></a></p>
+<h1 id="toc55"><span><a href="#algebraic-data-types">Algebraic Data Types</a></span></h1>
+<p><a name="functions-note" id="functions-note"></a></p>
+<h1 id="toc56"><span><a href="#functions">Functions</a></span></h1>
+<p><a name="function-definition" id="function-definition"></a></p>
+<h2 id="toc57"><span>function definition</span></h2>
+<p><a name="function-definition-guards" id="function-definition-guards"></a></p>
+<h2 id="toc58"><span>function definition with guards</span></h2>
+<p><strong>erlang:</strong></p>
+<p>The expressions in guards must be side-effect free. Thus they can only contain the following:</p>
+<ul>
+<li>bound variables</li>
+<li>literals</li>
+<li>type tests: <em>is_atom</em>, <em>is_boolean</em>, <em>is_tuple</em>, …</li>
+<li>relational operators</li>
+<li>arithmetic operators</li>
+<li>boolean operators</li>
+<li>a few built-in functions</li>
+</ul>
+<p><a name="execution-control-note" id="execution-control-note"></a></p>
+<h1 id="toc59"><span><a href="#execution-control">Execution Control</a></span></h1>
+<p><a name="file-handles-note" id="file-handles-note"></a></p>
+<h1 id="toc60"><span><a href="#file-handles">File Handles</a></span></h1>
+<p><a name="read-line" id="read-line"></a></p>
+<h2 id="toc61"><span>read line</span></h2>
+<p><strong>erlang:</strong></p>
+<p><em>io:get_line</em> accepts an argument which is displayed as a prompt. The return value is a string which includes the newline.</p>
+<p><a name="read-char" id="read-char"></a></p>
+<h2 id="toc62"><span>read character</span></h2>
+<p><strong>erlang:</strong></p>
+<p><em>io:get_chars</em> accepts two arguments. The first is a string which is displayed as a prompt. The second is the number of characters to be read. The function keeps reading lines until the requested number of characters has been collected. The return value is a string which can contain newlines if a line of less than the requested number of characters was entered.</p>
+<p><a name="files-note" id="files-note"></a></p>
+<h1 id="toc63"><span><a href="#files">Files</a></span></h1>
+<p><a name="directories-note" id="directories-note"></a></p>
+<h1 id="toc64"><span><a href="#directories">Directories</a></span></h1>
+<p><a name="processes-environment-note" id="processes-environment-note"></a></p>
+<h1 id="toc65"><span><a href="#processes-environment">Processes and Environment</a></span></h1>
+<p><a name="libraries-namespaces-note" id="libraries-namespaces-note"></a></p>
+<h1 id="toc66"><span><a href="#libraries-namespaces">Libraries and Namespaces</a></span></h1>
+<p><a name="reflection-note" id="reflection-note"></a></p>
+<h1 id="toc67"><span><a href="#reflection">Reflection</a></span></h1>
+<p><a name="repl-note" id="repl-note"></a></p>
+<h1 id="toc68"><span><a href="#repl">REPL</a></span></h1>
+<p><a name="prolog" id="prolog"></a></p>
+<h1 id="toc69"><span><a href="#top">Prolog</a></span></h1>
+<p><a href="http://www.swi-prolog.org/pldoc/refman/">SWI Prolog Reference Manual</a><br />
+<a href="http://pauillac.inria.fr/~deransar/prolog/docs.html">Prolog: The ISO Standard Document</a></p>
+<p><a name="erlang" id="erlang"></a></p>
+<h1 id="toc70"><span><a href="#top">Erlang</a></span></h1>
+<p><a href="http://erlang.org/doc/reference_manual/users_guide.html">Erlang Reference Manual User's Guide</a><br />
+<a href="http://erlang.org/doc/apps/stdlib/index.html">Erlang Standard Library</a></p>
+<p><a name="elixir" id="elixir"></a></p>
+<h1 id="toc71"><span><a href="#top">Elixir</a></span></h1>
+<p><a href="http://elixir-lang.org/getting-started/introduction.html">Elixir: Introduction</a><br />
+<a href="http://elixir-lang.org/docs/stable/elixir/Kernel.html">Elixir: Standard Library</a></p>
+
+                    </div>
+        </div>
+      </div>
+      <div id="license-area" class="license-area">
+        <a href="https://github.com/clarkgrubb/hyperpolyglot/issues">issue tracker</a> |
+        content of this page licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+        creative commons attribution-sharealike 3.0</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17129977-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

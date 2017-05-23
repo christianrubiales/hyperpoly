@@ -1,0 +1,1026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<link rel="icon" type="image/gif" href="/favicon.gif"/>
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<title>Computer Algebra II: Magma, GAP, Singular, Pari/GP - Hyperpolyglot</title>
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<style type="text/css" id="internal-style">
+@import url(hyperpolyglot.css);
+</style>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="content-language" content="en"/>
+</head>
+<body>
+<div id="container-wrap-wrap">
+  <div id="container-wrap">
+    <div id="container">
+      <div id="header">
+        <h1><a href="/"><span>Hyperpolyglot</span></a></h1>
+      </div>
+      <div id="content-wrap">
+        <div id="main-content">
+<div id="page-title">
+                            Computer Algebra II: Magma, GAP, Singular, Pari/GP
+                        </div>
+<div id="page-content">
+                        
+
+<p><em>a side-by-side reference sheet</em></p>
+<p><a href="#grammar-invocation" shape="rect">grammar and invocation</a> | <a href="#var-expr" shape="rect">variables and expressions</a> | <a href="#arithmetic-logic" shape="rect">arithmetic and logic</a> | <a href="#strings" shape="rect">strings</a> | <a href="#arrays" shape="rect">arrays</a> | <a href="#sets" shape="rect">sets</a> | <a href="#arith-seq" shape="rect">arithmetic sequences</a> | <a href="#dictionaries" shape="rect">dictionaries</a> | <a href="#functions" shape="rect">functions</a> | <a href="#execution-control" shape="rect">execution control</a> | <a href="#exceptions" shape="rect">exceptions</a> | <a href="#streams" shape="rect">streams</a> | <a href="#processes-env" shape="rect">process and environment</a> | <a href="#libraries-namespaces" shape="rect">libraries and namespaces</a> | <a href="#reflection" shape="rect">reflection</a></p>
+<p><a href="#vectors" shape="rect">vectors</a> | <a href="#matrices" shape="rect">matrices</a> | <a href="#combinatorics" shape="rect">combinatorics</a> | <a href="#number-theory" shape="rect">number theory</a> | <a href="#elliptic-curves" shape="rect">elliptic curves</a> | <a href="#rational-algebraic-numbers" shape="rect">rational and algebraic numbers</a> | <a href="#polynomials" shape="rect">polynomials</a> | <a href="#special-functions" shape="rect">special functions</a> | <a href="#permutations" shape="rect">permutations</a> | <a href="#groups" shape="rect">groups</a> | <a href="#subgroups" shape="rect">subgroups</a> | <a href="#group-homomorphisms" shape="rect">group homomorphisms</a> | <a href="#actions" shape="rect">actions</a></p>
+<table class="wiki-content-table"><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1"><a href="#magma" shape="rect">magma</a></th><th rowspan="1" colspan="1"><a href="#gap" shape="rect">gap</a></th><th rowspan="1" colspan="1"><a href="#singular" shape="rect">singular</a></th><th rowspan="1" colspan="1"><a href="#pari-gp" shape="rect">pari/gp</a></th></tr><tr><td rowspan="1" colspan="1"><a name="version-used" shape="rect" id="version-used"></a><a href="#version-used-note" shape="rect">version used</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>2.21</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>4.7</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>4.0</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>2.7</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="show-version" shape="rect" id="show-version"></a><a href="#show-version-note" shape="rect">show version</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">$ gap -h</td><td rowspan="1" colspan="1">$ singular -vb</td><td rowspan="1" colspan="1">$ gp <span style="white-space: pre-wrap;">--</span>version</td></tr><tr><th colspan="5" rowspan="1"><a name="grammar-invocation" shape="rect" id="grammar-invocation"></a><a href="#grammar-invocation-note" shape="rect">grammar and invocation</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="interpreter" shape="rect" id="interpreter"></a><a href="#interpreter-note" shape="rect">interpreter</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">$ singular -b <span style="color: gray"><em>foo</em></span>.sing</td><td rowspan="1" colspan="1">$ cat hello.gp<br />
+print("Hello, World!")<br />
+quit<br />
+<br />
+$ gp -q hello.gp<br />
+Hello, World!</td></tr><tr><td rowspan="1" colspan="1"><a name="repl" shape="rect" id="repl"></a><a href="#repl-note" shape="rect">repl</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"><a href="http://magma.maths.usyd.edu.au/calc/" shape="rect">online calculator</a></td><td rowspan="1" colspan="1">$ gap</td><td rowspan="1" colspan="1">$ singular</td><td rowspan="1" colspan="1">$ gp</td></tr><tr><td rowspan="1" colspan="1"><a name="block-delimiters" shape="rect" id="block-delimiters"></a><a href="#block-delimiters-note" shape="rect">block delimiters</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">function( ) <span style="color: gray"><em>…</em></span> end<br />
+if then <span style="color: gray"><em>…</em></span> elif then <span style="color: gray"><em>…</em></span> else <span style="color: gray"><em>…</em></span> fi<br />
+while do <span style="color: gray"><em>…</em></span> od<br />
+for do <span style="color: gray"><em>…</em></span> od</td><td rowspan="1" colspan="1">{ <span style="color: gray"><em>…</em></span> }</td><td rowspan="1" colspan="1">{ <span style="color: gray"><em>…</em></span> }<br />
+<br />
+<span style="color: gray"><em>braces cannot be nested</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="stmt-separator" shape="rect" id="stmt-separator"></a><a href="#stmt-separator-note" shape="rect">statement separator</a></td><td rowspan="1" colspan="1">;<br />
+<br />
+<span style="color: gray"><em>A line can be broken anywhere, even inside a numeric literal or string, if the newline is preceded by a backslash:</em> \</span></td><td rowspan="1" colspan="1">;<br />
+<br />
+<span style="color: gray"><em>Two trailing semicolons</em> ;; <em>suppress echoing value of previous expression.</em></span></td><td rowspan="1" colspan="1">;</td><td rowspan="1" colspan="1"><span style="color: gray"><em>newline or</em></span> ;<br />
+<br />
+<span style="color: gray"><em>Newlines don't separate statements inside braces.</em></span><br />
+<br />
+<span style="color: gray"><em>A semicolon suppresses echoing value of previous expression.</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="eol-comment" shape="rect" id="eol-comment"></a><a href="#eol-comment-note" shape="rect">end-of-line comment</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">1 + 1; <span style="color: gray"><span style="white-space: pre-wrap;">//</span> addition</span></td><td rowspan="1" colspan="1">1 + 1; <span style="color: gray"># addition</span></td><td rowspan="1" colspan="1">// <span style="color: gray"><em>comment</em></span></td><td rowspan="1" colspan="1">1 + 1 <span style="color: gray">\\ addition</span></td></tr><tr><td rowspan="1" colspan="1"><a name="multiple-line-comment" shape="rect" id="multiple-line-comment"></a><a href="#multiple-line-comment-note" shape="rect">multiple line comment</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">1 + <span style="color: gray">/* addition */</span> 1;</td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1">/* <span style="color: gray"><em>comment line<br />
+another comment</em></span> */</td><td rowspan="1" colspan="1">1 + <span style="color: gray">/* addition */</span> 1</td></tr><tr><th colspan="5" rowspan="1"><a name="var-expr" shape="rect" id="var-expr"></a><a href="#var-expr-note" shape="rect">variables and expressions</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="assignment" shape="rect" id="assignment"></a><a href="#assignment-note" shape="rect">assignment</a></td><td rowspan="1" colspan="1">a := 3;</td><td rowspan="1" colspan="1">a := 3;</td><td rowspan="1" colspan="1">int a;<br />
+a = 3;<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> It is an error to assign to undeclared variable.</span></td><td rowspan="1" colspan="1">x = 3.14</td></tr><tr><td rowspan="1" colspan="1"><a name="parallel-assignment" shape="rect" id="parallel-assignment"></a><a href="#parallel-assignment-note" shape="rect">parallel assignment</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1">int a, b;<br />
+a, b = 3, 4;</td><td rowspan="1" colspan="1">[a, b] = [3, 4]</td></tr><tr><td rowspan="1" colspan="1"><a name="compound-assignment" shape="rect" id="compound-assignment"></a><a href="#compound-assignment-note" shape="rect">compound assignment</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1">+= -= *= /= \= \/= %=<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> bit operations:</span><br />
+<span style="white-space: pre-wrap;">&lt;&lt;= &gt;&gt;=</span></td></tr><tr><td rowspan="1" colspan="1"><a name="incr-decr" shape="rect" id="incr-decr"></a><a href="#incr-decr-note" shape="rect">increment and decrement</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"><span style="white-space: pre-wrap;">x++ x--</span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>postmodifiers:</em></span><br />
+x++ x<span style="white-space: pre-wrap;">--</span></td></tr><tr><td rowspan="1" colspan="1"><a name="non-referential-id" shape="rect" id="non-referential-id"></a><a href="#non-referential-id-note" shape="rect">non-referential identifier</a></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>any unassigned identifier is non-referential</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="id-as-val" shape="rect" id="id-as-val"></a><a href="#id-as-val-note" shape="rect">identifier as value</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">x = 3<br />
+y = 'x</td></tr><tr><td rowspan="1" colspan="1"><a name="global-var" shape="rect" id="global-var"></a><a href="#global-var-note" shape="rect">global variable</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>variables are global by default</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="local-var" shape="rect" id="local-var"></a><a href="#local-var-note" shape="rect">local variable</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">tmp = 19<br />
+<br />
+add(x, y, z) = {<br />
+<span style="white-space: pre-wrap;">  </span><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> don't overwrite global tmp:</span><br />
+<span style="white-space: pre-wrap;">  </span>my(tmp = x + y);<br />
+<span style="white-space: pre-wrap;">  </span>tmp + z<br />
+}<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> local keyword declares dynamic scope</span></td></tr><tr><td rowspan="1" colspan="1"><a name="null" shape="rect" id="null"></a><a href="#null-note" shape="rect">null</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="null-test" shape="rect" id="null-test"></a><a href="#null-test-note" shape="rect">null test</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="undef-var" shape="rect" id="undef-var"></a><a href="#undef-var-note" shape="rect">undefined variable access</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>treated as an unknown number</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="rm-var-binding" shape="rect" id="rm-var-binding"></a><a href="#rm-var-binding-note" shape="rect">remove variable binding</a></td><td rowspan="1" colspan="1">delete x;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">kill(x)</td></tr><tr><td rowspan="1" colspan="1"><a name="cond-expr" shape="rect" id="cond-expr"></a><a href="#cond-expr-note" shape="rect">conditional expression</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">if x lt 0 then -x; else x; end if;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">if(x &gt; 0, x, -x)</td></tr><tr><th colspan="5" rowspan="1"><a name="arithmetic-logic" shape="rect" id="arithmetic-logic"></a><a href="#arithmetic-logic-note" shape="rect">arithmetic and logic</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="true-false" shape="rect" id="true-false"></a><a href="#true-false-note" shape="rect">true and false</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">true false</td><td rowspan="1" colspan="1">true false</td><td rowspan="1" colspan="1">1 0</td><td rowspan="1" colspan="1">1 0</td></tr><tr><td rowspan="1" colspan="1"><a name="falsehoods" shape="rect" id="falsehoods"></a><a href="#falsehoods-note" shape="rect">falsehoods</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">false</td><td rowspan="1" colspan="1">false</td><td rowspan="1" colspan="1">0</td><td rowspan="1" colspan="1">0<br />
+0.0<br />
+Mod(0, 5)<br />
+Pol([0])<br />
+[0, 0, 0]<br />
+[0, 0; 0, 0]<br />
+[[0, 0], 0]</td></tr><tr><td rowspan="1" colspan="1"><a name="logical-op" shape="rect" id="logical-op"></a><a href="#logical-op-note" shape="rect">logical operators</a></td><td rowspan="1" colspan="1">not true or (true and false);</td><td rowspan="1" colspan="1">not true or (true and false)</td><td rowspan="1" colspan="1">! 1 <span style="white-space: pre-wrap;">||</span> (1 &amp;&amp; 0)</td><td rowspan="1" colspan="1"><span style="white-space: pre-wrap;">&amp;&amp; || !</span></td></tr><tr><td rowspan="1" colspan="1"><a name="relational-op" shape="rect" id="relational-op"></a><a href="#relational-op-note" shape="rect">relational operators</a></td><td rowspan="1" colspan="1">eq ne lt gt le ge<br />
+<br />
+<span style="color: gray">eq <em>raises an error when the operands are of different type.</em></span><br />
+<br />
+<span style="color: gray">cmpeq <em>does not.</em></span></td><td rowspan="1" colspan="1"><span style="white-space: pre-wrap;">=</span> &lt;&gt; &lt; &gt; &lt;= &gt;=</td><td rowspan="1" colspan="1">== != &lt; &gt; &lt;= &gt;=<br />
+<br />
+&lt;&gt; <span style="color: gray"><em>is a synonym for</em></span> !=</td><td rowspan="1" colspan="1">== != &gt; &lt; &gt;= &lt;=</td></tr><tr><td rowspan="1" colspan="1"><a name="arith-op" shape="rect" id="arith-op"></a><a href="#arith-op-note" shape="rect">arithmetic operators</a></td><td rowspan="1" colspan="1">+ - * / mod</td><td rowspan="1" colspan="1">+ - * / mod<br />
+<br />
+<span style="color: gray"><em>the operators</em> + - * / <em>are overloaded for integers, rationals, and floats; other arithmetic functions aren't and there are no implicit conversions; use constructors to convert:</em></span><br />
+Rat(3.1)<br />
+Float(3)<br />
+Float(31/10)</td><td rowspan="1" colspan="1"><span style="color: gray"><em>Operators are for integers only unless<br />
+base ring with coefficient field is declared.</em></span><br />
+<span style="white-space: pre-wrap;">+ - * / %</span><br />
+<br />
+<span style="color: gray">mod <em>is synonym for</em> %</span></td><td rowspan="1" colspan="1">+ - * / %</td></tr><tr><td rowspan="1" colspan="1"><a name="int-div" shape="rect" id="int-div"></a><a href="#int-div-note" shape="rect">integer division</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">a := 7;<br />
+b := 3;<br />
+<br />
+div(a, b);</td><td rowspan="1" colspan="1">QuoInt(a, b);</td><td rowspan="1" colspan="1">int a, b = 7, 3;<br />
+a div b;<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> a / b also performs integer division when<br />
+<span style="white-space: pre-wrap;">//</span> no base ring is declared.</span></td><td rowspan="1" colspan="1">a \ b<br />
+divrem(a, b)[1]<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> rounded integer division:</span><br />
+a \/ b</td></tr><tr><td rowspan="1" colspan="1"><a name="int-div-zero" shape="rect" id="int-div-zero"></a><a href="#int-div-zero-note" shape="rect">integer division by zero</a></td><td rowspan="1" colspan="1"><span style="color: gray"><em>User error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="float-div" shape="rect" id="float-div"></a><a href="#float-div-note" shape="rect">float division</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>depending upon the types of a and b, the value can be an exact rational, a machine float, or an arbitrary precision float:</em></span><br />
+a / b</td><td rowspan="1" colspan="1">ring r = real,(x,y,z),(dp);<br />
+<br />
+3.1 / 7.2;</td><td rowspan="1" colspan="1">7 / 3</td></tr><tr><td rowspan="1" colspan="1"><a name="float-div-zero" shape="rect" id="float-div-zero"></a><a href="#float-div-zero-note" shape="rect">float division by zero</a></td><td rowspan="1" colspan="1"><span style="color: gray"><em>Runtime error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="power" shape="rect" id="power"></a><a href="#power-note" shape="rect">power</a></td><td rowspan="1" colspan="1">2 ^ 32;</td><td rowspan="1" colspan="1">2 ^ 32</td><td rowspan="1" colspan="1">2 ^ 16<br />
+2 ** 16</td><td rowspan="1" colspan="1">2 ^ 32</td></tr><tr><td rowspan="1" colspan="1"><a name="sqrt" shape="rect" id="sqrt"></a><a href="#sqrt-note" shape="rect">sqrt</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">Sqrt(2);</td><td rowspan="1" colspan="1">2.0 ^ 0.5</td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1">sqrt(2)</td></tr><tr><td rowspan="1" colspan="1"><a name="sqrt-negative-one" shape="rect" id="sqrt-negative-one"></a><a href="#sqrt-negative-one-note" shape="rect">sqrt -1</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray">-1.0 ^ 0.5 <em>evaluates to</em> -1.</span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1">1.000 * I</td></tr><tr><td rowspan="1" colspan="1"><a name="transcendental-func" shape="rect" id="transcendental-func"></a><a href="#transcendental-func-note" shape="rect">transcendental functions</a></td><td rowspan="1" colspan="1">Exp Log<br />
+Sin Cos Tan<br />
+Arcsin Arccos Arctan<br />
+Arctan2</td><td rowspan="1" colspan="1"><span style="color: gray"><em>arguments must be floats; no implicit conversion of integers to floats:</em></span><br />
+Exp Log<br />
+Sin Cos Tan<br />
+Asin Acos Atan<br />
+Atan2(<span style="color: gray"><em>y</em></span>, <span style="color: gray"><em>x</em></span>)</td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1">exp log <span style="color: gray"><em>none</em></span><br />
+sin cos tan<br />
+asin acos atan<br />
+<span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="transcendental-const" shape="rect" id="transcendental-const"></a><a href="#transcendental-const-note" shape="rect">transcendental constants</a><br />
+<span style="color: gray"><em>π and Euler's number</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">FLOAT.PI FLOAT.E</td><td rowspan="1" colspan="1">LIB "general.lib";<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> print specified number of digits:</span><br />
+number_pi(100);<br />
+number_e(100);</td><td rowspan="1" colspan="1">Pi exp(1)</td></tr><tr><td rowspan="1" colspan="1"><a name="float-truncation" shape="rect" id="float-truncation"></a><a href="#float-truncation-note" shape="rect">float truncation</a><br />
+<span style="color: gray"><em>round towards zero, round to nearest integer, round down, round up</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Trunc Round Floor Ceil</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">truncate(x)<br />
+round(x)<br />
+floor(x)<br />
+ceil(x)</td></tr><tr><td rowspan="1" colspan="1"><a name="absolute-val" shape="rect" id="absolute-val"></a><a href="#absolute-val-note" shape="rect">absolute value</a><br />
+<span style="color: gray"><em>and signum</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">AbsInt<br />
+<span style="color: gray"><em>no absolute value for floats?</em></span><br />
+SignInt<br />
+SignFloat</td><td rowspan="1" colspan="1">LIB "general.lib";<br />
+<br />
+absValue(-7);<br />
+<br />
+ring r = real,(x,y,z),(dp);<br />
+absValue(-7.1);</td><td rowspan="1" colspan="1">abs(x)<br />
+sign(x)</td></tr><tr><td rowspan="1" colspan="1"><a name="int-overflow" shape="rect" id="int-overflow"></a><a href="#int-overflow-note" shape="rect">integer overflow</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none, has arbitrary length integer type</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none, has arbitrary length integer type</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>modular arithmetic with warning</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none, has arbitrary length integer type</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="float-overflow" shape="rect" id="float-overflow"></a><a href="#float-overflow-note" shape="rect">float overflow</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># prints as inf:</span><br />
+FLOAT.INFINTY</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="rational-construction" shape="rect" id="rational-construction"></a><a href="#rational-construction-note" shape="rect">rational construction</a></td><td rowspan="1" colspan="1">2 / 7;</td><td rowspan="1" colspan="1">2 / 7</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">2 / 7</td></tr><tr><td rowspan="1" colspan="1"><a name="rational-decomposition" shape="rect" id="rational-decomposition"></a><a href="#rational-decomposition-note" shape="rect">rational decomposition</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">Numerator(2 / 7);<br />
+Denominator(2 / 7 );</td><td rowspan="1" colspan="1">x := 2 / 7;<br />
+NumeratorRat(x);<br />
+DenominatorRat(x);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">x = 2 / 7<br />
+numerator(x)<br />
+denominator(x)</td></tr><tr><td rowspan="1" colspan="1"><a name="decimal-approx" shape="rect" id="decimal-approx"></a><a href="#decimal-approx-note" shape="rect">decimal approximation</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">2 / 7 + 0.<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> change precision to 100:</span><br />
+\p 100<br />
+2 / 7 + 0.</td></tr><tr><td rowspan="1" colspan="1"><a name="complex-construction" shape="rect" id="complex-construction"></a><a href="#complex-construction-note" shape="rect">complex construction</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">1 + 3 * I</td></tr><tr><td rowspan="1" colspan="1"><a name="complex-decomposition" shape="rect" id="complex-decomposition"></a><a href="#complex-decomposition-note" shape="rect">complex decomposition</a><br />
+<span style="color: gray"><em>real and imaginary part, argument and modulus, conjugate</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">real(z) imag(z)<br />
+arg(z) abs(z)<br />
+conj(z)</td></tr><tr><td rowspan="1" colspan="1"><a name="random-num" shape="rect" id="random-num"></a><a href="#random-num-note" shape="rect">random number</a><br />
+<span style="color: gray"><em>uniform integer, uniform float</em></span></td><td rowspan="1" colspan="1">Random(0, 99);<br />
+<span style="color: gray"><em>??</em></span></td><td rowspan="1" colspan="1">rs := RandomSource(IsMersenneTwister);<br />
+Random(rs, 0, 99);<br />
+<span style="color: gray"><em>??</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">random(100)<br />
+random(1.0)</td></tr><tr><td rowspan="1" colspan="1"><a name="random-seed" shape="rect" id="random-seed"></a><a href="#random-seed-note" shape="rect">random seed</a><br />
+<span style="color: gray"><em>set, get</em></span></td><td rowspan="1" colspan="1">SetSeed(42);<br />
+seed := GetSeed(();</td><td rowspan="1" colspan="1">rs := RandomSource(IsMersenneTwister, 17);<br />
+State(rs);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">setrand(17)<br />
+getrand()</td></tr><tr><td rowspan="1" colspan="1"><a name="bit-op" shape="rect" id="bit-op"></a><a href="#bit-op-note" shape="rect">bit operators</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> left shift:</span><br />
+5 <span style="white-space: pre-wrap;">&lt;&lt;</span> 1<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> right shift:</span><br />
+5 <span style="white-space: pre-wrap;">&gt;&gt;</span> 1</td></tr><tr><td rowspan="1" colspan="1"><a name="binary-octal-hex-literals" shape="rect" id="binary-octal-hex-literals"></a><a href="#binary-octal-hex-literals-note" shape="rect">binary, octal, and hex literals</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="radix" shape="rect" id="radix"></a><a href="#radix-note" shape="rect">radix</a></td><td rowspan="1" colspan="1">IntegerToString(42, 7);</td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> 42 as powers of 7 up to 9th power:</span><br />
+42 + O(7^10)</td></tr><tr><td rowspan="1" colspan="1"><a name="to-array-of-digits" shape="rect" id="to-array-of-digits"></a><a href="#to-array-of-digits-note" shape="rect">to array of digits</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ListOfDigits(1234);<br />
+<br />
+<span style="color: gray"># other bases?</span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> base 10:</span><br />
+digits(1234)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> base 2:</span><br />
+digits(1234, 2)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> number of digits in base 10:</span><br />
+sizedigits(1234)</td></tr><tr><th colspan="5" rowspan="1"><a name="strings" shape="rect" id="strings"></a><a href="#strings-note" shape="rect">strings</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="str-literal" shape="rect" id="str-literal"></a><a href="#str-literal-note" shape="rect">string literal</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">"don't say \"no\""</td><td rowspan="1" colspan="1">"don't say \"no\""</td><td rowspan="1" colspan="1">string s = "don't say \"no\"";</td><td rowspan="1" colspan="1">"don't say \"no\""</td></tr><tr><td rowspan="1" colspan="1"><a name="newline-in-str-literal" shape="rect" id="newline-in-str-literal"></a><a href="#newline-in-str-literal-note" shape="rect">newline in literal</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>A line break in a string literal results in a newline in the string unless preceded by a backslash.</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>no</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>Yes; runaway strings are possible; there is a predefined string variable newline which contains a single newline character.</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>no; use \n escape</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="str-literal-esc" shape="rect" id="str-literal-esc"></a><a href="#str-literal-esc-note" shape="rect">literal escapes</a></td><td rowspan="1" colspan="1">\" \\ \n \r \t</td><td rowspan="1" colspan="1">\b \c \n \r \" \' \\ \<span style="color: gray"><em>ooo</em></span><br />
+<br />
+<span style="color: gray"><em>when writing to a buffered output stream, encountering a</em> \c <em>causes a flush of output.</em></span></td><td rowspan="1" colspan="1">\" \\</td><td rowspan="1" colspan="1">\n \t \" \\</td></tr><tr><td rowspan="1" colspan="1"><a name="str-concat" shape="rect" id="str-concat"></a><a href="#str-concat-note" shape="rect">concatenate</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">"one " cat "two " cat "three";<br />
+"one " * "two " * "three";<br />
+&amp;cat ["one ", "two ", "three "];<br />
+&amp;* ["one ", "two ", "three "];</td><td rowspan="1" colspan="1">Concatenation("one ", "two ", "three");</td><td rowspan="1" colspan="1">string s = "one" + "two" + "three";</td><td rowspan="1" colspan="1">Str("one ", "two ", "three")<br />
+concat("one ", "two ", "three")</td></tr><tr><td rowspan="1" colspan="1"><a name="str-replicate" shape="rect" id="str-replicate"></a><a href="#str-replicate-note" shape="rect">replicate</a></td><td rowspan="1" colspan="1">hbar := "-" ^ 80;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="translate-case" shape="rect" id="translate-case"></a><a href="#translate-case-note" shape="rect">translate case</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">UppercaseString("foo");<br />
+LowercaseString("FOO");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="trim" shape="rect" id="trim"></a><a href="#trim-note" shape="rect">trim</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="num-to-str" shape="rect" id="num-to-str"></a><a href="#num-to-str-note" shape="rect">number to string</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">"value: " * IntegerToString(8);</td><td rowspan="1" colspan="1">Concatenation("value: ", String(8));</td><td rowspan="1" colspan="1">"value: " + string(8)</td><td rowspan="1" colspan="1">Str(8)<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> implicit conversion to string:</span><br />
+concat("value: ", 8)</td></tr><tr><td rowspan="1" colspan="1"><a name="str-to-num" shape="rect" id="str-to-num"></a><a href="#str-to-num-note" shape="rect">string to number</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">7 + Int("12");<br />
+73.9 + Float(".037");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">7 + eval("12")<br />
+73.9 + eval(".037")</td></tr><tr><td rowspan="1" colspan="1"><a name="str-join" shape="rect" id="str-join"></a><a href="#str-join-note" shape="rect">string join</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a := ["foo", "bar", "baz"];<br />
+JoinStringsWithSeparator(a, ",");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="split" shape="rect" id="split"></a><a href="#split-note" shape="rect">split</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">Split("foo,bar,baz", ",");</td><td rowspan="1" colspan="1">SplitString("foo,bar,baz", ",");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="str-subst" shape="rect" id="str-subst"></a><a href="#str-subst-note" shape="rect">substitute</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># replace all occurrences:</span><br />
+ReplacedString("do re mi mi", "mi", "ma");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="str-len" shape="rect" id="str-len"></a><a href="#str-len-note" shape="rect">length</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"># "hello";</td><td rowspan="1" colspan="1">Length("hello");</td><td rowspan="1" colspan="1">size("hello");</td><td rowspan="1" colspan="1">length("hello")<br />
+#"hello"</td></tr><tr><td rowspan="1" colspan="1"><a name="index-substr" shape="rect" id="index-substr"></a><a href="#index-substr-note" shape="rect">index of substring</a></td><td rowspan="1" colspan="1">Index("hello", "el");<br />
+Position("hello", "el");<br />
+<span style="color: gray">/* both return 0 if substring not found */</span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray">// evaluates to 2:</span><br />
+find("hello", "el");</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="extract-substr" shape="rect" id="extract-substr"></a><a href="#extract-substr-note" shape="rect">extract substring</a></td><td rowspan="1" colspan="1">Substring("hello", 2, 2);</td><td rowspan="1" colspan="1">s := "hello";<br />
+s{[2..3]};</td><td rowspan="1" colspan="1"><span style="color: gray">// start index and substring length:</span><br />
+"hello"[2, 2]</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="char-literal" shape="rect" id="char-literal"></a><a href="#char-literal-note" shape="rect">character literal</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">'h'</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="lookup-char" shape="rect" id="lookup-char"></a><a href="#lookup-char-note" shape="rect">character lookup</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">s := "hello";<br />
+<span style="color: gray"># the character 'h':</span><br />
+s[1];<br />
+<br />
+<span style="color: gray"># cannot use index notation on string literal</span></td><td rowspan="1" colspan="1"><span style="color: gray">// the character h:</span><br />
+"hello"[1]</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="chr-ord" shape="rect" id="chr-ord"></a><a href="#chr-ord-note" shape="rect">chr and ord</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">CharInt(65)<br />
+IntChar('A')</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Strchr([65])<br />
+Vecsmall("A")</td></tr><tr><td rowspan="1" colspan="1"><a name="delete-char" shape="rect" id="delete-char"></a><a href="#delete-char-note" shape="rect">delete characters</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">s := "disemvowel me";<br />
+<span style="color: gray"># no retval; modifies s in place:</span><br />
+RemoveCharacters(s, "aeiou");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="arrays" shape="rect" id="arrays"></a><a href="#arrays-note" shape="rect">arrays</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="array-literal" shape="rect" id="array-literal"></a><a href="#array-literal-note" shape="rect">literal</a></td><td rowspan="1" colspan="1">a := [1, 2, 3];</td><td rowspan="1" colspan="1">[1, 2, 3];<br />
+<br />
+<span style="color: gray"># creates array with gap at fourth index;<br />
+# reading a[4] causes an error:</span><br />
+a := [1, 2, 3, , 5];</td><td rowspan="1" colspan="1">list a= 1, 2, 3;<br />
+list a = list(1, 2, 3);<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> Singular lists are fixed length.</span></td><td rowspan="1" colspan="1"><span style="color: gray">\\ [1, 2, 3] is a vector literal:</span><br />
+List([1, 2, 3])</td></tr><tr><td rowspan="1" colspan="1"><a name="array-size" shape="rect" id="array-size"></a><a href="#array-size-note" shape="rect">size</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"># [1, 2, 3];</td><td rowspan="1" colspan="1">Length([1, 2, 3]);</td><td rowspan="1" colspan="1">size(a);</td><td rowspan="1" colspan="1">length(List([1, 2, 3]))<br />
+#List([1, 2, 3])</td></tr><tr><td rowspan="1" colspan="1"><a name="array-lookup" shape="rect" id="array-lookup"></a><a href="#array-lookup-note" shape="rect">lookup</a></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> indices start at one:</span><br />
+[6, 7, 8][1];</td><td rowspan="1" colspan="1"><span style="color: gray"># indices start at one:</span><br />
+a := [1, 2, 3];<br />
+a[1];</td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> indices start at one:</span><br />
+a[1];</td><td rowspan="1" colspan="1"><span style="color: gray">\\ access time is O(1).</span><br />
+<span style="color: gray">\\ indices start at one:</span><br />
+List([1, 2, 3])[1]</td></tr><tr><td rowspan="1" colspan="1"><a name="array-update" shape="rect" id="array-update"></a><a href="#array-update-note" shape="rect">update</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">a[1] := 7;</td><td rowspan="1" colspan="1">a[1] := 7;</td><td rowspan="1" colspan="1">a[1] = 7;</td><td rowspan="1" colspan="1">listput(a, 7, 1)</td></tr><tr><td rowspan="1" colspan="1"><a name="array-out-of-bounds" shape="rect" id="array-out-of-bounds"></a><a href="#array-out-of-bounds-note" shape="rect">out-of-bounds behavior</a></td><td rowspan="1" colspan="1"><span style="color: gray"><em>Runtime error on lookup.</em></span><br />
+<br />
+<span style="color: gray"><em>For update, size of array is increased if necessary; runtime error to look up unassigned slot in between assigned slots.</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>Lookups result in errors; arrays can have gaps which also cause lookup errors.<br />
+<br />
+An update will expand the array, possibly creating gaps.</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>out of allowed range error</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="array-element-index" shape="rect" id="array-element-index"></a><a href="#array-element-index-note" shape="rect">element index</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># returns 3:</span><br />
+Position([7, 8, 9, 9], 9);<br />
+<br />
+<span style="color: gray"># returns [3, 4]:</span><br />
+Positions([7, 8, 9, 9], 9);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="array-slice" shape="rect" id="array-slice"></a><a href="#array-slice-note" shape="rect">slice</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="array-of-integers-as-index" shape="rect" id="array-of-integers-as-index"></a><a href="#array-of-integers-as-index-note" shape="rect">array of integers as index</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="array-back" shape="rect" id="array-back"></a><a href="#array-back-note" shape="rect">manipulate back</a></td><td rowspan="1" colspan="1">a := [6, 7, 8];<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> a not modified:</span><br />
+a2 := Append(a, 9);<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> a2 not modified:</span><br />
+a3 := Prune(a2);<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> a modified:</span><br />
+Append(~a, 9);<br />
+Prune(~a);</td><td rowspan="1" colspan="1">a = [6, 7, 8];<br />
+Add(a, 9);<br />
+elem := Remove(a);</td><td rowspan="1" colspan="1">list a = list(6, 7, 8);<br />
+list a2 = insert(a, 9, size(a));<br />
+int popme = a2[size(a2)];<br />
+list a3 = delete(a2, size(a2));</td><td rowspan="1" colspan="1">a = List([6, 7, 8])<br />
+listput(a, 9)<br />
+elem = listpop(a)</td></tr><tr><td rowspan="1" colspan="1"><a name="array-front" shape="rect" id="array-front"></a><a href="#array-front-note" shape="rect">manipulate front</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a = List([6, 7, 8]);<br />
+listinsert(a, 5, 1);<br />
+elem = a[1];<br />
+listpop(a, 1);</td></tr><tr><td rowspan="1" colspan="1"><a name="array-head" shape="rect" id="array-head"></a><a href="#array-head-note" shape="rect">head</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">List([1, 2, 3])[1]</td></tr><tr><td rowspan="1" colspan="1"><a name="array-tail" shape="rect" id="array-tail"></a><a href="#array-tail-note" shape="rect">tail</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="array-cons" shape="rect" id="array-cons"></a><a href="#array-cons-note" shape="rect">cons</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a = List([1, 2, 3]);<br />
+listinsert(a, 1, 1);</td></tr><tr><td rowspan="1" colspan="1"><a name="array-concatenate" shape="rect" id="array-concatenate"></a><a href="#array-concatenate-note" shape="rect">concatenate</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Concatenation([1, 2, 3], [4, 5, 6]);</td><td rowspan="1" colspan="1">list a1 = 1, 2, 3;<br />
+list a2 = 4, 5, 6;<br />
+list a3 = a1 + a2;</td><td rowspan="1" colspan="1">concat(List([1, 2, 3]), List([4, 5, 6]))</td></tr><tr><td rowspan="1" colspan="1"><a name="array-replicate" shape="rect" id="array-replicate"></a><a href="#array-replicate-note" shape="rect">replicate</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="copy-array" shape="rect" id="copy-array"></a><a href="#copy-array-note" shape="rect">copy</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a2 = a</td></tr><tr><td rowspan="1" colspan="1"><a name="iterate-over-array" shape="rect" id="iterate-over-array"></a><a href="#iterate-over-array-note" shape="rect">iterate</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Perform([1, 2, 3], function(x) Print(x); Print("\n"); end);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a = List([1, 2, 3])<br />
+<br />
+for(i=1, length(a), print(a[i]))</td></tr><tr><td rowspan="1" colspan="1"><a name="reverse-array" shape="rect" id="reverse-array"></a><a href="#reverse-array-note" shape="rect">reverse</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Reversed([1, 2, 3])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a = List([1, 2, 3])<br />
+a2 = listcreate()<br />
+while(i &gt; 0, listput(a2, a[i]); i—)</td></tr><tr><td rowspan="1" colspan="1"><a name="sort-array" shape="rect" id="sort-array"></a><a href="#sort-array-note" shape="rect">sort</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A := [3, 1, 4, 2]<br />
+Sort(A);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a = List([3,1,4,2])<br />
+listsort(a)<br />
+a</td></tr><tr><td rowspan="1" colspan="1"><a name="dedupe-array" shape="rect" id="dedupe-array"></a><a href="#dedupe-array-note" shape="rect">dedupe</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Set([1, 2, 2, 3]);<br />
+Unique([1, 2, 2, 3]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Set([1, 2, 2, 3])</td></tr><tr><td rowspan="1" colspan="1"><a name="membership" shape="rect" id="membership"></a><a href="#membership-note" shape="rect">membership</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">2 in [1, 2, 3]</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> returns 1-based index of first occurrence<br />
+<span style="white-space: pre-wrap;">\\</span> or 0 if not found:</span><br />
+setsearch([1, 2, 3], 2)</td></tr><tr><td rowspan="1" colspan="1"><a name="intersection" shape="rect" id="intersection"></a><a href="#intersection-note" shape="rect">intersection</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Intersection(Set([1, 2]), Set([2, 3, 4]));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">setintersect([1, 2], [2, 3, 4])</td></tr><tr><td rowspan="1" colspan="1"><a name="union" shape="rect" id="union"></a><a href="#union-note" shape="rect">union</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Union(Set([1, 2]), Set([2, 3, 4]));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">setunion([1, 2], [2, 3, 4])</td></tr><tr><td rowspan="1" colspan="1"><a name="set-diff" shape="rect" id="set-diff"></a><a href="#set-diff-note" shape="rect">relative complement, symmetric difference</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">setminus([1, 2, 3], [2])<br />
+<span style="color: gray"><em>??</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="map" shape="rect" id="map"></a><a href="#map-note" shape="rect">map</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A := [1, 2, 3];<br />
+<br />
+<span style="color: gray"># modifies A:</span><br />
+Apply(A, x -&gt; x * x);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">apply(x -&gt; x * x, [1, 2, 3])</td></tr><tr><td rowspan="1" colspan="1"><a name="filter" shape="rect" id="filter"></a><a href="#filter-note" shape="rect">filter</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">select(x -&gt; x &gt; 2, [1, 2, 3])</td></tr><tr><td rowspan="1" colspan="1"><a name="reduce" shape="rect" id="reduce"></a><a href="#reduce-note" shape="rect">reduce</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="universal-existential-test" shape="rect" id="universal-existential-test"></a><a href="#universal-existential-test-note" shape="rect">universal and existential tests</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="min-max-elem" shape="rect" id="min-max-elem"></a><a href="#min-max-elem-note" shape="rect">min and max element</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Minimum([1, 2, 3])<br />
+Maximum([1, 2, 3])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">vecmin([1, 2, 3])<br />
+vecmax([1, 2, 3])</td></tr><tr><td rowspan="1" colspan="1"><a name="shuffle-sample" shape="rect" id="shuffle-sample"></a><a href="#shuffle-sample-note" shape="rect">shuffle and sample</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Shuffle([1, 2, 3, 4])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="flatten" shape="rect" id="flatten"></a><a href="#flatten-note" shape="rect">flatten</a><br />
+<span style="color: gray"><em>one level, completely</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># completely:</span><br />
+Flat([1, [2, [3, 4]]])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="zip" shape="rect" id="zip"></a><a href="#zip-note" shape="rect">zip</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="cartesian-product" shape="rect" id="cartesian-product"></a><a href="#cartesian-product-note" shape="rect">cartesian product</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Cartesian([1, 2, 3], ["a", "b", "c"])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="sets" shape="rect" id="sets"></a><a href="#sets-note" shape="rect">sets</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="set-literal" shape="rect" id="set-literal"></a><a href="#set-literal-note" shape="rect">literal</a></td><td rowspan="1" colspan="1">{1, 2, 3};</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="set-size" shape="rect" id="set-size"></a><a href="#set-size-note" shape="rect">size</a></td><td rowspan="1" colspan="1"># {1, 2, 3};</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="set-add-elem" shape="rect" id="set-add-elem"></a><a href="#set-add-elem-note" shape="rect">add element</a></td><td rowspan="1" colspan="1">s := {1, 2, 3};<br />
+Inlude(~s, 4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="set-rm-elem" shape="rect" id="set-rm-elem"></a><a href="#set-rm-elem-note" shape="rect">remove element</a></td><td rowspan="1" colspan="1">s := {1, 2, 3};<br />
+Exclude(~s, 1);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="set-membership" shape="rect" id="set-membership"></a><a href="#set-membership-note" shape="rect">membership test</a></td><td rowspan="1" colspan="1">7 in {6, 7, 8};</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="disjoint-test" shape="rect" id="disjoint-test"></a><a href="#disjoint-test-note" shape="rect">disjoint test</a></td><td rowspan="1" colspan="1">IsDisjoint({1, 2, 3}, {2, 3, 4});</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="set-unino" shape="rect" id="set-unino"></a><a href="#set-union-note" shape="rect">union</a></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> {1, 2, 3, 4}:</span><br />
+s := {1, 2, 3} join {2, 3, 4};</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="set-intersection" shape="rect" id="set-intersection"></a><a href="#set-intersection-note" shape="rect">intersection</a></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> {2, 3}:</span><br />
+s := {1, 2, 3} meet {2, 3, 4};</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="set-relative-complement" shape="rect" id="set-relative-complement"></a><a href="#set-relative-complement-note" shape="rect">relative complement</a></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> {1}:</span><br />
+s := {1, 2, 3} diff {2, 3, 4};</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="arith-seq" shape="rect" id="arith-seq"></a><a href="#arith-seq-note" shape="rect">arithmetic sequences</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a href="#range" shape="rect">unit difference</a></td><td rowspan="1" colspan="1">[1 .. 100];</td><td rowspan="1" colspan="1">[1 .. 100]</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[1 .. 100]<br />
+vector(100, i, i)</td></tr><tr><td rowspan="1" colspan="1"><a href="#arithmetic-sequence-integer" shape="rect">difference of 10</a></td><td rowspan="1" colspan="1">[1 .. 100 by 10];</td><td rowspan="1" colspan="1">[1,11 .. 91]</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">vector(10, i, 10 * i - 9)</td></tr><tr><td rowspan="1" colspan="1"><a href="#airthmetic-sequence-float" shape="rect">difference of 0.1</a></td><td rowspan="1" colspan="1">[0.1 * i: i in [1 .. 1000]];</td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">vector(1000 - 9, i, i / 10 + 9 / 10)</td></tr><tr><th colspan="5" rowspan="1"><a name="dictionaries" shape="rect" id="dictionaries"></a><a href="#dictionaries-note" shape="rect">dictionaries</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="dict-literal" shape="rect" id="dict-literal"></a><a href="#dict-literal-note" shape="rect">literal</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> None, just empty constructor:</span><br />
+d := AssociativeArray();<br />
+d["t"] := 1;<br />
+d["f"] := 0;</td><td rowspan="1" colspan="1"><span style="color: gray"># dictionary constructor; type of keys derived<br />
+# from first arg:</span><br />
+d := NewDictionary("", true);<br />
+AddDictionary(d, "t", 1);<br />
+AddDictionary(d, "f", 0);<br />
+<br />
+<span style="color: gray"># record literal with identifier keys:</span><br />
+r := rec(t := 1, f := 0);<br />
+<br />
+<span style="color: gray"># record literal with string keys:</span><br />
+r2 := rec(("t") := 1, ("f") := 0);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-size" shape="rect" id="dict-size"></a><a href="#dict-size-note" shape="rect">size</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"># d;</td><td rowspan="1" colspan="1"><span style="color: gray"># no way to get size of dictionary?</span><br />
+<br />
+Length(RecNames(r));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-lookup" shape="rect" id="dict-lookup"></a><a href="#dict-lookup-note" shape="rect">lookup</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">d["t"];</td><td rowspan="1" colspan="1">LookupDictionary(d, "t");<br />
+<br />
+<span style="color: gray"># the same key can be looked up with identifier<br />
+# or string notation:</span><br />
+r.t;<br />
+r.("t");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-update" shape="rect" id="dict-update"></a><a href="#dict-update-note" shape="rect">update</a></td><td rowspan="1" colspan="1">d["f"] := -1;</td><td rowspan="1" colspan="1">AddDictionary(d, "f", -1);<br />
+<br />
+r.f := -1;<br />
+r2.("f") := -1;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-missing-key" shape="rect" id="dict-missing-key"></a><a href="#dict-missing-key-note" shape="rect">missing key behavior</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>Runtime error</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"># returns special object "fail":</span><br />
+LookupDictionary(d, "not_a_key");<br />
+<br />
+<span style="color: gray"># raises an error:</span><br />
+r.not_a_key;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-key-check" shape="rect" id="dict-key-check"></a><a href="#dict-key-check-note" shape="rect">is key present</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">IsDefined(d, "t");</td><td rowspan="1" colspan="1">KnowsDictionary(d, "t");<br />
+<br />
+<span style="color: gray"># RecNames returns keys as strings:</span><br />
+"t" in RecNames(r);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-del" shape="rect" id="dict-del"></a><a href="#dict-del-note" shape="rect">delete</a></td><td rowspan="1" colspan="1">Remove(~d, "t");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-iter" shape="rect" id="dict-iter"></a><a href="#dict-iter-note" shape="rect">iterate</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># no way to iterate over dictionary?</span><br />
+<br />
+for i in RecNames(r) do<br />
+<span style="white-space: pre-wrap;">  </span>Print(r.(i));<br />
+od;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dict-key-val" shape="rect" id="dict-key-val"></a><a href="#dict-key-val-note" shape="rect">keys and values as arrays</a></td><td rowspan="1" colspan="1">Keys(d);<br />
+<span style="color: gray"><em>??</em></span></td><td rowspan="1" colspan="1">RecNames(r);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="functions" shape="rect" id="functions"></a><a href="#functions-note" shape="rect">functions</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a href="#function-definition" shape="rect">define function</a></td><td rowspan="1" colspan="1">add := function(a, b)<br />
+<span style="white-space: pre-wrap;">  </span>return a + b;<br />
+end function;<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> no return value:</span><br />
+show := procedure(s)<br />
+<span style="white-space: pre-wrap;">  </span>print(s);<br />
+end procedure;</td><td rowspan="1" colspan="1">add := function(x, y)<br />
+<span style="white-space: pre-wrap;">  </span>return x + y;<br />
+end;</td><td rowspan="1" colspan="1">proc add(int x, int y) {<br />
+<span style="white-space: pre-wrap;">  </span>return(x + y);<br />
+}</td><td rowspan="1" colspan="1">add(x, y) = x + y<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> function body w/ sequence of statements:</span><br />
+say(s1, s2, s3) = print(s1); print(s2); print(s3)<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> function body w/ newlines:</span><br />
+dire(s1, s2, s3) = {<br />
+<span style="white-space: pre-wrap;">  </span>print(s1);<br />
+<span style="white-space: pre-wrap;">  </span>print(s2);<br />
+<span style="white-space: pre-wrap;">  </span>print(s3);<br />
+}</td></tr><tr><td rowspan="1" colspan="1"><a href="#function-invocation" shape="rect">invoke function</a></td><td rowspan="1" colspan="1">add(3, 7);</td><td rowspan="1" colspan="1">add(3, 7);</td><td rowspan="1" colspan="1">add(3, 7);</td><td rowspan="1" colspan="1">add(3, 7)</td></tr><tr><td rowspan="1" colspan="1"><a name="undef-func" shape="rect" id="undef-func"></a><a href="#undef-func-note" shape="rect">undefine function</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">kill(add)</td></tr><tr><td rowspan="1" colspan="1"><a name="redefine-func" shape="rect" id="redefine-func"></a><a href="#redefine-func-note" shape="rect">redefine function</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">add(x, y, z) = x + y + z</td></tr><tr><td rowspan="1" colspan="1"><a name="overload-func" shape="rect" id="overload-func"></a><a href="#overload-func-note" shape="rect">overload function</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="missing-func" shape="rect" id="missing-func"></a><a href="#missing-func-note" shape="rect">missing function behavior</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>"not a function" error</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="missing-arg" shape="rect" id="missing-arg"></a><a href="#missing-arg-note" shape="rect">missing argument behavior</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>set to zero</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="extra-arg" shape="rect" id="extra-arg"></a><a href="#extra-arg-note" shape="rect">extra argument behavior</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>"too many parameters" error</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="default-arg" shape="rect" id="default-arg"></a><a href="#default-arg-note" shape="rect">default argument</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">mylog(x = 1, base = 10) = log(x) / log(base)<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> log10(3):</span><br />
+mylog(3)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> ln(3):</span><br />
+mylog(3, exp(1))<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> ln(1):</span><br />
+mylog(, exp(1))<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> If neither caller nor function definition<br />
+<span style="white-space: pre-wrap;">\\</span> provide a value, zero is used.</span></td></tr><tr><td rowspan="1" colspan="1"><a name="retval" shape="rect" id="retval"></a><a href="#retval-note" shape="rect">return value</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a href="#anonymous-function" shape="rect">anonymous function</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># unary functions only?</span><br />
+f := x -&gt; x * x;<br />
+<br />
+f2 := function(x, y) return 2 * x + 3 * y; end;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">f = (x, y) -&gt; x + y<br />
+<br />
+f(1, 2)</td></tr><tr><td rowspan="1" colspan="1"><a href="#variable-number-arguments" shape="rect">variable number of arguments</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="expand-array" shape="rect" id="expand-array"></a><a href="#expand-array-note" shape="rect">pass array elements as separate arguments</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="execution-control" shape="rect" id="execution-control"></a><a href="#execution-control-note" shape="rect">execution control</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a href="#if" shape="rect">if</a></td><td rowspan="1" colspan="1">if n gt 0 then<br />
+<span style="white-space: pre-wrap;">  </span>print "positive";<br />
+else<br />
+<span style="white-space: pre-wrap;">  </span>if n lt 0 then<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>print "negative";<br />
+<span style="white-space: pre-wrap;">  </span>else<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>print "zero";<br />
+<span style="white-space: pre-wrap;">  </span>end if;<br />
+end if;</td><td rowspan="1" colspan="1">if x &gt; 0 then<br />
+<span style="white-space: pre-wrap;">  </span>Print("positive\n");<br />
+elif x &lt; 0 then<br />
+<span style="white-space: pre-wrap;">  </span>Print("negative\n");<br />
+else<br />
+<span style="white-space: pre-wrap;">  </span>Print("zero\n");<br />
+fi;</td><td rowspan="1" colspan="1">int x = -3;<br />
+if (x &gt; 0) {<br />
+<span style="white-space: pre-wrap;">  </span>print("positive");<br />
+} else { if (x &lt; 0) {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>print("negative");<br />
+<span style="white-space: pre-wrap;">  </span>} else {<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>print("zero");<br />
+<span style="white-space: pre-wrap;">  </span>}<br />
+};</td><td rowspan="1" colspan="1">if(x &gt; 0, \<br />
+<span style="white-space: pre-wrap;">  </span>print("positive"), \<br />
+<span style="white-space: pre-wrap;">  </span>if(x &lt; 0, \<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>print("negative"), \<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>print("zero")))</td></tr><tr><td rowspan="1" colspan="1"><a href="#while" shape="rect">while</a></td><td rowspan="1" colspan="1">i := 0;<br />
+while i lt 10 do<br />
+<span style="white-space: pre-wrap;">  </span>print i;<br />
+<span style="white-space: pre-wrap;">  </span>i := i + 1;<br />
+end while;</td><td rowspan="1" colspan="1">i := 0;<br />
+while i &lt; 10 do<br />
+<span style="white-space: pre-wrap;">  </span>Print(i, "\n");<br />
+<span style="white-space: pre-wrap;">  </span>i := i + 1;<br />
+od;</td><td rowspan="1" colspan="1">int i = 0;<br />
+while (i &lt; 10) {<br />
+<span style="white-space: pre-wrap;">  </span>print(i);<br />
+<span style="white-space: pre-wrap;">  </span>i++;<br />
+};</td><td rowspan="1" colspan="1">i = 0<br />
+while(i &lt; 10, print(i); i++)</td></tr><tr><td rowspan="1" colspan="1"><a href="#for" shape="rect">for</a></td><td rowspan="1" colspan="1">for i := 0 to 9 by 1 do<br />
+<span style="white-space: pre-wrap;">  </span>print i;<br />
+end for;</td><td rowspan="1" colspan="1">for i in [0..9] do<br />
+<span style="white-space: pre-wrap;">  </span>Print(i, "\n");<br />
+od;</td><td rowspan="1" colspan="1">int i;<br />
+for (i = 0; i &lt; 10; i++) {<br />
+<span style="white-space: pre-wrap;">  </span>print(i);<br />
+};</td><td rowspan="1" colspan="1">for(i = 0, 9, print(i))</td></tr><tr><td rowspan="1" colspan="1"><a href="#break" shape="rect">break</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">break</td><td rowspan="1" colspan="1">break</td><td rowspan="1" colspan="1">break</td></tr><tr><td rowspan="1" colspan="1"><a href="#continue" shape="rect">continue</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">continue</td><td rowspan="1" colspan="1">continue</td><td rowspan="1" colspan="1">next</td></tr><tr><th colspan="5" rowspan="1"><a name="exceptions" shape="rect" id="exceptions"></a><a href="#exceptions-note" shape="rect">exceptions</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="raise-exc" shape="rect" id="raise-exc"></a><a href="#raise-exc-note" shape="rect">raise exception</a></td><td rowspan="1" colspan="1">error "failed";</td><td rowspan="1" colspan="1">Error("failed");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">error("failed")</td></tr><tr><td rowspan="1" colspan="1"><a name="handle-exc" shape="rect" id="handle-exc"></a><a href="#handle-exc-note" shape="rect">handle exception</a></td><td rowspan="1" colspan="1">try<br />
+<span style="white-space: pre-wrap;">  </span>error "failed";<br />
+catch e<br />
+<span style="white-space: pre-wrap;">  </span>print "caught error";<br />
+end try;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">iferr(error("failed"), E, \<br />
+<span style="white-space: pre-wrap;">  </span>print(errname(E), ": ", component(E, 1)))</td></tr><tr><td rowspan="1" colspan="1"><a name="uncaught-exc" shape="rect" id="uncaught-exc"></a><a href="#uncaught-exc-note" shape="rect">uncaught exception behavior</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray">Error() <em>invokes the GAP debugger. Type</em><br />
+<br />
+<span style="white-space: pre-wrap;">  </span>Quit;<br />
+<br />
+<em>to return to REPL.</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="streams" shape="rect" id="streams"></a><a href="#streams-note" shape="rect">streams</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="write-line-stdout" shape="rect" id="write-line-stdout"></a><a href="#write-line-stdout-note" shape="rect">write line to stdout</a></td><td rowspan="1" colspan="1">print "hello";</td><td rowspan="1" colspan="1">Print("hello");</td><td rowspan="1" colspan="1">print("hello");</td><td rowspan="1" colspan="1">print("hello")</td></tr><tr><td rowspan="1" colspan="1"><a href="#read-file-string-array" shape="rect">read file into array of strings</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">a = readstr("/etc/hosts")</td></tr><tr><th colspan="5" rowspan="1"><a name="processes-env" shape="rect" id="processes-env"></a><a href="#processes-env-note" shape="rect">processes and environment</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="env-var" shape="rect" id="env-var"></a><a href="#env-var-note" shape="rect">environment variable</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">getenv("HOME")</td></tr><tr><td rowspan="1" colspan="1">[[#external-cmd]]<a href="#external-cmd-note" shape="rect">external command</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">system("ls /etc")</td></tr><tr><td rowspan="1" colspan="1"><a name="cmd-subst" shape="rect" id="cmd-subst"></a><a href="#cmd-subst-note" shape="rect">command substitution</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> array of output lines:</span><br />
+lines = externstr("ls /etc")</td></tr><tr><th colspan="5" rowspan="1"><a name="libraries-namespaces" shape="rect" id="libraries-namespaces"></a><a href="#libraries-namespaces-note" shape="rect">libraries and namespaces</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="load-lib" shape="rect" id="load-lib"></a><a href="#load-lib-note" shape="rect">load library</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Read('foo.g');</td><td rowspan="1" colspan="1">LIB "add.sing";</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="def-lib" shape="rect" id="def-lib"></a><a href="#def-lib-note" shape="rect">define library</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">$ cat add.sing<br />
+version="1.0"<br />
+category="misc"<br />
+info="an add function"<br />
+<br />
+proc add(int x, int y) {<br />
+<span style="white-space: pre-wrap;">  </span>return(x + y);<br />
+}</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="lib-path" shape="rect" id="lib-path"></a><a href="#lib-path-note" shape="rect">library path</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>Searches current directory; additional directories can be added to the search path by adding them separated by colons to the/ SINGULARPATH //environment variable.</em></span></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="reflection" shape="rect" id="reflection"></a><a href="#reflection-note" shape="rect">reflection</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a href="#list-function-documentation" shape="rect">list function documentation</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">?</td></tr><tr><td rowspan="1" colspan="1"><a href="#function-documentation" shape="rect">get function documentation</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">help killall;</td><td rowspan="1" colspan="1">? tan</td></tr><tr><td rowspan="1" colspan="1"><a href="#data-type" shape="rect">query data type</a></td><td rowspan="1" colspan="1">Type(x);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">typeof(x);</td><td rowspan="1" colspan="1">type(x)</td></tr><tr><td rowspan="1" colspan="1"><a name="list-types" shape="rect" id="list-types"></a><a href="#list-types-note" shape="rect">list types</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">\t</td></tr><tr><td rowspan="1" colspan="1"><a href="#list-variables" shape="rect">list variables in scope</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">listvar();</td><td rowspan="1" colspan="1">variable()</td></tr><tr><td rowspan="1" colspan="1"><a name="list-built-in-func" shape="rect" id="list-built-in-func"></a><a href="#list-built-in-func-note" shape="rect">list built-in functions</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">?*</td></tr><tr><td rowspan="1" colspan="1"><a name="list-metacmds" shape="rect" id="list-metacmds"></a><a href="#list-metacmds-note" shape="rect">list metacommands</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">?\</td></tr><tr><td rowspan="1" colspan="1"><a name="search-doc" shape="rect" id="search-doc"></a><a href="#search-doc-note" shape="rect">search documentation</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">??DirectProduct</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">??? modulus</td></tr><tr><th colspan="5" rowspan="1"><a name="vectors" shape="rect" id="vectors"></a><a href="#vectors-note" shape="rect">vectors</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="vec-literal" shape="rect" id="vec-literal"></a><a href="#vec-literal-note" shape="rect">vector literal</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># row vector is same as array:</span><br />
+[1, 2, 3]</td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> A ring must be declared. The elements of the vector are not<br />
+<span style="white-space: pre-wrap;">//</span> limited to the coefficient field, but can be any element of<br />
+<span style="white-space: pre-wrap;">//</span> the ring.</span><br />
+ring r = read, (x), dp;<br />
+<br />
+vector v= [1.5, 3.2, 7.1];</td><td rowspan="1" colspan="1">[1, 2, 3]</td></tr><tr><td rowspan="1" colspan="1"><a name="const-vec" shape="rect" id="const-vec"></a><a href="#const-vec-note" shape="rect">constant vector</a><br />
+<br />
+<span style="color: gray"><em>all zeros, all ones</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">vector(100, i, 0)<br />
+vector(100, i, 1)</td></tr><tr><td rowspan="1" colspan="1"><a name="vec-coordinate" shape="rect" id="vec-coordinate"></a><a href="#vec-coordinate-note" shape="rect">vector coordinate</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">vec := [1, 2, 3];<br />
+<span style="color: gray"># indices start at one:</span><br />
+v[1];</td><td rowspan="1" colspan="1">v[1];</td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> indices start at one:</span><br />
+[1, 2, 3][1]</td></tr><tr><td rowspan="1" colspan="1"><a name="vec-dim" shape="rect" id="vec-dim"></a><a href="#vec-dim-note" shape="rect">vector dimension</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Length([1, 2, 3])</td><td rowspan="1" colspan="1">nrows(v);</td><td rowspan="1" colspan="1">length([1, 2, 3])<br />
+#[1, 2, 3]</td></tr><tr><td rowspan="1" colspan="1"><a name="vec-element-wise" shape="rect" id="vec-element-wise"></a><a href="#vec-element-wise-note" shape="rect">element-wise arithmetic operators</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">+ - * /</td><td rowspan="1" colspan="1">+ -</td><td rowspan="1" colspan="1">+ -</td></tr><tr><td rowspan="1" colspan="1"><a name="vec-length-mismatch" shape="rect" id="vec-length-mismatch"></a><a href="#vec-length-mismatch-note" shape="rect">vector length mismatch</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>shorter vector is zero-padded</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>shorter vector is zero-padded</em></span></td><td rowspan="1" colspan="1"><span style="color: gray"><em>error</em></span></td></tr><tr><td rowspan="1" colspan="1"><a name="vec-scalar" shape="rect" id="vec-scalar"></a><a href="#vec-scalar-note" shape="rect">scalar multiplication</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">3 * [1, 2, 3];<br />
+[1, 2, 3] * 3;</td><td rowspan="1" colspan="1">3 * v;<br />
+v * 3;<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> Scalar can be any ring element:</span><br />
+(1 + x) * v;</td><td rowspan="1" colspan="1">3 * [1, 2, 3]<br />
+[1, 2, 3] * 3</td></tr><tr><td rowspan="1" colspan="1"><a name="vec-dot" shape="rect" id="vec-dot"></a><a href="#vec-dot-note" shape="rect">dot product</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[1, 1, 1] * [2, 2, 2]</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[1, 1, 1] * [2, 2, 2] ~</td></tr><tr><td rowspan="1" colspan="1"><a name="vec-cross" shape="rect" id="vec-cross"></a><a href="#vec-cross-note" shape="rect">cross product</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="vec-norms" shape="rect" id="vec-norms"></a><a href="#vec-norms-note" shape="rect">norms</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">vec = [1, 2, 3]<br />
+<br />
+normlp(vec, 1)<br />
+normlp(vec, 2)<br />
+normlp(vec)</td></tr><tr><td rowspan="1" colspan="1"><a name="orthonormal-basis" shape="rect" id="orthonormal-basis"></a><a href="#orthonormal-basis-note" shape="rect">orthonormal basis</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="matrices" shape="rect" id="matrices"></a><a href="#matrices-note" shape="rect">matrices</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="matrix-literal-constructor" shape="rect" id="matrix-literal-constructor"></a><a href="#matrix-literal-constructor-note" shape="rect">literal</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[[1, 2], [3, 4]]</td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> A ring must be declared. The elements of the matrix are not<br />
+<span style="white-space: pre-wrap;">//</span> limited to the coefficient field, but can be any element of<br />
+<span style="white-space: pre-wrap;">//</span> the ring.</span><br />
+ring r = read, (x), dp;<br />
+<br />
+matrix m[2][2] = 1, 2, 3, 4;</td><td rowspan="1" colspan="1">[1, 2; 3, 4]<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> from rows:</span><br />
+row1 = [1, 2]<br />
+row2 = [3, 4]<br />
+matconcat([row1; row2])</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-from-cols" shape="rect" id="matrix-from-cols"></a><a href="#matrix-from-cols-note" shape="rect">construct from columns</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">col1 = [1, 3]~<br />
+col2 = [2, 4]~<br />
+matconcat([col1, col2])</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-from-submatrices" shape="rect" id="matrix-from-submatrices"></a><a href="#matrix-from-submatrices-note" shape="rect">construct from submatrices</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A = [1, 2; 3, 4]<br />
+B = [4, 3; 2, 1]<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> 4x4 matrix:</span><br />
+C = matconcat([A, B; B, A])</td></tr><tr><td rowspan="1" colspan="1"><a name="const-matrices" shape="rect" id="const-matrices"></a><a href="#const-matrices-note" shape="rect">constant matrices</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">matrix(3, 3, i, j, 0)<br />
+matrix(3, 3, i, j, 1)<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> 3x3 Hilbert matrix:</span><br />
+matrix(3, 3, i, j, 1 / (i + j - 1))</td></tr><tr><td rowspan="1" colspan="1"><a name="diagonal-matrices" shape="rect" id="diagonal-matrices"></a><a href="#diagonal-matrices-note" shape="rect">diagonal matrices</a><br />
+<span style="color: gray"><em>and identity</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">DiagonalMat([1, 2, 3])<br />
+IdentityMat(3)</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">matdiagonal([1, 2, 3])<br />
+matid(3)</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-dim" shape="rect" id="matrix-dim"></a><a href="#matrix-dim-note" shape="rect">dimensions</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># returns [3, 2]:</span><br />
+DimensionsMat([[1, 2], [3, 4], [5, 6]])</td><td rowspan="1" colspan="1">nrows(m);<br />
+ncols(m);</td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> [3, 2]:</span><br />
+matsize([1, 2; 3, 4; 5, 6])</td></tr><tr><td rowspan="1" colspan="1"><a name="element-lookup" shape="rect" id="element-lookup"></a><a href="#element-lookup-note" shape="rect">element lookup</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A := [[1, 2], [3, 4]];<br />
+<br />
+<span style="color: gray"># top left corner:</span><br />
+A[1][1]</td><td rowspan="1" colspan="1">matrix m[2][2] = 1, 2, 3, 4;<br />
+<br />
+m[1][1];</td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> top left corner:</span><br />
+A[1, 1]</td></tr><tr><td rowspan="1" colspan="1"><a name="extract-matrix-row" shape="rect" id="extract-matrix-row"></a><a href="#extract-matrix-row-note" shape="rect">extract row</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> first row:</span><br />
+[1, 2; 3, 4][1, ]</td></tr><tr><td rowspan="1" colspan="1"><a name="extract-matrix-col" shape="rect" id="extract-matrix-col"></a><a href="#extract-matrix-col-note" shape="rect">extract column</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> first column:</span><br />
+[1, 2; 3, 4][, 1]</td></tr><tr><td rowspan="1" colspan="1"><a name="extract-submatrix" shape="rect" id="extract-submatrix"></a><a href="#extract-submatrix-note" shape="rect">extract submatrix</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A = [1, 2, 3; 4, 5, 6; 7, 8, 9]<br />
+<br />
+vecextract(A, "1..2", "1..2")</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-elem-wise-op" shape="rect" id="matrix-elem-wise-op"></a><a href="#matrix-elem-wise-op-note" shape="rect">element-wise operators</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">+ -</td><td rowspan="1" colspan="1">+ -</td><td rowspan="1" colspan="1">+ -</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-mult" shape="rect" id="matrix-mult"></a><a href="#matrix-mult-note" shape="rect">product</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A := [[1, 2], [3, 4]];<br />
+B := [[4, 3], [2, 1]];<br />
+A * B;</td><td rowspan="1" colspan="1">matrix m[2][2] = 1, 2, 3, 4;<br />
+matrix m2[2][2] = 4, 3, 2, 1;<br />
+<br />
+m * m2;</td><td rowspan="1" colspan="1">A = [1, 2; 3, 4]<br />
+B = [4, 3; 2, 1]<br />
+A * B</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-power" shape="rect" id="matrix-power"></a><a href="#matrix-power-note" shape="rect">power</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[[1, 2], [3, 4]] ^ 3</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[1, 2; 3, 4] ^ 3</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-exponential" shape="rect" id="matrix-exponential"></a><a href="#matrix-exponential-note" shape="rect">exponential</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-log" shape="rect" id="matrix-log"></a><a href="#matrix-log-note" shape="rect">log</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="kronecker-prod" shape="rect" id="kronecker-prod"></a><a href="#kronecker-prod-note" shape="rect">kronecker product</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A := [[1, 2], [3, 4]];<br />
+B := [[4, 3], [2, 1]];<br />
+KroneckerProduct(A, B);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-norm" shape="rect" id="matrix-norm"></a><a href="#matrix-norm-note" shape="rect">norms</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-transpose" shape="rect" id="matrix-transpose"></a><a href="#matrix-transpose-note" shape="rect">transpose</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A~<br />
+mattranspose(A)</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-conjugate-transpose" shape="rect" id="matrix-conjugate-transpose"></a><a href="#matrix-conjugate-transpose-note" shape="rect">conjugate transpose</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">conj([1, I; 2, -I] ~)</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-inverse" shape="rect" id="matrix-inverse"></a><a href="#matrix-inverse-note" shape="rect">inverse</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Inverse([[1, 2], [3, 4]])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[1, 2; 3, 4] ^ -1<br />
+1 / [1, 2; 3, 4]</td></tr><tr><td rowspan="1" colspan="1"><a name="row-echelon-form" shape="rect" id="row-echelon-form"></a><a href="#row-echelon-form-note" shape="rect">row echelon form</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="pseudoinverse" shape="rect" id="pseudoinverse"></a><a href="#pseudoinverse-note" shape="rect">pseudoinverse</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="determinant" shape="rect" id="determinant"></a><a href="#determinant-note" shape="rect">determinant</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Determinant([[1, 2], [3, 4]])</td><td rowspan="1" colspan="1">matrix m[2][2] = 1, 2, 3, 4;<br />
+<br />
+det(m);</td><td rowspan="1" colspan="1">matdet([1, 2; 3, 4])</td></tr><tr><td rowspan="1" colspan="1"><a name="trace" shape="rect" id="trace"></a><a href="#trace-note" shape="rect">trace</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Trace([[1, 2], [3, 4]])</td><td rowspan="1" colspan="1">matrix m[2][2] = 1, 2, 3, 4;<br />
+<br />
+trace(m);</td><td rowspan="1" colspan="1">trace([1, 2; 3, 4])</td></tr><tr><td rowspan="1" colspan="1"><a name="matrix-rank" shape="rect" id="matrix-rank"></a><a href="#matrix-rank-note" shape="rect">rank</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">RankMat([[1, 1], [0, 0]])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">matrank([1, 1; 0, 0])</td></tr><tr><td rowspan="1" colspan="1"><a name="nullspace-basis" shape="rect" id="nullspace-basis"></a><a href="#nullspace-basis-note" shape="rect">nullspace basis</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">matker([1, 1; 0, 0])</td></tr><tr><td rowspan="1" colspan="1"><a name="range-basis" shape="rect" id="range-basis"></a><a href="#range-basis-note" shape="rect">range basis</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">matimage([1, 1; 0, 0])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="eigenval" shape="rect" id="eigenval"></a><a href="#eigenval-note" shape="rect">eigenvalues</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[vals, vecs] = mateigen([1, 2; 3, 4], flag=1)</td></tr><tr><td rowspan="1" colspan="1"><a name="eigenvec" shape="rect" id="eigenvec"></a><a href="#eigenvec-note" shape="rect">eigenvectors</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">mateigen([1, 2; 3, 4])</td></tr><tr><td rowspan="1" colspan="1"><a name="svd" shape="rect" id="svd"></a><a href="#svd-note" shape="rect">singular value decomposition</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="qr-decomposition" shape="rect" id="qr-decomposition"></a><a href="#qr-decomposition-note" shape="rect">qr decomposition</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">matqr([1, 2; 3, 4])</td></tr><tr><td rowspan="1" colspan="1"><a name="solve-linear-eqns" shape="rect" id="solve-linear-eqns"></a><a href="#solve-linear-eqns-note" shape="rect">solve system of equations</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">A = [1, 2; 3, 4]<br />
+matsolve(A, [2, 3]~)</td></tr><tr><th colspan="5" rowspan="1"><a name="combinatorics" shape="rect" id="combinatorics"></a><a href="#combinatorics-note" shape="rect">combinatorics</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="factorial" shape="rect" id="factorial"></a><a href="#factorial-note" shape="rect">factorial</a></td><td rowspan="1" colspan="1">Factorial(10);</td><td rowspan="1" colspan="1">Factorial(10);</td><td rowspan="1" colspan="1">LIB "general.lib";<br />
+<br />
+factorial(10);</td><td rowspan="1" colspan="1">10!</td></tr><tr><td rowspan="1" colspan="1"><a name="binomial-coefficient" shape="rect" id="binomial-coefficient"></a><a href="#binomial-coefficient-note" shape="rect">binomial coefficient</a></td><td rowspan="1" colspan="1">Binomial(10, 3);</td><td rowspan="1" colspan="1">Binomial(10, 3);</td><td rowspan="1" colspan="1">LIB "general.lib";<br />
+<br />
+binomial(10, 3);</td><td rowspan="1" colspan="1">binomial(10, 3)</td></tr><tr><td rowspan="1" colspan="1"><a name="multinomial-coefficient" shape="rect" id="multinomial-coefficient"></a><a href="#multinomial-coefficient-note" shape="rect">multinomial coefficient</a></td><td rowspan="1" colspan="1">Multinomial(12, [3, 4, 5]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="int-partitions" shape="rect" id="int-partitions"></a><a href="#int-partitions-note" shape="rect">integer partitions</a><br />
+<br />
+<span style="color: gray"><em>and count</em></span></td><td rowspan="1" colspan="1">Partitions(10);<br />
+<br />
+NumberOfPartitions(10);</td><td rowspan="1" colspan="1">Partitions(10);<br />
+<br />
+NrPartitions(10);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">partitions(10)<br />
+<br />
+length(partitions(10))</td></tr><tr><td rowspan="1" colspan="1"><a name="set-partitions" shape="rect" id="set-partitions"></a><a href="#set-partitions-note" shape="rect">set partitions</a><br />
+<br />
+<span style="color: gray"><em>and Bell number</em></span></td><td rowspan="1" colspan="1">StirlingSecond(10, 3);<br />
+<br />
+Bell(10);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">stirling(10, 3, 2)<br />
+sum(i=1, 10, stirling(10, i, 2))</td></tr><tr><td rowspan="1" colspan="1"><a name="permutations-k-disjoint-cycles" shape="rect" id="permutations-k-disjoint-cycles"></a><a href="#permutations-k-disjoint-cycles-note" shape="rect">permutations with k disjoint cycles</a></td><td rowspan="1" colspan="1">Abs(StirlingFirst(n, k));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">abs(stirling(n, k, 1))</td></tr><tr><td rowspan="1" colspan="1"><a name="fibonacci-num" shape="rect" id="fibonacci-num"></a><a href="#fibonacci-num-note" shape="rect">fibonacci number</a><br />
+<br />
+<span style="color: gray"><em>and lucas number</em></span></td><td rowspan="1" colspan="1">Fibonacci(10);<br />
+Lucas(10);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">fibonacci(10)</td></tr><tr><td rowspan="1" colspan="1"><a name="bernoulli-num" shape="rect" id="bernoulli-num"></a><a href="#bernoulli-num-note" shape="rect">bernoulli number</a></td><td rowspan="1" colspan="1">BernoulliNumber(100);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">bernfrac(100)</td></tr><tr><td rowspan="1" colspan="1"><a name="catalan-num" shape="rect" id="catalan-num"></a><a href="#catalan-num-note" shape="rect">catalan number</a></td><td rowspan="1" colspan="1">Catalan(10);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="number-theory" shape="rect" id="number-theory"></a><a href="#number-theory-note" shape="rect">number theory</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="pseudoprime-test" shape="rect" id="pseudoprime-test"></a><a href="#pseudoprime-test-note" shape="rect">pseudoprime test</a></td><td rowspan="1" colspan="1">IsProbablyPrime(7);</td><td rowspan="1" colspan="1">IsPrimeInt(7);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ispseudoprime(7)</td></tr><tr><td rowspan="1" colspan="1"><a name="true-prime-test" shape="rect" id="true-prime-test"></a><a href="#true-prime-test-note" shape="rect">true prime test</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1">IsPrime(7);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">isprime(7)</td></tr><tr><td rowspan="1" colspan="1"><a name="divisors" shape="rect" id="divisors"></a><a href="#divisors-note" shape="rect">divisors</a></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> [1, 2, 4, 5, 10, 20, 25, 50, 100]:</span><br />
+Divisors(100);</td><td rowspan="1" colspan="1">DivisorsInt(100);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">divisors(100)</td></tr><tr><td rowspan="1" colspan="1"><a name="prime-factors" shape="rect" id="prime-factors"></a><a href="#prime-factors" shape="rect">prime factors</a></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> [2, 3, 7]:</span><br />
+PrimeDivisors(84);</td><td rowspan="1" colspan="1"><span style="color: gray"># [ 2, 2, 3, 7 ]:</span><br />
+FactorsInt(84);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> [2,2; 3,1; 7,1]:</span><br />
+factor(84)</td></tr><tr><td rowspan="1" colspan="1"><a name="next-prime" shape="rect" id="next-prime"></a><a href="#next-prime-note" shape="rect">next prime</a><br />
+<br />
+<span style="color: gray"><em>and preceding</em></span></td><td rowspan="1" colspan="1">NextPrime(1000);<br />
+PreviousPrime(1000);</td><td rowspan="1" colspan="1">NextPrimeInt(1000);<br />
+PrevPrimeInt(1000);</td><td rowspan="1" colspan="1"><span style="color: gray"><em>?</em></span><br />
+prime(1000);</td><td rowspan="1" colspan="1">nextprime(1000)<br />
+precprime(1000)</td></tr><tr><td rowspan="1" colspan="1"><a name="nth-prime" shape="rect" id="nth-prime"></a><a href="#nth-prime-note" shape="rect">nth prime</a></td><td rowspan="1" colspan="1">NthPrime(100);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> first 100 primes: primes(100)</span><br />
+primes(100)[100]</td></tr><tr><td rowspan="1" colspan="1"><a name="prime-counting-func" shape="rect" id="prime-counting-func"></a><a href="#prime-counting-func-note" shape="rect">prime counting function</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">LIB "general.lib";<br />
+<br />
+size(primes(1, 100));</td><td rowspan="1" colspan="1">primepi(100)</td></tr><tr><td rowspan="1" colspan="1"><a name="divmod" shape="rect" id="divmod"></a><a href="#divmod-note" shape="rect">divmod</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">divrem(7, 3)</td></tr><tr><td rowspan="1" colspan="1"><a name="gcd" shape="rect" id="gcd"></a><a href="#gcd-note" shape="rect">greatest common divisor</a><br />
+<br />
+<span style="color: gray"><em>and relatively prime test</em></span></td><td rowspan="1" colspan="1">Gcd(14, 21);<br />
+Gcd(Gcd(14, 21), 777);</td><td rowspan="1" colspan="1">GcdInt(14, 21);<br />
+GcdInt(GcdInt(14, 21), 777);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">gcd(14, 21)<br />
+gcd(gcd(14, 21), 777)</td></tr><tr><td rowspan="1" colspan="1"><a name="extended-euclidean-algorithm" shape="rect" id="extended-euclidean-algorithm"></a><a href="#extended-euclidean-algorithm-note" shape="rect">extended euclidean algorithm</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ret := Gcdex(3, 5);<br />
+<br />
+<span style="color: gray"># 2:</span><br />
+ret.coeff1;<br />
+<span style="color: gray"># -1:</span><br />
+ret.coeff2;<br />
+<span style="color: gray"># 1:</span><br />
+ret.gcd;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> [2, -1, 1]:</span><br />
+gcdext(3, 5)</td></tr><tr><td rowspan="1" colspan="1"><a name="lcm" shape="rect" id="lcm"></a><a href="#lcm-note" shape="rect">least common multiple</a></td><td rowspan="1" colspan="1">Lcm(14, 21);</td><td rowspan="1" colspan="1">LcmInt(14, 21);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">lcm(14, 21)</td></tr><tr><td rowspan="1" colspan="1"><a name="int-residues" shape="rect" id="int-residues"></a><a href="#int-residues-note" shape="rect">integer residues</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">r := ZmodnZ(5);<br />
+fam := ElementsFamily(FamilyObj(r));;<br />
+<br />
+ZmodnZObj(fam, 2) + ZmodnZObj(fam, 3);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Mod(2, 5) + Mod(3, 5)<br />
+Mod(2, 5) - Mod(3, 5)<br />
+Mod(2, 5) * Mod(3, 5)<br />
+Mod(2, 5)^2</td></tr><tr><td rowspan="1" colspan="1"><a name="mult-inverse" shape="rect" id="mult-inverse"></a><a href="#mult-inverse-note" shape="rect">multiplicative inverse</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">r := ZmodnZ(7);<br />
+fam := ElementsFamily(FamilyObj(r));;<br />
+<br />
+ZmodnZObj(2, 7)^-1;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Mod(2, 7)^-1<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> raises error:</span><br />
+Mod(2, 4)^-1</td></tr><tr><td rowspan="1" colspan="1"><a name="chinese-remainder-thm" shape="rect" id="chinese-remainder-thm"></a><a href="#chinese-remainder-thm-note" shape="rect">chinese remainder theorem</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># 173:</span><br />
+ChineseRem([17, 11], [3, 8]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> Mod(173, 187):</span><br />
+chinese(Mod(3, 17), Mod(8, 11))</td></tr><tr><td rowspan="1" colspan="1"><a name="lift-int-residue" shape="rect" id="lift-int-residue"></a><a href="#lift-int-residue-note" shape="rect">lift integer residue</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> 7:</span><br />
+lift(-17, 12)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> -5:</span><br />
+centerlift(-17, 12)</td></tr><tr><td rowspan="1" colspan="1"><a name="euler-totient" shape="rect" id="euler-totient"></a><a href="#euler-totient-note" shape="rect">euler totient</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Phi(256);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">eulerphi(256)</td></tr><tr><td rowspan="1" colspan="1"><a name="mult-order" shape="rect" id="mult-order"></a><a href="#mult-order-note" shape="rect">multiplicative order</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">OrderMod(7, 108);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">znorder(Mod(7, 108))</td></tr><tr><td rowspan="1" colspan="1"><a name="primitive-roots" shape="rect" id="primitive-roots"></a><a href="#primitive-roots-note" shape="rect">primitive roots</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">PrimitiveRootMod(11);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">znprimroot(11)</td></tr><tr><td rowspan="1" colspan="1"><a name="discrete-log" shape="rect" id="discrete-log"></a><a href="#discrete-log-note" shape="rect">discrete logarithm</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># arg: 10, base: 2, modulus: 11</span><br />
+LogMod(10, 2, 11);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">znlog(10, Mod(2, 11))<br />
+znlog(Mod(10, 11), Mod(2, 11))</td></tr><tr><td rowspan="1" colspan="1"><a name="carmichael-func" shape="rect" id="carmichael-func"></a><a href="#carmichael-func-note" shape="rect">carmichael function</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Lambda(561);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">lcm(znstar(561)[2])</td></tr><tr><td rowspan="1" colspan="1"><a name="kronecker-symbol" shape="rect" id="kronecker-symbol"></a><a href="#kronecker-symbol-note" shape="rect">kronecker symbol</a><br />
+<br />
+<span style="color: gray"><em>and jacobi symbol</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Jacobi(3, 5);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">kronecker(3, 5)</td></tr><tr><td rowspan="1" colspan="1"><a name="moebius-func" shape="rect" id="moebius-func"></a><a href="#moebius-func-note" shape="rect">moebius function</a></td><td rowspan="1" colspan="1">MoebiusMu(11);</td><td rowspan="1" colspan="1">MoebiusMu(11);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">moebius(11)</td></tr><tr><td rowspan="1" colspan="1"><a name="riemann-zeta-func" shape="rect" id="riemann-zeta-func"></a><a href="#riemann-zeta-func-note" shape="rect">riemann zeta function</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">zeta(2)</td></tr><tr><td rowspan="1" colspan="1"><a name="mangoldt-lambda" shape="rect" id="mangoldt-lambda"></a><a href="#mangoldt-lambda-note" shape="rect">mangoldt lambda</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="dirichlet-char" shape="rect" id="dirichlet-char"></a><a href="#dirichlet-char-note" shape="rect">dirichlet character</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="elliptic-curves" shape="rect" id="elliptic-curves"></a><a href="#elliptic-curves-note" shape="rect">elliptic curves</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1">elliptic curve from coefficients</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> ellinit([a, b, c, d, e]) where<br />
+<span style="white-space: pre-wrap;">\\</span><br />
+<span style="white-space: pre-wrap;">\\</span><span style="white-space: pre-wrap;">   </span>y^2 + axy + by = x^3 + cx^2 + dx + e<br />
+<span style="white-space: pre-wrap;">\\</span></span><br />
+e0 = ellinit([0,0,1,-7,6])<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> ellinit([a, b]) where<br />
+<span style="white-space: pre-wrap;">\\</span><br />
+<span style="white-space: pre-wrap;">\\</span><span style="white-space: pre-wrap;">   </span>y^2 = x^3 + ax + b<br />
+<span style="white-space: pre-wrap;">\\</span></span><br />
+e1 = ellinit([-1, 0])</td></tr><tr><td rowspan="1" colspan="1">discriminant</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">e0.disc</td></tr><tr><td rowspan="1" colspan="1">conductor</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ellglobalred(e0)[1]</td></tr><tr><td rowspan="1" colspan="1">singularity test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">e0.disc == 0</td></tr><tr><td rowspan="1" colspan="1">convert to minimal model</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">e0 = ellinit([6, -3, 9, -16, -14])<br />
+e = ellminimalmodel(e0)</td></tr><tr><td rowspan="1" colspan="1">coordinate transformation on point</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">e0 = ellinit([6, -3, 9, -16, -14])<br />
+e = ellminimalmodel(e0, &amp;v)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> minimal to original:</span><br />
+ellchangepointinv([0, 0], v)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> original to minimal:</span><br />
+ellchangepoint([-2, 2], v)</td></tr><tr><td rowspan="1" colspan="1">coordinate transformation on curve: ellchangecurve</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">e0 = ellinit([6, -3, 9, -16, -14])<br />
+e = ellminimalmodel(e0, &amp;v)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> same as e0:</span><br />
+ellchangecurve(e, v)</td></tr><tr><td rowspan="1" colspan="1">point on curve test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ellisoncurve(e, [0, 2])</td></tr><tr><td rowspan="1" colspan="1">abscissa to ordinates</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> vector of size 0, 1, or 2:</span><br />
+ellordinate(e, 0)</td></tr><tr><td rowspan="1" colspan="1">group identity</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">[0]</td></tr><tr><td rowspan="1" colspan="1">group operation</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">elladd(e, [0, 2], [1, -1])</td></tr><tr><td rowspan="1" colspan="1">group inverse</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ellneg(e, [0, 2])</td></tr><tr><td rowspan="1" colspan="1">group multiplication</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ellmul(e, [0, 2], 3)</td></tr><tr><td rowspan="1" colspan="1">canonical height of point</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ellheight(e, [0, -3])</td></tr><tr><td rowspan="1" colspan="1">order of point</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> returns 0 for infinite order:</span><br />
+ellorder(e, [0, 2])<br />
+<br />
+ellorder(e1, [0, 0])</td></tr><tr><td rowspan="1" colspan="1">torsion subgroup</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">e1 = ellinit([-1, 0])<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> returns [t, v1, v2]:<br />
+<span style="white-space: pre-wrap;">\\</span><br />
+<span style="white-space: pre-wrap;">\\</span><span style="white-space: pre-wrap;">   </span>t: order of torsion group<br />
+<span style="white-space: pre-wrap;">\\</span><span style="white-space: pre-wrap;">   </span>v1: orders of component cyclic groups<br />
+<span style="white-space: pre-wrap;">\\</span><span style="white-space: pre-wrap;">   </span>v2: generators of same cyclic groups<br />
+<span style="white-space: pre-wrap;">\\</span></span><br />
+elltors(e1)</td></tr><tr><td rowspan="1" colspan="1">analytic rank</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> first value is rank:</span><br />
+[a, b] = ellanalyticrank(e)<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> recompute second value to higher precision:</span><br />
+\p 100<br />
+b = ellL1(e, a)</td></tr><tr><td rowspan="1" colspan="1">L-function value</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">elllseries(e, 1 + I)</td></tr><tr><td rowspan="1" colspan="1">L-function coefficients</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> tenth coefficient:</span><br />
+ellak(e, 10)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> first ten coefficients:</span><br />
+ellan(e, 10)</td></tr><tr><th colspan="5" rowspan="1"><a name="rational-algebraic-numbers" shape="rect" id="rational-algebraic-numbers"></a><a href="#rational-algebraic-numbers-note" shape="rect">rational and algebraic numbers</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1">to continued fraction</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">\p 100<br />
+contfrac(Pi)</td></tr><tr><td rowspan="1" colspan="1">from continued fraction</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">p-adic number</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> p is 2 and precision in powers of 2 is 100:</span><br />
+1/2 + O(2^100)</td></tr><tr><td rowspan="1" colspan="1">lift p-adic to rational</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">lift(1/2 + O(2^100))</td></tr><tr><td rowspan="1" colspan="1">gaussian integer norm</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">norm(1 + I)</td></tr><tr><td rowspan="1" colspan="1">quadratic extension</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> make w equal to sqrt(D)/4:</span><br />
+D = -4<br />
+w = quadgen(D)</td></tr><tr><td rowspan="1" colspan="1">quadratic number</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">(1 + w)^2</td></tr><tr><th colspan="5" rowspan="1"><a name="polynomials" shape="rect" id="polynomials"></a><a href="#polynomials-note" shape="rect">polynomials</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1">from expression with indeterminates</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> A ring must be declared before a polynomial can be defined.<br />
+<span style="white-space: pre-wrap;">//</span> To define a ring, one specifies (1) the coefficient field<br />
+<span style="white-space: pre-wrap;">//</span> (or ring), (2) the indeterminate variables, and (3) the term<br />
+<span style="white-space: pre-wrap;">//</span> ordering.</span><br />
+ring r = integer, (x, y), dp;<br />
+<br />
+poly p1 = (x - 1) * (x - 2);<br />
+poly p2 = (1 + x)^2 * (2 + y)^3;</td><td rowspan="1" colspan="1">(x - 1) * (x - 2)<br />
+<br />
+(1+x)^2 * (2+y)^3</td></tr><tr><td rowspan="1" colspan="1">from coefficient array</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Pol([1, -3, 2])<br />
+<br />
+<span style="color: gray">@@\\@ zero-degree coefficient first:</span><br />
+Polrev([2, -3, 1])</td></tr><tr><td rowspan="1" colspan="1">to coefficient array</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">poly p = (1 + x)^10;<br />
+coeffs(p, x);</td><td rowspan="1" colspan="1">Vec((x+1)^10)</td></tr><tr><td rowspan="1" colspan="1">lookup coefficient</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">polcoeff((x+1)^10, 3)</td></tr><tr><td rowspan="1" colspan="1">substitute indeterminate</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">subst((x - 1) * (x - 2), x, 3);<br />
+<br />
+subst((x - 1) * (x - 2), x, (x - 1));</td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">\\</span> replace x with 3:</span><br />
+subst((x-1)*(x-2), x, 3)<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">\\</span> replace x with (x-1):</span><br />
+subst((x-1)*(x-2), x, (x-1))</td></tr><tr><td rowspan="1" colspan="1">degree</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">poly p = (1 + x)^10;<br />
+deg(p);</td><td rowspan="1" colspan="1">poldegree((x-1)^10)</td></tr><tr><td rowspan="1" colspan="1">operations</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">+ - * /</td></tr><tr><td rowspan="1" colspan="1">division and remainder</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a href="#expand-polynomial" shape="rect">expand polynomial</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>Polynomials are displayed in expanded form.</em></span></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a href="#factor-polynomial" shape="rect">factor polynomial</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ring r = 7, (x), dp;<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> Doesn't work in ring with real or int. coefficients:</span><br />
+factorize(x^2 + 3*x + 2);</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">collect terms</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ring r = integer, (x, y), dp;<br />
+<br />
+coeffs((x + 2*y + 1)^10, x);</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">factor</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">factor(x^2-1)</td></tr><tr><td rowspan="1" colspan="1">roots</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">polroots(x^3+3*x^2+2*x-1)</td></tr><tr><td rowspan="1" colspan="1">greatest common divisor</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">p1 = x^3 + 2*x^2 -x -2<br />
+p2 = x^3 -7*x + 6<br />
+gcd(p1, p2)</td></tr><tr><td rowspan="1" colspan="1">resultant</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">polresultant((x-1)*(x-2), (x-3)^2)</td></tr><tr><td rowspan="1" colspan="1">discriminant</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">poldisc((x+1)*(x-2))</td></tr><tr><td rowspan="1" colspan="1">homogenity test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">homog((x + y)^2);</td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">groebner basis</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1">specify ordering</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1">symmetric polynomial</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"><em>none</em></span></td></tr><tr><td rowspan="1" colspan="1">cyclotomic polynomial</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">polcyclo(10)</td></tr><tr><td rowspan="1" colspan="1">hermite polynomial</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">polhermite(4)</td></tr><tr><td rowspan="1" colspan="1">chebyshev polynomial<br />
+<br />
+<span style="color: gray"><em>first and second kind</em></span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">polchebyshev(4, 1)<br />
+polychebyshev(4, 2)</td></tr><tr><td rowspan="1" colspan="1">interpolation polynomial</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">polinterpolate([1, 2, 3], [2, 4, 7])</td></tr><tr><td rowspan="1" colspan="1">characteristic polynomial</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">charpoly([1, 2; 3, 4])</td></tr><tr><td rowspan="1" colspan="1">minimal polynomial</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">piecewise polynomial</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">rational function</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">(x - 1) / (x - 2)^2</td></tr><tr><td rowspan="1" colspan="1"><a href="#add-fractions" shape="rect">add fractions</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a href="#partial-fraction-decomposition" shape="rect">partial fraction decomposition</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="special-functions" shape="rect" id="special-functions"></a><a href="#special-functions-note" shape="rect">special functions</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1">gamma</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">gamma(1/2)</td></tr><tr><td rowspan="1" colspan="1">hyperbolic</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">sinh cosh tanh</td></tr><tr><td rowspan="1" colspan="1">elliptic integerals</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">bessel functions</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">besselh1 besselh2 besseli besselj besseljh besselk besseln</td></tr><tr><td rowspan="1" colspan="1"><a name="riemann-zeta" shape="rect" id="riemann-zeta"></a><a href="#riemann-zeta-note" shape="rect">Riemann zeta</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">zeta(2)</td></tr><tr><th colspan="5" rowspan="1"><a name="permutations" shape="rect" id="permutations"></a><a href="#permutations-note" shape="rect">permutations</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1">permutation from disjoint cycles</td><td rowspan="1" colspan="1">S4 := Sym(4);<br />
+p := S4!(1, 2)(3, 4);</td><td rowspan="1" colspan="1">p := (1, 2)(3, 4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">permutation from list</td><td rowspan="1" colspan="1">S4 := Sym(4);<br />
+p2 := elt&lt;S4 | 2, 1, 4, 3&gt;;</td><td rowspan="1" colspan="1">p2 := PermList([2, 1, 4, 3]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">permutation from two lists</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># must be positive integers:</span><br />
+p := MappingPermListList([6, 8, 4, 2], [2, 4, 6, 8])</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">act on element</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">1 ^ p;<br />
+<br />
+<span style="color: gray"># preimage of 1 under p:</span><br />
+1 / p;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">act on list</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">compose</td><td rowspan="1" colspan="1">S4 := Sym(4);<br />
+<br />
+S4!(1,2)(3,4) * S4!(1,3);</td><td rowspan="1" colspan="1">(1, 2)(3, 4) * (1, 3);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">invert</td><td rowspan="1" colspan="1">S3 := Sym(3);<br />
+<br />
+S3!(1,2,3) ^ -1;<br />
+Inverse(S3!(1,2,3));</td><td rowspan="1" colspan="1">(1, 2, 3) ^ -1;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">power</td><td rowspan="1" colspan="1">S5 := Sym(5);<br />
+<br />
+S5!(1,2,3,4,5) ^ 3;</td><td rowspan="1" colspan="1">(1, 2, 3, 4, 5) ^ 3;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">order</td><td rowspan="1" colspan="1">S3 := Sym(3);<br />
+<br />
+Order(S3!(1,2,3));</td><td rowspan="1" colspan="1">Order((1, 2, 3));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">support</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">MovedPoints((1, 3, 5)(7, 8));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">number of inversions</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">parity</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">to inversion vector</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">from inversion vector</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">all permutations</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">random permutation</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="groups" shape="rect" id="groups"></a><a href="#groups-note" shape="rect">groups</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="named-groups" shape="rect" id="named-groups"></a><a href="#named-groups-note" shape="rect">named groups</a><br />
+<br />
+<span style="color: gray"><em>symmetric, alternating, cyclic, dihedral</em></span></td><td rowspan="1" colspan="1">S4 := Sym(4);<br />
+A4 := AlternatingGroup(4);<br />
+Z5 := CyclicGroup(5);<br />
+D10 := DihedralGroup(10);</td><td rowspan="1" colspan="1">S4 := SymmetricGroup(4);<br />
+A4 := AlternatingGroup(4);<br />
+Z5 := CyclicGroup(5);<br />
+<span style="color: gray"># argument is order of group, not vertices<br />
+# of polygon:</span><br />
+D10 := DihedralGroup(2 * 10);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-by-order" shape="rect" id="group-by-order"></a><a href="#group-by-order-note" shape="rect">group by order</a></td><td rowspan="1" colspan="1">NumberOfSmallGroups(8);<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> first group of order 8:</span><br />
+G := SmallGroup(8, 1);</td><td rowspan="1" colspan="1"><span style="color: gray"># number of groups of order 8:</span><br />
+Length(AllSmallGroups(8));<br />
+<br />
+<span style="color: gray"># first group of order 8:</span><br />
+G := AllSmallGroups(8)[1];</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-from-permutation-generators" shape="rect" id="group-from-permutation-generators"></a><a href="#group-from-permutation-generators-note" shape="rect">group from permutation generators</a></td><td rowspan="1" colspan="1">S5 := Sym(5);<br />
+p1 := S5!(1, 3, 5, 2);<br />
+p2 := S5!(1, 2);<br />
+G := PermutationGroup&lt;5 | p1, p2&gt;;</td><td rowspan="1" colspan="1">G := Group((1, 3, 5, 2), (1, 2));<br />
+<br />
+<span style="color: gray"># or</span><br />
+G := GroupWithGenerators([(1, 3, 5, 2), (1, 2)]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="direct-prod" shape="rect" id="direct-prod"></a><a href="#direct-prod-note" shape="rect">direct product</a></td><td rowspan="1" colspan="1">Z3 := CyclicGroup(3);<br />
+A4 := AlternatingGroup(4);<br />
+G := DirectProduct(z3, a4);</td><td rowspan="1" colspan="1">Z3 := CyclicGroup(3);<br />
+A4 := AlternatingGroup(4);<br />
+G := DirectProduct(Z3, A4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="free-prod" shape="rect" id="free-prod"></a><a href="#free-prod-note" shape="rect">free product</a><br />
+<span style="white-space: pre-wrap;"> </span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">F := FreeProduct(CyclicGroup(3), CyclicGroup(2));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="free-group" shape="rect" id="free-group"></a><a href="#free-group-note" shape="rect">free group</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># integers under addition:</span><br />
+Z := FreeGroup(1);<br />
+<br />
+<span style="color: gray"># free group with 2 generators:</span><br />
+F := FreeGroup("a", "b");</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-from-presentation" shape="rect" id="group-from-presentation"></a><a href="#group-from-presentation-note" shape="rect">group from presentation</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">F := FreeGroup( "a", "b" );<br />
+G := F / [ F.1^2, F.2^3, (F.1 * F.2)^5 ];</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="all-group-elem" shape="rect" id="all-group-elem"></a><a href="#all-group-elem-note" shape="rect">all elements</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Perform(Enumerator(Z3), function(e)<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>Print(e);<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>Print("\n");<br />
+<span style="white-space: pre-wrap;">  </span>end);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-generators" shape="rect" id="group-generators"></a><a href="#group-generators-note" shape="rect">generators</a></td><td rowspan="1" colspan="1">S10 := Sym(10);<br />
+Generators(s10);<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> notation for individual generators:</span><br />
+S10.1;<br />
+S10.2;</td><td rowspan="1" colspan="1">S10 := SymmetricGroup(10);<br />
+<span style="color: gray"># return generators in an array:</span><br />
+GeneratorsOfGroup(S10);<br />
+<br />
+<span style="color: gray"># notation for individual generators:</span><br />
+S10.1;<br />
+S10.2;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-identity-elem" shape="rect" id="group-identity-elem"></a><a href="#group-identity-elem-note" shape="rect">identity element</a></td><td rowspan="1" colspan="1">Id(G);</td><td rowspan="1" colspan="1">Identity(G);<br />
+One(G);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="random-group-elem" shape="rect" id="random-group-elem"></a><a href="#random-group-elem-note" shape="rect">random element</a></td><td rowspan="1" colspan="1">Random(G);</td><td rowspan="1" colspan="1">Random(G)</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-op" shape="rect" id="group-op"></a><a href="#group-op-note" shape="rect">group operation</a></td><td rowspan="1" colspan="1">e1 := Random(G);<br />
+e2 := Random(G);<br />
+e1 * e2;</td><td rowspan="1" colspan="1">e1 := Random(G);<br />
+e2 := Random(G);<br />
+e1 * e2;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="inverse-group-elem" shape="rect" id="inverse-group-elem"></a><a href="#inverse-group-elem-note" shape="rect">inverse element</a></td><td rowspan="1" colspan="1">Inverse(e1);<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> or:</span><br />
+e1 ^ -1;</td><td rowspan="1" colspan="1">Inverse(e1);<br />
+<span style="color: gray"># or:</span><br />
+e1^-1;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="generator-word-for-elem" shape="rect" id="generator-word-for-elem"></a><a href="#generator-word-for-elem-note" shape="rect">generator word for element</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">S10 := SymmetricGroup(10);<br />
+Factorization(S10, (1,3,8,10,5,9,2,7));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="elem-by-generator-word-len" shape="rect" id="elem-by-generator-word-len"></a><a href="#elem-by-generator-word-len-note" shape="rect">elements by generator word length</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">S6 := SymmetricGroup(6);<br />
+GrowthFunctionOfGroup(S6);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-elem-order" shape="rect" id="group-elem-order"></a><a href="#group-elem-order-note" shape="rect">element order</a></td><td rowspan="1" colspan="1">D10 := DihedralGroup(10);<br />
+Order(D10.1);<br />
+Order(D10.2);</td><td rowspan="1" colspan="1">D10 := DihedralGroup(2 * 10);<br />
+<br />
+Order(D10.1);<br />
+Order(D10.2);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="identify-group" shape="rect" id="identify-group"></a><a href="#identify-group-note" shape="rect">identify group</a></td><td rowspan="1" colspan="1"><span style="color: gray"><span style="white-space: pre-wrap;">//</span> C2*C4:</span><br />
+GroupName(SmallGroup(8, 2));<br />
+<br />
+<span style="color: gray"><span style="white-space: pre-wrap;">//</span> &lt;8, 1&gt;:</span><br />
+IdentifyGroup(CyclicGroup(8));</td><td rowspan="1" colspan="1"><span style="color: gray"># C4 x C2:</span><br />
+StructureDescription(AllSmallGroups(8)[2]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-to-presentation" shape="rect" id="group-to-presentation"></a><a href="#group-to-presentation-note" shape="rect">group to presentation</a></td><td rowspan="1" colspan="1">FPGroup(AlternatingGroup(10));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="group-order" shape="rect" id="group-order"></a><a href="#group-order-note" shape="rect">group order</a></td><td rowspan="1" colspan="1">Order(Sym(4));</td><td rowspan="1" colspan="1">Size(SymmetricGroup(4));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="cyclic-test" shape="rect" id="cyclic-test"></a><a href="#cyclic-test-note" shape="rect">cyclic test</a></td><td rowspan="1" colspan="1">IsCyclic(AlternatingGroup(10));</td><td rowspan="1" colspan="1">IsCyclic(AlternatingGroup(10));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="abelian-test" shape="rect" id="abelian-test"></a><a href="#abelian-test-note" shape="rect">abelian test</a></td><td rowspan="1" colspan="1">IsAbelian(CyclicGroup(10));</td><td rowspan="1" colspan="1">IsAbelian(CyclicGroup(10));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="subgroups" shape="rect" id="subgroups"></a><a href="#subgroups-note" shape="rect">subgroups</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1"><a name="all-subgroups" shape="rect" id="all-subgroups"></a><a href="#all-subgroups-note" shape="rect">all subgroups</a></td><td rowspan="1" colspan="1">Subgroups(Sym(4));</td><td rowspan="1" colspan="1">AllSubgroups(SymmetricGroup(4));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="subgroup-lattice" shape="rect" id="subgroup-lattice"></a><a href="#subgroup-lattice-note" shape="rect">subgroup lattice</a></td><td rowspan="1" colspan="1">SubgroupLattice(Sym(4));</td><td rowspan="1" colspan="1">S4 := SymmetricGroup(4);<br />
+lat := LatticeSubgroups(S4);<br />
+DotFileLatticeSubgroups(lat, "lattice.dot");<br />
+<span style="color: gray"># dot -Tpng &lt; lattice.dot &gt; lattice.png</span></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="maximal-subgroups" shape="rect" id="maximal-subgroups"></a><a href="#maximal-subgroups-note" shape="rect">maximal subgroups</a></td><td rowspan="1" colspan="1">MaximalSubgroups(Sym(4));</td><td rowspan="1" colspan="1">MaximalSubgroups(S4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="frattini-subgroup" shape="rect" id="frattini-subgroup"></a><a href="#frattini-subgroup-note" shape="rect">frattini subgroup</a></td><td rowspan="1" colspan="1">D4 := DihedralGroup(4);<br />
+FrattiniSubgroup(D4);</td><td rowspan="1" colspan="1">FrattiniSubgroup(DihedralGroup(2 * 4));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="subgroup-from-generators" shape="rect" id="subgroup-from-generators"></a><a href="#subgroup-from-generators-note" shape="rect">subgroup from generators</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">G := Group((1, 3, 5, 7), (2, 4));<br />
+H := Subgroup(G, [(2, 4)]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="normal-subgroups" shape="rect" id="normal-subgroups"></a><a href="#normal-subgroups-note" shape="rect">normal subgroups</a></td><td rowspan="1" colspan="1">NormalSubgroups(Sym(4));</td><td rowspan="1" colspan="1">NormalSubgroups(S4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">cosets</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">RightCoset()<br />
+CanonicalRightCosetElement()<br />
+CosetDecomposition()<br />
+RightTraversal(G, U)</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">quotient group</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">center</td><td rowspan="1" colspan="1">Z4 := CyclicGroup(4);<br />
+D6 := DihedralGroup(6);<br />
+G := DirectProduct(Z4, D6);<br />
+center := Centre(G);</td><td rowspan="1" colspan="1">g := DirectProduct(CyclicGroup(4), DihedralGroup(2 * 6));<br />
+Center(g);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">centralizer</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">g := SymmetricGroup(5);<br />
+h := Centralizer(g, (1, 3)(4, 5));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">normalizer</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">S4 := SymmetricGroup(4);<br />
+G := Group([(1,2)(3,4)]);<br />
+Normalizer(S4, G);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1"><a name="commutator" shape="rect" id="commutator"></a><a href="#commutator-note" shape="rect">commutator</a></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># e1^-1 * e2^-1 * e1 * e2:</span><br />
+Comm(e1, e2);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">commutator subgroup</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">G1 := Group((1,2,3),(1,2));<br />
+G2 := Group((2,3,4),(3,4));<br />
+CommutatorSubgroup(G1, G2);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">subgroup test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">subgroup index</td><td rowspan="1" colspan="1">Index(Sym(4), AlternatingGroup(4));</td><td rowspan="1" colspan="1">Index(G, H);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">normal test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">IsNormal(G, H);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">subnormal test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">IsSubnormal(G, H);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">nonabelian simple groups</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># argument is list of orders:</span><br />
+AllSmallNonabelianSimpleGroups([1..10000]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">simple test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">IsSimple(SymmetricGroup(4));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">solvable test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">IsSolvable(SymmetricGroup(4));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">derived series</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">DerivedSeriesOfGroup(SymmetricGroup(4));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">characteristic test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">S4 := SymmetricGroup(4);<br />
+H := Subgroup(s4, [(1,4)(2,3), (1,3)(2,4), (2,4,3)]);<br />
+IsCharacteristicSubgroup(S4, H);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">semidirect product</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="group-homomorphisms" shape="rect" id="group-homomorphisms"></a><a href="#group-homomorphisms-note" shape="rect">group homomorphisms</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1">all homomorphisms</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">S4 := SymmetricGroup(4);<br />
+S3 := SymmetricGroup(3);<br />
+AllHomomorphisms(S3, S4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">all homomorphims classes</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">AllHomomorphismClasses(S3, S4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">endomorphisms and automorphisms</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">AllEndomorphisms(S4);<br />
+AllAutomorphisms(S4);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">homomorphism from generator images</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">hom := GroupHomomorphismByImages(S3, S4,<br />
+<span style="white-space: pre-wrap;">  </span>[(1,2,3), (1,2)],<br />
+<span style="white-space: pre-wrap;">  </span>[(2,3,4), (2,3)]);<br />
+<br />
+<span style="color: gray"># uses generators of S3:</span><br />
+hom := GroupHomomorphismByImages(S3, S4,<br />
+<span style="white-space: pre-wrap;">  </span>[(2,3,4), (2,3)]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">surjective test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">IsSurjective(hom);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">injective test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">IsInjective(hom);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">bijective test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">IsBijective(hom);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">kernel</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Kernel(AllHomomorphisms(S3, S4)[1]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">image</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">Image(AllHomomorphisms(S3, S4)[1]);</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th colspan="5" rowspan="1"><a name="actions" shape="rect" id="actions"></a><a href="#actions-note" shape="rect">actions</a></th></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1">magma</th><th rowspan="1" colspan="1">gap</th><th rowspan="1" colspan="1">singular</th><th rowspan="1" colspan="1">pari/gp</th></tr><tr><td rowspan="1" colspan="1">conjugate element</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"><span style="color: gray"># (1,2,3)^-1 * (1,2) * (1,2,3):</span><br />
+(1,2)^(1,2,3)</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">conjugate set</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">S3 := SymmetricGroup(3);<br />
+S3^(3,4);<br />
+(3,4)^S3;</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">conjugacy class</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">S4 := SymmetricGroup(4);<br />
+AsList(ConjugacyClass(S4, (1,2,3)));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">conjugate group</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ConjugateGroup(SymmetricGroup(4), (4, 5));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">conjugacy classes</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1">ConjugacyClasses(SymmetricGroup(4));</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">stabilizer</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">orbit</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><td rowspan="1" colspan="1">transitive test</td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td><td rowspan="1" colspan="1"></td></tr><tr><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1"><span style="color: #efefef"><span style="white-space: pre-wrap;">_______________________________________________________</span></span></th><th rowspan="1" colspan="1"><span style="color: #efefef"><span style="white-space: pre-wrap;">_______________________________________________________</span></span></th><th rowspan="1" colspan="1"><span style="color: #efefef"><span style="white-space: pre-wrap;">_______________________________________________________</span></span></th><th rowspan="1" colspan="1"><span style="color: #efefef"><span style="white-space: pre-wrap;">_______________________________________________________</span></span></th></tr></table>
+<p><a name="grammar-invocation-note" shape="rect" id="grammar-invocation-note"></a></p>
+<h1 id="toc0"><span><a href="#grammar-invocation" shape="rect">Grammar and Invocation</a></span></h1>
+<p><a name="var-expr-note" shape="rect" id="var-expr-note"></a></p>
+<h1 id="toc1"><span><a href="#var-expr" shape="rect">Variables and Expressions</a></span></h1>
+<p><a name="arithmetic-logic-note" shape="rect" id="arithmetic-logic-note"></a></p>
+<h1 id="toc2"><span><a href="#arithmetic-logic" shape="rect">Arithmetic and Logic</a></span></h1>
+<p><a name="strings-note" shape="rect" id="strings-note"></a></p>
+<h1 id="toc3"><span><a href="#strings" shape="rect">Strings</a></span></h1>
+<p><a name="arrays-note" shape="rect" id="arrays-note"></a></p>
+<h1 id="toc4"><span><a href="#arrays" shape="rect">Arrays</a></span></h1>
+<p><a name="sets-note" shape="rect" id="sets-note"></a></p>
+<h1 id="toc5"><span><a href="#sets" shape="rect">Sets</a></span></h1>
+<p><a name="arith-seq-note" shape="rect" id="arith-seq-note"></a></p>
+<h1 id="toc6"><span><a href="#arith-seq" shape="rect">Arithmetic Sequences</a></span></h1>
+<p><a name="dictionaries-note" shape="rect" id="dictionaries-note"></a></p>
+<h1 id="toc7"><span><a href="#dictionaries" shape="rect">Dictionaries</a></span></h1>
+<p><a name="functions-note" shape="rect" id="functions-note"></a></p>
+<h1 id="toc8"><span><a href="#functions" shape="rect">Functions</a></span></h1>
+<p><a name="execution-control-note" shape="rect" id="execution-control-note"></a></p>
+<h1 id="toc9"><span><a href="#execution-control" shape="rect">Execution Control</a></span></h1>
+<p><a name="exceptions-note" shape="rect" id="exceptions-note"></a></p>
+<h1 id="toc10"><span><a href="#exceptions" shape="rect">Exceptions</a></span></h1>
+<p><a name="streams-note" shape="rect" id="streams-note"></a></p>
+<h1 id="toc11"><span><a href="#streams" shape="rect">Streams</a></span></h1>
+<p><a name="processes-env-note" shape="rect" id="processes-env-note"></a></p>
+<h1 id="toc12"><span><a href="#processes-env" shape="rect">Processes and Environment</a></span></h1>
+<p><a name="libraries-namespaces-note" shape="rect" id="libraries-namespaces-note"></a></p>
+<h1 id="toc13"><span><a href="#libraries-namespaces" shape="rect">Libraries and Namespaces</a></span></h1>
+<p><a name="reflection-note" shape="rect" id="reflection-note"></a></p>
+<h1 id="toc14"><span><a href="#reflection" shape="rect">Reflection</a></span></h1>
+<p><a name="vectors-note" shape="rect" id="vectors-note"></a></p>
+<h1 id="toc15"><span><a href="#vectors" shape="rect">Vectors</a></span></h1>
+<p><a name="matrices-note" shape="rect" id="matrices-note"></a></p>
+<h1 id="toc16"><span><a href="#matrices" shape="rect">Matrices</a></span></h1>
+<p><a name="combinatorics-note" shape="rect" id="combinatorics-note"></a></p>
+<h1 id="toc17"><span><a href="#combinatorics" shape="rect">Combinatorics</a></span></h1>
+<p><a name="factorial-note" shape="rect" id="factorial-note"></a></p>
+<h2 id="toc18"><span><a href="#factorial" shape="rect">factorial</a></span></h2>
+<p><em>n!</em> is the product of the integers 1 through <em>n</em>.</p>
+<p><em>n!</em> is the number of permutations or bijections on a set of <em>n</em> elements.</p>
+<p><a name="binomial-coefficient-note" shape="rect" id="binomial-coefficient-note"></a></p>
+<h2 id="toc19"><span><a href="#binomial-coefficient" shape="rect">binomial coefficient</a></span></h2>
+<p><a name="multinomial-coefficient-note" shape="rect" id="multinomial-coefficient-note"></a></p>
+<h2 id="toc20"><span><a href="#multinomial-coefficient" shape="rect">multinomial coefficient</a></span></h2>
+<p><a name="int-partitions-note" shape="rect" id="int-partitions-note"></a></p>
+<h2 id="toc21"><span><a href="#int-partitions" shape="rect">integer partitions</a></span></h2>
+<p>The number of ways of writing a positive integer <em>n</em> as a sum of positive integers.</p>
+<p>When counting integer partitions, <em>2 + 1</em> and <em>1 + 2</em> are not considered to be distinct ways of summing to 3. In other words, one is counting the multisets which sum to <em>n</em>.</p>
+<p><a name="set-partitions-note" shape="rect" id="set-partitions-note"></a></p>
+<h2 id="toc22"><span><a href="#set-partitions" shape="rect">set partitions</a></span></h2>
+<p><a name="permutations-k-disjoint-cycles-note" shape="rect" id="permutations-k-disjoint-cycles-note"></a></p>
+<h2 id="toc23"><span><a href="#permutations-k-disjoint-cycles" shape="rect">permutations with k disjoint cycles</a></span></h2>
+<p><a name="fibonacci-num-note" shape="rect" id="fibonacci-num-note"></a></p>
+<h2 id="toc24"><span><a href="#fibonacci-num" shape="rect">fibonacci number</a></span></h2>
+<p><a name="bernoulli-num-note" shape="rect" id="bernoulli-num-note"></a></p>
+<h2 id="toc25"><span><a href="#bernoulli-num" shape="rect">bernoulli number</a></span></h2>
+<p><a name="catalan-num-note" shape="rect" id="catalan-num-note"></a></p>
+<h2 id="toc26"><span><a href="#catalan-num" shape="rect">catalan number</a></span></h2>
+<p><a name="number-theory-note" shape="rect" id="number-theory-note"></a></p>
+<h1 id="toc27"><span><a href="#number-theory" shape="rect">Number Theory</a></span></h1>
+<p><a name="elliptic-curves-note" shape="rect" id="elliptic-curves-note"></a></p>
+<h1 id="toc28"><span><a href="#elliptic-curves" shape="rect">Elliptic Curves</a></span></h1>
+<p><a name="rational-algebraic-numbers-note" shape="rect" id="rational-algebraic-numbers-note"></a></p>
+<h1 id="toc29"><span><a href="#rational-algebraic-numbers" shape="rect">Rational and Algebraic Numbers</a></span></h1>
+<p><a name="polynomials-note" shape="rect" id="polynomials-note"></a></p>
+<h1 id="toc30"><span><a href="#polynomials" shape="rect">Polynomials</a></span></h1>
+<p><a name="special-functions-note" shape="rect" id="special-functions-note"></a></p>
+<h1 id="toc31"><span><a href="#special-functions" shape="rect">Special Functions</a></span></h1>
+<p><a name="permutations-note" shape="rect" id="permutations-note"></a></p>
+<h1 id="toc32"><span><a href="#permutations" shape="rect">Permutations</a></span></h1>
+<p><a name="groups-note" shape="rect" id="groups-note"></a></p>
+<h1 id="toc33"><span><a href="#groups" shape="rect">Groups</a></span></h1>
+<p>A <em>group</em> is a set G and a binary operator—written here as<tt>*</tt>—which takes elements of the set as operands and obeys the following axioms:</p>
+<ul><li><em>Closure:</em> For every g and h in G, g * h is also in G.</li><li><em>Identity:</em> There exists e in G such that for all g in G, e * g = g * e = g.</li><li><em>Associativity:</em> For all f, g and h in G, (f * g) * h = f * (g * h).</li><li><em>Inverse:</em> For every g in G, there exists g' in G such that g * g' = g' * g = e.</li></ul>
+<p><em>Abelian</em> groups obey an additional axiom:</p>
+<ul><li><em>Commutativity:</em> For all g and h in G, g * h = h * g.</li></ul>
+<p>The <em>order</em> of a group is the number elements in the set. The smallest group is the <em>trivial group</em>, which contains a single element which is the identity. It has order 1.</p>
+<p>The integers, rationals, real numbers, and complex numbers are Abelian groups under addition; zero is the identity element. The integers and rationals are countably infinite. The real numbers and complex numbers are uncountably infinite.</p>
+<p>The integers modulo <em>n</em> are an Abelian group under addition; zero is the identity number. The group is finite and has order <em>n</em>.</p>
+<p>The non-zero rationals, non-zero real numbers, and non-zero complex numbers are Abelian groups under multiplication; one is the identity element.</p>
+<p>A permutation is a bijection on a set of <em>n</em> elements. The permutations of size <em>n</em> form a group under composition; the group is non-Abelian when <em>n &gt; 2</em>. The identity permutation which maps each element of the set to itself is the group identity. The order of the group is <em>n</em>!.</p>
+<p>The classical Lie groups are examples of infinite, non-Abelian groups. In all cases the group operation is matrix multiplication:</p>
+<table class="wiki-content-table"><tr><td rowspan="1" colspan="1">GL(n, ℝ)</td><td rowspan="1" colspan="1">general linear group of degree n</td><td rowspan="1" colspan="1">invertible n×n matrices</td></tr><tr><td rowspan="1" colspan="1">SL(n, ℝ)</td><td rowspan="1" colspan="1">special linear group of degree n</td><td rowspan="1" colspan="1">n×n matrices with determinant one</td></tr><tr><td rowspan="1" colspan="1">O(n, ℝ)</td><td rowspan="1" colspan="1">orthogonal group of degree n</td><td rowspan="1" colspan="1">n×n orthogonal matrices; i.e. MM<sup>T</sup> = I</td></tr><tr><td rowspan="1" colspan="1">SO(n, ℝ)</td><td rowspan="1" colspan="1">special orthogonal group of degree n</td><td rowspan="1" colspan="1">n×n orthogonal matrices with determinant one</td></tr><tr><td rowspan="1" colspan="1">U(n, ℂ)</td><td rowspan="1" colspan="1">unitary group of degree n</td><td rowspan="1" colspan="1">n×n unitary matrices; i.e. MM* = I</td></tr><tr><td rowspan="1" colspan="1">SU(n, ℂ)</td><td rowspan="1" colspan="1">special unitary group of degree n</td><td rowspan="1" colspan="1">n×n unitary matrices with determinant one</td></tr></table>
+<p><a name="named-groups-note" shape="rect" id="named-groups-note"></a></p>
+<h2 id="toc34"><span><a href="#named-groups" shape="rect">named groups</a></span></h2>
+<p>Some well-known groups can be specified by name.</p>
+<p>The symmetric group S<sub>n</sub> is the group of permutations on a set of <em>n</em> elements.</p>
+<p>The alternating group A<sub>n</sub> is the group of <em>even</em> permutations on a set of <em>n</em> elements.</p>
+<p>The cyclic group Z/n is a group generated by a single element of order <em>n</em>. It is Abelian group and is isomorphic to the integers modulo <em>n</em> under addition.</p>
+<p>The dihedral group D<sub>n</sub> is the symmetry group of the regular n-polygon.</p>
+<p><a name="group-by-order-note" shape="rect" id="group-by-order-note"></a></p>
+<h2 id="toc35"><span><a href="#group-by-order" shape="rect">group by order</a></span></h2>
+<p><a name="group-from-permutation-generators-note" shape="rect" id="group-from-permutation-generators-note"></a></p>
+<h2 id="toc36"><span><a href="#group-from-permutation-generators" shape="rect">group from permutation generators</a></span></h2>
+<p><strong>gap:</strong></p>
+<p>When a group is created using <tt>GroupByGenerators</tt>, the generators returned by <tt>GeneratorsOfGroup</tt> will not necessarily be the same as the generators provided to the constructor.</p>
+<p>If the group is created using <tt>GroupWithGenerators</tt>, then the generators returned by <tt>GeneratorsOfGroup</tt> will be the same.</p>
+<p><a name="direct-prod-note" shape="rect" id="direct-prod-note"></a></p>
+<h2 id="toc37"><span><a href="#direct-prod" shape="rect">direct product</a></span></h2>
+<p>The direct product is a group defined on the Cartesian product of two groups.</p>
+<p>Given groups <em>G</em> and <em>H</em>, elements <em>g, g'</em> in <em>G</em>, and elements <em>h, h'</em> in <em>H</em>, the group operation is <em>(g, h) * (g', h') = (g * g', h * h')</em>.</p>
+<p><a name="free-prod-note" shape="rect" id="free-prod-note"></a></p>
+<h2 id="toc38"><span><a href="#free-prod" shape="rect">free product</a></span></h2>
+<p>A free product is group defined on equivalence classes of words consisting of elements from two groups <em>G</em> and <em>H</em>.</p>
+<p>The equivalence relation is defined in terms of reductions. Two adjacent elements in the word from the same group can be replaced by their product, and the identity element of either group can be removed.</p>
+<p>The group operation is concatenation.</p>
+<p>The free product is an infinite group when both groups are non-trivial.</p>
+<p><strong>gap</strong></p>
+<p>Some functions do not appear to work on free products: <tt>Order()</tt> and <tt>Random()</tt>.</p>
+<p><a name="free-group-note" shape="rect" id="free-group-note"></a></p>
+<h2 id="toc39"><span><a href="#free-group" shape="rect">free group</a></span></h2>
+<p><a name="group-from-presentation-note" shape="rect" id="group-from-presentation-note"></a></p>
+<h2 id="toc40"><span><a href="#group-from-presentation-note" shape="rect">group from presentation</a></span></h2>
+<p><a name="all-group-elem-note" shape="rect" id="all-group-elem-note"></a></p>
+<h2 id="toc41"><span><a href="#all-group-elem" shape="rect">all elements</a></span></h2>
+<p>How to iterate through all elements in a group.</p>
+<p><a name="group-generators-note" shape="rect" id="group-generators-note"></a></p>
+<h2 id="toc42"><span><a href="#group-generators" shape="rect">generators</a></span></h2>
+<p><a name="group-identity-elem-note" shape="rect" id="group-identity-elem-note"></a></p>
+<h2 id="toc43"><span><a href="#group-identity-elem" shape="rect">identity element</a></span></h2>
+<p>The group identity <em>e</em>.</p>
+<p>For all <em>g</em> in <em>G</em>, <em>e * g = g * e = g</em>.</p>
+<p><a name="random-group-elem-note" shape="rect" id="random-group-elem-note"></a></p>
+<h2 id="toc44"><span><a href="#random-group-elem" shape="rect">random element</a></span></h2>
+<p>How to select an element from the group randomly.</p>
+<p><a name="group-op-note" shape="rect" id="group-op-note"></a></p>
+<h2 id="toc45"><span><a href="#group-op" shape="rect">group operation</a></span></h2>
+<p>How</p>
+<p><a name="inverse-group-elem-note" shape="rect" id="inverse-group-elem-note"></a></p>
+<h2 id="toc46"><span><a href="#inverse-group-elem" shape="rect">inverse element</a></span></h2>
+<p>Each element <em>g</em> in a group has an inverse <em>g<sup>-1</sup></em> such that <em>g * g<sup>-1</sup> = g<sup>-1</sup> * g = e</em> where <em>e</em> is the identity element.</p>
+<p><a name="commutator-note" shape="rect" id="commutator-note"></a></p>
+<h2 id="toc47"><span><a href="#commutator" shape="rect">commutator</a></span></h2>
+<p><a name="generator-word-for-elem-note" shape="rect" id="generator-word-for-elem-note"></a></p>
+<h2 id="toc48"><span><a href="#generator-word-for-elem" shape="rect">generator word for element</a></span></h2>
+<p><a name="elem-by-generator-word-len-note" shape="rect" id="elem-by-generator-word-len-note"></a></p>
+<h2 id="toc49"><span><a href="#elem-by-generator-word-len" shape="rect">elements by generator word length</a></span></h2>
+<p><a name="group-elem-order-note" shape="rect" id="group-elem-order-note"></a></p>
+<h2 id="toc50"><span><a href="#group-elem-order" shape="rect">element order</a></span></h2>
+<p>For an element <em>g</em> in a finite group, there must be a positive integer <em>n</em> such that <em>g<sup>n</sup></em> is the identity element. The order of an element is the smallest such <em>n</em>.</p>
+<p><a name="identify-group-note" shape="rect" id="identify-group-note"></a></p>
+<h2 id="toc51"><span><a href="#identify-group" shape="rect">identify group</a></span></h2>
+<p><a name="group-to-presentation-note" shape="rect" id="group-to-presentation-note"></a></p>
+<h2 id="toc52"><span><a href="#group-to-presentation" shape="rect">group to presentation</a></span></h2>
+<p>Provide a presentation for the group.</p>
+<p><a name="group-order-note" shape="rect" id="group-order-note"></a></p>
+<h2 id="toc53"><span><a href="#group-order" shape="rect">group order</a></span></h2>
+<p>How many elements are in the group.</p>
+<p><a name="cyclic-test-note" shape="rect" id="cyclic-test-note"></a></p>
+<h2 id="toc54"><span><a href="#cyclic-test" shape="rect">cyclic test</a></span></h2>
+<p>Is the group generated by single element.</p>
+<p><a name="abelian-test-note" shape="rect" id="abelian-test-note"></a></p>
+<h2 id="toc55"><span><a href="#abelian-test" shape="rect">abelian test</a></span></h2>
+<p>Is the group operation commutative.</p>
+<p><a name="subgroups-note" shape="rect" id="subgroups-note"></a></p>
+<h1 id="toc56"><span><a href="#subgroups" shape="rect">Subroups</a></span></h1>
+<p>A <em>subgroup</em> is a subset of a group which is itself a group.</p>
+<p>A nontrivial group always has at least two subgroups: the group itself and the trivial subgroup. A proper subgroup is a subgroup which is not equal to the group itself.</p>
+<p>One test whether a subset <em>H</em> of a group <em>G</em> is a subgroup is verify that <em>H</em> is nonempty and for every <em>x</em> and <em>y</em> in <em>H</em>, <em>xy<sup>-1</sup></em> is in <em>H</em>.</p>
+<p><em>Lagrange's theorem and Sylow Theorems</em></p>
+<p><a name="all-subgroups-note" shape="rect" id="all-subgroups-note"></a></p>
+<h2 id="toc57"><span><a href="#all-subgroups" shape="rect">all subgroups</a></span></h2>
+<p>A list of all subgroups in a group.</p>
+<p><a name="subgroup-lattice-note" shape="rect" id="subgroup-lattice-note"></a></p>
+<h2 id="toc58"><span><a href="#subgroup-lattice" shape="rect">subgroup lattice</a></span></h2>
+<p>The subgroups arranged by inclusion in a lattice.</p>
+<p><a name="maximal-subgroups-note" shape="rect" id="maximal-subgroups-note"></a></p>
+<h2 id="toc59"><span><a href="#maximal-subgroups" shape="rect">maximal subgroups</a></span></h2>
+<p>A maximal subgroup is a proper subgroup which is not contained in any other proper subgroup.</p>
+<p><a name="frattini-subgroup-note" shape="rect" id="frattini-subgroup-note"></a></p>
+<h2 id="toc60"><span><a href="#frattini-subgroup" shape="rect">frattini subgroup</a></span></h2>
+<p>The Frattini subgroup is the intersection of all maximal subgroups.</p>
+<p><a name="subgroup-from-generators-note" shape="rect" id="subgroup-from-generators-note"></a></p>
+<h2 id="toc61"><span><a href="#subgroup-from-generators" shape="rect">subgroup from generators</a></span></h2>
+<p><strong>gap:</strong></p>
+<p><tt>ClosureGroup</tt> finds the smallest group containing a group and a list of elements, some of which might not be in the group which is the first argument.</p>
+<p><a name="normal-subgroups-note" shape="rect" id="normal-subgroups-note"></a></p>
+<h2 id="toc62"><span><a href="#normal-subgroups" shape="rect">normal subgroups</a></span></h2>
+<p>The normal subgroups of a group.</p>
+<p>A subgroup <em>H</em> of a group <em>G</em> is normal if its left and right cosets coincide. That is <em>gH = Hg</em> for all <em>g</em> in <em>G</em>. Another way to express this is that <em>H</em> is invariant under conjugation, or that <em>H = g<sup>-1</sup>Hg</em> for all <em>g</em> in <em>G</em>.</p>
+<p>The significance of normal subgroups is that we can define a group operation on the cosets using representatives if and only if the subgroup is normal.</p>
+<p>The first group isomorphism theorem states that the kernel of a group homomorphism is a normal subgroup.</p>
+<p>For <em>n ≥ 5</em>, the only proper non-trivial normal subgroup of <em>S<sub>n</sub></em> is <em>A<sub>n</sub></em>.</p>
+<p><a name="group-homomorphisms-note" shape="rect" id="group-homomorphisms-note"></a></p>
+<h1 id="toc63"><span><a href="#group-homomorphisms" shape="rect">Group Homomorphisms</a></span></h1>
+<p>A <em>homomorphism</em> is a function φ from (G, *) to (H, *') such that</p>
+<ul><li>φ(x * y) = φ(x) *' φ(y) for all x, y ∈ G.</li></ul>
+<p>An <em>isomorphism</em> is a bijective <em>homomorphism</em>.</p>
+<p>If an isomorphism exists between two groups, they are said to be <em>isomorphic</em>. Isomorphic groups are in a sense the same; group theory is the study of properties which are invariant under isomorphism. Elsewhere we may speak of two isomorphic groups as being the same group.</p>
+<p><a name="actions-note" shape="rect" id="actions-note"></a></p>
+<h1 id="toc64"><span><a href="#actions" shape="rect">Actions</a></span></h1>
+<p>A group G is said to <em>act</em> on a set A if there is an operation ⋅: G × A → A such that</p>
+<ul><li>g₁⋅(g₂⋅a) = (g₁*g₂)⋅a for all g₁, g₂ ∈ G and a ∈ A</li><li>e⋅a = a for all a ∈ A where e is the identity in A</li></ul>
+<p><a name="magma" shape="rect" id="magma"></a></p>
+<h1 id="toc65"><span><a href="#top" shape="rect">Magma</a></span></h1>
+<p><a href="http://magma.maths.usyd.edu.au/calc/" shape="rect">Online Calculator</a><br />
+<a href="http://magma.maths.usyd.edu.au/magma/handbook/" shape="rect">Handbook</a></p>
+<p><a name="gap" shape="rect" id="gap"></a></p>
+<h1 id="toc66"><span><a href="#top" shape="rect">GAP</a></span></h1>
+<p><a href="http://www.gap-system.org/Manuals/doc/ref/chap0.html" shape="rect">GAP - Reference Manual</a></p>
+<p><a name="singular" shape="rect" id="singular"></a></p>
+<h1 id="toc67"><span><a href="#top" shape="rect">Singular</a></span></h1>
+<p><a href="http://www.singular.uni-kl.de/Manual/latest/index.htm" shape="rect">Singular Manual</a></p>
+<p><a name="pari-gp" shape="rect" id="pari-gp"></a></p>
+<h1 id="toc68"><span><a href="#top" shape="rect">Pari/GP</a></span></h1>
+<p><a href="http://pari.math.u-bordeaux.fr/pub/pari/manuals/2.5.0/tutorial.pdf" shape="rect">A Tutorial for Pari/GP (pdf)</a><br />
+<a href="http://pari.math.u-bordeaux.fr/dochtml/html.stable/" shape="rect">Pari/GP Functions by Category</a><br />
+<a href="http://www.staff.science.uu.nl/~beuke106/boek/refcard.pdf" shape="rect">Pari/GP Reference Card (pdf)</a></p>
+
+                    </div>
+        </div>
+      </div>
+      <div id="license-area" class="license-area">
+        <a href="https://github.com/clarkgrubb/hyperpolyglot/issues">issue tracker</a> |
+        content of this page licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+        creative commons attribution-sharealike 3.0</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17129977-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

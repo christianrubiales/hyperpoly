@@ -1,0 +1,1518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<link rel="icon" type="image/gif" href="/favicon.gif"/>
+<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+<title>Fortran, APL - Hyperpolyglot</title>
+<style type="text/css" id="internal-style">
+@import url(hyperpolyglot.css);
+</style>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="content-language" content="en"/>
+</head>
+<body>
+<div id="container-wrap-wrap">
+  <div id="container-wrap">
+    <div id="container">
+      <div id="header">
+        <h1><a href="/"><span>Hyperpolyglot</span></a></h1>
+      </div>
+      <div id="content-wrap">
+        <div id="main-content">
+<div id="page-title">
+                            Fortran, APL
+                        </div>
+<div id="page-content">
+                        
+
+<p><a name="top" id="top"></a><em>a side-by-side reference sheet</em></p>
+<p><a href="#grammar-invocation">grammar and invocation</a> | <a href="#variables-expressions">variables and expressions</a> | <a href="#arithmetic-logic">arithmetic and logic</a> | <a href="#strings">strings</a> | <a href="#dates-time">dates and time</a> | <a href="#arrays">arrays</a> | <a href="#arith-seq">arithmetic sequences</a> | <a href="#functions">functions</a> | <a href="#execution-control">execution control</a> | <a href="#file-handles">file handles</a> | <a href="#processes-environment">processes and environment</a></p>
+<p><a href="#vectors">vectors</a> | <a href="#matrices">matrices</a></p>
+<table class="wiki-content-table">
+<tr>
+<th><a name="general" id="general"></a></th>
+<th><a href="#fortran">fortran</a></th>
+<th><a href="#apl">apl</a></th>
+</tr>
+<tr>
+<td><a name="version-used" id="version-used"></a><a href="#version-used-note">version used</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>GNU Fortran 4.5 (Fortran 95)</em></span></td>
+<td><span style="color: gray"><em>GNU APL 1.5</em></span></td>
+</tr>
+<tr>
+<td><a name="show-version" id="show-version"></a><a href="#show-version-note">show version</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>$ gfortran <span style="white-space: pre-wrap;">--</span>version</td>
+<td>$ apl <span style="white-space: pre-wrap;">--</span>version</td>
+</tr>
+<tr>
+<th colspan="3"><a name="grammar-invocation" id="grammar-invocation"></a><a href="#grammar-invocation-note">grammar and invocation</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="hello-world" id="hello-world"></a><a href="#hello-world-note">hello word</a></td>
+<td>$ cat hello.f95<br />
+program hello<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) 'Hello, World!'<br />
+end program hello<br />
+<br />
+$ gfortran hello.f95<br />
+<br />
+$ ./a.out<br />
+<span style="white-space: pre-wrap;"> </span>Hello, World!</td>
+<td>$ cat hello.apl<br />
+"Hello, World!"<br />
+)OFF<br />
+<br />
+$ apl <span style="white-space: pre-wrap;">--</span>script <span style="white-space: pre-wrap;">--</span>noSV -f hello.apl<br />
+Hello, World!</td>
+</tr>
+<tr>
+<td><a name="file-suffixes" id="file-suffixes"></a><a href="#file-suffixes-note">file suffixes</a><br />
+<span style="color: gray"><em>source, header, object file</em></span></td>
+<td>.f95 <span style="color: gray"><em>none</em></span> .o</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="block-delimiters" id="block-delimiters"></a><a href="#block-delimiters-note">block delimiters</a></td>
+<td>program <span style="color: gray"><em>…</em></span> end program<br />
+function <span style="color: gray"><em>…</em></span> end function<br />
+subroutine <span style="color: gray"><em>…</em></span>end subroutine<br />
+if <span style="color: gray"><em>…</em></span> then <span style="color: gray"><em>…</em></span> elseif <span style="color: gray"><em>…</em></span> then <span style="color: gray"><em>…</em></span> else <span style="color: gray"><em>…</em></span> endif<br />
+do while <span style="color: gray"><em>…</em></span> end do<br />
+do <span style="color: gray"><em>…</em></span> end do</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="stmt-terminator" id="stmt-terminator"></a><a href="#stmt-terminator-note">statement terminator</a></td>
+<td><span style="color: gray"><em>newline</em></span><br />
+<br />
+<span style="color: gray"><em>when a line ends with</em> &amp; <em>the statement continues on the following line</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="eol-comment" id="eol-comment"></a><a href="#eol-comment-note">end-of-line comment</a></td>
+<td>! <span style="color: gray"><em>comment</em></span></td>
+<td>⍝ <span style="color: gray"><em>comment</em></span><br />
+<br />
+<span style="color: gray"><em>the standard name for</em> ⍝ <em>is "lamp"</em></span></td>
+</tr>
+<tr>
+<td><a name="multiple-line-comment" id="multiple-line-comment"></a><a href="#multiple-line-comment-note">multiple line comment</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="variables-expressions" id="variables-expressions"></a><a href="#variables-expressions-note">variables and expressions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="case-sensitive" id="case-sensitive"></a><a href="#case-sensitive-note">are identifiers case sensitive</a></td>
+<td><span style="color: gray"><em>no; Fortran 77 and earlier required all caps</em></span></td>
+<td><span style="color: gray"><em>yes</em></span></td>
+</tr>
+<tr>
+<td><a name="var-types" id="var-types"></a><a href="#var-types-note">variable types</a></td>
+<td>integer real complex character logical</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="var-declaration" id="var-declaration"></a><a href="#var-declaration-note">variable declaration</a></td>
+<td>integer :: n<br />
+real :: x = 3.7<br />
+<span style="color: gray">! variable declarations must appear before<br />
+! all other statements in a program or function body</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="undeclared-var-type" id="undeclared-var-type"></a><a href="#undeclared-var-type-note">undeclared variable type</a></td>
+<td><span style="color: gray">inferred from first letter of name:<br />
+<br />
+<span style="white-space: pre-wrap;">  </span>I-N: integer<br />
+<span style="white-space: pre-wrap;">  </span>A-H, O-Z: real</span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="primitive-type-stack" id="primitive-type-stack"></a><a href="#primitive-type-stack-note">declare primitive type on stack</a></td>
+<td>integer::i<br />
+integer::j = 3</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="assignment" id="assignment"></a><a href="#assignment-note">assignment</a></td>
+<td>i = 3</td>
+<td><span style="color: gray">⍝ leftarrow: ←</span><br />
+<br />
+i ← 3</td>
+</tr>
+<tr>
+<td><a name="null" id="null"></a><a href="#null-note">null</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray"><em>used for pointers only:</em></span><br />
+null()</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="undefined-var-access" id="undefined-var-access"></a><a href="#undefined-var-access-note">undefined variable access</a></td>
+<td><span style="color: gray"><em>evaluate to 0 or 0.0, depending upon the first letter of the variable name</em></span></td>
+<td><span style="color: gray">VALUE ERROR</span></td>
+</tr>
+<tr>
+<th colspan="3"><a name="arithmetic-logic" id="arithmetic-logic"></a><a href="#arithmetic-logic-note">arithmetic and logic</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="boolean-type" id="boolean-type"></a><a href="#boolean-type-note">boolean type</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>logical</td>
+<td><span style="color: gray"><em>all values have same type</em></span></td>
+</tr>
+<tr>
+<td><a name="true-false" id="true-false"></a><a href="#true-false-note">true and false</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>.true. .false.</td>
+<td>1 0</td>
+</tr>
+<tr>
+<td><a name="falsehoods" id="falsehoods"></a><a href="#falsehoods-note">falsehoods</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>.false.<br />
+<span style="color: gray"><em>no implicit conversion of values to booleans</em></span></td>
+<td>0 0.0</td>
+</tr>
+<tr>
+<td><a name="logical-op" id="logical-op"></a><a href="#logical-op-note">logical operators</a></td>
+<td>.and. .or. .not.</td>
+<td><span style="color: gray">⍝ and: ∧<br />
+⍝ or:<span style="white-space: pre-wrap;">  </span>∨<br />
+⍝ not: ~</span><br />
+<br />
+∧ ∨ ~</td>
+</tr>
+<tr>
+<td><a name="relational-op" id="relational-op"></a><a href="#relational-op-note">relational operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>== /= &gt; &lt; &gt;= &lt;=</td>
+<td><span style="color: gray">⍝ match:<span style="white-space: pre-wrap;">   </span>≡<br />
+⍝ unequal: ≠<br />
+⍝ aft:<span style="white-space: pre-wrap;">     </span>≥<br />
+⍝ fore:<span style="white-space: pre-wrap;">    </span>≤</span><br />
+<br />
+≡ ≠ &gt; &lt; ≥ ≤</td>
+</tr>
+<tr>
+<td><a name="min-max" id="min-max"></a><a href="#min-max-note">min and max</a></td>
+<td>min(1, 2, 3)<br />
+max(1, 2, 3)</td>
+<td><span style="color: gray">⍝ minimum: ⌊<br />
+⍝ maximum: ⌈</span><br />
+<br />
+1 ⌊ 2 ⌊ 3<br />
+1 ⌈ 2 ⌈ 3<br />
+<br />
+⌊ / 1 2 3<br />
+⌈ / 1 2 3</td>
+</tr>
+<tr>
+<td><a name="int-type" id="int-type"></a><a href="#int-type-note">integer type</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>integer<br />
+<br />
+<span style="color: gray"><em>number of bytes can be specified:</em></span><br />
+integer(kind=4)</td>
+<td><span style="color: gray"><em>all values have same type</em></span></td>
+</tr>
+<tr>
+<td><a name="int-literal" id="int-literal"></a><a href="#int-literal-note">integer literal</a></td>
+<td>-4</td>
+<td><span style="color: gray">⍝ macron: ¯</span><br />
+<br />
+¯4</td>
+</tr>
+<tr>
+<td><a name="float-type" id="float-type"></a><a href="#float-type-note">float type</a></td>
+<td>real<br />
+double precision<br />
+<br />
+<span style="color: gray"><em>number of bytes can be specified:</em></span><br />
+real(kind=4)</td>
+<td><span style="color: gray"><em>all values have same type</em></span></td>
+</tr>
+<tr>
+<td><a name="arith-op" id="arith-op"></a><a href="#arith-op-note">arithmetic operators</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>+ - * /</td>
+<td><span style="color: gray">⍝ times: ×</span><br />
+<span style="color: gray">⍝ per:<span style="white-space: pre-wrap;">   </span>÷</span><br />
+<br />
+<span style="white-space: pre-wrap;">+ - × ÷</span></td>
+</tr>
+<tr>
+<td><a name="int-div" id="int-div"></a><a href="#int-div-note">integer division</a></td>
+<td>7 / 3<br />
+mod(7, 3)</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="int-div-zero" id="int-div-zero"></a><a href="#int-div-zero-note">integer division by zero</a></td>
+<td>real :: x = 0.0<br />
+integer :: i = 0<br />
+<br />
+<span style="color: gray">! compiler error:</span><br />
+1.0 / 0.0<br />
+<br />
+<span style="color: gray">! +Infinity:</span><br />
+1.0 / x<br />
+<br />
+<span style="color: gray">! floating point exception:</span><br />
+1 / i</td>
+<td><span style="color: gray">DOMAIN ERROR</span></td>
+</tr>
+<tr>
+<td><a name="float-div" id="float-div"></a><a href="#float-div-note">float division</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>3 / float(7)</td>
+<td>3 ÷ 7</td>
+</tr>
+<tr>
+<td><a name="float-div-zero" id="float-div-zero"></a><a href="#float-div-zero-note">float division by zero</a></td>
+<td>real :: x = 0.0<br />
+integer :: i = 0<br />
+<br />
+<span style="color: gray">! compiler error:</span><br />
+1.0 / 0.0<br />
+<br />
+<span style="color: gray">! +Infinity:</span><br />
+1.0 / x<br />
+<br />
+<span style="color: gray">! floating point exception:</span><br />
+1 / i</td>
+<td><span style="color: gray">DOMAIN ERROR</span></td>
+</tr>
+<tr>
+<td><a name="power" id="power"></a><a href="#power-note">power</a></td>
+<td>2.0 ** 3.0</td>
+<td>2 * 32</td>
+</tr>
+<tr>
+<td><a name="sqrt" id="sqrt"></a><a href="#sqrt-note">sqrt</a></td>
+<td>sqrt(2)</td>
+<td>2 * 0.5</td>
+</tr>
+<tr>
+<td><a name="sqrt-negative-one" id="sqrt-negative-one"></a><a href="#sqrt-negative-one-note">sqrt -1</a></td>
+<td>real :: x = -1.0<br />
+complex :: z = (-1.0, 0.0)<br />
+<br />
+<span style="color: gray">! compiler error:</span><br />
+sqrt(-1.0)<br />
+<br />
+<span style="color: gray">! NaN:</span><br />
+sqrt(x)<br />
+<br />
+<span style="color: gray">! (0.000, 1.000)</span><br />
+sqrt(z)</td>
+<td><span style="color: gray">⍝ 0J1:</span><br />
+<br />
+¯1 * 0.5</td>
+</tr>
+<tr>
+<td><a name="transcendental-func" id="transcendental-func"></a><a href="#transcendental-func-note">transcendental functions</a></td>
+<td>exp(2.0)<br />
+log(2.0)<br />
+log10(2.0)<br />
+sin(2.0)<br />
+cos(2.0)<br />
+tan(2.0)<br />
+asin(0.5)<br />
+acos(0.5)<br />
+atan(0.5)<br />
+atan2(1.0, 2.0)</td>
+<td><span style="color: gray">⍝ log:<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>⍟<br />
+⍝ circle: ○</span><br />
+<br />
+* 2<br />
+⍟ 2<br />
+10 ⍟ 2<br />
+1 ○ 2<br />
+2 ○ 2<br />
+3 ○ 2<br />
+¯1 ○ 0.5<br />
+¯2 ○ 0.5<br />
+¯3 ○ 0.5<br />
+<span style="color: gray"><em>??</em></span></td>
+</tr>
+<tr>
+<td><a name="transcendental-const" id="transcendental-const"></a><a href="#transcendental-const-note">transcendental constants</a><br />
+<span style="color: gray"><em>e and pi</em></span></td>
+<td>exp(1.0)<br />
+2.0 * asin(1.0)</td>
+<td>* 1<br />
+○ 1</td>
+</tr>
+<tr>
+<td><a name="float-truncation" id="float-truncation"></a><a href="#float-truncation-note">float truncation</a><br />
+<span style="color: gray"><em>truncate, round, ceiling, floor</em></span></td>
+<td>int(3.7)<br />
+<span style="color: gray"><em>none</em></span><br />
+ceiling(3.7)<br />
+floor(3.7)</td>
+<td><span style="color: gray"><em>??</em></span><br />
+<span style="color: gray"><em>??</em></span><br />
+⌈ 3.7<br />
+⌊ 3.7<br />
+<br />
+<span style="color: gray">⍝ ceiling: ⌈<br />
+⍝ floor: ⌊</span></td>
+</tr>
+<tr>
+<td><a name="absolute-val" id="absolute-val"></a><a href="#absolute-val-note">absolute value</a></td>
+<td>abs(-7)<br />
+abs(-7.77)</td>
+<td><span style="white-space: pre-wrap;">| ¯7</span><br />
+<span style="white-space: pre-wrap;">| ¯7.77</span></td>
+</tr>
+<tr>
+<td><a name="complex-type" id="complex-type"></a><a href="#complex-type-note">complex type</a></td>
+<td>complex<br />
+<br />
+<span style="color: gray"><em>uses 8 bytes:</em></span><br />
+complex(kind=4)</td>
+<td><span style="color: gray"><em>all values have same type</em></span></td>
+</tr>
+<tr>
+<td><a name="complex-construction" id="complex-construction"></a><a href="#complex-construction-note">complex construction</a></td>
+<td>(0.0, 1.0)<br />
+(0.0, 2.0)<br />
+(0.0, 3.0)</td>
+<td>0J1<br />
+0J2<br />
+0J3</td>
+</tr>
+<tr>
+<td><a name="complex-decomposition" id="complex-decomposition"></a><a href="#complex-decomposition-note">complex decomposition</a><br />
+<span style="color: gray"><em>real and imaginary component, argument, absolute value, conjugate</em></span></td>
+<td>real(z)<br />
+imag(z)<br />
+atan2(imag(z), real(z))<br />
+abs(z)<br />
+conjg(z)</td>
+<td>z ← 3J2<br />
+<br />
+(z + + z) ÷ 2<br />
+| (z - + z) ÷ 2<br />
+<span style="color: gray"><em>??</em></span><br />
+| z<br />
+<span style="white-space: pre-wrap;">+</span> z</td>
+</tr>
+<tr>
+<td><a name="random-num" id="random-num"></a><a href="#random-num-note">random number</a></td>
+<td>real r<br />
+<span style="color: gray">! random float from 0.0 to 1.0:</span><br />
+call random_number(r)</td>
+<td><span style="color: gray">⍝ random integer from 1 to 100:</span><br />
+? 100</td>
+</tr>
+<tr>
+<td><a name="random-seed" id="random-seed"></a><a href="#random-seed-note">random seed</a></td>
+<td>integer n<br />
+integer, allocatable :: seed(:)<br />
+<br />
+call random_seed(size=n)<br />
+allocate(seed(n))<br />
+do i = 1, n<br />
+<span style="white-space: pre-wrap;">  </span>seed(i) = i + 2<br />
+end do<br />
+call random_seed(put=seed)</td>
+<td>⎕RL ← 17</td>
+</tr>
+<tr>
+<td><a name="bit-op" id="bit-op"></a><a href="#bit-op-note">bit operators</a></td>
+<td><span style="color: gray"><em>right shift if</em> pos <em>is positive:</em></span><br />
+ishft(<span style="color: gray"><em>i</em>, <em>pos</em></span>)<br />
+iand(<span style="color: gray"><em>i</em></span>, <span style="color: gray"><em>j</em></span>)<br />
+ior(<span style="color: gray"><em>i</em></span>, <span style="color: gray"><em>j</em></span>)<br />
+ieor(<span style="color: gray"><em>i</em></span>, <span style="color: gray"><em>j</em></span>)<br />
+not(<span style="color: gray"><em>i</em></span>)</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="strings" id="strings"></a><a href="#strings-note">strings</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="str-type" id="str-type"></a><a href="#str-type-note">string type</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>characater(len=100) s</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-literal" id="str-literal"></a><a href="#str-literal-note">string literal</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>'don''t say "no"'<br />
+"don't say ""no"""</td>
+<td>'don''t say "no"'</td>
+</tr>
+<tr>
+<td><a name="newline-in-str-literal" id="newline-in-str-literal"></a><a href="#newline-in-str-literal-note">newline in string literal</a></td>
+<td>"lorem" <span style="white-space: pre-wrap;">//</span> achar(10) <span style="white-space: pre-wrap;">//</span> "ipsum"</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="str-literal-esc" id="str-literal-esc"></a><a href="#str-literal-esc-note">string escapes</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#string-to-number">convert string to numeric</a></td>
+<td></td>
+<td><span style="color: gray">⍝ execute: ⍎</span><br />
+<br />
+⍎ '4'</td>
+</tr>
+<tr>
+<td><a href="#number-to-string">convert numeric to string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#split">split</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#join">join</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td>, / 'foo' 'bar' 'baz'</td>
+</tr>
+<tr>
+<td><a href="#string-concatenate">concatenate</a></td>
+<td>'hello' <span style="white-space: pre-wrap;">//</span> ' world'</td>
+<td>'hello' , ' world'</td>
+</tr>
+<tr>
+<td><a href="#str-replicate">replicate</a></td>
+<td>character(len=80) :: hbar<br />
+hbar = repeat('-', 80)</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#substring">substring</a></td>
+<td>"hello"(1:4)</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#index">index</a></td>
+<td><span style="color: gray"><em>counts from one, returns zero if not found</em></span><br />
+index("hello", "el")</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#sprintf">sprintf</a></td>
+<td>character(len=100) :: s<br />
+write(s,'(A A F9.3 I9)') 'foo', ':', 2.2, 7</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#uppercase">uppercase</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#lowercase">lowercase</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#trim">trim</a></td>
+<td><span style="color: gray"><em>??</em></span><br />
+adjustl(' foo')<br />
+trim('foo ')</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#string-length">length</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>len("hello")</td>
+<td>⍴ 'hello'</td>
+</tr>
+<tr>
+<td><a href="#char-access">character access</a></td>
+<td>"hello"(1:1)</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#chr-ord">chr and ord</a></td>
+<td>achar(65)<br />
+iachar('A')</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="dates-time" id="dates-time"></a><a href="#dates-time-note">dates and time</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="current-local-date-time" id="current-local-date-time"></a><a href="#current-local-date-time-note">current local date and time</a></td>
+<td>integer dt(8)<br />
+<br />
+<span style="color: gray">! yyyy, mm, dd, utf_offset_min, hh24, mi, ss, ms</span><br />
+call date_and_time(values=dt)</td>
+<td><span style="color: gray">⍝ array of 7 integers: yyyy, mm, dd, hh24, mi, ss, ms</span><br />
+⎕TS</td>
+</tr>
+<tr>
+<td><a name="sleep" id="sleep"></a><a href="#sleep-note">sleep</a></td>
+<td><span style="color: gray">! gnu extension; sleep 10s:</span><br />
+call sleep(10)</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="cpu-usage" id="cpu-usage"></a><a href="#cpu-usage-note">cpu usage</a></td>
+<td>real t1, t2<br />
+call cpu_time(t1)<br />
+<span style="color: gray"><em>…</em></span><br />
+call cpu_time(t2)<br />
+write(*, *) 'elapsed time: ', t2 - t1</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<th colspan="3"><a name="arrays" id="arrays"></a><a href="#arrays-note">arrays</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="allocate-array-on-stack" id="allocate-array-on-stack"></a><a href="#allocate-array-on-stack-note">allocate on stack</a></td>
+<td><span style="color: gray">! uninitialized values get zero values:</span><br />
+integer, dimension(3) :: a<br />
+integer :: a2(3)</td>
+<td><span style="color: gray"><em>none</em></span></td>
+</tr>
+<tr>
+<td><a name="allocate-array-on-heap" id="allocate-array-on-heap"></a><a href="#allocate-array-on-heap-note">allocate on heap</a></td>
+<td><span style="color: gray">! unitialized values get zero values:</span><br />
+integer, dimension(:), allocatable :: a<br />
+allocate(a(3))</td>
+<td><span style="color: gray"><em>all data is stored on heap</em></span></td>
+</tr>
+<tr>
+<td><a name="free-array-on-heap" id="free-array-on-heap"></a><a href="#free-array-on-heap-note">free heap</a></td>
+<td><span style="color: gray">! usually not necessary, since memory is freed<br />
+! when the variable goes out of scope.</span><br />
+deallocate(a)</td>
+<td><span style="color: gray"><em>none; memory is garbage collected</em></span></td>
+</tr>
+<tr>
+<td><a name="array-literal" id="array-literal"></a><a href="#array-literal-note">literal</a></td>
+<td>integer::a(3) = (/ 1, 2, 3 /)</td>
+<td>a ← 1 2 3</td>
+</tr>
+<tr>
+<td><a name="array-size" id="array-size"></a><a href="#array-size-note">size</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>size((/ 1, 2, 3 /))</td>
+<td><span style="color: gray">⍝ rho: ⍴</span><br />
+<br />
+⍴ a</td>
+</tr>
+<tr>
+<td><a name="array-lookup" id="array-lookup"></a><a href="#array-lookup-note">lookup</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td><span style="color: gray">! indices start at one</span><br />
+integer :: a(4)<br />
+a = (/ 7, 8, 9, 10 /)<br />
+a(2)</td>
+<td>a ← 7 8 9 10<br />
+<br />
+a[2]<br />
+(7 8 9 10)[2]<br />
+<br />
+<span style="color: gray">⍝ change index origin from 1 to 0:</span><br />
+⎕IO ← 0</td>
+</tr>
+<tr>
+<td><a name="array-update" id="array-update"></a><a href="#array-update-note">update</a></td>
+<td>a(1) = 8</td>
+<td>a[1] ← 8</td>
+</tr>
+<tr>
+<td><a name="array-out-of-bounds" id="array-out-of-bounds"></a><a href="#array-out-of-bounds-note">out-of-bounds behavior</a></td>
+<td><span style="color: gray"><em>If the array dimensions are set at compilation time (i.e. the array is stack allocated), then the code fails to compile.<br />
+<br />
+Out-of-bounds references to arrays with dimensions set at run time (i.e. the array is heap allocated) could segfault or return a memory value outside of the array.</em></span></td>
+<td>INDEX ERROR</td>
+</tr>
+<tr>
+<td><a name="array-element-index" id="array-element-index"></a><a href="#array-element-index-note">element index</a></td>
+<td></td>
+<td><span style="color: gray">⍝ evaluates to 2:</span><br />
+7 8 9 ⍳ 8</td>
+</tr>
+<tr>
+<td><a name="slice-array" id="slice-array"></a><a href="#slice-array-note">slice</a></td>
+<td><span style="color: gray">! can't slice literal</span><br />
+int::a1(3),a2(2)<br />
+<br />
+a1 = (/1,2,3/)<br />
+a2 = a1(1:2)</td>
+<td><span style="color: gray">⍝ 7 8:</span><br />
+<br />
+a ← 7 8 9 10<br />
+1 ↓ 3 ↑ a</td>
+</tr>
+<tr>
+<td><a name="slice-array-to-end" id="slice-array-to-end"></a><a href="#slice-array-to-end-note">slice to end</a></td>
+<td></td>
+<td><span style="color: gray">⍝ 8 9 10:</span><br />
+<br />
+a ← 7 8 9 10<br />
+1 ↓ a</td>
+</tr>
+<tr>
+<td><a name="array-back" id="array-back"></a><a href="#array-back-note">manipulate back</a></td>
+<td></td>
+<td>a ← 7 8 9 10<br />
+<br />
+<span style="color: gray">⍝ 10:</span><br />
+¯1 ↑ a<br />
+<br />
+<span style="color: gray">⍝ set a to 7 8 9:</span><br />
+a ← ¯1 ↓ a<br />
+<br />
+<span style="color: gray">⍝ set a to 7 8 9 11:</span><br />
+a ← a , 11</td>
+</tr>
+<tr>
+<td><a name="array-front" id="array-front"></a><a href="#array-front-note">manipulate front</a></td>
+<td></td>
+<td>a ← 7 8 9 10<br />
+<br />
+<span style="color: gray">⍝ 6:</span><br />
+1 ↑ a<br />
+<br />
+<span style="color: gray">⍝ set a to 8 9 10:</span><br />
+a ← 1 ↓ a<br />
+<br />
+<span style="color: gray">⍝ set a to 6 8 9 10:</span><br />
+a ← 6 , a</td>
+</tr>
+<tr>
+<td><a name="concatenate-array" id="concatenate-array"></a><a href="#concatenate-array-note">concatenate</a></td>
+<td></td>
+<td>1 2 3 , 4 5 6</td>
+</tr>
+<tr>
+<td><a name="array-replicate" id="array-replicate"></a><a href="#array-replicate-note">replicate</a></td>
+<td></td>
+<td><span style="color: gray">⍝ 10 zeros:</span><br />
+10 / 0</td>
+</tr>
+<tr>
+<td><a name="copy-array" id="copy-array"></a><a href="#copy-array-note">copy</a></td>
+<td></td>
+<td>a ← 1 2 3<br />
+b ← a<br />
+<span style="color: gray">⍝ does not modify a:</span><br />
+b[1] ← 4</td>
+</tr>
+<tr>
+<td><a name="iterate-over-array" id="iterate-over-array"></a><a href="#iterate-over-array-note">iterate</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="sort-array" id="sort-array"></a><a href="#sort-array-note">sort</a></td>
+<td></td>
+<td>a ← 8 7 10 9<br />
+a[⍋ a]</td>
+</tr>
+<tr>
+<td><a name="reduce" id="reduce"></a><a href="#reduce-note">reduce</a></td>
+<td></td>
+<td>+ / 1 2 3<br />
+<br />
+<span style="color: gray">⍝ 2:</span><br />
+- / 1 2 3</td>
+</tr>
+<tr>
+<th colspan="3"><a name="arith-seq" id="arith-seq"></a><a href="#arith-seq-note">arithmetic sequences</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="arith-seq-diff-one" id="arith-seq-diff-one"></a><a href="#arith-seq-diff-one-note">unit difference</a></td>
+<td></td>
+<td><span style="color: gray">⍝ iota: ⍳</span><br />
+<br />
+⍳ 100</td>
+</tr>
+<tr>
+<td><a name="arith-seq-diff-ten" id="arith-seq-diff-ten"></a><a href="#arith-seq-diff-ten-note">difference of 10</a></td>
+<td></td>
+<td><span style="color: gray">⍝ 0, 10, <span style="white-space: pre-wrap;">...</span>, 100:</span><br />
+<br />
+10 × ( ⍳ 11 ) - 1</td>
+</tr>
+<tr>
+<td><a name="arith-seq-diff-tenth" id="arith-seq-diff-tenth"></a><a href="#arith-seq-diff-tenth-note">difference of .1</a></td>
+<td></td>
+<td><span style="color: gray">⍝ 0.0, 0.1, <span style="white-space: pre-wrap;">...</span>, 10.0</span><br />
+<br />
+.1 × ( ⍳ 101 ) - 1</td>
+</tr>
+<tr>
+<th colspan="3"><a name="functions" id="functions"></a><a href="#functions-note">functions</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="def-func" id="def-func"></a><a href="#def-func-note">define function</a></td>
+<td>integer function add(n, m)<br />
+<span style="white-space: pre-wrap;">  </span>integer, intent(in) :: n<br />
+<span style="white-space: pre-wrap;">  </span>integer, intent(in) :: m<br />
+<span style="white-space: pre-wrap;">  </span>add = n + m<br />
+end function add</td>
+<td><span style="color: gray">⍝ define dyadic operator:</span><br />
+∇r ← a add b<br />
+r ← a + b ∇<br />
+<br />
+<span style="color: gray">⍝ define monadic operator:</span><br />
+∇r ← double n<br />
+r ← 2 × n ∇</td>
+</tr>
+<tr>
+<td><a name="invoke-func" id="invoke-func"></a><a href="#invoke-func-note">invoke function</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>add(3, 7)</td>
+<td>3 add 7<br />
+double 7</td>
+</tr>
+<tr>
+<td><a name="forward-decl-func" id="forward-decl-func"></a><a href="#forward-decl-func-note">forward declaration of function</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="overload-func" id="overload-func"></a><a href="#overload-func-note">overload function</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="nest-func" id="nest-func"></a><a href="#nest-func-note">nest function</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="missing-arg" id="missing-arg"></a><a href="#missing-arg-note">missing argument behavior</a></td>
+<td><span style="color: gray"><em>set to zero</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="extra-arg" id="extra-arg"></a><a href="#extra-arg-note">extra argument behavior</a></td>
+<td><span style="color: gray"><em>ignored</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="default-val-param" id="default-val-param"></a><a href="#default-val-param-note">default value for parameter</a></td>
+<td>real function mylog(x, base)<br />
+<span style="white-space: pre-wrap;">  </span>real :: x<br />
+<span style="white-space: pre-wrap;">  </span>real, optional :: base<br />
+<span style="white-space: pre-wrap;">  </span>if (present(base)) then<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>mylog = log(x) / log(base)<br />
+<span style="white-space: pre-wrap;">  </span>else<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>mylog = log(x) / log(10.0)<br />
+<span style="white-space: pre-wrap;">  </span>endif<br />
+end function mylog</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="variable-num-arg" id="variable-num-arg"></a><a href="#variable-num-arg-note">variable number of arguments</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="named-param" id="named-param"></a><a href="#named-param-note">named parameters</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pass-by-val" id="pass-by-val"></a><a href="#pass-by-val-note">pass by value</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pass-by-addr" id="pass-by-addr"></a><a href="#pass-by-addr-note">pass by address</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="pass-by-ref" id="pass-by-ref"></a><a href="#pass-by-ref-note">pass by reference</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="retval" id="retval"></a><a href="#retval-note">return value</a></td>
+<td><span style="color: gray"><em>assign to implicit variable with same name as function; can use return statement to terminate function execution</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="no-retval" id="no-retval"></a><a href="#no-retval-note">no return value</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="multiple-retval" id="multiple-retval"></a><a href="#multiple-retval-note">multiple return values</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="named-retval" id="named-retval"></a><a href="#named-retval-note">named return values</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="anonymous-func-literal" id="anonymous-func-literal"></a><a href="#anonymous-func-literal-note">anonymous function literal</a></td>
+<td><span style="color: gray"><em>none</em></span></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="func-private-state" id="func-private-state"></a><a href="#func-private-state-note">function with private state</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="func-as-val" id="func-as-val"></a><a href="#func-as-val-note">function as value</a></td>
+<td><span style="color: gray"><em>none; function pointers added in Fortran 2003</em></span></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="execution-control" id="execution-control"></a><a href="#execution-control-note">execution control</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="for" id="for"></a><a href="#for-note">for</a></td>
+<td>do n = 1, 10, 1<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) n<br />
+end do</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="if" id="if"></a><a href="#if-note">if</a></td>
+<td>if (n == 0) then<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) 'no hits'<br />
+elseif (n == 1) then<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) 'one hit'<br />
+else<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) n, 'hits'<br />
+endif</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="while" id="while"></a><a href="#while-note">while</a></td>
+<td>n = 1<br />
+do while ( n &lt; 10 )<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) n<br />
+<span style="white-space: pre-wrap;">  </span>n = n + 1<br />
+end do</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="switch" id="switch"></a><a href="#switch-note">switch</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="break-continue" id="break-continue"></a><a href="#break-continue-note">break/continue</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>exit cycle</td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="file-handles" id="file-handles"></a><a href="#file-handles-note">file handles</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="std-file-handles" id="std-file-handles"></a><a href="#std-file-handles-note">standard file handles</a></td>
+<td><span style="color: gray">! common unit identifiers for stdin, stdout, and stderr:</span><br />
+5 6 0</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="read-line-stdin" id="read-line-stdin"></a><a href="#read-line-stdin-note">read line from stdin</a></td>
+<td>character(len=100) line<br />
+<br />
+read(*, fmt="(a)") line</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-line-stdout" id="write-line-stdout"></a><a href="#write-line-stdout-note">write line to stdout</a></td>
+<td>write(*, *) 'Hello, World!'</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="printf" id="printf"></a><a href="#printf-note">write formatted string to stdout</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td>write(6, fmt="('count: ', i7)") 7</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="open-file" id="open-file"></a><a href="#open-file-note">open file for reading</a></td>
+<td><span style="color: gray">! the 'unit' integer is the file descriptor. Use an unused<br />
+! number. The standard file handles 0, 5, and 6 are already taken.</span><br />
+open(unit=7, file='/etc/passwd', action='read')</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="open-file-write" id="open-file-write"></a><a href="#open-file-write-note">open file for writing</a></td>
+<td>open(unit=7, file='/tmp/foo.txt', action='write')</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="close-file" id="close-file"></a><a href="#close-file-note">close file</a></td>
+<td>close(7)</td>
+<td></td>
+</tr>
+<tr>
+<td><a name="io-err" id="io-err"></a><a href="#io-err-note">i/o errors</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="read-line" id="read-line"></a><a href="#read-line-note">read line</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="file-line-iterate" id="file-line-iterate"></a><a href="#file-line-iterate-note">iterate over file by line</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="read-file-array" id="read-file-array"></a><a href="#read-file-array-note">read file into array of strings</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="read-file-str" id="read-file-str"></a><a href="#read-file-str-note">read file into string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-str" id="write-str"></a><a href="#write-str-note">write string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="write-line" id="write-line"></a><a href="#write-line-note">write line</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="flush" id="flush"></a><a href="#flush-note">flush file handle</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="eof-test" id="eof-test"></a><a href="#eof-test-note">end-of-file test</a><br />
+<span style="white-space: pre-wrap;"> </span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="seek" id="seek"></a><a href="#seek-note">get and set file handle position</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a name="tmp-file" id="tmp-file"></a><a href="#tmp-file-note">open unused file</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th colspan="3"><a name="processes-environment" id="processes-environment"></a><a href="#processes-environment-note">processes and environment</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a name="cmd-line-arg" id="cmd-line-arg"></a><a href="#cmd-line-arg-note">command line arguments</a></td>
+<td>character(len=10) :: arg<br />
+integer arg_len<br />
+<br />
+i = 1<br />
+do while (i &lt;= command_argument_count())<br />
+<span style="white-space: pre-wrap;">  </span>call get_command_argument(i, arg, arg_len)<br />
+<span style="white-space: pre-wrap;">  </span>if (arg_len &gt; 10) then<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>write(*,*) 'truncated argument: ', arg<br />
+<span style="white-space: pre-wrap;">  </span>else<br />
+<span style="white-space: pre-wrap;">  </span><span style="white-space: pre-wrap;">  </span>write(*,*) 'full argument: ', arg<br />
+<span style="white-space: pre-wrap;">  </span>endif<br />
+<span style="white-space: pre-wrap;">  </span>i = i + 1<br />
+end do</td>
+<td>⎕ARG</td>
+</tr>
+<tr>
+<td><a name="env-var" id="env-var"></a><a href="#env-var-note">environment variable</a></td>
+<td>character(len=100) :: var<br />
+integer var_len<br />
+<br />
+call get_environment_variable('HOME', var, var_len)<br />
+if (var_len &gt; 100) then<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) 'truncated env var: ', var<br />
+else<br />
+<span style="white-space: pre-wrap;">  </span>write(*,*) 'full env var: ', var<br />
+endif</td>
+<td><span style="color: gray">⍝ quad: ⎕</span><br />
+<br />
+⎕ENV 'HOME'<br />
+<br />
+<span style="color: gray">⍝ returns n by 2 array containing all environment<br />
+⍝ variable names and their values:</span><br />
+⎕ENV ''</td>
+</tr>
+<tr>
+<td><a name="exit" id="exit"></a><a href="#exit-note">exit</a></td>
+<td>stop<br />
+<br />
+<span style="color: gray">! nonzero status:</span><br />
+error stop 1</td>
+<td>)OFF</td>
+</tr>
+<tr>
+<th colspan="3"><a name="vectors" id="vectors"></a><a href="#vectors-note">vectors</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a href="#vector-literal">vector literal</a></td>
+<td><span style="color: gray"><em>same as array</em></span></td>
+<td><span style="color: gray">⍝ same as array:</span><br />
+1 2 3</td>
+</tr>
+<tr>
+<td><a href="#vector-element-wise">element-wise arithmetic operators</a></td>
+<td>+ - * /</td>
+<td>+ - × ÷</td>
+</tr>
+<tr>
+<td><a href="#vector-length-mismatch">result of vector length mismatch</a></td>
+<td><span style="color: gray"><em>compilation error</em></span></td>
+<td>LENGTH ERROR</td>
+</tr>
+<tr>
+<td><a href="#vector-scalar">scalar multiplication</a></td>
+<td>3 * (/1,2,3/)<br />
+(/1,2,3/) * 3</td>
+<td>3 × 1 2 3<br />
+1 2 3 × 3</td>
+</tr>
+<tr>
+<td><a href="#vector-dot">dot product</a></td>
+<td>dot_product((/1,1,1/),(/2,2,2/))</td>
+<td>1 1 1 + . × 2 2 2</td>
+</tr>
+<tr>
+<th colspan="3"><a name="matrices" id="matrices"></a><a href="#matrices-note">matrices</a></th>
+</tr>
+<tr>
+<th></th>
+<th>fortran</th>
+<th>apl</th>
+</tr>
+<tr>
+<td><a href="#matrix-literal-constructor">matrix literal or constructor</a></td>
+<td><span style="color: gray">! column-major order:</span><br />
+integer::A(2,2) = &amp;<br />
+<span style="white-space: pre-wrap;">  </span>reshape((/ 1, 3, 2, 4 /), &amp;<br />
+<span style="white-space: pre-wrap;">  </span>(/ 2, 2 /))<br />
+<br />
+integer::B(2,2) = &amp;<br />
+<span style="white-space: pre-wrap;">  </span>reshape((/ 4, 2, 3, 1 /), &amp;<br />
+<span style="white-space: pre-wrap;">  </span>(/ 2, 2 /))</td>
+<td><span style="color: gray">⍝ row-major order:</span><br />
+A ← 2 2 ⍴ 1 2 3 4</td>
+</tr>
+<tr>
+<td><a name="constant-matrices" id="constant-matrices"></a><a href="#constant-matrices-note">constant matrices</a><br />
+<br />
+<span style="color: gray"><em>all zeros, all ones</em></span></td>
+<td></td>
+<td>3 3 ⍴ 0<br />
+3 3 ⍴ 1</td>
+</tr>
+<tr>
+<td><a name="diagonal-matrices" id="diagonal-matrices"></a><a href="#diagonal-matrices-note">diagonal matrices</a><br />
+<br />
+<span style="color: gray"><em>and identity</em></span></td>
+<td></td>
+<td><span style="color: gray">⍝ 3×3 identity:</span><br />
+I ← 3 3 ⍴ 1 , 3 ⍴ 0<br />
+D ← I + . × 1 2 3</td>
+</tr>
+<tr>
+<td><a name="matrix-dim" id="matrix-dim"></a><a href="#matrix-dim-note">dimensions</a></td>
+<td></td>
+<td>A ← 2 3 ⍴ 1 2 3 4 5 6<br />
+<br />
+⍴ A</td>
+</tr>
+<tr>
+<td><a name="matrix-elem-access" id="matrix-elem-access"></a><a href="#matrix-elem-access-note">element access</a></td>
+<td></td>
+<td>A ← 2 2 ⍴ 1 2 3 4<br />
+<span style="color: gray">⍝ 1:</span><br />
+A[1; 1]</td>
+</tr>
+<tr>
+<td><a name="matrix-row-access" id="matrix-row-access"></a><a href="#matrix-row-access-note">row access</a></td>
+<td></td>
+<td>A ← 2 2 ⍴ 1 2 3 4<br />
+<span style="color: gray">⍝ 1 2:</span><br />
+A[1; ]</td>
+</tr>
+<tr>
+<td><a name="matrix-column-access" id="matrix-column-access"></a><a href="#matrix-column-access-note">column access</a></td>
+<td></td>
+<td>A ← 2 2 ⍴ 1 2 3 4<br />
+<span style="color: gray">⍝ 1 3:</span><br />
+A[; 1]</td>
+</tr>
+<tr>
+<td><a name="matrix-scalar-multiplication" id="matrix-scalar-multiplication"></a><a href="#matrix-scalar-multiplication-note">scalar multiplication</a></td>
+<td></td>
+<td>A ← 2 2 ⍴ 1 2 3 4<br />
+3 × A<br />
+A × 3</td>
+</tr>
+<tr>
+<td><a name="matrix-elem-wise-op" id="matrix-elem-wise-op"></a><a href="#matrix-elem-wise-op-note">element-wise operators</a></td>
+<td></td>
+<td>+ - × ÷</td>
+</tr>
+<tr>
+<td><a name="marix-transpose" id="marix-transpose"></a><a href="#matrix-transpose-note">transpose</a></td>
+<td></td>
+<td>A ← 2 2 ⍴ 1 2 3 4<br />
+<br />
+<span style="color: gray">⍝ cant: ⍉<br />
+⍉ A</span></td>
+</tr>
+<tr>
+<td><a href="#matrix-multiplication">multiplication</a></td>
+<td>matmul(A, B)</td>
+<td>A ← 2 2 ⍴ 1 2 3 4<br />
+B ← 2 2 ⍴ 4 3 2 1<br />
+A + . × B</td>
+</tr>
+<tr>
+<td><a name="matrix-inverse" id="matrix-inverse"></a><a href="#matrix-inverse-note">inverse</a></td>
+<td></td>
+<td>A ← 2 2 ⍴ 1 2 3 4<br />
+gray|⍝ inverse: ⌹##<br />
+⌹ A</td>
+</tr>
+<tr>
+<th></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">____________________________________________________________________________________________________</span></span></th>
+<th><span style="color: #efefef"><span style="white-space: pre-wrap;">____________________________________________________________________________________________________</span></span></th>
+</tr>
+</table>
+<p><a name="grammar-invocation-note" id="grammar-invocation-note"></a></p>
+<h1 id="toc0"><span><a href="#grammar-invocation">Grammar and Invocation</a></span></h1>
+<p><a name="file-suffixes-note" id="file-suffixes-note"></a></p>
+<h2 id="toc1"><span><a href="#file-suffixes">file suffixes</a></span></h2>
+<p>The suffixes used for source files, header files, and compiled object files.</p>
+<p><strong>fortran:</strong></p>
+<p>The gfortran compiler will treat files with <tt>.f</tt> and <tt>.f77</tt> suffixes as the older fixed format source code, and it will treat files with <tt>.f90</tt> and <tt>.f95</tt> suffixes as free format source code conforming to the 1990 and 1995 Fortran standards.</p>
+<p>Traditionally Fortran does not have header files. The Fortran 90 standard introduced modules. To support the feature the compiler will generate <tt>.mod</tt> files whenever a source file with a module definition is encountered. They contain type declarations like C headers, but unlike C headers they are not intended to be edited by people.</p>
+<p><a name="block-delimiters-note" id="block-delimiters-note"></a></p>
+<h2 id="toc2"><span><a href="#block-delimiters">block delimiters</a></span></h2>
+<p><strong>fortran:</strong></p>
+<p>The list of keywords is not exhaustive.</p>
+<p><a name="variables-expressions-note" id="variables-expressions-note"></a></p>
+<h1 id="toc3"><span><a href="#variables-expressions">Variables and Expressions</a></span></h1>
+<p><a name="undeclared-var-type-note" id="undeclared-var-type-note"></a></p>
+<h2 id="toc4"><span><a href="#undeclared-var-type">undeclared variable type</a></span></h2>
+<p><strong>fortran:</strong></p>
+<p>This makes undeclared variables starting with 'q' integers:</p>
+<div class="code">
+<pre>
+<code>implicit integer q</code>
+</pre></div>
+<p><a name="undefined-var-access-note" id="undefined-var-access-note"></a></p>
+<h2 id="toc5"><span><a href="#undefined-var-access">undefined variable access</a></span></h2>
+<p><strong>fortran:</strong></p>
+<p>It is possible to require that all variables are declared:</p>
+<div class="code">
+<pre>
+<code>implicit none</code>
+</pre></div>
+<p>Variable which are declared but not initialized are assigned zero values.</p>
+<p><a name="arithmetic-logic-note" id="arithmetic-logic-note"></a></p>
+<h1 id="toc6"><span><a href="#arithmetic-logic">Arithmetic and Logic</a></span></h1>
+<p><a name="boolean-type-note" id="boolean-type-note"></a></p>
+<h2 id="toc7"><span><a href="#boolean-type">boolean type</a></span></h2>
+<p>The boolean type.</p>
+<p><a name="true-false-note" id="true-false-note"></a></p>
+<h2 id="toc8"><span><a href="#true-false">true and false</a></span></h2>
+<p>The literals for true and false.</p>
+<p><a name="falsehoods-note" id="falsehoods-note"></a></p>
+<h2 id="toc9"><span><a href="#falsehoods">falsehoods</a></span></h2>
+<p>Values which are false in a boolean context.</p>
+<p><a name="logical-op-note" id="logical-op-note"></a></p>
+<h2 id="toc10"><span><a href="#logical-op">logical operators</a></span></h2>
+<p>The logical operators for conjunction, disjunction, and negation.</p>
+<p><strong>fortran:</strong></p>
+<div class="code">
+<pre>
+<code>.eqv. .neqv.</code>
+</pre></div>
+<p><strong>apl:</strong></p>
+<p>APL also has operators for "nand" and "nor":</p>
+<div class="code">
+<pre>
+<code>⍲ ⍱</code>
+</pre></div>
+<p><a name="relational-op-note" id="relational-op-note"></a></p>
+<h2 id="toc11"><span><a href="#relational-op">relational operators</a></span></h2>
+<p><a name="min-max-note" id="min-max-note"></a></p>
+<h2 id="toc12"><span><a href="#min-max">min and max</a></span></h2>
+<p><a name="int-type-note" id="int-type-note"></a></p>
+<h2 id="toc13"><span><a href="#int-type">integer type</a></span></h2>
+<p><a name="int-literal-note" id="int-literal-note"></a></p>
+<h2 id="toc14"><span><a href="#int-literal">integer literal</a></span></h2>
+<p>The syntax for integer literals.</p>
+<p><strong>apl:</strong></p>
+<p>The minus sign can be used as a unary operator, but applies to the entire array. The following expressions are the same:</p>
+<div class="code">
+<pre>
+<code>- 4 5 6
+¯4 ¯5 ¯6</code>
+</pre></div>
+<p><a name="unsigned-int-type-note" id="unsigned-int-type-note"></a></p>
+<h2 id="toc15"><span><a href="#unsigned-int-type">unsigned integer type</a></span></h2>
+<p><a name="strings-note" id="strings-note"></a></p>
+<h1 id="toc16"><span><a href="#strings">Strings</a></span></h1>
+<p><a name="sprintf" id="sprintf"></a></p>
+<h2 id="toc17"><span>sprintf</span></h2>
+<p><strong>fortran:</strong></p>
+<p>Fortran format strings use these expressions:</p>
+<table class="wiki-content-table">
+<tr>
+<td>A</td>
+<td>character</td>
+</tr>
+<tr>
+<td>D<span style="color: gray"><em>width</em></span>.<span style="color: gray"><em>precision</em></span></td>
+<td>double in scientific notation</td>
+</tr>
+<tr>
+<td>E<span style="color: gray"><em>width</em></span>.<span style="color: gray"><em>precision</em></span></td>
+<td>real in scientific notation</td>
+</tr>
+<tr>
+<td>F<span style="color: gray"><em>width</em></span>.<span style="color: gray"><em>precision</em></span></td>
+<td>real in fixed point notation</td>
+</tr>
+<tr>
+<td>I<span style="color: gray"><em>width</em></span></td>
+<td>integer</td>
+</tr>
+<tr>
+<td>X</td>
+<td>space</td>
+</tr>
+<tr>
+<td><span style="color: gray"><em>n</em></span>X</td>
+<td>repeat following format expression <span style="color: gray"><em>n</em></span> times</td>
+</tr>
+<tr>
+<td>/</td>
+<td>newline</td>
+</tr>
+</table>
+<p><span style="color: gray"><em>width</em></span> and <span style="color: gray"><em>precision</em></span> are integers. <span style="color: gray"><em>width</em></span> is the field width in characters. Other characters in the format string are ignored.</p>
+<p><a name="dates-time-note" id="dates-time-note"></a></p>
+<h1 id="toc18"><span><a href="#dates-time">Dates and Time</a></span></h1>
+<p><a name="current-local-date-time-note" id="current-local-date-time-note"></a></p>
+<h2 id="toc19"><span><a href="#current-local-date-time">current local date and time</a></span></h2>
+<p><a name="sleep-note" id="sleep-note"></a></p>
+<h2 id="toc20"><span><a href="#sleep">sleep</a></span></h2>
+<p><a name="cpu-usage-note" id="cpu-usage-note"></a></p>
+<h2 id="toc21"><span><a href="#cpu-usage">cpu usage</a></span></h2>
+<p><a name="arrays-note" id="arrays-note"></a></p>
+<h1 id="toc22"><span><a href="#arrays">Arrays</a></span></h1>
+<p><a name="arith-seq-note" id="arith-seq-note"></a></p>
+<h1 id="toc23"><span><a href="#arith-seq">Arithmetic Sequences</a></span></h1>
+<p><a name="arith-seq-diff-one-note" id="arith-seq-diff-one-note"></a></p>
+<h2 id="toc24"><span><a href="#arith-seq-diff-one">unit difference</a></span></h2>
+<p><a name="arith-seq-diff-ten-note" id="arith-seq-diff-ten-note"></a></p>
+<h2 id="toc25"><span><a href="#arith-seq-diff-ten">difference of 10</a></span></h2>
+<p><a name="arith-seq-diff-tenth-note" id="arith-seq-diff-tenth-note"></a></p>
+<h2 id="toc26"><span><a href="#arith-seq-diff-tenth">difference of 0.1</a></span></h2>
+<p><a name="functions-note" id="functions-note"></a></p>
+<h1 id="toc27"><span><a href="#functions">Functions</a></span></h1>
+<p><a name="execution-control-note" id="execution-control-note"></a></p>
+<h1 id="toc28"><span><a href="#execution-control">Execution Control</a></span></h1>
+<p><a name="break-continue-note" id="break-continue-note"></a></p>
+<h2 id="toc29"><span><a href="#break-continue">break/continue</a></span></h2>
+<p><strong>fortran:</strong></p>
+<p>Fortran has a <tt>continue</tt> statement which is a no-op statement used as a target for goto statements.</p>
+<p>Here is an example of using <tt>exit</tt> to terminate what would otherwise be an infinite loop:</p>
+<div class="code">
+<pre>
+<code>n = 1
+do
+   if (n &gt; 10) exit
+   write(*, *) n
+   n = n + 1
+end do</code>
+</pre></div>
+<p>Labels can be provided for nested do loops. The labels can be provided as arguments to <tt>exit</tt> and <tt>cycle</tt>:</p>
+<div class="code">
+<pre>
+<code>  foo: do
+     bar: do n = 1, 10, 1
+        write(*,*) n
+        exit foo
+     end do bar
+  end do foo</code>
+</pre></div>
+<p><a name="file-handles-note" id="file-handles-note"></a></p>
+<h1 id="toc30"><span><a href="#file-handles">File Handles</a></span></h1>
+<p><a name="std-file-handles-note" id="std-file-handles-note"></a></p>
+<h2 id="toc31"><span><a href="#std-file-handles">standard file handles</a></span></h2>
+<p>The file handles for standard input, standard output, and standard error.</p>
+<p><strong>fortran:</strong></p>
+<p>Fortran uses integers which it calls <em>unit identifiers</em> for file descriptors. The unit descriptors 5, 6, and 0 are often but not always used for stdin, stdout, and stderr.</p>
+<p>Unit descriptors are provided as the first argument to <tt>read</tt> and <tt>write</tt>. If the first argument of <tt>read</tt> is an asterisk, it will use stdin. If the first argument of <tt>write</tt> is an asterisk, it will use stdout.</p>
+<p><a name="printf-note" id="printf-note"></a></p>
+<h2 id="toc32"><span><a href="#printf">write formatted string to stdout</a></span></h2>
+<p>How to print a formatted string to standard out.</p>
+<p><strong>fortran:</strong></p>
+<p>Notation used in <a href="http://www.csee.umbc.edu/~squire/fortranclass/summary.shtml#Form">Fortran format strings</a>.</p>
+<p><a name="processes-environment-note" id="processes-environment-note"></a></p>
+<h1 id="toc33"><span><a href="#processes-environment">Processes and Environment</a></span></h1>
+<p><a name="vectors-note" id="vectors-note"></a></p>
+<h1 id="toc34"><span><a href="#vectors">Vectors</a></span></h1>
+<p><a name="matrices-note" id="matrices-note"></a></p>
+<h1 id="toc35"><span><a href="#matrices">Matrices</a></span></h1>
+<p><a name="fortran" id="fortran"></a></p>
+<h1 id="toc36"><span><a href="#top">Fortran</a></span></h1>
+<p><a href="http://gcc.gnu.org/onlinedocs/gcc-4.5.2/gfortran/">The GNU Fortran Compiler</a><br />
+<a href="http://www-teaching.physics.ox.ac.uk/Unix+Prog/hargrove/tutorial_77/">Fortran 77 Tutorial</a><br />
+<a href="http://www.cs.mtu.edu/~shene/COURSES/cs201/NOTES/fortran.html">Fortran 90 Tutorial</a><br />
+<a href="http://gcc.gnu.org/wiki/GFortranStandards">Fortran Standards Documents</a><br />
+<a href="http://www.netlib.org/blas/blasqr.pdf">BLAS: A Quick Reference Guide (pdf)</a></p>
+<p>Modern Fortran compilers support two source code formats: the traditional <em>fixed format</em> and the <em>free format</em> introduced with Fortran 90.</p>
+<p>If a Fortran source file has a <tt>.f</tt> suffix, the gfortran compiler expects the code to have fixed format. If the suffix is <tt>.f90</tt> or <tt>.f95</tt> it expects free format code.</p>
+<p>Here is an example of fixed format code:</p>
+<div class="code">
+<pre>
+<code>C Hello World
+* in Fortran 77
+
+      program hello
+10000 write(*,*) 'Hello,'
+     + , ' World!'
+      end program hello</code>
+</pre></div>
+<p>This first column can contain a 'C', 'c', or '*' to indicate the line is a comment.</p>
+<p>Columns 1 through 5 can contain an optional statement label. A statement label consists of digits. The statement label may contain leading zeros which are ignored. A statement label cannot consist entirely of zeros.</p>
+<p>If column 6 contains a non-space character and columns 1 through 5 are blank, then the line is treated as a continuation of the previous line. The continuation character is not itself part of the statement, so any non-space character can be used, but '+' is a common choice.</p>
+<p>Columns 7 through 72 contain the statement.</p>
+<p>Columns 73 through 80 can contain optional sequence numbers. They were formerly used to help keep punch cards in the correct order.</p>
+<p>Here is an example of free format code:</p>
+<div class="code">
+<pre>
+<code>! Hello World in Fortran 90
+
+program hello
+  write(*,*) 'Hello,' &amp;
+       , ' World!'
+end program hello</code>
+</pre></div>
+<p>There are no special columns in free format code. There is no limit on the length of lines or statements. If it is desirable to split a statement up over multiple lines, the '&amp;' character can be used to indicate the statement continues on the following line.</p>
+<p><a name="apl" id="apl"></a></p>
+<h1 id="toc37"><span><a href="#top">APL</a></span></h1>
+<p><a href="http://www.jsoftware.com/papers/APLDictionary1.htm">A Dictionary of APL</a><br />
+<a href="http://www.jsoftware.com/papers/APL.htm">A Programming Language</a></p>
+<p>The first issue one must resolve when getting started with APL is figuring out how to enter the special characters.</p>
+<p>One technique is to add a input method to your desktop environment. Here are <a href="https://github.com/clarkgrubb/latex-input/tree/master/apl">APL input methods for Mac OS X and Windows</a>. The Windows input method uses AutoHotkey. If you don't have AutoHotkey installed, you can use the <tt>.exe</tt> file that was generated using AutoHotkey. Otherwise you can use the <tt>.ahk</tt> file.</p>
+<p>The notation in the above input methods is derived from the <a href="http://www.jsoftware.com/papers/APLDictionary1.htm#tab4">standard names and synonyms</a> for the symbols in the APL community. The standard name for <tt>⍋</tt> is "grade". The above input methods use an ampersand prefix in front of the standard name. Thus, to create a <tt>⍋</tt> character, one types "@grade" when the input method is in effect.</p>
+
+                    </div>
+        </div>
+      </div>
+      <div id="license-area" class="license-area">
+        <a href="https://github.com/clarkgrubb/hyperpolyglot/issues">issue tracker</a> |
+        content of this page licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+        creative commons attribution-sharealike 3.0</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17129977-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
