@@ -1,8 +1,9 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>2.1</em></span>",
   "version": "$ swift <span style=\"white-space: pre-wrap;\">--</span>version",
-  "implicit-prologue": "import Foundation",
-
+  "implicit-prologue": "import Foundation"
+},
 "grammar-invocation": {
   "interpreter": "<span style=\"color: gray\"><em>none</em></span>",
   "compiler": "$ cat hello.swift<br />print(\"Hello, World!\")<br /><br />$ swift hello.swift<br /><br />$ ./hello<br />Hello, World!",

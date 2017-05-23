@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>1.3</em></span>",
-  "show-version": "$ elixir -v",
-
+  "show-version": "$ elixir -v"
+},
 "grammar-invocation": {
   "hello-world": "$ cat hello.exs<br />IO.puts \"Hello, World!\"<br /><br />$ elixir hello.exs<br />Hello, World!",
   "compiler": "",

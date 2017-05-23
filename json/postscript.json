@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>Preview 5.0</em></span>",
-  "show-version": "<span style=\"color: gray\"><em>select</em> About Preview <em>in</em> Preview <em>menu</em></span>",
-
+  "show-version": "<span style=\"color: gray\"><em>select</em> About Preview <em>in</em> Preview <em>menu</em></span>"
+},
 "grammar-invocation": {
   "interpreter": "<span style=\"color: gray\"><em>none</em></span>",
   "shebang": "<span style=\"color: gray\"><em>none</em></span>",

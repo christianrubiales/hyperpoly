@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>SML NJ 110</em></span>",
-  "version": "<span style=\"color: gray\"><em>displayed at startup</em></span>",
-
+  "version": "<span style=\"color: gray\"><em>displayed at startup</em></span>"
+},
 "grammar-invocation": {
   "interpreter": "",
   "shebang": "",

@@ -1,8 +1,9 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>2.11</em></span>",
   "version": "$ scala -version",
-  "implicit-prologue": "<span style=\"color: gray\"><em>none; but these libraries always available:</em><br /><br /><span style=\"white-space: pre-wrap;\">  </span>java.lang<br /><span style=\"white-space: pre-wrap;\">  </span>scala<br /><br /><em>as are methods in</em> Predef</span>",
-
+  "implicit-prologue": "<span style=\"color: gray\"><em>none; but these libraries always available:</em><br /><br /><span style=\"white-space: pre-wrap;\">  </span>java.lang<br /><span style=\"white-space: pre-wrap;\">  </span>scala<br /><br /><em>as are methods in</em> Predef</span>"
+},
 "grammar-invocation": {
   "interpreter": "$ echo 'println(\"hello\")' &gt; Hello.scala<br /><br />$ scala hello.scala",
   "compiler": "$ cat hello.scala<br />object Hello {<br /><span style=\"white-space: pre-wrap;\">  </span>def main(args: Array[String]) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>println(\"Hello, World!\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}<br /><br />$ scalac Hello.scala<br />$ scala Hello",

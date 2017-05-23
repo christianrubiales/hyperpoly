@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>SWI Prolog 7.2</em></span>",
-  "show-version": "$ swipl <span style=\"white-space: pre-wrap;\">--</span>version",
-
+  "show-version": "$ swipl <span style=\"white-space: pre-wrap;\">--</span>version"
+},
 "grammar-invocation": {
   "hello-world": "$ cat ./hello.pl<br />hello :-<br /><span style=\"white-space: pre-wrap;\">  </span>format('Hello, World!~n'),<br /><span style=\"white-space: pre-wrap;\">  </span>halt.<br /><br />$ swipl -q -t hello -f ./hello.pl<br />Hello, World!",
   "compiler": "",

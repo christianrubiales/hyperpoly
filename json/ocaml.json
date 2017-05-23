@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>4.0</em></span>",
-  "version": "$ ocaml -version",
-
+  "version": "$ ocaml -version"
+},
 "grammar-invocation": {
   "interpreter": "$ echo 'print_endline \"hello\"' &gt; hello.ml<br /><br />$ ocaml hello.ml",
   "shebang": "$ cat <span style=\"white-space: pre-wrap;\">&lt;&lt;</span>EOF &gt; hello.ml<br />#!/usr/bin/env ocaml<br /><br />print_endline \"hello\";;<br />EOF<br /><br />$ chmod +x hello.ml<br />$ ./hello.ml",

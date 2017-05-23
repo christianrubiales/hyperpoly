@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>Free Pascal 2.4</em></span>",
-  "show-version": "$ fpc -v",
-
+  "show-version": "$ fpc -v"
+},
 "grammar-invocation": {
   "hello-world": "$ cat hello.pas<br />program Hello;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn('hello world!');<br />end.<br /><br />$ fpc hello.pas<br /><br />$ ./hello",
   "file-suffixes": "foo.pas<br />foo.o<br />foo",

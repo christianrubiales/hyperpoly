@@ -1,8 +1,9 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>1.13</em></span>",
   "version": "$ rustc <span style=\"white-space: pre-wrap;\">--</span>version",
-  "implicit-prologue": "<span style=\"color: gray\"><em>none</em></span>",
-
+  "implicit-prologue": "<span style=\"color: gray\"><em>none</em></span>"
+},
 "grammar-invocation": {
   "interpreter": "<span style=\"color: gray\"><em>none</em></span>",
   "compiler": "$ cat hello.rs<br />fn main() {<br /><span style=\"white-space: pre-wrap;\">  </span>println!(\"Hello, world!\");<br />}<br /><br />$ rustc hello.rs<br /><br />$ ./hello<br />Hello, world!",

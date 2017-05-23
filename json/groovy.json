@@ -1,6 +1,6 @@
 {
 
-"general": {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>2.3</em></span>",
   "show-version": "$ groovy -v",
   "implicit-prologue": ""

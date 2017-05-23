@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>7.4</em></span>",
-  "version": "$ ghc <span style=\"white-space: pre-wrap;\">--</span>version",
-
+  "version": "$ ghc <span style=\"white-space: pre-wrap;\">--</span>version"
+},
 "grammar-invocation": {
   "interpreter": "$ echo 'main = putStrLn \"hello\"' &gt; hello.hs<br /><br />$ runghc hello.hs",
   "shebang": "$ cat <span style=\"white-space: pre-wrap;\">&lt;&lt;</span>EOF &gt; hello.hs<br />#!/usr/bin/env runghc<br /><br />main = putStrLn \"hello\"<br />EOF<br /><br />$ chmod +x hello.hs<br />$ ./hello.hs",

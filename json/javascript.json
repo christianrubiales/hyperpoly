@@ -1,6 +1,6 @@
 {
 
-"general": {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>ECMAScript 5</em></span>",
   "show-version": "<a href=\"http://kangax.github.io/compat-table/es5/\">ECMAScript 5 compatibility</a>"
 },

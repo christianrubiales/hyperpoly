@@ -1,6 +1,6 @@
 {
 
-"general": {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>5.18</em></span>",
   "show-version": "$ perl <span style=\"white-space: pre-wrap;\">--</span>version",
   "implicit-prologue": "use strict;"

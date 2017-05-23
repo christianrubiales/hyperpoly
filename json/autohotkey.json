@@ -1,6 +1,6 @@
 {
 
-"general": {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>1.1</em></span>",
   "show-version": "msgbox % a_ahkversion"
 },

@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>F# 3.0</em></span><br /><span style=\"color: gray\"><em>Mono 3.2</em></span>",
-  "version": "$ fsharpi <span style=\"white-space: pre-wrap;\">--</span>help",
-
+  "version": "$ fsharpi <span style=\"white-space: pre-wrap;\">--</span>help"
+},
 "grammar-invocation": {
   "interpreter": "$ cat <span style=\"white-space: pre-wrap;\">&lt;&lt;</span>EOF &gt; hello.fs<br />module hello<br />let main = printfn \"hello\"<br />EOF<br /><br />$ fsharpi <span style=\"white-space: pre-wrap;\">--</span>quiet <span style=\"white-space: pre-wrap;\">--</span>exec hello.fs",
   "shebang": "$ cat <span style=\"white-space: pre-wrap;\">&lt;&lt;</span>EOF &gt; hello.fs<br />#light (*<br /><span style=\"white-space: pre-wrap;\">  </span>exec fsharpi <span style=\"white-space: pre-wrap;\">--</span>exec $0 <span style=\"white-space: pre-wrap;\">--</span>quiet<br />*)<br /><br />module hello<br /><br />printfn \"hello\"<br />EOF<br /><br />$ chmod +x hello.fs<br />$ ./hello.fs",

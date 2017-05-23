@@ -1,6 +1,6 @@
 {
 
-"general": {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>Pharo 3.0</em></span>",
   "show-version": "SmalltalkImage current aboutThisSystem.<br /><br /><span style=\"color: gray\"><em>at command line:</em></span><br />$ ./pharo Pharo.image printVersion"
 },

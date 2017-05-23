@@ -25,12 +25,31 @@ public class JsonProcessor {
 			String prev = lines.get(i - 1);
 			String curr = lines.get(i);
 			
-			// header closing bracket encoutered, remove trailing  comma of previos line
-			if (curr.startsWith("}")) {
+			if (curr.startsWith("\"general\": {")) {
+				lines.set(i, "\"version\": {");
+				
+			// header closing bracket encoutered, remove trailing  comma of previos line	
+			} else if (curr.startsWith("}")) {
 				if (!prev.endsWith("{")) {
 					lines.set(i - 1, prev.substring(0, prev.length() - 1));
 				}
 			} else if (curr.startsWith("  ")) {
+				if (prev.equals("{")) {
+					lines.add(i, "\"version\": {");
+					
+					while (!curr.equals("")) {
+						i++;
+						prev = lines.get(i - 1);
+						curr = lines.get(i);
+					}
+					prev = prev.substring(0, prev.length() - 1);
+					curr = "},";
+					lines.set(i - 1, prev);
+					lines.set(i, curr);
+					
+					continue;
+				}
+				
 				int index = curr.indexOf(':') + 2;
 				String prefix = curr.substring(0, index);
 				if (prefix.contains("<a")) {

@@ -22,10 +22,12 @@ $(document).ready(function(){
 	    	$('tr').each(function() {
 	    		if ($(this).prop('class') == 'header') {
 	    			parentClazz = $(this).find('th:first-child').text();
-	    			$(this).append('<td class="' + technology + '">' + technology + '</td>');
+	    			$(this).append('<td class="' + technology + '"><b>' + technology + '</b></td>');
 	    		} else {
 	    			var clazz = $(this).prop('class');
 	    			if (json[parentClazz] && json[parentClazz].hasOwnProperty(clazz)) {
+	    				//alert(JSON.stringify(json[parentClazz][clazz]));
+
 	    				$(this).append('<td class="' + technology + '">' + json[parentClazz][clazz] + '</td>');
 	    			} else {
 	    				$(this).append('<td class="' + technology + '"></td>');

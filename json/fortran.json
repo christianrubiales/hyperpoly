@@ -1,6 +1,6 @@
 {
 
-"general": {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>GNU Fortran 4.5 (Fortran 95)</em></span>",
   "show-version": "$ gfortran <span style=\"white-space: pre-wrap;\">--</span>version"
 },

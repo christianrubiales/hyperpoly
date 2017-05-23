@@ -1,7 +1,8 @@
 {
+"version": {
   "version-used": "<span style=\"color: gray\"><em>Gforth 0.70</em></span>",
-  "show-version": "$ gforth <span style=\"white-space: pre-wrap;\">--</span>version",
-
+  "show-version": "$ gforth <span style=\"white-space: pre-wrap;\">--</span>version"
+},
 "grammar-invocation": {
   "interpreter": "$ echo \"1 1 + . cr bye\" &gt; /tmp/add.forth<br /><br />$ gforth /tmp/add.forth",
   "shebang": "<span style=\"color: gray\"><em>none</em></span>",
