@@ -1,5 +1,4 @@
 curl :
-	mkdir html
 	curl http://hyperpolyglot.org/scripting -o html/scripting.html
 	curl http://hyperpolyglot.org/more -o html/more.html
 	curl http://hyperpolyglot.org/gui -o html/gui.html
@@ -19,11 +18,15 @@ curl :
 	curl http://hyperpolyglot.org/misc-math -o html/misc-math.html
 	curl http://hyperpolyglot.org/fortran -o html/fortran.html
 
+wikidot-to-html :
+	./wikidot_to_html.py < markup/c > html/c.html
+
 compile-java :
 	rm -r ./bin
 	mkdir bin
 	javac ./java/com/christianrubiales/hyperpoly/HyperpolyglotHtmlToJson.java -d ./bin
 	javac ./java/com/christianrubiales/hyperpoly/SkeletonHtmlProcessor.java -d ./bin
+	javac ./java/com/christianrubiales/hyperpoly/JsonProcessor.java -d ./bin
 
 html-to-json :
 	./html-to-json.sh

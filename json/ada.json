@@ -1,0 +1,150 @@
+{
+  "version-used": "<span style=\"color: gray\"><em>GNAT GCC 4.6</em></span><br /><span style=\"color: gray\"><em>Ada 2012</em></span>",
+  "show-version": "$ gnatgcc -gnat12 <span style=\"white-space: pre-wrap;\">--</span>version",
+
+"grammar-invocation": {
+  "hello-world": "$ cat hello.adb<br />with Text_IO;<br />use Text_IO;<br /><br />procedure Hello is<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(\"Hello World!\");<br />end Hello;<br /><br />$ gnatmake -gnat12 hello.adb<br /><br />$ ./hello<br />Hello World!",
+  "file-suffixes": "<span style=\"color: gray\"><em>source:</em></span><br />foo.ads: specification<br />foo.adb: body<br /><br /><span style=\"color: gray\"><em>compiler generated:</em></span><br />foo.adi: compilation information<br />foo.o: object<br />foo",
+  "source-code-encoding": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> default is ISO 8859-1:</span><br />pragma Wide_Character_Encoding(UTF8)",
+  "eol-comment": "<span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>another line</em></span>",
+  "multiple-line-comment": "<span style=\"color: gray\"><em>none</em></span>"
+},
+"variables-expressions": {
+  "case-sensitive-id": "<span style=\"color: gray\"><em>no</em></span>",
+  "declarations": "procedure Foo is<br /><span style=\"white-space: pre-wrap;\">  </span>Pi: constant Float := 3.14;<br /><span style=\"white-space: pre-wrap;\">  </span>N: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>type Customer is Record<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Id: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Name: String(1..4);<br /><span style=\"white-space: pre-wrap;\">  </span>end Record;<br /><span style=\"white-space: pre-wrap;\">  </span>C: Customer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>body of program</em></span>",
+  "block-with-local-scope": "declare<br /><span style=\"white-space: pre-wrap;\">  </span>N: Integer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>N := 7;<br />end;",
+  "assignment": "X := 1;",
+  "pointer-declaration": "type Integer_Ptr is access Integer;<br />Ip: Integer_Ptr;",
+  "allocate-heap": "Ip := new Integer;",
+  "free-heap": "with Ada.Unchecked_Deallocation;<br /><br />procedure Free_Example is<br /><span style=\"white-space: pre-wrap;\">  </span>type Integer_Ptr is access Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>procedure Free is new Ada.Unchecked_Deallocation(<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Integer, Integer_Ptr);<br /><span style=\"white-space: pre-wrap;\">  </span>Ip: Integer_Ptr;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>Ip := new Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>Ip.all := 7;<br /><span style=\"white-space: pre-wrap;\">  </span>Free(Ip);<br />end Hello;",
+  "deference-pointer": "Ip.all := 7;<br />ans := 6 * Ip.all;",
+  "null": "<span style=\"color: gray\"><em>can only be assigned to access types:</em></span><br />null",
+  "null-test": "X = null",
+  "coalesce": "",
+  "nullif": "",
+  "conditional-expr": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> Ada 2012:</span><br />(if X &gt; 0 then X else -X)"
+},
+"arithmetic-logic": {
+  "boolean-type": "Boolean",
+  "true-false": "True False",
+  "falsehoods": "False<br /><span style=\"color: gray\"><em>non booleans cause error in boolean context</em></span>",
+  "logical-op": "and or xor not",
+  "short-circuit-op": "and then<br />or else",
+  "int-type": "Integer",
+  "float-type": "Float",
+  "fixed-type": "type Currency is delta 0.01 digits 18;<br />Amt: Currency;<br /><br />Amt := 3.99;",
+  "relational-op": "<span style=\"white-space: pre-wrap;\">=</span> /= &lt; &gt; &lt;= &gt;=",
+  "min-max": "Integer'Min(1, 2)<br />Integer'Max(1, 2)<br />Integer'Min(1, Integer'Min(2, 3))<br />Integer'Max(1, Integer'Max(2, 3))<br />Float'Min(1.0, Float'Min(2.0, 3.0))<br />Float'Max(1.0, Float'Max(2.0, 3.0))",
+  "arith-op": "+ - * <span style=\"color: gray\"><em>none</em></span> / mod <span style=\"color: gray\"><em>or</em></span> rem",
+  "int-div": "7 / 3",
+  "int-div-zero": "<span style=\"color: gray\"><em>raises</em></span> Constraint_Error",
+  "float-div": "Float(7) / Float(3)",
+  "float-div-zero": "<span style=\"color: gray\"><em>raises</em></span> Constraint_Error",
+  "power": "2 ** 16",
+  "sqrt": "with Ada.Numerics.Elementary_Functions;<br />use Ada.Numerics.Elementary_Functions;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> no implicit type conversion of Integer to Float:</span><br />Sqrt(2.0)",
+  "sqrt-negative-one": "<span style=\"color: gray\"><em>raises</em></span> Ada.Numerics.Argument_Error",
+  "transcendental-func": "with Ada.Numerics.Elementary_Functions;<br />use Ada.Numerics.Elementary_Functions;<br /><br />Exp Log Sin Cos Tan Arcsin Arccos <span style=\"color: gray\"><em>none</em></span> Arctan",
+  "float-truncation": "<span style=\"color: gray\"><em>return Float:</em></span><br /><span style=\"color: gray\"><em>??</em></span> Float'Rounding Float'Floor Float'Ceiling",
+  "absolute-val": "Abs(-7)<br /><span style=\"color: gray\"><em>none</em></span>",
+  "int-overflow": "<span style=\"color: gray\"><em>modular arithmetic</em></span>",
+  "float-overflow": "+Inf<span style=\"white-space: pre-wrap;\">*******</span>",
+  "random-num": "with Ada.Numerics.Float_Random;<br />with Ada.Numerics.Discrete_Random;<br />use Ada.Numerics;<br /><br />procedure Foo is<br /><span style=\"white-space: pre-wrap;\">  </span>type Rand_Range is range 0..99;<br /><span style=\"white-space: pre-wrap;\">  </span>package Rand_Int is new Discrete_Random(Rand_Range);<br /><span style=\"white-space: pre-wrap;\">  </span>IG: Rand_Int.Generator;<br /><span style=\"white-space: pre-wrap;\">  </span>FG: Float_Random.Generator;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use</em></span> Rand_Int.Random(IG)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use</em></span> Float_Random.Random(FG)",
+  "bit-op": ""
+},
+"strings": {
+  "string-literal<br-/>": "\"Don't say \"\"foo\"\"\"",
+  "fixed-length-string-type": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> error unless string length is 6</span><br />String(1..6)<br />Wide_Wide_String(1..6)",
+  "bounded-length-string-type": "",
+  "unbounded-length-string-type": "with Ada.Strings.Unbounded;<br /><br />Ada.Strings.Unbounded.Unbounded_String",
+  "character-type": "Character <span style=\"color: gray\"><em>1 byte</em></span><br />Wide_Wide_Character <span style=\"color: gray\"><em>4 bytes</em></span>",
+  "chr-and-ord": "",
+  "concatenate<br-/>": "\"hello\" &amp; \" world\"",
+  "length<br-/>": "",
+  "extract-substring<br-/>": "",
+  "index-of-substring<br-/>": "",
+  "case-manipulation": "",
+  "strip": "",
+  "pad-on-left,-pad-on-right": "",
+  "convert-string-to-number": "",
+  "convert-number-to-string": "Integer'Image(8)<br />Float'Image(3.14)"
+},
+"regexes": {
+  "match": "",
+  "substitute": "",
+  "extract-subgroup": ""
+},
+"dates-time": {
+  "current-datetime": "with Ada.Calendar;<br /><br />Now: Ada.Calendar.Time;<br /><br />Now := Ada.Calendar.Clock;",
+  "date-time-to-str": "with Ada.Calendar.Formating;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> \"2015-03-29 17:46:35\":</span><br />Ada.Calendar.Formatting.Image(Now);",
+  "str-to-date-time": ""
+},
+"arrays": {
+  "declare-array": "A: array(1..5) of Integer;",
+  "array-length": "A'Last",
+  "array-element-access": "A(1) := 3;",
+  "array-initialization": "A: array(1..5) of Integer := (1, 3, 5, 2, 4);",
+  "array-slice": "A(3..4) := A(1..2);",
+  "array-out-of-bounds-behavior": "<span style=\"color: gray\"><em>compiler warning; raises</em></span> Constraint_Error <span style=\"color: gray\"><em>at runtime</em></span>",
+  "declare-multidimensional-array": "",
+  "multidimensional-array-access": ""
+},
+"user-defined-types": {
+  "type-synonym": "",
+  "enumerated-type": "",
+  "define-record-type": "type Customer is record<br /><span style=\"white-space: pre-wrap;\">  </span>Id: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>Name: String(1..4);<br />end record;",
+  "declare-record": "C: Customer := (17, \"John\");",
+  "record-member-access": "C.Name := 'Fred';",
+  "record-block": ""
+},
+"generic-types": {
+},
+"functions": {
+  "decl-func": "function Add(M: Integer; N: Integer) return Integer;",
+  "def-func": "function Add(M: Integer; N: Integer) return Integer is<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return M + N;<br />end Add;",
+  "call-func": "Sum := Add(7, 3);",
+  "undef-func": "<span style=\"color: gray\"><em>none</em></span>",
+  "no-retval": "procedure Message(Msg: String) is<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>Text_IO.Put_Line(Msg);<br />end Message;",
+  "pass-by-ref": "procedure Incr(N: in out Integer) is<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>N := N + 1;<br />end Incr;<br /><br />I := 3;<br />Incr(3);",
+  "pass-uninitialized-by-ref": "procedure Get_Pi(Pi: out Float) is<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>Pi := 3.14;<br />end Get_Pi;",
+  "nested-func": "",
+  "overloaded-func": "",
+  "forward-decl": ""
+},
+"execution-control": {
+  "if": "if I = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(\"no hits\");<br />elsif I = 1 then<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(\"one hit\");<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(Integer'Image(I) &amp; \" hits\");<br />end if;",
+  "switch": "",
+  "while": "I := 0;<br />while I &lt; 10 loop<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(Integer'Image(I));<br /><span style=\"white-space: pre-wrap;\">  </span>I := I + 1;<br />end loop;",
+  "for": "for I in 1..9 loop<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(Integer'Image(I));<br />end loop;",
+  "break": "exit",
+  "continue": "",
+  "goto": ""
+},
+"exceptions": {
+  "predefined-exc": "Constraint_Error<br />Program_Error<br />Storage_Error<br />Tasking_Error",
+  "def-exc": "Err42: exception;",
+  "raise-exc": "raise Err42;",
+  "re-raise-exc": "",
+  "handle-any-exc": "",
+  "handle-exc-by-type": "",
+  "multiple-exc-handlers": "",
+  "finally": ""
+},
+"file-handles": {
+  "read-line-stdin": "",
+  "write-line-stdout": "with Text_IO;<br />with Ada.Wide_Wide_Text_IO;<br /><br />Text_IO.Put_Line(\"Hello!\");<br />Ada.Wide_Wide_Text_IO.Put_Line(\"Hello!\");",
+  "write-line-stderr": ""
+},
+"files": {
+},
+"directories": {
+},
+"processes-environment": {
+  "cmd-line-arg": "with Ada.Command_Line;<br /><br />Ada.Command_Line.Command_Name<br />Ada.Command_Line.Argument_Count<br />Ada.Command_Line.Argument(1)<br />Ada.Command_Line.Argument(2)"
+},
+"libraries-namespaces": {
+  "load-lib": "with Text_IO;",
+  "namespace-decl": "$ cat put_hello.ads<br />package Put_Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>procedure Put_Hello;<br />end;<br /><br />$ cat put_hello.adb<br />cat put_hello.adb<br />with Text_IO;<br /><br />package body Put_Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>procedure Put_Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Text_IO.Put_Line(\"Hello World!\");<br /><span style=\"white-space: pre-wrap;\">  </span>end Put_Hello;<br />end;",
+  "namespace-alias": "with Text_IO;<br /><br />procedure Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>package IO renames Text_IO;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>IO.Put_Line(\"Hello World!\");<br />end Hello;",
+  "unqualified-import": "use Text_IO;"
+}
+}

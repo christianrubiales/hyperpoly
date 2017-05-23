@@ -1,0 +1,194 @@
+{
+
+"general": {
+  "version-used": "<span style=\"color: gray\"><em>6.3</em></span>",
+  "version": "<span style=\"color: gray\"><em>displayed at startup</em></span>"
+},
+"grammar-execution": {
+  "interpreter": "<span style=\"color: gray\"><em>when foo.bat is in the search path:</em></span><br /><span style=\"white-space: pre-wrap;\">&gt;</span> foo",
+  "repl": "<span style=\"white-space: pre-wrap;\">&gt;</span> cmd",
+  "exec-and-exit": "<span style=\"white-space: pre-wrap;\">&gt;</span> cmd /c \"echo hi\"",
+  "stmt-separator": "<span style=\"color: gray\"><em>pipelines separated by</em></span> &amp; &amp;&amp; <span style=\"white-space: pre-wrap;\">||</span><br /><br /><span style=\"color: gray\"><em>lists of pipelines separated by newline unless preceded by caret ^ which is not inside double quote \"</em></span>",
+  "word-separator": "| &amp; &lt; &gt; <span style=\"color: gray\"><em>space tab</em></span>",
+  "esc-special-char": "<span style=\"color: gray\">rem write \"foo\" to foo.txt</span><br />echo foo &gt; foo.txt<br /><br /><span style=\"color: gray\">rem write \"foo &gt; foo.txt\" to stdout:</span><br />echo foo ^&gt; foo.txt",
+  "block-delimiters": "( <span style=\"color: gray\"><em>…</em></span> )",
+  "are-expressions-statements": "<span style=\"color: gray\"><em>no<br /><br />relational expressions can only be used in the conditional of an</em> if <em>statement<br /><br />arithmetic expressions can only be assigned to a variable using</em> set /a</span>",
+  "comment": "rem <span style=\"color: gray\"><em>comment</em></span><br /><br />:: <span style=\"color: gray\"><em>comment</em></span>",
+  "multiline-comment": "goto comment<br /><span style=\"color: gray\"><em>comment</em></span><br /><span style=\"color: gray\"><em>another comment</em></span><br />:comment"
+},
+"var-expr": {
+  "assignment": "set a=1",
+  "parallel-assignment": "<span style=\"color: gray\"><em>none</em></span>",
+  "swap": "set tmp=%a%<br />set a=%b%<br />set b=%tmp%",
+  "compound-assignment": "+= -= *= /= %=<br /><span style=\"color: gray\"><em>none</em></span><br />«= »= &amp;= |= ^=",
+  "incr-decr": "<span style=\"color: gray\"><em>none</em></span>",
+  "var-decl": "<span style=\"color: gray\"><em>assignment</em></span>",
+  "identifiers-case-sensitive": "<span style=\"color: gray\"><em>no</em></span>",
+  "null": "<span style=\"color: gray\"><em>Variables must contain a non-empty string. This deletes the variable x:</em></span><br />set x=",
+  "null-test": "if not defined v echo not defined"
+},
+"arithmetic-logic": {
+  "true-false": "<span style=\"color: gray\"><em>no booleans; conditional of if statement must contain a relational expression</em></span>",
+  "falsehoods": "<span style=\"color: gray\"><em>relational expressions which evaluate to false</em></span>",
+  "logical-ops": "<span style=\"color: gray\"><em>short-circuit operators:</em></span><br />&amp;&amp; <span style=\"white-space: pre-wrap;\">||</span><br /><br /><span style=\"color: gray\"><em>inside conditional of if:</em></span><br />not",
+  "conditional-expr": "<span style=\"color: gray\"><em>none</em></span>",
+  "relational-expression<br-/>": "%a% gtr 3",
+  "relational-operators<br-/>": "equ neq gtr lss geq leq",
+  "arithmetic-expression<br-/>": "<span style=\"color: gray\"><em>arithmetic expression must be stored in a variable:</em></span><br />set /a \"foo=1+3\"",
+  "arithmetic-operators<br-/>": "+ - * <span style=\"color: gray\"><em>none</em></span> / % <span style=\"color: gray\"><em>none</em></span><br /><br /><span style=\"color: gray\"><em>operators only work on integers</em></span>",
+  "integer-division<br-/>": "set /a \"result=7/3\"",
+  "int-div-zero": "<span style=\"color: gray\"><em>Writes \"Divide by zero error.\" and sets %errorlevel% to nonzero value.</em></span>",
+  "float-division<br-/>": "<span style=\"color: gray\"><em>none</em></span>",
+  "float-div-zero": "<span style=\"color: gray\"><em>none</em></span>",
+  "power": "<span style=\"color: gray\"><em>none</em></span>",
+  "sqrt": "<span style=\"color: gray\"><em>none</em></span>",
+  "sqrt--2<br-/>": "<span style=\"color: gray\"><em>none</em></span>",
+  "transcendental-functions": "<span style=\"color: gray\"><em>none</em></span>",
+  "float-truncation<br-/>": "<span style=\"color: gray\"><em>none</em></span>",
+  "abs-val": "<span style=\"color: gray\"><em>none</em></span>",
+  "integer-overflow<br-/>": "<span style=\"color: gray\"><em>sometimes modular arithmetic; sometimes writes error message and sets %errorlevel% to nonzero value.</em></span>",
+  "float-overflow<br-/>": "<span style=\"color: gray\"><em>none</em></span>",
+  "random-integer,-uniform-float": "<span style=\"color: gray\">rem integer in range 0 to 32767:</span><br />echo %random%",
+  "seed-random-numbers": "<span style=\"color: gray\"><em>none</em></span>",
+  "bit-operators<br-/>": "<span style=\"color: gray\"><em>use with</em> set /a:</span><br /><span style=\"white-space: pre-wrap;\">&lt;&lt; &gt;&gt; &amp; | ^ ~</span>"
+},
+"strings": {
+  "string-literal": "<span style=\"color: gray\"><em>None; barewords are used for strings.</em></span><br /><br /><span style=\"color: gray\"><em>Double quotes are used for file names which contain spaces and other special characters. However, the double quotes are stored in the variables and passed to commands.</em></span>",
+  "newline-in-literal": "<span style=\"color: gray\"><em>No; a bareword string can be continued on the following line by ending a line with ^; the CRLF is not part of the value of the string; it is not possible to store a CRLF in a variable.</em></span>",
+  "barewords": "<span style=\"color: gray\"><em>yes</em></span>",
+  "bareword-esc-char": "<span style=\"color: gray\"><em>caret:</em></span> ^&lt;<br /><br /><span style=\"color: gray\"><em>Characters special to the interpreter can be stored in a variable by preceding them by a caret: ^; the interpreter will attempt to interpret them when the variable is dereferenced, however.</em></span>",
+  "escapes": "",
+  "variable-interpolation": "",
+  "length": "<span style=\"color: gray\"><em>see footnote</em></span>",
+  "string-comparison": "",
+  "index-of-substring": "",
+  "extract-substring": "set s=foo bar<br />echo %s:~4:3%",
+  "string-concatenation": "<span style=\"color: gray\">rem trailing whitespace is stored:</span><br />set part1=hello,<span style=\"white-space: pre-wrap;\"> </span><br />set part2=world<br />echo %part1%%part2%",
+  "string-replication": "",
+  "split": "",
+  "join": "",
+  "sprintf": "",
+  "case-manipulation": "",
+  "strip": "",
+  "pad-on-right,-pad-on-left": "",
+  "string-to-number": "set x=\"12\"<br />set /a \"result=7+%x%\"",
+  "number-to-string<br-/>": "<span style=\"color: gray\"><em>all values are strings</em></span>"
+},
+"regexes": {
+  "regex-match": "set s=hello<br />echo %s%|findstr /r \"[a-z][a-z]*\" &amp;&amp; (echo match ) ^<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">||</span> (echo does not match)",
+  "single-subst": "",
+  "global-subst": "set \"s=do re mi mi mi\"<br />echo %s:mi=ma%"
+},
+"dates-time": {
+  "current-datetime": "date /t &amp;&amp; time /t",
+  "current-unix-epoch": "",
+  "fmt-datetime": ""
+},
+"arrays": {
+  "resizable-array-literal": "set nums=(1 2 3 4)",
+  "resizable-array-size": "set numsc=0<br />for %i in %nums% do set /a numsc+=1<br />echo %numsc%",
+  "resizable-array-lookup": "",
+  "resizable-array-update": "",
+  "slice<br-/>": "",
+  "concatenate": "",
+  "iterate-over-elements": "",
+  "sort": "",
+  "reverse": ""
+},
+"functions": {
+  "def-func": "goto:eof<br />:add<br /><span style=\"white-space: pre-wrap;\">  </span>set /a sum=%~1+%~2<br /><span style=\"white-space: pre-wrap;\">  </span>echo %sum%<br />goto:eof",
+  "call-func": "call:add 1 2",
+  "missing-arg": "<span style=\"color: gray\"><em>parameter treated as undefined variable or as containing the empty string</em></span>",
+  "extra-arg": "<span style=\"color: gray\"><em>none</em></span>",
+  "default-arg": "<span style=\"color: gray\"><em>none</em></span>",
+  "named-param": "<span style=\"color: gray\"><em>none</em></span>",
+  "retval": "",
+  "anon-func-literal": "<span style=\"color: gray\"><em>none</em></span>",
+  "call-anon-func": "<span style=\"color: gray\"><em>none</em></span>",
+  "default-scope<br-/>": "<span style=\"color: gray\"><em>global</em></span>",
+  "nest-func": "<span style=\"color: gray\"><em>none</em></span>"
+},
+"execution-control": {
+  "if": "if %n% equ 0 (<br /><span style=\"white-space: pre-wrap;\">  </span>echo no hits<br />) else (<br /><span style=\"white-space: pre-wrap;\">  </span>if %n% equ 1 (<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>echo one hit<br /><span style=\"white-space: pre-wrap;\">  </span>) else (<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>echo %n% hits<br /><span style=\"white-space: pre-wrap;\">  </span>)<br />)",
+  "while": "set i=0<br />:loop<br /><span style=\"white-space: pre-wrap;\">  </span>set /a i+=1<br /><span style=\"white-space: pre-wrap;\">  </span>echo %i%<br />if %i% lss 10 goto :loop",
+  "for": "set nums=(1 2 3 4)<br />for %%n in %nums% do echo %%n",
+  "break": "",
+  "continue": ""
+},
+"exceptions": {
+  "raise-exc": "<span style=\"color: gray\"><em>Commands which fail return nonzero exit status.<br /><br />Exit status of last command stored in %errorlevel%</em></span>",
+  "handle-exc": "risky<br /><br />if errorlevel 1 (<br /><span style=\"white-space: pre-wrap;\">  </span>echo risky failed<br />)",
+  "uncaught-exc": "<span style=\"color: gray\"><em>stderr and continue</em></span>"
+},
+"concurrency": {
+  "sleep": "<span style=\"color: gray\"><em>vista and later:</em></span><br />timeout 10"
+},
+"streams": {
+  "read-line-stdin": "<span style=\"color: gray\">rem stored in %line%:</span><br />set /p line=<br /><br /><span style=\"color: gray\">rem with prompt:</span><br />set /p line=\"line: \"",
+  "write-line-stdout": "echo hi world",
+  "printf": "",
+  "write-file-stdout": "",
+  "write-stderr": "echo hi world &gt;&amp;2",
+  "file-iterate": "",
+  "write-proc": "echo hi world | find /c hi",
+  "write-to-file": "echo hello &gt; \\tmp\\a",
+  "append-to-file": "echo hello <span style=\"white-space: pre-wrap;\">&gt;&gt;</span> \\tmp\\a"
+},
+"files": {
+  "create-empty-file": "<span style=\"color: gray\">rem overwrites existing file:</span><br />type nul &gt; foo.txt",
+  "file-test": "if exist foo.txt ( echo exists )<br /><br /><span style=\"color: gray\"><em>??</em></span>",
+  "file-size": "dir foo.txt",
+  "readable-writeable-executable": "",
+  "chmod": "",
+  "last-modification-time": "dir foo.txt",
+  "file-cp-rm-mv": "copy foo.txt bar.txt<br />del foo.txt<br />move bar.txt foo.txt",
+  "symlink": "",
+  "unused-file-name": ""
+},
+"directories": {
+  "working-dir": "echo %cd%<br /><br />chdir \\windows",
+  "program-dir": "echo %~dp0",
+  "direname-basename": "",
+  "iterate-dir": "",
+  "mkdir": "mkdir foo",
+  "recursive-cp": "",
+  "rmdir": "rmdir foo",
+  "rm-rf": "rmdir /s /q foo",
+  "dir-test": ""
+},
+"processes-environment": {
+  "cmd-line-arg": "%1<br />%2<br /><span style=\"color: gray\"><em>…</em></span><br /><br /><span style=\"color: gray\">rem number of args:</span><br />set #=0<br />for %%i in %* do set /a #+=1<br />echo %#%<br /><br /><span style=\"color: gray\">rem no way to pass argument with space</span><br />twiddle %*",
+  "program-name": "%0",
+  "env-var": "",
+  "user-id-name": "",
+  "exit": "<span style=\"color: gray\">rem batch script exits:</span><br />exit /b 0<br /><br /><span style=\"color: gray\">rem also closes cmd.exe window:</span><br />exit 0",
+  "external-cmd": "dir",
+  "cmd-subst": "<span style=\"color: gray\"><em>none</em></span>",
+  "speech": "",
+  "command-path": "",
+  "set-signal-handler": "",
+  "send-signal": "",
+  "start-job-in-background": "",
+  "suspend-current-job": "",
+  "terminate-job": "",
+  "list-jobs": "",
+  "background-suspended-job": "",
+  "bring-background-job-into-foreground": "",
+  "disown-job": ""
+},
+"libraries-namespaces": {
+  "library": "",
+  "import-library": "",
+  "library-path-environment-variable": ""
+},
+"reflection": {
+  "cmd-line-doc": "help dir",
+  "list-defined-variables": "set",
+  "list-available-libraries": ""
+},
+"debugging-profiling": {
+  "check-syntax": "",
+  "stronger-err": "",
+  "cpu-usage": ""
+}
+}

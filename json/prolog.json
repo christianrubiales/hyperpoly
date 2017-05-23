@@ -1,0 +1,187 @@
+{
+  "version-used": "<span style=\"color: gray\"><em>SWI Prolog 7.2</em></span>",
+  "show-version": "$ swipl <span style=\"white-space: pre-wrap;\">--</span>version",
+
+"grammar-invocation": {
+  "hello-world": "$ cat ./hello.pl<br />hello :-<br /><span style=\"white-space: pre-wrap;\">  </span>format('Hello, World!~n'),<br /><span style=\"white-space: pre-wrap;\">  </span>halt.<br /><br />$ swipl -q -t hello -f ./hello.pl<br />Hello, World!",
+  "compiler": "",
+  "bytecode-compiler": "",
+  "interpreter": "$ cat arg-analyzer<br />main :-<br /><span style=\"white-space: pre-wrap;\">  </span>current_prolog_flag(argv, Args),<br /><span style=\"white-space: pre-wrap;\">  </span>(<span style=\"white-space: pre-wrap;\">  </span> Args = [Arg]<br /><span style=\"white-space: pre-wrap;\">  </span>-&gt; format('argument was: ~w~n', [Arg])<br /><span style=\"white-space: pre-wrap;\">  </span>;<span style=\"white-space: pre-wrap;\">  </span> format('Usage: arg-analyzer ARG~n') ).<br /><br />:- main, halt(0).<br /><br />$ swipl -s arg-analyzer foo<br />argument was: foo",
+  "shebang": "$ cat arg-analyzer<br />#!/usr/bin/env swipl<br /><br />main :-<br /><span style=\"white-space: pre-wrap;\">  </span>current_prolog_flag(argv, Args),<br /><span style=\"white-space: pre-wrap;\">  </span>(<span style=\"white-space: pre-wrap;\">  </span> Args = [Arg]<br /><span style=\"white-space: pre-wrap;\">  </span>-&gt; format('argument was: ~w~n', [Arg])<br /><span style=\"white-space: pre-wrap;\">  </span>;<span style=\"white-space: pre-wrap;\">  </span> format('Usage: arg-analyzer ARG~n') ).<br /><br />:- main, halt(0).<br /><br />$ ./arg-analyzer foo<br />argument was: foo",
+  "invoke-repl": "$ swipl",
+  "block-delimiters": "( )",
+  "stmt-terminator": ".",
+  "eol-comment": "% <span style=\"color: gray\"><em>a comment</em></span>",
+  "multiple-line-comment": "/* <span style=\"color: gray\"><em>comment line<br />comment line</em></span> */"
+},
+"var-expr": {
+  "var-def": "<span style=\"color: gray\"><em>upper case letter followed by alphanumeric characters and underscores</em></span>",
+  "write-once-var": "",
+  "assignment": "X = 3.<br />4 = Y.",
+  "parallel-assignment": "(X, Y) = (1, 2).<br />[X, Y] = [1, 2].<br />{X, Y} = {1, 2}.<br />foo(X, Y) = foo(1, 2).",
+  "non-referential-id": "<span style=\"color: gray\"><em>lower case letter followed by alphanumeric characters; can also include underscore: _</em></span>",
+  "quoted-non-referential-id": "<span style=\"color: gray\"><em>any printable characters inside single quotes; use backslash to escape a single quote.</em></span>",
+  "cond-expr": "X = -3, (<br /><span style=\"white-space: pre-wrap;\">  </span>X &gt; 0 -&gt; Result = 1;<br /><span style=\"white-space: pre-wrap;\">  </span>X = 0 -&gt; Result = X;<br /><span style=\"white-space: pre-wrap;\">  </span>X &lt; 0 -&gt; Result = -1<br />).",
+  "case": "(<span style=\"white-space: pre-wrap;\">  </span>X = 1 -&gt; Result = true<br />;<span style=\"white-space: pre-wrap;\">  </span>X = 0 -&gt; Result = false ).<br /><span style=\"color: gray\"><em>or:</em></span><br />member(X-Result, [<br /><span style=\"white-space: pre-wrap;\">  </span>1-true,<br /><span style=\"white-space: pre-wrap;\">  </span>0-false])."
+},
+"arithmetic-logic": {
+  "true-false": "true fail",
+  "falsehoods": "",
+  "logical-op": ", ; <span style=\"color: gray\"><em>??</em></span> <span style=\"color: gray\"><em>??</em></span>",
+  "short-circuit-op": "",
+  "relational-op": "=:= \\= &lt; &gt; =&lt; &gt;=",
+  "arith-expr": "X is 2 + 2.",
+  "arith-op": "+ - * / <span style=\"white-space: pre-wrap;\">//</span> mod",
+  "int-div": "X is 7 <span style=\"white-space: pre-wrap;\">//</span> 3.",
+  "int-div-zero": "<span style=\"color: gray\">zero_divisor <em>error</em></span>",
+  "float-div": "X is 7 / 3.",
+  "float-div-zero": "<span style=\"color: gray\">zero_divisor <em>error</em></span>",
+  "power": "X is 2**32.",
+  "sqrt": "X is sqrt(2).",
+  "sqrt-negative-one": "<span style=\"color: gray\"><em>arithmetic evaluation error: undefined</em></span>",
+  "transcendental-func": "exp log<br />sin cos tan<br />asin acos atan<br />atan2",
+  "float-truncation": "truncate round floor ceiling",
+  "absolute-val": "X is abs(-3).<br />X is abs(-3.2).",
+  "int-overflow": "",
+  "float-literal-with-exponent": "2.0e2<br />-2.0E-2",
+  "random-num": "X is random(100).",
+  "random-seed": "set_random(seed(17)).",
+  "result-of-not-seeding": "<span style=\"color: gray\"><em>seeded using</em> /dev/random <em>or system time</em></span>",
+  "bit-op": "X is 5 <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> 1.<br />X is 5 <span style=\"white-space: pre-wrap;\">&gt;&gt; </span> 1.<br />X is 5 /\\ 1.<br />X is 5 \\/ 1.<br />X is 5 xor 1.<br />X is \\ 5.",
+  "binary-octal-hex-literals": "2'101010<br />8'52<br />16'2A"
+},
+"strings": {
+  "str-literal": "<span style=\"color: gray\"><em>list of characters:</em></span><br />\"don't say \\\"no\\\"\"<br /><br /><span style=\"color: gray\"><em>quoted atom:</em></span><br />'don\\'t say \"no\"'",
+  "str-literal-newline": "<span style=\"color: gray\"><em>yes; and \\n notation can also be used</em></span>",
+  "char-esc": "\\a \\b \\e \\f \\n \\r \\s \\t \\v \\x<span style=\"color: gray\"><em>hh…</em></span>\\ \\u<span style=\"color: gray\"><em>hhhh</em></span> \\U<span style=\"color: gray\"><em>hhhhhhhh</em></span> \\<span style=\"color: gray\"><em>ooo</em></span> \\\\ \\' \\\"",
+  "str-concat": "append(\"one \", \"two \", Y), append(Y, \"three\", X).",
+  "str-replicate": "<span style=\"color: gray\"><em>list from single characters:</em></span><br />length(Hbar, 80), maplist(=('-'), Hbar).",
+  "trim": "normalize_space(string(Result), \" lorem \").",
+  "pad": "format(string(Result), 'lorem~10|', []).<br /><span style=\"color: gray\"><em>Result = \"lorem<span style=\"white-space: pre-wrap;\">     </span>\".</em></span><br /><br />format(string(Result), '~tlorem~10|', []).<br /><span style=\"color: gray\"><em>Result = \"<span style=\"white-space: pre-wrap;\">   &amp;nbsp </span>lorem\".</em></span><br /><br />format(string(Result), '~tlorem~t~10|', []).<br /><span style=\"color: gray\"><em>Result = \"<span style=\"white-space: pre-wrap;\">  </span>lorem<span style=\"white-space: pre-wrap;\">   </span>\".</em></span>",
+  "num-to-str": "number_string(8, String).<br />number_string(3.14, String).",
+  "str-to-num": "number_string(N, \"12\"), X is 7 + N.<br />number_string(N, \"0.039\"), X is 73.9 + N.",
+  "atom-to-str": "name(foo, X).",
+  "str-to-atom": "string_to_atom(\"foo\", X).",
+  "translate-case": "upcase_atom('lorem', X).<br />downcase_atom('LOREM', X).",
+  "split": "split_string(\"foo bar baz\", \" \", \"\", Result).",
+  "join": "atomics_to_string([\"foo\", \"bar\", \"baz\"], \" \", Result).",
+  "character-literal<br-/>": "0'A <span style=\"color: gray\"><em>(character code 65)</em></span><br />'A' <span style=\"color: gray\"><em>(atom 'A')</em></span>",
+  "string-length": "length(\"hello\", X).<br /><br />atom_length('hello', X).",
+  "index-substr": "sub_string(\"foo bar bar\", CharsBefore, _, _, \"bar\"),<br />Index is CharsBefore + 1.<br /><span style=\"color: gray\"><em>all solutions enumerated on backtracking: CharsBefore = 4, Index = 5 ; CharsBefore = 8, Index = 9</em></span>",
+  "extract-substr": "sub_string(\"foo bar bar\", 4, 3, _, Result).",
+  "chr-and-ord": "char_code(X, 65).<br />char_code('A', X)."
+},
+"regex": {
+  "regex-literal": "",
+  "char-class-abbrev": "",
+  "regex-anchors": "",
+  "match-test": "",
+  "case-insensitive-regex": "",
+  "regex-modifiers": "",
+  "subst": "",
+  "match-prematch-postmatch": "",
+  "group-capture": "",
+  "named-group-capture": "",
+  "scan": "",
+  "backreference-match": "",
+  "backreference-subst": ""
+},
+"date-time": {
+  "current-date/time": "get_time(TimeStamp), stamp_date_time(TimeStamp, date(YY,MM,DD,H,M,S,_,_,_), local).<br />get_time(TimeStamp), stamp_date_time(TimeStamp, date(YY,MM,DD,H,M,S,_,_,_), 'UTC')."
+},
+"lists": {
+  "list-literal": "[1, 2, 3]",
+  "cons": "X = [4 | [3, 2, 1]].",
+  "head": "[X | _] = [1, 2, 3].",
+  "tail": "[_ | X] = [1, 2, 3].",
+  "length": "length([1, 2, 3], X).",
+  "append": "append([1, 2], [3, 4], List).",
+  "sort": "sort([1, 3, 2, 4], X).",
+  "reverse": "reverse([1, 2, 3, 4], X).",
+  "membership": "member(1, [1, 2, 3]).",
+  "zip": "",
+  "map": "",
+  "filter": "",
+  "reduce": ""
+},
+"tuples": {
+  "tuple-literal": "(1, \"hello\", 3.14) <span style=\"color: gray\"><em>or any arbitrary function symbol</em></span>",
+  "tuple-element-access": "arg(2, tuple(1, \"foo\", 3.14), Element).<br /><span style=\"color: gray\"><em>Element = \"foo\".</em></span>",
+  "tuple-length": "functor(tuple(1, \"foo\", 3.14), _, Length).<br /><span style=\"color: gray\"><em>Length = 3.</em></span>"
+},
+"dictionaries": {
+  "literal": "",
+  "size": "",
+  "lookup": "",
+  "update": "",
+  "missing-key-behavior": "",
+  "is-key-present": "",
+  "iterate": ""
+},
+"algebraic-data-types": {
+  "record": ""
+},
+"functions": {
+  "function-definition": "factorial(0,1).<br />factorial(N, F) :- N1 is N - 1, factorial(N1, F1), F is N * F1.",
+  "function-definition-with-guards": "factorial(N, F) :- N &gt; 0, N1 is N - 1, factorial(N1, F1), F is N * F1.<br />factorial(0, 1).",
+  "anonymous-function": "",
+  "piecewise-defined-anonymous-function": ""
+},
+"execution-control": {
+  "if": "( X = 0 -&gt; format('no hits~n')<br />; X = 1 -&gt; format('one hit~n')<br />; X &gt; 1 -&gt; format('~w hits~n', [X]) ).",
+  "for": "between(1, 10, X), writeln(X), false; true.",
+  "try/catch": "X = 0,<br />catch(Y is 7 div X,<br /><span style=\"white-space: pre-wrap;\">  </span>error(evaluation_error(zero_divisor), _),<br /><span style=\"white-space: pre-wrap;\">  </span>Y is 0).",
+  "receive-message": "",
+  "spawn-process": "",
+  "send-message": "",
+  "list-processes": ""
+},
+"file-handles": {
+  "read-line-from-stdin": "",
+  "write-line-to-stdout": "",
+  "write-line-to-stderr": "",
+  "open-file-for-reading": "open('foo.txt', read, Fd).",
+  "read-line": "",
+  "read-character": "get_char(X).",
+  "read-term": "read(X).",
+  "open-file-for-writing": "open('foo.txt', write, Fd).",
+  "open-file-for-appending": "",
+  "write-line": "",
+  "write-character": "put_char(\"A\").<br />put_char(65)",
+  "write-term": "X = hello, write(X).",
+  "printf": "format('foo: ~s ~2f ~w~n', [\"bar\", 3.1415, 7]).",
+  "close-file": "close(Fd)."
+},
+"files": {
+  "file-test": "",
+  "file-size": ""
+},
+"directories": {
+  "build-pathname": "",
+  "dirname-basename": "",
+  "absolute-pathname": "",
+  "glob": "",
+  "mkdir": "",
+  "dir-test": ""
+},
+"processes-environment": {
+  "command-line-arguments": "<span style=\"color: gray\"><em>binds</em> Argv <em>to list of atoms representing command line args:</em></span><br />current_prolog_flag(argv, Argv).",
+  "program-name": "",
+  "exit": "halt(1)."
+},
+"libraries-namespaces": {
+  "load-file": "<span style=\"color: gray\"><em>ways to load file</em> data.pl:</span><br />[data].<br />['data.pl'].<br />consult(data)",
+  "define-namespace": ":- module(factorial, [factorial/1]).",
+  "compile-namespace": "",
+  "use-function-in-namespace": ""
+},
+"reflection": {
+  "inspect-namespace": ""
+},
+"repl": {
+  "help": "help.<br />apropos(keyword).",
+  "clear-variable": "",
+  "clear-all-variables": "",
+  "display-processes": ""
+}
+}

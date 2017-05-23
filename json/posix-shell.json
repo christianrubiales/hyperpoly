@@ -1,0 +1,194 @@
+{
+
+"general": {
+  "version-used": "<span style=\"color: gray\"><em>dash; POSIX 2008</em></span>",
+  "version": ""
+},
+"grammar-execution": {
+  "interpreter": "$ dash foo.sh",
+  "repl": "$ dash",
+  "exec-and-exit": "$ dash -c 'echo hi'",
+  "stmt-separator": "<span style=\"color: gray\"><em>pipelines separated by</em></span><br />; &amp; &amp;&amp; <span style=\"white-space: pre-wrap;\">||</span><br /><br /><span style=\"color: gray\"><em>lists of pipelines separated by newlines unless newline is preceded by a backslash or inside these characters:</em></span><br />\"\" '' <span style=\"white-space: pre-wrap;\">``</span> ()",
+  "word-separator": "| &amp; ; ( ) &lt; &gt; <span style=\"color: gray\"><em>space tab</em></span>",
+  "esc-special-char": "<span style=\"color: gray\"># write \"foo\" to foo.txt:</span><br />echo foo &gt; foo.txt<br /><br /><span style=\"color: gray\"># write \"foo &gt; foo.txt\" to stdout:</span><br />echo foo \\&gt; foo.txt",
+  "block-delimiters": "{<span style=\"color: gray\"><em>…</em></span>}<br />(<span style=\"color: gray\"><em>…</em></span>)<br />do <span style=\"color: gray\"><em>…</em></span> done",
+  "are-expressions-statements": "<span style=\"color: gray\"><em>no</em></span>",
+  "comment": "# <span style=\"color: gray\"><em>comment</em></span>",
+  "multiline-comment": "<span style=\"white-space: pre-wrap;\">&lt;&lt;</span>EOF<br /><span style=\"color: gray\"><em>comment</em></span><br /><span style=\"color: gray\"><em>another comment</em></span><br />EOF"
+},
+"var-expr": {
+  "assignment": "a=1<br /><span style=\"color: gray\"><em>whitespace next to</em></span> = <span style=\"color: gray\"><em>not permitted</em></span>",
+  "parallel-assignment": "<span style=\"color: gray\"><em>none</em></span>",
+  "swap": "tmp=$a<br />a=$b<br />b=$tmp",
+  "compound-assignment": "<span style=\"color: gray\"><em>none</em></span>",
+  "incr-decr": "<span style=\"color: gray\"><em>none</em></span>",
+  "var-decl": "<span style=\"color: gray\"><em>assignment</em></span>, export, readonly",
+  "identifiers-case-sensitive": "<span style=\"color: gray\"><em>yes</em></span>",
+  "null": "''",
+  "null-test": "if [ -z $v ]<br />then<br /><span style=\"white-space: pre-wrap;\">  </span>echo not defined<br />fi"
+},
+"arithmetic-logic": {
+  "true-false": "<span style=\"color: gray\"><em>status codes:</em></span><br />true false<br /><br /><span style=\"color: gray\"><em>inside</em> [ ]:</span><br />1 ''",
+  "falsehoods": "<span style=\"color: gray\"><em>status codes:<br />nonzero integers</em></span><br /><br /><span style=\"color: gray\"><em>inside</em> [ ]:</span><br />''",
+  "logical-ops": "<span style=\"color: gray\"><em>status codes:</em></span><br />&amp;&amp; <span style=\"white-space: pre-wrap;\">||</span> !<br /><br /><span style=\"color: gray\"><em>inside</em> [ ]:</span><br />-a -o !",
+  "conditional-expr": "$(( x&gt;0 ? x : -x ))",
+  "relational-expression<br-/>": "[ $a -gt 3 ]",
+  "relational-operators<br-/>": "<span style=\"color: gray\"><em>integers:</em></span><br />-eq -ne -gt -lt -ge -le<br /><br /><span style=\"color: gray\"><em>strings:</em></span><br /><span style=\"white-space: pre-wrap;\">=</span> != &gt; &lt; <span style=\"color: gray\"><em>none</em></span> <span style=\"color: gray\"><em>none</em></span>",
+  "arithmetic-expression<br-/>": "$(( 1 + 3 ))",
+  "arithmetic-operators<br-/>": "+ - * <span style=\"color: gray\"><em>none</em></span> / % <span style=\"white-space: pre-wrap;\">**</span><br /><br /><span style=\"color: gray\"><em>operators are integer-only in most shells; use</em> bc <em>for float arithmetic</em></span>",
+  "integer-division<br-/>": "$(( $a / $b ))",
+  "int-div-zero": "<span style=\"color: gray\"><em>writes \"division by 0\" error message; statement terminates with a 1 status</em></span>",
+  "float-division<br-/>": "<span style=\"white-space: pre-wrap;\">`</span>echo \" scale=5; $a / $b \" | bc<span style=\"white-space: pre-wrap;\">`</span>",
+  "float-div-zero": "<span style=\"color: gray\"><em>writes \"division by 0\" error message; statement terminates with a 1 status</em></span>",
+  "power": "",
+  "sqrt": "",
+  "sqrt--2<br-/>": "<span style=\"color: gray\"><em>no sqrt</em></span>",
+  "transcendental-functions": "e l s c <span style=\"color: gray\"><em>none</em></span> <span style=\"color: gray\"><em>none</em></span> <span style=\"color: gray\"><em>none</em></span> a <span style=\"color: gray\"><em>none</em></span><br /><span style=\"color: gray\"><em>how to use:</em></span><br /><span style=\"white-space: pre-wrap;\">`</span>echo 'e(2)' | bc -l<span style=\"white-space: pre-wrap;\">`</span>",
+  "float-truncation<br-/>": "<span style=\"color: gray\"><em>none and no floats</em></span>",
+  "abs-val": "",
+  "integer-overflow<br-/>": "<span style=\"color: gray\"><em>modular arithmetic</em></span>",
+  "float-overflow<br-/>": "<span style=\"color: gray\"><em>no floats</em></span>",
+  "random-integer,-uniform-float": "echo $RANDOM <span style=\"color: gray\"><em>15 bit integer</em></span>",
+  "seed-random-numbers": "RANDOM=17<br />r=$RANDOM",
+  "bit-operators<br-/>": "<span style=\"white-space: pre-wrap;\">&lt;&lt; &gt;&gt; &amp; | ^ ~</span>"
+},
+"strings": {
+  "string-literal": "'don'\\''t say \"no\"'<br />\"don't say \\\"no\\\"\"<br />$'don\\'t say \"no\"'",
+  "newline-in-literal": "<span style=\"color: gray\"><em>yes</em></span>",
+  "barewords": "<span style=\"color: gray\"><em>yes</em></span>",
+  "bareword-esc-char": "<span style=\"color: gray\"><em>backslash:</em></span> \\;",
+  "escapes": "gray|<em>in double quotes</em>##<br />\\\\ \\\"<br /><span style=\"color: gray\"><em>in</em></span> $' ' <span style=\"color: gray\"><em>quotes:</em></span><br />\\a \\b \\e \\f \\n \\r \\t \\v \\\\ \\' \\c<span style=\"color: gray\"><em>c</em></span> \\x<span style=\"color: gray\"><em>hh</em></span> \\<span style=\"color: gray\"><em>ooo</em></span>",
+  "variable-interpolation": "count=3<br />item=ball<br />\"$count ${item}s\"",
+  "length": "s=\"hello\"<br />${#s}",
+  "string-comparison": "[ $USER = foo ]<br />[ $USER != foo ]",
+  "index-of-substring": "<span style=\"color: gray\"><em>none</em></span>",
+  "extract-substring": "s=\"foo bar\"<br />${s:4:3}",
+  "string-concatenation": "c=\"hello, \"\"world\"",
+  "string-replication": "",
+  "split": "<span style=\"color: gray\"><em>none</em></span>",
+  "join": "<span style=\"color: gray\"><em>none</em></span>",
+  "sprintf": "<span style=\"white-space: pre-wrap;\">`</span>printf \"tie: %s %d %f\" \"Spain\" 13 3.7<span style=\"white-space: pre-wrap;\">`</span>",
+  "case-manipulation": "echo \"hello\" | tr [a-z] [A-Z]<br />echo \"HELLO\" | tr [A-Z] [a-z]<br />A=hello<br />echo -n ${A:0:1} | tr [a-z] [A-Z]; echo -n ${A:1}",
+  "strip": "<span style=\"color: gray\"><em>none</em></span>",
+  "pad-on-right,-pad-on-left": "<span style=\"white-space: pre-wrap;\">`</span>printf \"%-10s\" \"hello\"<span style=\"white-space: pre-wrap;\">`</span><br /><span style=\"white-space: pre-wrap;\">`</span>printf \"%10s\" \"hello\"<span style=\"white-space: pre-wrap;\">`</span>",
+  "string-to-number": "A=\"12\"<br />$(( 7 + $A ))<br /><br />B=\".037\"<br /><span style=\"white-space: pre-wrap;\">`</span>echo 73.9 + $B | bc<span style=\"white-space: pre-wrap;\">`</span>",
+  "number-to-string<br-/>": "<span style=\"color: gray\"><em>all values are strings</em></span>"
+},
+"regexes": {
+  "regex-match": "s=hello<br />rx='[a-z][a-z]*'<br />if expr $s : $rx &gt; /dev/null<br />then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>…</em></span><br />fi",
+  "single-subst": "s='do re mi mi mi'<br />s=$(echo $s | sed s/mi/ma/)",
+  "global-subst": "s='do re mi mi mi'<br />s=$(echo $s | sed s/mi/ma/g)"
+},
+"dates-time": {
+  "current-datetime": "date +'%Y-%m-%d %H:%M:%S'",
+  "current-unix-epoch": "date +'%s'",
+  "fmt-datetime": "date -d '1970-01-01 00:00:00 UTC' +'%s'"
+},
+"arrays": {
+  "resizable-array-literal": "nums=(1 2 3 4)",
+  "resizable-array-size": "${#nums[@]}",
+  "resizable-array-lookup": "${nums[0]}",
+  "resizable-array-update": "nums[1]=5",
+  "slice<br-/>": "${nums[@]:1:2}",
+  "concatenate": "a=(1 2 3)<br />b=(4 5 6)<br />c=(${a[@]} ${b[@]})",
+  "iterate-over-elements": "for i in ${nums[@]}<br />do echo $i<br />done",
+  "sort": "",
+  "reverse": ""
+},
+"functions": {
+  "def-func": "add() { echo $(( $1 + $2 )); }<br /><span style=\"color: gray\"><em>or</em></span><br />function add { echo $(( $1 + $2 )); }",
+  "call-func": "add 1 2",
+  "missing-arg": "''",
+  "extra-arg": "<span style=\"color: gray\"><em>ignored</em></span>",
+  "default-arg": "<span style=\"color: gray\"><em>none</em></span>",
+  "named-param": "<span style=\"color: gray\"><em>none</em></span>",
+  "retval": "return <span style=\"color: gray\"><em>arg available in</em></span> $? <span style=\"color: gray\"><em>variable if a positive integer smaller than 256</em></span>",
+  "anon-func-literal": "<span style=\"color: gray\"><em>none</em></span>",
+  "call-anon-func": "<span style=\"color: gray\"><em>none</em></span>",
+  "default-scope<br-/>": "<span style=\"color: gray\"><em>global</em></span>",
+  "nest-func": "<span style=\"color: gray\"><em>Nested function visible outside containing function.</em></span>"
+},
+"execution-control": {
+  "if": "if [ $n -eq 0 ]<br />then<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"no hits\"<br />elif [ $n -eq 1 ]<br />then<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"1 hit\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>echo $n \" hits\"<br />fi",
+  "while": "i=0<br />while [ $i -lt 10 ]<br />do i=$(($i + 1))<br /><span style=\"white-space: pre-wrap;\">  </span>echo $i<br />done",
+  "for": "for i in 1 2 3<br />do<br /><span style=\"white-space: pre-wrap;\">  </span>echo $i<br />done",
+  "break": "break",
+  "continue": "continue"
+},
+"exceptions": {
+  "raise-exc": "<span style=\"color: gray\"><em>Commands which fail return nonzero exit status.<br /><br />Exit status of last command stored in $?</em></span>",
+  "handle-exc": "trap 'echo \"risky failed\"' ERR<br />risky",
+  "uncaught-exc": "<span style=\"color: gray\"><em>stderr and continue</em></span>"
+},
+"concurrency": {
+  "sleep": "sleep 10"
+},
+"streams": {
+  "read-line-stdin": "<span style=\"color: gray\"># stored in $ine:</span><br />read line<br /><br /><span style=\"color: gray\"># with prompt:</span><br />read -p 'line: ' line",
+  "write-line-stdout": "echo \"hi world\"",
+  "printf": "printf '%.2f\\n' 3.1415",
+  "write-file-stdout": "cat foo.txt",
+  "write-stderr": "echo \"hi world\" &gt;&amp;2",
+  "file-iterate": "awk 'length($0) &gt; 70 {print $0}' /etc/passwd",
+  "write-proc": "echo \"hi world\" | wc",
+  "write-to-file": "echo \"hello\" &gt; /tmp/a",
+  "append-to-file": "echo \"hello\" <span style=\"white-space: pre-wrap;\">&gt;&gt;</span> /tmp/a"
+},
+"files": {
+  "create-empty-file": "<span style=\"color: gray\"># does not overwrite existing file, but updates<br /># last mod. time:</span><br />touch foo.txt",
+  "file-test": "if [ -e foo.txt ]; then echo \"exists\"; fi<br />if [ -f foo.txt ]; then echo \"regular\"; fi",
+  "file-size": "ls -l foo.txt",
+  "readable-writeable-executable": "if [ -r /etc/passwd ]; then echo readable; fi<br />if [ -w /tmp ]; then echo writeable; fi<br />if [ -x /bin/ls ]; then echo executable; fi",
+  "chmod": "chmod 0600 foo.txt",
+  "last-modification-time": "ls -l foo.txt",
+  "file-cp-rm-mv": "cp /tmp/foo.txt /tmp/bar.txt<br />rm /tmp/foo.txt<br />mv /tmp/bar.txt /tmp/foo.txt",
+  "symlink": "ln -s /etc/passwd /tmp/passwd<br />if [ -h /tmp/passwd ]; then echo \"symlink\"; fi<br />readlink /tmp/passwd",
+  "unused-file-name": "mktemp /tmp/fooXXXXX"
+},
+"directories": {
+  "working-dir": "echo $(pwd)<br />echo $PWD<br /><br />cd /tmp",
+  "program-dir": "<span style=\"color: gray\"><em>bash only:</em></span><br />\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" &amp;&amp; pwd )\"",
+  "direname-basename": "dirname /etc/hosts<br />basename /etc/hosts",
+  "iterate-dir": "for f in /etc/*<br />do<br /><span style=\"white-space: pre-wrap;\">  </span>echo $f<br />done",
+  "mkdir": "mkdir /tmp/foo.d",
+  "recursive-cp": "cp -R /tmp/foo.d /tmp/bar.d",
+  "rmdir": "rmdir /tmp/foo.d",
+  "rm-rf": "rm -rf /tmp/foo.d",
+  "dir-test": "if [ -d /tmp ]; then echo directory; fi"
+},
+"processes-environment": {
+  "cmd-line-arg": "$1<br />$2<br /><span style=\"color: gray\"><em>…</em></span><br /><br /><span style=\"color: gray\"># number of args:</span><br />$#<br /><br /><span style=\"color: gray\"># pass args as $# words to twiddle</span><br />twiddle \"$@\"<br /><br /><span style=\"color: gray\"># pass args as one word to twiddle</span><br />twiddle \"$*\"",
+  "program-name": "$0",
+  "env-var": "<span style=\"color: gray\"><em>shell variables are environment variables</em></span><br />$HOME",
+  "user-id-name": "id<br /><br /><span style=\"color: gray\"># user name only; most systems:</span><br />whoami",
+  "exit": "exit 0",
+  "external-cmd": "ls",
+  "cmd-subst": "s=$(ls)",
+  "speech": "<span style=\"color: gray\"><em>mac only:</em></span><br />say \"I'm a Mac\"",
+  "command-path": "which ping",
+  "set-signal-handler": "function int_handler {<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"exiting…\";<br /><span style=\"white-space: pre-wrap;\">  </span>exit<br />}<br /><br />trap int_handler INT",
+  "send-signal": "kill -INT 1234<br />kill -KILL 1234",
+  "start-job-in-background": "sleep 1000 &amp;",
+  "suspend-current-job": "<span style=\"color: gray\"><em>^Z</em></span>",
+  "terminate-job": "kill %1",
+  "list-jobs": "jobs",
+  "background-suspended-job": "bg %1",
+  "bring-background-job-into-foreground": "fg %1",
+  "disown-job": "disown %1"
+},
+"libraries-namespaces": {
+  "library": "$ cat foo.sh<br />function add() {<br /><span style=\"white-space: pre-wrap;\">  </span>echo $(($1 + $2));<br />}",
+  "import-library": "source foo.sh<br />add 3 7",
+  "library-path-environment-variable": "<span style=\"color: gray\"><em>none</em></span>"
+},
+"reflection": {
+  "cmd-line-doc": "man ls",
+  "list-defined-variables": "printenv",
+  "list-available-libraries": ""
+},
+"debugging-profiling": {
+  "check-syntax": "$ apt-get install shellcheck<br />$ shellcheck foo.sh",
+  "stronger-err": "<span style=\"color: gray\"><em>bash only:</em></span><br />bash -eu -o pipefail<br /><br /><span style=\"color: gray\">-e: <em>exit with nonzero status if command fails</em><br />-u: <em>exit with nonzero status if undefined variable accessed</em><br />-o pipefail: <em>exit with nonzero status if command in pipeline fails</em></span>",
+  "cpu-usage": "time ls"
+}
+}

@@ -1,0 +1,150 @@
+{
+  "version-used": "<span style=\"color: gray\"><em>Free Pascal 2.4</em></span>",
+  "show-version": "$ fpc -v",
+
+"grammar-invocation": {
+  "hello-world": "$ cat hello.pas<br />program Hello;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn('hello world!');<br />end.<br /><br />$ fpc hello.pas<br /><br />$ ./hello",
+  "file-suffixes": "foo.pas<br />foo.o<br />foo",
+  "source-code-encoding": "",
+  "eol-comment": "<span style=\"color: gray\"><em>not ISO Pascal:</em></span><br /><span style=\"white-space: pre-wrap;\">//</span> <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"white-space: pre-wrap;\">//</span> <span style=\"color: gray\"><em>another line</em></span>",
+  "multiple-line-comment": "(* <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> *)<br /><br />{ <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> }"
+},
+"variables-expressions": {
+  "case-sensitive-id": "<span style=\"color: gray\"><em>no</em></span>",
+  "declarations": "program Foo;<br />const<br /><span style=\"white-space: pre-wrap;\">  </span>PI: Real = 3.14159;<br />type<br /><span style=\"white-space: pre-wrap;\">  </span>Customer = record<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Id: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Name: String;<br /><span style=\"white-space: pre-wrap;\">  </span>end;<br />var<br /><span style=\"white-space: pre-wrap;\">  </span>I: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>C: Customer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>body of program</em></span>",
+  "block-with-local-scope": "",
+  "assignment": "X := 1;",
+  "pointer-declaration": "IP: ^Integer;",
+  "allocate-heap": "new(IP);",
+  "free-heap": "dispose(IP);",
+  "deference-pointer": "IP^ := 7;<br />Ans := 6 * IP^;",
+  "null": "<span style=\"color: gray\"><em>can only be assigned to pointers:</em></span><br />nil",
+  "null-test": "X = nil",
+  "coalesce": "<span style=\"color: gray\"><em>none</em></span>",
+  "nullif": "<span style=\"color: gray\"><em>none</em></span>",
+  "conditional-expr": "<span style=\"color: gray\"><em>none</em></span>"
+},
+"arithmetic-logic": {
+  "boolean-type": "Boolean",
+  "true-false": "True False",
+  "falsehoods": "False<br /><span style=\"color: gray\"><em>non booleans cause error in boolean context</em></span>",
+  "logical-op": "and or xor not",
+  "short-circuit-op": "<span style=\"color: gray\">{ in Free Pascal 'and' and 'or' also short circuit }</span><br />and_then<br />or_else",
+  "int-type": "Integer",
+  "float-type": "Real",
+  "fixed-type": "<span style=\"color: gray\"><em>four fractional digits:</em></span><br />Currency",
+  "relational-op": "<span style=\"white-space: pre-wrap;\">=</span> &lt;&gt; &lt; &gt; &lt;= &gt;=",
+  "min-max": "uses Math;<br /><br />Min(1, 2)<br />Max(1, 2)<br />MinIntValue([1, 2, 3])<br />MaxIntValue([1, 2, 3])<br />MinValue([1.0, 2.0, 3.0])<br />MaxValue([1.0, 2.0, 3.0])",
+  "arith-op": "+ - * / div mod",
+  "int-div": "7 div 3",
+  "int-div-zero": "<span style=\"color: gray\"><em>raises</em></span> EDivByZero",
+  "float-div": "7 / 3",
+  "float-div-zero": "+Inf",
+  "power": "uses Math;<br /><br />Power(2, 16);",
+  "sqrt": "Sqrt(2)",
+  "sqrt-negative-one": "<span style=\"color: gray\"><em>raises</em></span> EInvalidOp",
+  "transcendental-func": "uses Math;<br /><br />Exp Ln Sin Cos Tan ArcSin ArcCos ArcTan ArcTan2",
+  "float-truncation": "uses Math;<br /><br />Trunc Round Floor Ceil",
+  "absolute-val": "Abs(-7)<br /><span style=\"color: gray\"><em>none</em></span>",
+  "int-overflow": "<span style=\"color: gray\"><em>modular arithmetic</em></span>",
+  "float-overflow": "<span style=\"color: gray\"><em>raises</em></span> EOverflow",
+  "random-num": "Random(100)<br />Random",
+  "bit-op": "shl shr and or xor not"
+},
+"strings": {
+  "string-literal<br-/>": "'Don''t say \"foo\"'",
+  "fixed-length-string-type": "",
+  "bounded-length-string-type": "",
+  "unbounded-length-string-type": "",
+  "character-type": "",
+  "chr-and-ord": "Chr(65)<br />Ord('A')",
+  "concatenate<br-/>": "'hello' + ' world'",
+  "length<br-/>": "Length('hello')",
+  "extract-substring<br-/>": "Copy(S, 1, 4)",
+  "index-of-substring<br-/>": "Pos('hell', 'hello')",
+  "case-manipulation": "uses SysUtils;<br /><br />UpperCase('hello')<br />LowerCase('HELLO')",
+  "strip": "Trim(' foo ')<br />TrimLeft(' foo')<br />TrimRight('foo ')",
+  "pad-on-left,-pad-on-right": "",
+  "convert-string-to-number": "uses SysUtils;<br /><br />7 + StrToInt('12')<br />73.9 + StrToFloat('.037')",
+  "convert-number-to-string": "uses SysUtils;<br /><br />'value: ' + IntToStr(8)<br />'value: ' + FloatToStr(3.14)"
+},
+"regexes": {
+  "match": "",
+  "substitute": "",
+  "extract-subgroup": ""
+},
+"dates-time": {
+  "current-datetime": "",
+  "date-time-to-str": "",
+  "str-to-date-time": ""
+},
+"arrays": {
+  "declare-array": "A: array[1..5] of Integer;",
+  "array-length": "",
+  "array-element-access": "A[1] := 3;",
+  "array-initialization": "",
+  "array-slice": "",
+  "array-out-of-bounds-behavior": "<span style=\"color: gray\"><em>undefined; free pascal permits out of bounds memory access</em></span>",
+  "declare-multidimensional-array": "",
+  "multidimensional-array-access": ""
+},
+"user-defined-types": {
+  "type-synonym": "type<br /><span style=\"white-space: pre-wrap;\">  </span>CustomerId = Integer;",
+  "enumerated-type": "type<br /><span style=\"white-space: pre-wrap;\">  </span>Direction = (North, South, East, West);<br />var<br /><span style=\"white-space: pre-wrap;\">  </span>Wind: Direction = North;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn(Wind); <span style=\"color: gray\">{ prints 'North' }</span>",
+  "define-record-type": "<span style=\"color: gray\"><em>in type section:</em></span><br />Customer = record<br /><span style=\"white-space: pre-wrap;\">  </span>Id: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>Name: String;<br />end;",
+  "declare-record": "C: Customer;",
+  "record-member-access": "C.Name := 'Fred';",
+  "record-block": ""
+},
+"generic-types": {
+},
+"functions": {
+  "decl-func": "",
+  "def-func": "function Add(M: Integer; N: Integer): Integer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>Result := M + N;<br />end;",
+  "call-func": "Sum := Add(7, 3);",
+  "undef-func": "<span style=\"color: gray\"><em>none</em></span>",
+  "no-retval": "procedure Message(Msg: String);<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn(Msg);<br />end;",
+  "pass-by-ref": "<span style=\"color: gray\">{ declare parameter with var }</span><br />procedure Incr(var N: Integer);<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>N := N + 1;<br />end;<br /><br />var<br /><span style=\"white-space: pre-wrap;\">  </span>I: Integer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>I := 3;<br /><span style=\"white-space: pre-wrap;\">  </span>Incr(I);<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn(I); <span style=\"color: gray\">{ prints 4 }</span><br />end.",
+  "pass-uninitialized-by-ref": "",
+  "nested-func": "",
+  "overloaded-func": "",
+  "forward-decl": "function Odd(N: Integer): Boolean;<br />Forward;<br /><br />function Even(N: Integer): Boolean;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>if N = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := true<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := Odd(N - 1);<br />end;<br /><br />function Odd(N: Integer): Boolean;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>if N = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := false<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := Even(N - 1);<br />end;"
+},
+"execution-control": {
+  "if": "if I = 0 then<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn('no hits');<br />end<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>if I = 1 then<br /><span style=\"white-space: pre-wrap;\">  </span>begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>WriteLn('one hit');<br /><span style=\"white-space: pre-wrap;\">  </span>end<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>WriteLn(IntToStr(I) + ' hits');",
+  "switch": "",
+  "while": "I := 0;<br />while I &lt; 10 do<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn(IntToStr(I));<br /><span style=\"white-space: pre-wrap;\">  </span>I := I + 1;<br />end",
+  "for": "for I := 0 to 9 do<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn(IntToStr(I));",
+  "break": "break",
+  "continue": "continue",
+  "goto": ""
+},
+"exceptions": {
+  "predefined-exc": "",
+  "def-exc": "{$mode delphi}<br /><br />type Err42 = class(Exception);",
+  "raise-exc": "{$mode delphi}<br /><br />raise Exception.Create('bad int: ' + IntToStr(7));",
+  "re-raise-exc": "{$mode delphi}<br /><br />try<br /><span style=\"white-space: pre-wrap;\">  </span>risky();<br />except on E: Exception do begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn('risky failed');<br /><span style=\"white-space: pre-wrap;\">  </span>raise;<br />end;",
+  "handle-any-exc": "{$mode delphi}<br /><br />try<br /><span style=\"white-space: pre-wrap;\">  </span>raise Exception.Create('bad int: ' + IntToStr(7));<br />except<br /><span style=\"white-space: pre-wrap;\">  </span>on E: Exception do WriteLn(E.Message);",
+  "handle-exc-by-type": "{$mode delphi}<br /><br />try<br /><span style=\"white-space: pre-wrap;\">  </span>raise Err42.Create('bad int: ' + IntToStr(7));<br />except<br /><span style=\"white-space: pre-wrap;\">  </span>on E: Err42 do WriteLn(E.Message);",
+  "multiple-exc-handlers": "",
+  "finally": ""
+},
+"file-handles": {
+  "read-line-stdin": "",
+  "write-line-stdout": "",
+  "write-line-stderr": ""
+},
+"files": {
+},
+"directories": {
+},
+"processes-environment": {
+  "cmd-line-arg": ""
+},
+"libraries-namespaces": {
+  "load-lib": "",
+  "namespace-decl": "",
+  "namespace-alias": "",
+  "unqualified-import": ""
+}
+}

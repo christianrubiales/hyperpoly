@@ -1,0 +1,194 @@
+{
+
+"general": {
+  "version-used": "<span style=\"color: gray\"><em>4.0</em></span>",
+  "version": "$host.version"
+},
+"grammar-execution": {
+  "interpreter": "<span style=\"white-space: pre-wrap;\">PS&gt;</span> .\\foo.ps1<br /><br /><span style=\"white-space: pre-wrap;\">DOS&gt;</span> powershell -file foo.ps1",
+  "repl": "<span style=\"white-space: pre-wrap;\">&gt;</span> powershell",
+  "exec-and-exit": "<span style=\"white-space: pre-wrap;\">&gt;</span> powershell -command 'write-output \"hi\"'",
+  "stmt-separator": "; <span style=\"color: gray\"><em>or newline; a newline can be escaped with a backtick:</em></span> <span style=\"white-space: pre-wrap;\">`</span> <span style=\"color: gray\"><em>newlines are permitted in double quotes and after a pipe:</em></span> |",
+  "word-separator": "",
+  "esc-special-char": "",
+  "block-delimiters": "{ <span style=\"color: gray\"><em>…</em></span> }",
+  "are-expressions-statements": "<span style=\"color: gray\"><em>yes</em></span>",
+  "comment": "# <span style=\"color: gray\"><em>comment</em></span>",
+  "multiline-comment": "&lt;# <span style=\"color: gray\"><em>comment</em></span><br /><span style=\"color: gray\"><em>another comment</em></span> #&gt;"
+},
+"var-expr": {
+  "assignment": "$a = 1",
+  "parallel-assignment": "$a, $b = 1, 2",
+  "swap": "$a, $b = $b, $a",
+  "compound-assignment": "+= -= *= /= %=<br />+= *=<br /><span style=\"color: gray\"><em>none</em></span>",
+  "incr-decr": "$x = 1<br />$x<span style=\"white-space: pre-wrap;\">++</span><br />$x<span style=\"white-space: pre-wrap;\">--</span>",
+  "var-decl": "<span style=\"color: gray\"><em>assignment</em></span>",
+  "identifiers-case-sensitive": "<span style=\"color: gray\"><em>no</em></span>",
+  "null": "$null",
+  "null-test": "$v -eq $null"
+},
+"arithmetic-logic": {
+  "true-false": "$true $false",
+  "falsehoods": "0 0.0 \"\" ''",
+  "logical-ops": "-and -or -not",
+  "conditional-expr": "<span style=\"color: gray\"><em>none</em></span>",
+  "relational-expression<br-/>": "$a -gt 3",
+  "relational-operators<br-/>": "-eq -ne -gt -lt -ge -le",
+  "arithmetic-expression<br-/>": "1 + 3",
+  "arithmetic-operators<br-/>": "+ - * / <span style=\"color: gray\"><em>??</em></span> % <span style=\"color: gray\"><em>??</em></span>",
+  "integer-division<br-/>": "$rem = $null<br />$quot = [Math]::DivRem($a, $b, [ref] $rem)",
+  "int-div-zero": "<span style=\"color: gray\"><em>error: Attempted to divide by zero</em></span>",
+  "float-division<br-/>": "$a / $b",
+  "float-div-zero": "<span style=\"color: gray\"><em>evaluates to</em> Infinity <em>which is not a float literal</em></span>",
+  "power": "[Math]::pow(2, 32)",
+  "sqrt": "[Math]::sqrt(2)",
+  "sqrt--2<br-/>": "<span style=\"color: gray\"><em>evaluates to</em> NaN <em>which is not a float literal</em></span>",
+  "transcendental-functions": "[Math]::exp [Math]::log<br />[Math]::sin [Math]::cos [Math]::tan<br />[Math]::asin [Math]::acos [Math]::atan<br />[Math]::atan2",
+  "float-truncation<br-/>": "[Math]::truncate(3.14)<br />[Math]::round(3.14)<br />[Math]::floor(3.14)<br />[Math]::ceiling(3.14)",
+  "abs-val": "[Math]::abs(-7)<br />[Math]::sign(-7)",
+  "integer-overflow<br-/>": "<span style=\"color: gray\"><em>converts to float</em></span>",
+  "float-overflow<br-/>": "<span style=\"color: gray\"><em>evaluates to</em> Infinity <em>which is not a float literal</em></span>",
+  "random-integer,-uniform-float": "random 100<br />random 1.0",
+  "seed-random-numbers": "$r = random -setseed 17",
+  "bit-operators<br-/>": "<span style=\"color: gray\"><em>none</em></span> <span style=\"color: gray\"><em>none</em></span> -band -bor -bxor -bnot<br /><br /><span style=\"color: gray\"># powershell 3.0:</span><br />-lsl -lsr"
+},
+"strings": {
+  "string-literal": "'don''t say \"no\"'<br />\"don't say <span style=\"white-space: pre-wrap;\">`</span>\"no<span style=\"white-space: pre-wrap;\">`</span>\"\"",
+  "newline-in-literal": "<span style=\"color: gray\"><em>yes</em></span>",
+  "barewords": "<span style=\"color: gray\"><em>yes</em></span>",
+  "bareword-esc-char": "<span style=\"color: gray\"><em>backquote:</em>: <span style=\"white-space: pre-wrap;\">`</span>$</span>",
+  "escapes": "<span style=\"white-space: pre-wrap;\">`</span>' <span style=\"white-space: pre-wrap;\">`</span>\" <span style=\"white-space: pre-wrap;\">``</span><br /><span style=\"white-space: pre-wrap;\">`</span>0 <span style=\"white-space: pre-wrap;\">`</span>a <span style=\"white-space: pre-wrap;\">`</span>b <span style=\"white-space: pre-wrap;\">`</span>f <span style=\"white-space: pre-wrap;\">`</span>n <span style=\"white-space: pre-wrap;\">`</span>r <span style=\"white-space: pre-wrap;\">`</span>t <span style=\"white-space: pre-wrap;\">`</span>v<br /><span style=\"color: gray\"><em>in other backtick sequences the backtick is ignored</em></span>",
+  "variable-interpolation": "$count = 3<br />$item = \"ball\"<br />\"$count $($item)s\"",
+  "length": "$s = \"hello\"<br />$s.length",
+  "string-comparison": "<span style=\"color: gray\"># case insensitive:</span><br />-eq -ne -gt -lt -ge -le<br /><br /><span style=\"color: gray\"># case sensitive:</span><br />-ceq -cne -cgt -clt -cge -cle",
+  "index-of-substring": "<span style=\"color: gray\"><em>returns -1 if not found:</em></span><br />\"foo bar\".indexof(\"bar\")",
+  "extract-substring": "\"foo bar\".substring(4, 3)",
+  "string-concatenation": "$c = \"hello, \" + \"world\"",
+  "string-replication": "$hbar = \"-\" * 80",
+  "split": "\"foo,bar,baz\" -split \",\"",
+  "join": "@(\"foo\",\"bar\",\"baz\") -join \",\"",
+  "sprintf": "$a = \"Spain\", 13, 3.7<br />\"tie: {0} {1} {2}\" -f $a",
+  "case-manipulation": "\"hello\".toupper()<br />\"HELLO\".tolower()",
+  "strip": "\" hello \".trim()",
+  "pad-on-right,-pad-on-left": "$s = \"hello\"<br />$s + \" \" * (10 - $s.length)<br />\" \" * (10 - $s.length) + $s",
+  "string-to-number": "7 + \"12\"<br /><br />73.9 + \".037\"",
+  "number-to-string<br-/>": "[convert]::tostring(7) + \" items\"<br /><br /><span style=\"color: gray\"># or use variable interpolation</span>"
+},
+"regexes": {
+  "regex-match": "if (\"hello\" -match \"^[a-z][a-z]*$\") {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>…</em></span><br />}",
+  "single-subst": "",
+  "global-subst": "$s = \"do re mi mi mi\"<br />$s = $s -replace \"mi\", \"ma\""
+},
+"dates-time": {
+  "current-datetime": "get-date -format 'yyyy-MM-dd HH:mm:ss'<br />get-date -uformat '%Y-%m-%d %H:%M:%S'",
+  "current-unix-epoch": "get-date -uformat %s",
+  "fmt-datetime": "get-date -date '1970-01-01 00:00:00' -uformat %s"
+},
+"arrays": {
+  "resizable-array-literal": "$nums = 1 ,2 ,3, 4<br />$nums = @(1 ,2, 3, 4)",
+  "resizable-array-size": "$nums.Length",
+  "resizable-array-lookup": "$nums[0]",
+  "resizable-array-update": "$nums[0] = 5",
+  "slice<br-/>": "$nums[1..2]",
+  "concatenate": "@(1, 2, 3) + @(4, 5, 6)",
+  "iterate-over-elements": "foreach ($i in $nums) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output $i<br />}",
+  "sort": "$a = 3, 2, 4, 1<br />$b = $a | Sort-Object",
+  "reverse": "$a = 1, 2, 3<br />[array]::reverse($a)"
+},
+"functions": {
+  "def-func": "function add {<br /><span style=\"white-space: pre-wrap;\">  </span>param ($a, $b)<br /><span style=\"white-space: pre-wrap;\">  </span>$a + $b<br />}",
+  "call-func": "add 1 2",
+  "missing-arg": "$null",
+  "extra-arg": "<span style=\"color: gray\"><em>ignored</em></span>",
+  "default-arg": "function add {<br /><span style=\"white-space: pre-wrap;\">  </span>param ($a=0, $b=0)<br /><span style=\"white-space: pre-wrap;\">  </span>$a + $b<br />}",
+  "named-param": "add -a 1 -b 2",
+  "retval": "",
+  "anon-func-literal": "$f = { write-output \"foo\" }",
+  "call-anon-func": "&amp; $f<br /><span style=\"color: gray\"><em>or</em></span><br />$x.invoke()",
+  "default-scope<br-/>": "<span style=\"color: gray\"><em>local</em></span>",
+  "nest-func": "function add {<br /><span style=\"white-space: pre-wrap;\">  </span>param ($a, $b)<br /><span style=\"white-space: pre-wrap;\">  </span>function add2 {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>param ($a2, $b2)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>$a2 + $b2<br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><span style=\"white-space: pre-wrap;\">  </span>add2 $a $b<br />}<br /><br /><span style=\"color: gray\"># Nested function not visible outside of containing<br /># function; nested function can see local variables<br /># of containing function.</span>"
+},
+"execution-control": {
+  "if": "if ($n -eq 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"no hits\"<br />} elseif ($n -eq 1) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"one hit\"<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"$n hits\"<br />}",
+  "while": "$i = 0<br />while ($i -lt 10) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output (++$i)<br />}",
+  "for": "for ($i=1; $i -le 3; $i++) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output $i<br />}",
+  "break": "break",
+  "continue": "continue"
+},
+"exceptions": {
+  "raise-exc": "throw \"bam!\"",
+  "handle-exc": "try {<br /><span style=\"white-space: pre-wrap;\">  </span>throw \"bam!\"<br />}<br />catch {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"caught!\"<br />}",
+  "uncaught-exc": "<span style=\"color: gray\"><em>script exits</em></span>"
+},
+"concurrency": {
+  "sleep": "timeout 10"
+},
+"streams": {
+  "read-line-stdin": "$line = read-host<br /><br /><span style=\"color: gray\"># with prompt:</span><br />$line = read-host 'line'",
+  "write-line-stdout": "write-output \"hi world\"",
+  "printf": "",
+  "write-file-stdout": "",
+  "write-stderr": "",
+  "file-iterate": "",
+  "write-proc": "",
+  "write-to-file": "",
+  "append-to-file": ""
+},
+"files": {
+  "create-empty-file": "<span style=\"color: gray\"># error if file exists:</span><br />new-item -type file foo.txt",
+  "file-test": "if (test-path foo.txt) { write-output \"exists\" }<br /><br />if (test-path -pathtype leaf) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"regular\"<br />}",
+  "file-size": "get-childitem foo.txt",
+  "readable-writeable-executable": "",
+  "chmod": "",
+  "last-modification-time": "get-childitem foo.txt",
+  "file-cp-rm-mv": "copy-item foo.txt bar.txt<br />remove-item foo.txt<br />move-item bar.txt foo.txt",
+  "symlink": "",
+  "unused-file-name": "[System.IO.Path]::GetTempFileName()"
+},
+"directories": {
+  "working-dir": "$loc = get-location<br />echo $loc<br /><br />set-location \\windows",
+  "program-dir": "",
+  "direname-basename": "",
+  "iterate-dir": "",
+  "mkdir": "new-item -type directory foo",
+  "recursive-cp": "",
+  "rmdir": "",
+  "rm-rf": "",
+  "dir-test": ""
+},
+"processes-environment": {
+  "cmd-line-arg": "",
+  "program-name": "",
+  "env-var": "$env:home",
+  "user-id-name": "",
+  "exit": "exit",
+  "external-cmd": "dir",
+  "cmd-subst": "$s=dir",
+  "speech": "$sp = new-object -comobject \"SAPI.SpVoice\"<br />$sp.speak(\"I'm a PC\")",
+  "command-path": "get-command ping",
+  "set-signal-handler": "",
+  "send-signal": "",
+  "start-job-in-background": "",
+  "suspend-current-job": "",
+  "terminate-job": "",
+  "list-jobs": "",
+  "background-suspended-job": "",
+  "bring-background-job-into-foreground": "",
+  "disown-job": ""
+},
+"libraries-namespaces": {
+  "library": "<span style=\"color: gray\"><em>from directory in search path:</em></span><br /><br /><span style=\"white-space: pre-wrap;\">&gt;</span> type Modules\\Foo\\Foo.psm1<br />function add {<br /><span style=\"white-space: pre-wrap;\">  </span>param ($a, $b)<br /><span style=\"white-space: pre-wrap;\">  </span>$a + $b<br />}",
+  "import-library": "import-module foo<br /><br />add 1 2",
+  "library-path-environment-variable": "$env:psmodulepath"
+},
+"reflection": {
+  "cmd-line-doc": "get-help get-childitem",
+  "list-defined-variables": "get-variable",
+  "list-available-libraries": "get-module -listavailable"
+},
+"debugging-profiling": {
+  "check-syntax": "",
+  "stronger-err": "",
+  "cpu-usage": ""
+}
+}

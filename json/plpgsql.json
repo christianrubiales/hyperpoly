@@ -1,0 +1,150 @@
+{
+  "version-used": "<span style=\"color: gray\"><em>Postgres 9.1</em></span>",
+  "show-version": "$ psql <span style=\"white-space: pre-wrap;\">--</span>version",
+
+"grammar-invocation": {
+  "hello-world": "<span style=\"color: gray\"><em>at psql prompt:</em></span><br /><span style=\"white-space: pre-wrap;\">&gt;</span> create or replace function hello()<br />returns varchar as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return 'Hello World!';<br />end;<br />$$ language plpgsql;<br />CREATE FUNCTION<br /><br /><span style=\"white-space: pre-wrap;\">&gt;</span> select hello();<br />hello<br /><span style=\"white-space: pre-wrap;\">--------------</span><br />Hello World!<br />(1 row)",
+  "file-suffixes": "",
+  "source-code-encoding": "",
+  "eol-comment": "<span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>another line</em></span>",
+  "multiple-line-comment": "<span style=\"color: gray\"><em>none</em></span>"
+},
+"variables-expressions": {
+  "case-sensitive-id": "<span style=\"color: gray\"><em>no</em></span>",
+  "declarations": "create type customer as (<br /><span style=\"white-space: pre-wrap;\">  </span>id integer,<br /><span style=\"white-space: pre-wrap;\">  </span>name text<br />);<br /><br />create or replace function foo() returns void as $$<br />declare<br /><span style=\"white-space: pre-wrap;\">  </span>pi numeric(10,4) = 3.14;<br /><span style=\"white-space: pre-wrap;\">  </span>i integer = 42;<br /><span style=\"white-space: pre-wrap;\">  </span>c customer%rowtype;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return;<br />end $$ language plpgsql;",
+  "block-with-local-scope": "declare<br /><span style=\"white-space: pre-wrap;\">  </span>i integer := 3;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>raise notice 'i is %', i;<br />end;",
+  "assignment": "x = 1;",
+  "pointer-declaration": "<span style=\"color: gray\"><em>none</em></span>",
+  "allocate-heap": "<span style=\"color: gray\"><em>none</em></span>",
+  "free-heap": "<span style=\"color: gray\"><em>none</em></span>",
+  "deference-pointer": "<span style=\"color: gray\"><em>none</em></span>",
+  "null": "NULL",
+  "null-test": "x is NULL<br /><span style=\"color: gray\">x = NULL <em>is always false</em></span>",
+  "coalesce": "7 + coalesce(x, 0)",
+  "nullif": "nullif(x, 0)",
+  "conditional-expr": "case when x &gt; 0 then x else -x end"
+},
+"arithmetic-logic": {
+  "boolean-type": "BOOL BOOLEAN",
+  "true-false": "TRUE FALSE",
+  "falsehoods": "FALSE NULL 0<br /><span style=\"color: gray\"><em>strings and floats cause error in boolean context</em></span>",
+  "logical-op": "AND OR <span style=\"color: gray\"><em>none</em></span> NOT",
+  "short-circuit-op": "AND<br />OR",
+  "int-type": "smallint: <span style=\"color: gray\"><em>2 bytes</em></span><br />integer: <span style=\"color: gray\"><em>4 bytes</em></span><br />bigint: <span style=\"color: gray\"><em>8 bytes</em></span>",
+  "float-type": "real: <span style=\"color: gray\"><em>4 bytes</em></span><br />double precision: <span style=\"color: gray\"><em>8 bytes</em></span>",
+  "fixed-type": "numeric(<span style=\"color: gray\"><em>digits</em></span>, <span style=\"color: gray\"><em>fractional_digits</em></span>)",
+  "relational-op": "<span style=\"white-space: pre-wrap;\">=</span> != <span style=\"color: gray\"><em>also:</em></span> &lt;&gt; &lt; &gt; &lt;= &gt;=",
+  "min-max": "least(1,2,3)<br />greatest(1,2,3)",
+  "arith-op": "+ - * <span style=\"color: gray\"><em>none</em></span> / %",
+  "int-div": "7 / 3",
+  "int-div-zero": "<span style=\"color: gray\"><em>raises</em></span> division_by_zero",
+  "float-div": "7 * 1.0 / 3",
+  "float-div-zero": "<span style=\"color: gray\"><em>raises</em></span> division_by_zero",
+  "power": "2 ^ 16",
+  "sqrt": "sqrt(2)",
+  "sqrt-negative-one": "<span style=\"color: gray\"><em>raises</em></span> invalid_argument_for_power_function",
+  "transcendental-func": "exp ln sin cos tan asin acos atan atan2",
+  "float-truncation": "trunc round floor ceil",
+  "absolute-val": "abs(-7)<br />sign(-7)",
+  "int-overflow": "<span style=\"color: gray\"><em>raises</em></span> numeric_value_out_of_range",
+  "float-overflow": "<span style=\"color: gray\"><em>raises</em></span> numeric_value_out_of_range",
+  "random-num": "floor(100 * random())<br />random()",
+  "bit-op": "<span style=\"white-space: pre-wrap;\"> &lt;&lt; &gt;&gt; </span> &amp; | ^ ~"
+},
+"strings": {
+  "string-literal<br-/>": "'Don''t say \"foo\"'",
+  "fixed-length-string-type": "<span style=\"color: gray\"><em>pads length to</em> n <em>with spaces:</em></span><br />char(<span style=\"color: gray\"><em>n</em></span>)",
+  "bounded-length-string-type": "<span style=\"color: gray\"><em>error if</em> n <em>exceeded:</em></span><br />varchar(<span style=\"color: gray\"><em>n</em></span>)",
+  "unbounded-length-string-type": "text",
+  "character-type": "char(1)",
+  "chr-and-ord": "chr(65)<br />ascii('A')",
+  "concatenate<br-/>": "'hello' <span style=\"white-space: pre-wrap;\">||</span> ' world'",
+  "length<br-/>": "length('hello')",
+  "extract-substring<br-/>": "substr('hello', 1, 4)",
+  "index-of-substring<br-/>": "strpos('hello', 'hell')",
+  "case-manipulation": "upper('hello')<br />lower('HELLO')",
+  "strip": "trim(' foo ')<br />ltrim(' foo')<br />rtrim('foo ')",
+  "pad-on-left,-pad-on-right": "lpad('foo', 10)<br />rpad('foo', 10)",
+  "convert-string-to-number": "<span style=\"color: gray\"><em>arithmetic operators automatically convert strings to numbers</em></span><br />cast('12' as int)<br />cast('3.14') as real)",
+  "convert-number-to-string": "<span style=\"color: gray\"><em>double pipe operator</em> <span style=\"white-space: pre-wrap;\">||</span> <em>converts numbers operands to strings</em></span><br />cast(8 to text)<br />cast(3.14 to text)"
+},
+"regexes": {
+  "match": "select *<br />from pwt<br />where name similar to 'r[a-z]+';",
+  "substitute": "select regexp_replace('foo bar', 'bar$', 'baz');",
+  "extract-subgroup": "select (regexp_matches('foobar', '(f..)bar'))[1];"
+},
+"dates-time": {
+  "current-datetime": "now()",
+  "date-time-to-str": "to_char(now(), 'YYYY-MM-DD HH24:MI:SS')",
+  "str-to-date-time": "to_timestamp('2011-09-26 00:00:47', 'YYYY-MM-DD HH24:MI:SS')"
+},
+"arrays": {
+  "declare-array": "a int[];",
+  "array-length": "array_length(a, 1)",
+  "array-element-access": "a[1] = 3;",
+  "array-initialization": "a int[] = array[1, 3, 5, 2, 4];",
+  "array-slice": "a[1:2]<br /><span style=\"color: gray\"><em>can assign to slice in</em> UPDATE <em>statement but not in assignment</em></span>",
+  "array-out-of-bounds-behavior": "NULL",
+  "declare-multidimensional-array": "a integer[][];",
+  "multidimensional-array-access": "a[2][3] = 7;"
+},
+"user-defined-types": {
+  "type-synonym": "",
+  "enumerated-type": "create type direction as enum ( 'north', 'south', 'east', 'west');<br /><br />create table wind ( origin direction, speed_mph real );<br /><br />insert into wind values ( 'north', 12 );",
+  "define-record-type": "create type customer as (<br /><span style=\"white-space: pre-wrap;\">  </span>id integer,<br /><span style=\"white-space: pre-wrap;\">  </span>name text<br />);",
+  "declare-record": "declare<br /><span style=\"white-space: pre-wrap;\">  </span>c customer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>c = (17,'John');<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>code which uses</em> c</span>",
+  "record-member-access": "c.name = 'Fred'",
+  "record-block": ""
+},
+"generic-types": {
+},
+"functions": {
+  "decl-func": "",
+  "def-func": "create function add(i int, j int)<br />returns int as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return i + j;<br />end;<br />$$ language plpgsql;",
+  "call-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> in select clause:</span><br />select add(1, 2);<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> in where clause:</span><br />select * from cust where id = add(1, 2);<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> inside PL/pgSQL functions can be used wherever<br /><span style=\"white-space: pre-wrap;\">--</span> expressions are permitted. Can be used as a statement<br /><span style=\"white-space: pre-wrap;\">--</span> with perform:</span><br />perform add(1, 2);",
+  "undef-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> parameter types are required:</span><br />drop function foo(int, int);",
+  "no-retval": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> declare return type as void:</span><br />create or replace function message(msg text)<br />returns void as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>raise notice '%', msg;<br />end;<br />$$ language plpgsql;",
+  "pass-by-ref": "<span style=\"color: gray\"><em>none</em></span>",
+  "pass-uninitialized-by-ref": "<span style=\"color: gray\"><em>none</em></span>",
+  "nested-func": "<span style=\"color: gray\"><em>none</em></span>",
+  "overloaded-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span>integer version:</span><br />create or replace function add(m int, n int)<br />returns int as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return m + n;<br />end;<br />$$ language plpgsql;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span>float version:</span><br />create or replace function add(x real, y real)<br />returns real as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return x + y;<br />end;<br />$$ language plpgsql;",
+  "forward-decl": "<span style=\"color: gray\"><em>none</em></span>"
+},
+"execution-control": {
+  "if": "if i = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>return 'no hits';<br />elsif i = 1 then<br /><span style=\"white-space: pre-wrap;\">  </span>return 'one hit';<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>return i <span style=\"white-space: pre-wrap;\">||</span> ' hits';<br />end if;",
+  "switch": "",
+  "while": "i = 1;<br />sum = 0;<br />while i &lt;= n loop<br /><span style=\"white-space: pre-wrap;\">  </span>sum = sum + i;<br /><span style=\"white-space: pre-wrap;\">  </span>i = i + 1;<br />end loop;",
+  "for": "sum = 0;<br />for i in 1..n loop<br /><span style=\"white-space: pre-wrap;\">  </span>sum = sum + i;<br />end loop;",
+  "break": "exit",
+  "continue": "continue",
+  "goto": ""
+},
+"exceptions": {
+  "predefined-exc": "",
+  "def-exc": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> code string must be five digits or uppercase letters:</span><br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>raise 'User defined error 42' using errcode = 'ERR42';<br />exception when sqlstate 'ERR42' then<br /><span style=\"white-space: pre-wrap;\">  </span>raise notice 'caught ERR42';<br />end;",
+  "raise-exc": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> raises exception with condition raise_exception:</span><br />raise exception 'bad int: %', i;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> also possible to use predefined condition:</span><br />raise data_exception using message = 'bam!",
+  "re-raise-exc": "begin<br /><span style=\"white-space: pre-wrap;\">  </span>perform risky();<br />exception when others then<br /><span style=\"white-space: pre-wrap;\">  </span>raise notice 'risky() failed.';<br /><span style=\"white-space: pre-wrap;\">  </span>raise;<br />end;",
+  "handle-any-exc": "begin<br /><span style=\"white-space: pre-wrap;\">  </span>raise exception 'bad int: %', i;<br />exception when others then<br /><span style=\"white-space: pre-wrap;\">  </span>raise notice 'caught bad int';<br />end;",
+  "handle-exc-by-type": "begin<br /><span style=\"white-space: pre-wrap;\">  </span>n := 1 / 0;<br />exception when division_by_zero then<br /><span style=\"white-space: pre-wrap;\">  </span>raise notice 'ignoring div by zero';<br />end;",
+  "multiple-exc-handlers": "",
+  "finally": ""
+},
+"file-handles": {
+  "read-line-stdin": "<span style=\"color: gray\"><em>none</em></span>",
+  "write-line-stdout": "<span style=\"color: gray\"><em>none</em></span>",
+  "write-line-stderr": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> stderr stream goes to both client and server log.<br /><span style=\"white-space: pre-wrap;\">--</span><br /><span style=\"white-space: pre-wrap;\">--</span> levels are: debug, log, info, notice, warning<br /><span style=\"white-space: pre-wrap;\">--</span></span><br />raise notice 'i is %', i;"
+},
+"files": {
+},
+"directories": {
+},
+"processes-environment": {
+  "cmd-line-arg": ""
+},
+"libraries-namespaces": {
+  "load-lib": "",
+  "namespace-decl": "",
+  "namespace-alias": "",
+  "unqualified-import": ""
+}
+}

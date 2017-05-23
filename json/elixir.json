@@ -1,0 +1,187 @@
+{
+  "version-used": "<span style=\"color: gray\"><em>1.3</em></span>",
+  "show-version": "$ elixir -v",
+
+"grammar-invocation": {
+  "hello-world": "$ cat hello.exs<br />IO.puts \"Hello, World!\"<br /><br />$ elixir hello.exs<br />Hello, World!",
+  "compiler": "",
+  "bytecode-compiler": "",
+  "interpreter": "",
+  "shebang": "",
+  "invoke-repl": "$ iex",
+  "block-delimiters": "do ; end",
+  "stmt-terminator": "",
+  "eol-comment": "# <span style=\"color: gray\"><em>a comment</em></span>",
+  "multiple-line-comment": ""
+},
+"var-expr": {
+  "var-def": "",
+  "write-once-var": "",
+  "assignment": "x = 3",
+  "parallel-assignment": "{x, y} = {1, 2}<br />[z, w] = [1, 2]",
+  "non-referential-id": "",
+  "quoted-non-referential-id": "",
+  "cond-expr": "if x &gt; 0 do 1 else if x &lt; 0 do -1 else 0 end end",
+  "case": "case x do<br /><span style=\"white-space: pre-wrap;\">  </span>1 -&gt; true<br /><span style=\"white-space: pre-wrap;\">  </span>0 -&gt; false<br />end"
+},
+"arithmetic-logic": {
+  "true-false": "true false",
+  "falsehoods": "false nil",
+  "logical-op": "<span style=\"color: gray\"># arguments must be boolean:</span><br />and or not<br /><br /><span style=\"color: gray\"># arguments of any type permitted:</span><br />&amp;&amp; <span style=\"white-space: pre-wrap;\">||</span> !",
+  "short-circuit-op": "and or &amp;&amp; <span style=\"white-space: pre-wrap;\">||</span>",
+  "relational-op": "",
+  "arith-expr": "2 + 2",
+  "arith-op": "+ - * / div rem<br /><br /><span style=\"color: gray\"><em>div and rem are functions, not operators</em></span>",
+  "int-div": "div 7, 3<br />div(7, 3)",
+  "int-div-zero": "<span style=\"color: gray\"><em>raises</em> ArithmeticError</span>",
+  "float-div": "7 / 3",
+  "float-div-zero": "<span style=\"color: gray\"><em>raises</em> ArithmeticError</span>",
+  "power": ":math.pow(2, 32)",
+  "sqrt": ":math.sqrt(2)",
+  "sqrt-negative-one": "<span style=\"color: gray\"><em>raises</em> ArithmeticError</span>",
+  "transcendental-func": ":math.exp :math.log<br />:math.sin :math.cos :math.tan<br />:math.asin :math.acos :math.atan<br />:math.atan2",
+  "float-truncation": "<span style=\"color: gray\"># 2, 3:</span><br />trunc(2.7)<br />round(2.7)<br /><br /><span style=\"color: gray\"># 2.0, 3.0:</span><br />Float.floor(2.7)<br />Float.ceil(2.7)",
+  "absolute-val": "abs(-3)<br />abs(-3.2)",
+  "int-overflow": "",
+  "float-literal-with-exponent": "2.0e2<br />-2.0e-2",
+  "random-num": ":random.uniform<br />:random.uniform(100)",
+  "random-seed": ":random.seed(17, 17, 17)",
+  "result-of-not-seeding": "",
+  "bit-op": "import Bitwise<br /><br /><span style=\"white-space: pre-wrap;\">5 &lt;&lt;&lt; 1</span><br /><span style=\"white-space: pre-wrap;\">5 &gt;&gt;&gt; 1</span><br /><span style=\"white-space: pre-wrap;\">5 &amp;&amp;&amp; 1</span><br /><span style=\"white-space: pre-wrap;\">5 ||| 1</span><br /><span style=\"white-space: pre-wrap;\">5 ^^^ 1</span><br /><span style=\"white-space: pre-wrap;\">~~~5</span>",
+  "binary-octal-hex-literals": "0b101010<br />0o52<br />0x2A"
+},
+"strings": {
+  "str-literal": "\"don't say \\\"no\\\"\"",
+  "str-literal-newline": "",
+  "char-esc": "\\\" \\' \\\\ \\a \\b \\d \\e \\f \\n \\r \\s \\t \\v \\0<br />\\x<span style=\"color: gray\"><em>hh</em></span> \\u<span style=\"color: gray\"><em>hhhh</em></span> \\u{<span style=\"color: gray\"><em>h</em></span>…}",
+  "str-concat": "\"one \" &lt;&gt; \"two \" &lt;&gt; \"three\"",
+  "str-replicate": ":binary.copy(\"-\", 80)",
+  "trim": "String.trim(\" lorem \")",
+  "pad": "String.pad_leading(\"lorem\", 10, [\"$\"])<br />String.pad_trailing(\"lorem\", 10, [\"$\"])",
+  "num-to-str": "\"value: \" &lt;&gt; Integer.to_string(8)<br />\"value: \" &lt;&gt; Float.to_string(3.14)",
+  "str-to-num": "7 + String.to_integer(\"12\")<br />73.9 + String.to_float(\"0.039\")",
+  "atom-to-str": "Atom.to_string(:foo)",
+  "str-to-atom": "String.to_atom(\"foo\")",
+  "translate-case": "String.downcase(\"LOREM\")<br />String.upcase(\"lorem\")<br />String.capitalize(\"lorem\")",
+  "split": "String.split(\"foo bar baz\")<br />Regex.split(~r/ /, \"foo bar baz\")",
+  "join": "String.join([\"foo\", \"bar\", \"baz\"])",
+  "character-literal<br-/>": "'A'",
+  "string-length": "String.length(\"hello\")",
+  "index-substr": "<span style=\"color: gray\"># {4, 3}:</span><br />:binary.match(\"foo bar baz\", \"bar\")<br /><br /><span style=\"color: gray\"><em>??</em></span>",
+  "extract-substr": "String.slice(\"foo bar baz\", 5..3)",
+  "chr-and-ord": "List.to_string([65])<br />Enum.at('A', 0)"
+},
+"regex": {
+  "regex-literal": "~r/lorem|ipsum/",
+  "char-class-abbrev": ". \\d \\D \\h \\H \\s \\S \\v \\V \\w \\W",
+  "regex-anchors": "^ $ \\A \\b \\B \\G \\z \\Z",
+  "match-test": "Regex.match?(~r/.*1999/, \"it's 2000\")<br />String.match?(\"it's 2000\", ~r/.*1999/)",
+  "case-insensitive-regex": "Regex.match?(~r/lorem/i, \"Lorem\")<br />String.match?(\"Lorem\", ~r/lorem/i)",
+  "regex-modifiers": "u i s m x f U",
+  "subst": "Regex.replace(~r/mi/, \"do re mi mi mi\", \"ma\")<br />String.replace(\"do re mi mi mi\", ~r/mi/, \"ma\")",
+  "match-prematch-postmatch": "",
+  "group-capture": "",
+  "named-group-capture": "",
+  "scan": "",
+  "backreference-match": "",
+  "backreference-subst": ""
+},
+"date-time": {
+  "current-date/time": "DateTime.utc_now"
+},
+"lists": {
+  "list-literal": "[1, 2, 3]",
+  "cons": "[4 | [3, 2, 1]]",
+  "head": "hd([1, 2, 3])<br />[head | _] = [1, 2, 3]<br />List.first [1, 2, 3]",
+  "tail": "tl([1, 2, 3])<br />[_ | tail] = [1, 2, 3]",
+  "length": "length([1, 2, 3])<br />Enum.count([1, 2, 3])",
+  "append": "[1, 2] ++ [3, 4]",
+  "sort": "Enum.sort([1, 3, 2, 4])",
+  "reverse": "Enum.reverse([1, 2, 3, 4])",
+  "membership": "Enum.member?([1, 2, 3], 1)",
+  "zip": "Enum.zip([1, 2, 3], [\"a\", \"b\", \"c\"])",
+  "map": "Enum.map([1, 2, 3], fn x -&gt; x * x end)",
+  "filter": "Enum.filter([1, 2, 3], fn x -&gt; x &gt; 2 end)",
+  "reduce": "<span style=\"color: gray\"># 2:</span><br />Enum.reduce([1, 2, 3], fn x, y -&gt; x - y end)"
+},
+"tuples": {
+  "tuple-literal": "{1, \"foo\", 3.14}",
+  "tuple-element-access": "<span style=\"color: gray\"># \"foo\":</span><br />elem({1, \"foo\", 3.14}, 2)<br /><br /><span style=\"color: gray\"># 1, \"bar\", 3.14}:</span><br />put_elem({1, \"foo\", 3.14}, 2, \"bar\")",
+  "tuple-length": "tuple_size({1, \"foo\", 3.14})"
+},
+"dictionaries": {
+  "literal": "%{\"t\" =&gt; 1, \"f\" =&gt; 0}",
+  "size": "",
+  "lookup": "",
+  "update": "",
+  "missing-key-behavior": "",
+  "is-key-present": "",
+  "iterate": ""
+},
+"algebraic-data-types": {
+  "record": ""
+},
+"functions": {
+  "function-definition": "def factorial(0), do: 1<br />def factorial(n), do: n * factorial(n - 1)",
+  "function-definition-with-guards": "def factorial(n) when n &gt; 0, do: n * factorial(n - 1)<br />def factorial(0), do: 1",
+  "anonymous-function": "fn(x, y) -&gt; x + y end",
+  "piecewise-defined-anonymous-function": ""
+},
+"execution-control": {
+  "if": "if x == 0 do<br /><span style=\"white-space: pre-wrap;\">  </span>IO.puts \"no hits\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>IO.puts \"hits\"<br />end",
+  "for": "for x &lt;- 1..10, do: IO.puts(x)",
+  "try/catch": "try do<br /><span style=\"white-space: pre-wrap;\">  </span>div(7, 0)<br /><span style=\"white-space: pre-wrap;\">  </span>:ok<br />catch<br /><span style=\"white-space: pre-wrap;\">  </span>_, _ -&gt; :failed<br />end",
+  "receive-message": "receive do<br /><span style=\"white-space: pre-wrap;\">  </span>{:ok, some_value} -&gt; :yay<br /><span style=\"white-space: pre-wrap;\">  </span>{:error, val} when val &gt; 0 -&gt; :meh<br /><span style=\"white-space: pre-wrap;\">  </span>{:error, oh_no} -&gt; :aw<br />end",
+  "spawn-process": "pid = spawn(fn -&gt; :ok end)",
+  "send-message": "send(pid, :hello)",
+  "list-processes": "Process.list"
+},
+"file-handles": {
+  "read-line-from-stdin": "<span style=\"color: gray\"># returns newline terminated string:</span><br />s = IO.gets(\"&gt; \")",
+  "write-line-to-stdout": "",
+  "write-line-to-stderr": "",
+  "open-file-for-reading": "{:ok, f} = File.open(\"/etc/hosts\", [:read])",
+  "read-line": "",
+  "read-character": "",
+  "read-term": "",
+  "open-file-for-writing": "{:ok, f} = File.open(\"/tmp/foo.txt\", [:write])",
+  "open-file-for-appending": "",
+  "write-line": "",
+  "write-character": "",
+  "write-term": "",
+  "printf": "",
+  "close-file": ":ok = File.close(f)"
+},
+"files": {
+  "file-test": "File.regular? \"/etc/hosts\"",
+  "file-size": ""
+},
+"directories": {
+  "build-pathname": "",
+  "dirname-basename": "File.dirname \"/etc/hosts\"<br />File.basename \"/etc/hosts\"",
+  "absolute-pathname": "File.absname \"/etc/hosts\"",
+  "glob": "",
+  "mkdir": "File.mkdir_p(\"/tmp/foo/bar\")",
+  "dir-test": "File.dir? \"/tmp\""
+},
+"processes-environment": {
+  "command-line-arguments": "System.argv",
+  "program-name": "",
+  "exit": "System.halt"
+},
+"libraries-namespaces": {
+  "load-file": "",
+  "define-namespace": "defmodule Factorial do<br />end",
+  "compile-namespace": "c(\"factorial.ex\")",
+  "use-function-in-namespace": "Factorial.fact 7"
+},
+"reflection": {
+  "inspect-namespace": ""
+},
+"repl": {
+  "help": "h",
+  "clear-variable": "",
+  "clear-all-variables": "",
+  "display-processes": ""
+}
+}

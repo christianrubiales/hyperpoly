@@ -3,15 +3,15 @@
 "version": {
   "version-used": "<span style=\"color: gray\"><em>1.4</em></span>",
   "show-version": "$ go version",
-  "implicit-prologue": "import \"fmt\"",
+  "implicit-prologue": "import \"fmt\""
 },
 "grammar-invocation": {
-  "hello-world": "$ cat hello.go<br />package main<br />import \"fmt\"<br /><br />func main() {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Hello, World!\n\")<br />}<br /><br />$ go build hello.go<br /><br />$ ./hello<br />Hello, World!",
+  "hello-world": "$ cat hello.go<br />package main<br />import \"fmt\"<br /><br />func main() {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Hello, World!\\n\")<br />}<br /><br />$ go build hello.go<br /><br />$ ./hello<br />Hello, World!",
   "file-suffixes": "",
   "stmt-separator": "; <span style=\"color: gray\"><em>or sometimes newline</em></span><br /><br /><span style=\"color: gray\"><em>a new line terminates a statement when the last token on the line is<br /><span style=\"white-space: pre-wrap;\">  </span>(1) an identifier,<br /><span style=\"white-space: pre-wrap;\">  </span>(2) a numeric, character, or string literal,<br /><span style=\"white-space: pre-wrap;\">  </span>(3) one of the keywords</em> break, continue,<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fallthrough, <em>or</em> return, <em><br /><span style=\"white-space: pre-wrap;\">  </span>(4) one of</em> ++, <span style=\"white-space: pre-wrap;\">--</span>, ), ], <em>or</em> }</span>",
   "block-delimiters": "{ <span style=\"color: gray\"><em>…</em></span> }",
   "eol-comment": "<span style=\"white-space: pre-wrap;\">//</span> <span style=\"color: gray\"><em>comment</em></span>",
-  "multiple-line-comment": "/* <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> */",
+  "multiple-line-comment": "/* <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> */"
 },
 "variables-expressions": {
   "local-var": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> memory allocated on stack:</span><br />var i int<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> allocated on stack; type inferred from literal:</span><br />j := 3<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> memory allocated on heap:</span><br />ptr := new(int)<br />*ptr = 7",
@@ -31,7 +31,7 @@
   "addr-arith": "<span style=\"color: gray\"><em>none</em></span>",
   "null": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> cannot be stored in numeric or string variable:</span><br />nil",
   "null-test": "ptr == nil",
-  "conditional-expr": "<span style=\"color: gray\"><em>none</em></span>",
+  "conditional-expr": "<span style=\"color: gray\"><em>none</em></span>"
 },
 "arithmetic-logic": {
   "boolean-type": "bool",
@@ -59,13 +59,13 @@
   "complex-decomposition": "import \"math/cmplx\"<br /><br />var x float64<br />var w complex128<br /><br />x = real(z)<br />x = imag(z)<br />x = cmplx.Phase(z)<br />x = cmplx.Abs(z)<br />w = cmplx.Conj(z)",
   "random-num": "import \"math/rand\"<br /><br />n := rand.Intn(100)<br />x := rand.Float64()",
   "random-seed": "import \"math/rand\"<br /><br />rand.Seed(17)",
-  "bit-op": "<span style=\"white-space: pre-wrap;\">&lt;&lt; &gt;&gt; &amp; |</span> <span style=\"color: gray\"><em>none</em></span> ^",
+  "bit-op": "<span style=\"white-space: pre-wrap;\">&lt;&lt; &gt;&gt; &amp; |</span> <span style=\"color: gray\"><em>none</em></span> ^"
 },
 "strings": {
   "str-type": "string",
   "str-literal": "\"hello\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> raw string literal:</span><br /><span style=\"white-space: pre-wrap;\">`hello`</span>",
   "newline-in-str-literal": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> backquote literals only:</span><br />let s := <span style=\"white-space: pre-wrap;\">`first line</span><br />second line<span style=\"white-space: pre-wrap;\">`</span>",
-  "str-literal-esc": "<span style=\"color: gray\"><em>Double quote literals only:</em></span><br /><br />\a \b \f \n \r \t \v \\ \\"<br />\<span style=\"color: gray\"><em>ooo</em></span> \x<span style=\"color: gray\"><em>hh</em></span> \u<span style=\"color: gray\"><em>hhhh</em></span> \U<span style=\"color: gray\"><em>hhhhhhhh</em></span>",
+  "str-literal-esc": "<span style=\"color: gray\"><em>Double quote literals only:</em></span><br /><br />\\a \\b \\f \\n \\r \\t \\v \\\\ \\\"<br />\\<span style=\"color: gray\"><em>ooo</em></span> \\x<span style=\"color: gray\"><em>hh</em></span> \\u<span style=\"color: gray\"><em>hhhh</em></span> \\U<span style=\"color: gray\"><em>hhhhhhhh</em></span>",
   "expr-interpolation": "",
   "compare-str": "\"hello\" == \"world\"<br />\"hello\" &lt; \"world\"",
   "str-to-num": "import \"strconv\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span>2nd arg is base, 3rd arg is size of int in bits:</span><br />i, _ := strconv.ParseInt(\"17\", 10, 32)<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> 2nd arg is size of float in bits:</span><br />x, _ := strconv.ParseFloat(\"3.14\", 32)",
@@ -86,17 +86,17 @@
   "char-lookup": "",
   "char-index": "",
   "char-tests": "",
-  "chr-ord": "",
+  "chr-ord": ""
 },
 "regexes": {
-  "regex-metachar": ". [ ] \ ( ) * + ? { } | ^ $<br /><br /><span style=\"color: gray\"><em>use raw string (i.e. backtick) literals to avoid having to escape backslashes.</em></span>",
-  "char-class-abbrev": ". \d \D \s \S \w \W",
-  "regex-anchors": "^ $ \A \b \B \z",
+  "regex-metachar": ". [ ] \\ ( ) * + ? { } | ^ $<br /><br /><span style=\"color: gray\"><em>use raw string (i.e. backtick) literals to avoid having to escape backslashes.</em></span>",
+  "char-class-abbrev": ". \\d \\D \\s \\S \\w \\W",
+  "regex-anchors": "^ $ \\A \\b \\B \\z",
   "regex-test": "import \"regexp\"<br /><br />var rx = regexp.MustCompile(\"1999\")<br />if (rx.MatchString(\"It's 1999.\")) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"Party!\")<br />}",
   "case-insensitive-regex": "import \"regexp\"<br /><br />var rx = regexp.MustCompile(\"(?i)lorem\")<br />if (rx.MatchString(\"Lorem Ipsum\")) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"case insensitive match\")<br />}",
   "regex-modifiers": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> use (?i), (?m), <span style=\"white-space: pre-wrap;\">...</span> to insert in regex:</span><br />i m s U",
   "subst": "import \"regexp\"<br /><br />s := \"do re mi mi mi\"<br />var rx = regexp.MustCompile(\"mi\")<br />fmt.Println(rx.ReplaceAllString(s, \"ma\"))",
-  "group-capture": "",
+  "group-capture": ""
 },
 "dates-time": {
   "unix-epoch-type": "int64",
@@ -115,7 +115,7 @@
   "local-tmz-determination": "",
   "tmz-info": "name, offset_sec := dt.Zone()<br /><br /><span style=\"color: gray\"><em>offset abbreviation:</em></span><br />name<br /><br /><span style=\"color: gray\"><em>UTC offset in hours:</em></span><br />offset_sec / 3600.0",
   "daylight-savings-test": "",
-  "microseconds": "dt.Nanosecond() / 1000",
+  "microseconds": "dt.Nanosecond() / 1000"
 },
 "fixed-length-arrays": {
   "declare-array": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> values are zero-initialized:</span><br />var a [10]int",
@@ -135,7 +135,7 @@
   "iterate-over-array": "",
   "iterate-indices-elem": "",
   "reverse-array": "import \"sort\"<br /><br />a := []int{1, 2, 3}<br />sort.Sort(sort.Reverse(sort.IntSlice(a)))",
-  "sort-array": "",
+  "sort-array": ""
 },
 "resizable-arrays": {
   "declare-array": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> slice of length 5; capacity 10:</span><br />a := make([]int, 5, 10)",
@@ -151,13 +151,13 @@
   "array-front": "",
   "concatenate-array": "a := []int{1, 2, 3}<br />a2 := []int{4, 5, 6}<br />a3 := append(a, a2<span style=\"white-space: pre-wrap;\">...</span>)",
   "copy-array": "a := []int{1, 2, 3}<br /><br />a2 := a<br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> also sets a[0] to 4:</span><br />a2[0] = 4<br /><br />a3 := make([]int, len(a))<br />copy(a3, a)<br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> a[0] is unchanged:</span><br />a3[0] = 5",
-  "iterate-over-array": "a := []string{\"do\", \"re\", \"mi\"}<br />for _, s := range(a) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"value: %s\n\", s)<br />}",
-  "iterate-indices-elem": "a := []string{\"do\", \"re\", \"mi\"}<br />for i, s := range(a) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"value at %d: %s\n\", i, s)<br />}",
+  "iterate-over-array": "a := []string{\"do\", \"re\", \"mi\"}<br />for _, s := range(a) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"value: %s\\n\", s)<br />}",
+  "iterate-indices-elem": "a := []string{\"do\", \"re\", \"mi\"}<br />for i, s := range(a) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"value at %d: %s\\n\", i, s)<br />}",
   "reverse-array": "import \"sort\"<br /><br />a := []int{1, 2, 3}<br />sort.Sort(sort.Reverse(sort.IntSlice(a)))",
   "sort-array": "",
   "map": "<span style=\"color: gray\"><em>none</em></span>",
   "filter": "<span style=\"color: gray\"><em>none</em></span>",
-  "reduce": "<span style=\"color: gray\"><em>none</em></span>",
+  "reduce": "<span style=\"color: gray\"><em>none</em></span>"
 },
 "dictionaries": {
   "declare-dict": "d := make(map[string]int)",
@@ -168,13 +168,13 @@
   "dict-missing-key": "<span style=\"color: gray\"><em>returns zero value for value type</em></span>",
   "dict-is-key-present": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> If key not present, val will contain<br /><span style=\"white-space: pre-wrap;\">//</span> zero value for type and ok will contain false:</span><br />val, ok = d[\"y\"]]",
   "dict-delete": "delete(d, \"f\")",
-  "dict-iter": "for k, v := range d {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"%s: %d\n\", k, v)<br />}",
-  "dict-key-val-arrays": "",
+  "dict-iter": "for k, v := range d {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"%s: %d\\n\", k, v)<br />}",
+  "dict-key-val-arrays": ""
 },
 "functions": {
   "def-func": "func add(n int, m int) int {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> parameters can share type declaration:</span><br />func add(n, m int) int {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}",
   "invoke-func": "add(3, 7)",
-  "forward-decl-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> function can be invoked before definition</span><br />fmt.Printf(\"%f\n\", add(2.2, 3.5))<br /><br />func add(n float32, m float32) float32 {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}",
+  "forward-decl-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> function can be invoked before definition</span><br />fmt.Printf(\"%f\\n\", add(2.2, 3.5))<br /><br />func add(n float32, m float32) float32 {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}",
   "overload-func": "<span style=\"color: gray\"><em>not permitted</em></span>",
   "nest-func": "<span style=\"color: gray\"><em>not permitted</em></span>",
   "default-val-param": "<span style=\"color: gray\"><em>none</em></span>",
@@ -191,7 +191,7 @@
   "anonymous-func-literal": "",
   "invoke-anonymous-func": "",
   "func-private-state": "",
-  "func-as-val": "",
+  "func-as-val": ""
 },
 "execution-control": {
   "if": "var signum int<br /><br />if x &gt; 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1<br />} else if x == 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1<br />}",
@@ -207,7 +207,7 @@
   "dangling-else": "<span style=\"color: gray\"><em>no ambiguity</em></span>",
   "goto": "<span style=\"white-space: pre-wrap;\">  </span>if err {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>goto Cleanup<br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> code</span><br /><br />Cleanup:<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"cleaning up<span style=\"white-space: pre-wrap;\">...</span>\")",
   "longjmp": "<span style=\"color: gray\"><em>none</em></span>",
-  "finally-block": "",
+  "finally-block": ""
 },
 "concurrency": {
   "sleep": "dur := time.Duration(10 * time.Second)<br />time.Sleep(dur)<br /><br />dur2 := time.Duration(10000 * time.Microsecond)<br />time.Sleep(dur2)",
@@ -220,13 +220,13 @@
   "lock": "",
   "create-msg-queue": "",
   "send-msg": "",
-  "receive-msg": "",
+  "receive-msg": ""
 },
 "file-handles": {
   "std-file-handles": "import \"os\"<br /><br />os.Stdin os.Stdout os.Stderr",
-  "read-line-stdin": "import \"bufio\"<br />import \"os\"<br /><br />var line string<br />var err error<br /><br />b := bufio.NewReader(os.Stdin)<br /><br />line, err = b.ReadString('\n')<br /><br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"error!\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> use line here</span><br />}",
-  "write-line-stdout": "import \"os\"<br /><br />os.Stdout.WriteString(\"Hello, World!\n\")",
-  "printf": "fmt.Printf(\"count: %d\n\", 7)",
+  "read-line-stdin": "import \"bufio\"<br />import \"os\"<br /><br />var line string<br />var err error<br /><br />b := bufio.NewReader(os.Stdin)<br /><br />line, err = b.ReadString('\\n')<br /><br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"error!\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> use line here</span><br />}",
+  "write-line-stdout": "import \"os\"<br /><br />os.Stdout.WriteString(\"Hello, World!\\n\")",
+  "printf": "fmt.Printf(\"count: %d\\n\", 7)",
   "open-file": "raw, err := os.Open(\"/etc/hosts\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>f := bufio.NewReader(f)<br />}",
   "open-file-write": "",
   "open-file-append": "",
@@ -242,38 +242,38 @@
   "flush": "",
   "eof-test": "",
   "seek": "",
-  "tmp-file": "",
+  "tmp-file": ""
 },
 "files": {
-  "file-test": "import \"os\"<br /><br />fi, err := os.Stat(\"/tmp/foo\")<br />if os.IsNotExist(err) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Does not exit\n\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Exists\n\")<br /><span style=\"white-space: pre-wrap;\">  </span>fm := fi.Mode()<br /><span style=\"white-space: pre-wrap;\">  </span>if fm.IsRegular() {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Is Regular\")<br /><span style=\"white-space: pre-wrap;\">  </span>} else {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Is Not Regular\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
+  "file-test": "import \"os\"<br /><br />fi, err := os.Stat(\"/tmp/foo\")<br />if os.IsNotExist(err) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Does not exit\\n\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Exists\\n\")<br /><span style=\"white-space: pre-wrap;\">  </span>fm := fi.Mode()<br /><span style=\"white-space: pre-wrap;\">  </span>if fm.IsRegular() {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Is Regular\")<br /><span style=\"white-space: pre-wrap;\">  </span>} else {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Is Not Regular\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
   "file-size": "fi.Size()",
   "readable-writable-executable": "",
-  "chmod": "import \"os\"<br /><br />err := os.Chmod(\"/tmp/foo\", 0755)<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Chmod failed\n\")<br />}",
+  "chmod": "import \"os\"<br /><br />err := os.Chmod(\"/tmp/foo\", 0755)<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Chmod failed\\n\")<br />}",
   "last-modification-time": "",
-  "file-cp-rm-mv": "import \"os\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> no copy function in standard library</span><br /><br />err := os.Remove(\"/tmp/foo\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Remove failed: %s\n\", err)<br />}<br /><br />err2 := os.Rename(\"/tmp/bar\", \"/tmp/foo\")<br />if err2 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Rename failed: %s\n\", err2)<br />}",
-  "symlink": "import \"os\"<br /><br />err := os.Symlink(\"/etc/hosts\", \"/tmp/hosts\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Symlink failed: %s\n\", err)<br />}<br /><br />fi, err2 := os.Lstat(\"/tmp/hosts\")<br />if err2 == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fm := fi.Mode()<br /><span style=\"white-space: pre-wrap;\">  </span>if fm &amp; os.ModeSymlink != 0 {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"File is a Symlink\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Lstat failed: %s\n\", err2)<br />}<br /><br />s, err3 := os.Readlink(\"/tmp/hosts\")<br />if err3 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Readlink failed: %s\n\", err3)<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Link target: %s\n\", s)<br />}",
-  "unused-file-name": "import \"io/ioutil\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Uses system tmp dir if 1st arg is empty string:</span><br />f, err := ioutil.TempFile(\"/tmp\", \"foo\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"writing to: %s\n\", f.Name())<br /><span style=\"white-space: pre-wrap;\">  </span>f.WriteString(\"foo content\")<br />}",
+  "file-cp-rm-mv": "import \"os\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> no copy function in standard library</span><br /><br />err := os.Remove(\"/tmp/foo\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Remove failed: %s\\n\", err)<br />}<br /><br />err2 := os.Rename(\"/tmp/bar\", \"/tmp/foo\")<br />if err2 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Rename failed: %s\\n\", err2)<br />}",
+  "symlink": "import \"os\"<br /><br />err := os.Symlink(\"/etc/hosts\", \"/tmp/hosts\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Symlink failed: %s\\n\", err)<br />}<br /><br />fi, err2 := os.Lstat(\"/tmp/hosts\")<br />if err2 == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fm := fi.Mode()<br /><span style=\"white-space: pre-wrap;\">  </span>if fm &amp; os.ModeSymlink != 0 {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"File is a Symlink\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Lstat failed: %s\\n\", err2)<br />}<br /><br />s, err3 := os.Readlink(\"/tmp/hosts\")<br />if err3 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Readlink failed: %s\\n\", err3)<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Link target: %s\\n\", s)<br />}",
+  "unused-file-name": "import \"io/ioutil\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Uses system tmp dir if 1st arg is empty string:</span><br />f, err := ioutil.TempFile(\"/tmp\", \"foo\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"writing to: %s\\n\", f.Name())<br /><span style=\"white-space: pre-wrap;\">  </span>f.WriteString(\"foo content\")<br />}"
 },
 "directories": {
-  "working-dir": "import \"os\"<br /><br />dir, err := os.Getwd()<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"Gtwd failed\n\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"pwd: %s\n\", dir)<br />}<br /><br />err2 := os.Chdir(\"/tmp\")<br />if err2 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"Chdir failed\n\");<br />}",
-  "build-pathname": "import \"path\"<br /><br />pathname := path.Join(\"/etc\", \"hosts\")<br />fmt.Printf(\"path: %s\n\", pathname)",
+  "working-dir": "import \"os\"<br /><br />dir, err := os.Getwd()<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"Gtwd failed\\n\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"pwd: %s\\n\", dir)<br />}<br /><br />err2 := os.Chdir(\"/tmp\")<br />if err2 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"Chdir failed\\n\");<br />}",
+  "build-pathname": "import \"path\"<br /><br />pathname := path.Join(\"/etc\", \"hosts\")<br />fmt.Printf(\"path: %s\\n\", pathname)",
   "dirname-basename": "import \"path\"<br /><br />path.Dir(\"/etc/hosts\")<br />path.Base(\"/etc/hosts\")",
   "absolute-pathname": "",
-  "dir-iterate": "import \"io/ioutil\"<br /><br />a, err := ioutil.ReadDir(\"/etc\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>for _, fi := range a {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"name: %s\n\", fi.Name())<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
-  "glob": "import \"path/filepath\"<br /><br />a, err := filepath.Glob(\"/etc/*\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>for _, path := range(a) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"path: %s\n\", path)<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
-  "mkdir": "err := os.Mkdir(\"/tmp/foo\", 0775)<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Mkdir failed: %s\n\", err)<br />}",
+  "dir-iterate": "import \"io/ioutil\"<br /><br />a, err := ioutil.ReadDir(\"/etc\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>for _, fi := range a {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"name: %s\\n\", fi.Name())<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
+  "glob": "import \"path/filepath\"<br /><br />a, err := filepath.Glob(\"/etc/*\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>for _, path := range(a) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"path: %s\\n\", path)<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
+  "mkdir": "err := os.Mkdir(\"/tmp/foo\", 0775)<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Mkdir failed: %s\\n\", err)<br />}",
   "recursive-cp": "",
   "rmdir": "err := os.Remove(\"/tmp/foo\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Remove failed: %s\", err)<br />}",
   "rm-rf": "err := os.RemoveAll(\"/tmp/foo\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"RemoveAll failed: %s\", err)<br />}",
   "dir-test": "",
-  "unused-dir": "import \"io/ioutil\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Uses system tmp dir if 1st arg is empty string:</span><br />path, err := ioutil.TempDir(\"/tmp\", \"foo\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"dir path: %s\n\", path)<br />}",
-  "system-tmp-dir": "import \"os\"<br /><br />path := os.TempDir()",
+  "unused-dir": "import \"io/ioutil\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Uses system tmp dir if 1st arg is empty string:</span><br />path, err := ioutil.TempDir(\"/tmp\", \"foo\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"dir path: %s\\n\", path)<br />}",
+  "system-tmp-dir": "import \"os\"<br /><br />path := os.TempDir()"
 },
 "processes-environment": {
-  "cmd-line-arg": "import \"os\"<br /><br />if len(os.Args) &gt; 1 {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"first arg: %\n\", os.Args[1])<br />}",
-  "program-name": "import \"os\"<br /><br />fmt.Printf(\"program name: %s\n\", os.Args[0])",
-  "env-var": "import \"os\"<br /><br />home := os.Getenv(\"HOME\")<br /><br />err := os.Setenv(\"EDITOR\", \"emacs\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Setenv failed: %s\n\", err)<br />}",
-  "env-var-iter": "import \"os\"<br />import \"strings\"<br /><br />for _, s := range os.Environ() {<br /><span style=\"white-space: pre-wrap;\">  </span>a := strings.SplitN(s, \"=\", 2)<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"key: %s value: %s\n\", a[0], a[1])<br />}",
+  "cmd-line-arg": "import \"os\"<br /><br />if len(os.Args) &gt; 1 {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"first arg: %\\n\", os.Args[1])<br />}",
+  "program-name": "import \"os\"<br /><br />fmt.Printf(\"program name: %s\\n\", os.Args[0])",
+  "env-var": "import \"os\"<br /><br />home := os.Getenv(\"HOME\")<br /><br />err := os.Setenv(\"EDITOR\", \"emacs\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Setenv failed: %s\\n\", err)<br />}",
+  "env-var-iter": "import \"os\"<br />import \"strings\"<br /><br />for _, s := range os.Environ() {<br /><span style=\"white-space: pre-wrap;\">  </span>a := strings.SplitN(s, \"=\", 2)<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"key: %s value: %s\\n\", a[0], a[1])<br />}",
   "user-id-name": "import \"os\"<br /><br />os.Getuid()<br /><span style=\"color: gray\">/* username? */</span>",
   "exit": "import \"os\"<br /><br />os.Exit(1)",
   "executable-test": "",
@@ -284,10 +284,10 @@
   "wait": "",
   "pid": "import \"os\"<br /><br />fmt.Println(os.Getpid())<br />fmt.Println(os.Getppid())",
   "signal-handler": "",
-  "send-signal": "",
+  "send-signal": ""
 },
 "option-parsing": {
-  "getopt": "",
+  "getopt": ""
 },
 "libraries-namespaces": {
   "load-lib": "import \"foo\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Only capitalized identifiers are visible:</span><br />var bar = foo.GetBar()",
@@ -297,17 +297,17 @@
   "alias-namespace": "import fu \"foo\"",
   "unqualified-import": "import . \"foo\"",
   "unqualified-import-of-definitions": "",
-  "pkg-manager": "",
+  "pkg-manager": ""
 },
 "user-defined-types": {
   "typedef": "",
   "enum": "",
-  "<a-href="#struct-definition">struct-definition</a>": "type MedalCount struct {<br /><span style=\"white-space: pre-wrap;\">  </span>country string<br /><span style=\"white-space: pre-wrap;\">  </span>gold int<br /><span style=\"white-space: pre-wrap;\">  </span>silver int<br /><span style=\"white-space: pre-wrap;\">  </span>bronze int<br />}",
-  "<a-href="#struct-declaration">struct-declaration</a><br-/>": "",
-  "<a-href="#struct-initialization">struct-initialization</a>": "spain := MedalCount{\"Spain\", 3, 2, 1}<br /><br />france := MedalCount{<br /><span style=\"white-space: pre-wrap;\">  </span>bronze: 9,<br /><span style=\"white-space: pre-wrap;\">  </span>silver: 7,<br /><span style=\"white-space: pre-wrap;\">  </span>gold: 8,<br /><span style=\"white-space: pre-wrap;\">  </span>country: \"France\"}",
+  "struct-definition": "type MedalCount struct {<br /><span style=\"white-space: pre-wrap;\">  </span>country string<br /><span style=\"white-space: pre-wrap;\">  </span>gold int<br /><span style=\"white-space: pre-wrap;\">  </span>silver int<br /><span style=\"white-space: pre-wrap;\">  </span>bronze int<br />}",
+  "struct-declaration<br-/>": "",
+  "struct-initialization": "spain := MedalCount{\"Spain\", 3, 2, 1}<br /><br />france := MedalCount{<br /><span style=\"white-space: pre-wrap;\">  </span>bronze: 9,<br /><span style=\"white-space: pre-wrap;\">  </span>silver: 7,<br /><span style=\"white-space: pre-wrap;\">  </span>gold: 8,<br /><span style=\"white-space: pre-wrap;\">  </span>country: \"France\"}",
   "struct-literal": "",
-  "<a-href="#struct-member-assignment">struct-member-assignment</a>": "france := MedalCount{}<br />france.country = \"France\"<br />france.gold = 7<br />france.silver = 6<br />france.bronze = 5",
-  "<a-href="#struct-member-access">struct-member-access</a>": "france_total = france.gold +<br /><span style=\"white-space: pre-wrap;\">  </span>france.silver +<br /><span style=\"white-space: pre-wrap;\">  </span>france.bronze",
+  "struct-member-assignment": "france := MedalCount{}<br />france.country = \"France\"<br />france.gold = 7<br />france.silver = 6<br />france.bronze = 5",
+  "struct-member-access": "france_total = france.gold +<br /><span style=\"white-space: pre-wrap;\">  </span>france.silver +<br /><span style=\"white-space: pre-wrap;\">  </span>france.bronze"
 },
 "cpp-macros": {
   "include-file": "",
@@ -319,16 +319,16 @@
   "stringify-macro-argument": "",
   "concatenate-tokens": "",
   "conditional-compilation": "",
-  "macro-operators": "",
+  "macro-operators": ""
 },
 "net-web": {
-  "http-get": "import \"io/ioutil\"<br />import \"net/http\"<br /><br />resp, err := http.Get(<span style=\"white-space: pre-wrap;\">\"http://www.google.com\"</span>)<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>defer resp.Body.Close()<br /><span style=\"white-space: pre-wrap;\">  </span>body, err := ioutil.ReadAll(resp.Body)<br /><span style=\"white-space: pre-wrap;\">  </span>if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(string(body))<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
+  "http-get": "import \"io/ioutil\"<br />import \"net/http\"<br /><br />resp, err := http.Get(<span style=\"white-space: pre-wrap;\">\"http://www.google.com\"</span>)<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>defer resp.Body.Close()<br /><span style=\"white-space: pre-wrap;\">  </span>body, err := ioutil.ReadAll(resp.Body)<br /><span style=\"white-space: pre-wrap;\">  </span>if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(string(body))<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}"
 },
 "unit-tests": {
   "unit-test-example": "",
   "equality-assertion": "",
   "setup-and-teardown": "",
-  "unit-test-coverage": "",
+  "unit-test-coverage": ""
 },
 "debugging-profiling": {
   "check-syntax": "",
@@ -341,6 +341,6 @@
   "debugger-cmds": "",
   "cpu-usage": "",
   "profile": "",
-  "memory-tool": "",
+  "memory-tool": ""
 }
 }

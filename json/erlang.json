@@ -1,0 +1,187 @@
+{
+  "version-used": "<span style=\"color: gray\"><em>8.0</em></span>",
+  "show-version": "$ erl -version",
+
+"grammar-invocation": {
+  "hello-world": "$ cat hello.erl<br />-module(hello).<br />-export([hello_world/0]).<br /><br />hello_world() -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span>io:format(\"Hello, World!~n\"),<br /><span style=\"white-space: pre-wrap;\">  </span>halt(0).<br /><br />$ erlc hello.erl<br /><br />$ erl -noshell -run hello hello_world<br />Hello, World!",
+  "compiler": "<span style=\"color: gray\"><em>does not create a stand-alone executable:</em></span><br />$ erlc +native foo.erl",
+  "bytecode-compiler": "$ erlc foo.erl",
+  "interpreter": "$ cat arg-analyzer<br />%%!<br />main([String]) -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span>io:format(\"argument was: ~s\\n\", [String]);<br />main(_) -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span>io:format(\"Usage: arg-analyzer ARG\\n\").<br /><br />$ escript arg-analyzer foo<br />argument was: foo",
+  "shebang": "$ cat arg-analyzer<br />#!/usr/bin/env escript<br />%%!<br />main([String]) -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span>io:format(\"argument was: ~s\\n\", [String]);<br />main(_) -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span>io:format(\"Usage: arg-analyzer ARG\\n\").<br /><br />$ ./arg-analyzer foo<br />argument was: foo",
+  "invoke-repl": "$ erl",
+  "block-delimiters": "if ; end<br />case ; end<br />try catch end<br />fun ; end<br />receive end",
+  "stmt-terminator": ".",
+  "eol-comment": "% <span style=\"color: gray\"><em>a comment</em></span>",
+  "multiple-line-comment": ""
+},
+"var-expr": {
+  "var-def": "<span style=\"color: gray\"><em>upper case letter following by alphanumeric characters and underscores.</em></span>",
+  "write-once-var": "<span style=\"color: gray\"><em>previously unused variables on the left side of an equal sign will be assigned to values that make the left match the right</em></span>",
+  "assignment": "X = 3.",
+  "parallel-assignment": "{X, Y} = {1, 2}.<br />[Z, W] = [1, 2].",
+  "non-referential-id": "<span style=\"color: gray\"><em>lower case letter followed by alphanumeric characters; can also include period: . at-sign: @ underscore: _</em></span>",
+  "quoted-non-referential-id": "<span style=\"color: gray\"><em>any printable characters inside single quotes; use backslash or two single quotes to escape a single quote.</em></span>",
+  "cond-expr": "if<br /><span style=\"white-space: pre-wrap;\">  </span>X &gt; 0 -&gt; 1;<br /><span style=\"white-space: pre-wrap;\">  </span>X == 0 -&gt; X;<br /><span style=\"white-space: pre-wrap;\">  </span>X &lt; 0 -&gt; -1<br />end",
+  "case": "case X of<br /><span style=\"white-space: pre-wrap;\">  </span>1 -&gt; true;<br /><span style=\"white-space: pre-wrap;\">  </span>0 -&gt; false<br />end"
+},
+"arithmetic-logic": {
+  "true-false": "true false",
+  "falsehoods": "<span style=\"color: gray\">false <em>and all non-boolean values</em></span>",
+  "logical-op": "and or xor not<br /><span style=\"color: gray\"><em>in guards:</em></span><br />, ;",
+  "short-circuit-op": "andalso orelse",
+  "relational-op": "== /= &lt; &gt; =&lt; &gt;=<br /><span style=\"color: gray\"><em>no numeric conversion:</em></span><br />=:= =/=",
+  "arith-expr": "2 + 2",
+  "arith-op": "+ - * / div rem",
+  "int-div": "7 div 3.",
+  "int-div-zero": "<span style=\"color: gray\"><em>bad argument exception</em></span>",
+  "float-div": "7 / 3.",
+  "float-div-zero": "<span style=\"color: gray\"><em>bad argument exception</em></span>",
+  "power": "math:pow(2, 32).",
+  "sqrt": "math:sqrt(2).",
+  "sqrt-negative-one": "<span style=\"color: gray\"><em>raises bad argument exception</em></span>",
+  "transcendental-func": "math:exp math:log<br />math:sin math:cos math:tan<br />math:asin math:acos math:atan<br />math:atan2",
+  "float-truncation": "<span style=\"color: gray\">% 2, 3:</span><br />trunc(2.7)<br />round(2.7)<br /><br /><span style=\"color: gray\"><em>none</em></span><br /><span style=\"color: gray\"><em>none</em></span>",
+  "absolute-val": "abs(-3)<br />abs(-3.2)",
+  "int-overflow": "",
+  "float-literal-with-exponent": "2.0e2<br />-2.0E-2",
+  "random-num": "random:uniform().<br />random:uniform(100).",
+  "random-seed": "random:seed(17, 17, 17).",
+  "result-of-not-seeding": "<span style=\"color: gray\"><em>interpreter uses same seed at startup.</em></span>",
+  "bit-op": "5 bsl 1<br />5 bsr 1<br />5 band 1<br />5 bor 1<br />5 bxor 1<br />bnot 5",
+  "binary-octal-hex-literals": "2#101010<br />8#52<br />16#2A"
+},
+"strings": {
+  "str-literal": "\"don't say \\\"no\\\"\"",
+  "str-literal-newline": "<span style=\"color: gray\"><em>yes; and \\n notation can also be used</em></span>",
+  "char-esc": "<span style=\"color: gray\">\\d <em>is delete;</em> \\s <em>is space</em></span><br />\\b \\d \\e \\f \\n \\q \\r \\s \\t \\u \\v \\x<span style=\"color: gray\"><em>hh</em></span> \\x{<span style=\"color: gray\"><em>hh…</em></span>} \\<span style=\"color: gray\"><em>ooo</em></span> \\' \\\" \\\\",
+  "str-concat": "\"one \" ++ \"two \" ++ \"three\"<br /><br />string:concat(\"one \", string:concat(\"two \", \"three\"))<br /><br /><span style=\"color: gray\"><em>concatenates double quoted string literals only:</em></span><br />\"one \" \"two \" \"three\"",
+  "str-replicate": "Hbar = string:copies(\"-\", 80).",
+  "trim": "string:strip(\" lorem \")<br />string:strip(\" lorem\", left)<br />string:strip(\"lorem \", right)",
+  "pad": "string:right(\"lorem\", 10, $ )<br />string:left(\"lorem\", 10, $ )<br />string:centre(\"lorem\", 10, $ )",
+  "num-to-str": "\"value: \" ++ integer_to_list(8)<br />\"value: \" ++ float_to_list(3.14)",
+  "str-to-num": "7 + list_to_integer(\"12\")<br />73.9 + list_to_float(\"0.039\")",
+  "atom-to-str": "atom_to_list(foo)",
+  "str-to-atom": "list_to_existing_atom(\"foo\")",
+  "translate-case": "string:to_upper(\"lorem\")<br />string:to_lower(\"LOREM\")",
+  "split": "string:tokens(\"foo bar baz\", \" \")<br /><br />{ok, Rx} = re:compile(\"\\s+\").<br />re:split(\"foo bar baz\", Rx, [{return, list}])",
+  "join": "string:join([\"foo\", \"bar\", \"baz\"], \" \")",
+  "character-literal<br-/>": "$A",
+  "string-length": "length(\"hello\")",
+  "index-substr": "<span style=\"color: gray\">% 5:</span><br />string:str(\"foo bar bar\", \"bar\")<br /><br /><span style=\"color: gray\">% 9:</span><br />string:rstr(\"foo bar bar\", \"bar\")",
+  "extract-substr": "string:substr(\"foo bar bar\", 5, 3)",
+  "chr-and-ord": "[65]<br />lists:nth(1, \"A\")"
+},
+"regex": {
+  "regex-literal": "<span style=\"color: gray\">% none; strings are used:</span><br />\"lorem|ipsum\"<br /><br /><span style=\"color: gray\">% can be compiled to RE object:</span><br />Rx = re:compile(\"lorem|ispum\").",
+  "char-class-abbrev": ". \\d \\D \\h \\H \\s \\S \\v \\V \\w \\W",
+  "regex-anchors": "^ $ \\A \\b \\B \\G \\z \\Z",
+  "match-test": "{ok, Rx} = re:compile(\".*1999.*\").<br /><br />case re:run(\"it's 2000\", Rx) of<br /><span style=\"white-space: pre-wrap;\">  </span>{match, _} -&gt; io:format(\"party!\");<br /><span style=\"white-space: pre-wrap;\">  </span>nomatch -&gt; io:format(\"work\")<br />end.",
+  "case-insensitive-regex": "{ok, Rx} = re:compile(\"lorem\", [caseless]).<br /><br />case re:run(\"Lorem\", Rx) of<br /><span style=\"white-space: pre-wrap;\">  </span>{match, _} -&gt; io:format(\"matches\");<br /><span style=\"white-space: pre-wrap;\">  </span>nomatch -&gt; io:format(\"doesn't match\")<br />end.",
+  "regex-modifiers": "unicode<br />caseless<br />dotall<br />multiline<br />extended<br />firstline<br />ungreedy",
+  "subst": "{ok, Rx} = re:compile(\"mi\").<br /><br />NewStr = re:replace(\"do re mi mi mi\", Rx, \"ma\",<br /><span style=\"white-space: pre-wrap;\">  </span>[global, {return,list}]).",
+  "match-prematch-postmatch": "S = \"It's 1999!\".<br />Rx = \"(\\\\d{4})\".<br />[Pre, Match, Post] = re:split(S, Rx, [{return, list}]).",
+  "group-capture": "S = \"2010-06-03\".<br />Rx = \"(\\\\d{4})-(\\\\d{2})-(\\\\d{2})\".<br />Opts = [{capture, all_but_first, list}].<br />{match, [Yr, Mn, Dy]} = re:run(S, Rx, Opts).",
+  "named-group-capture": "S = \"foo.txt\".<br />Rx = \"^(?&lt;file&gt;.+)\\\\.(?&lt;suffix&gt;.+)$\".<br />Opts = [{capture, [file, suffix], list}].<br />{match, [File, Suffix]} = re:run(S, Rx, Opts).",
+  "scan": "",
+  "backreference-match": "S = \"do do\".<br />Rx = \"(\\\\w+) \\\\1\".<br />{match, _} = re:run(S, Rx).",
+  "backreference-subst": "S = \"do re\".<br />Rx = \"(\\\\w+) (\\\\w+)\".<br />Opts = [{return, list}].<br />S2 = re:replace(S, Rx, \"\\\\2 \\\\1\", Opts)."
+},
+"date-time": {
+  "current-date/time": "<span style=\"white-space: pre-wrap;\">{</span>{YYYY,MM,DD}, {HH,MI,SS<span style=\"white-space: pre-wrap;\">}</span>} = calendar:universal_time().<br /><span style=\"white-space: pre-wrap;\">{</span>{YYYY,MM,DD}, {HH,MI,SS<span style=\"white-space: pre-wrap;\">}</span>} = calendar:local_time()."
+},
+"lists": {
+  "list-literal": "[1, 2, 3]",
+  "cons": "[4 | [3, 2, 1]]",
+  "head": "hd([1 ,2, 3])<br /><span style=\"color: gray\">% or use pattern matching:</span><br />[Head | _] = [1 ,2, 3].<br />Head",
+  "tail": "tl([1, 2, 3])<br /><span style=\"color: gray\">% or use pattern matching:</span><br />[_ | Tail] = [1, 2, 3].<br />Tail",
+  "length": "length([1, 2, 3])",
+  "append": "[1, 2] ++ [3, 4]",
+  "sort": "lists:sort([1, 3, 2, 4]).",
+  "reverse": "lists:reverse([1, 2, 3, 4]).",
+  "membership": "",
+  "zip": "lists:zip([1, 2, 3], [\"a\", \"b\", \"c\"]).",
+  "map": "lists:map(fun(X) -&gt; X * X end, [1, 2, 3]).",
+  "filter": "lists:filter(fun(X) -&gt; X &gt; 2 end, [1, 2, 3]).",
+  "reduce": "<span style=\"color: gray\">% 2:</span><br />lists:foldl(fun(X, Y) -&gt; X - Y end, 0, [1, 2, 3, 4]).<br /><br /><span style=\"color: gray\">% -2:</span><br />lists:foldr(fun(X, Y) -&gt; X - Y end, 0, [1, 2, 3, 4])."
+},
+"tuples": {
+  "tuple-literal": "{1, \"foo\", 3.14}",
+  "tuple-element-access": "<span style=\"color: gray\">% \"foo\":</span><br />element(1, {1, \"foo\", 3.14})<br /><br /><span style=\"color: gray\">% {1, \"bar\", 3.14}:</span><br />setelement(2, {1, \"foo\", 3.14}, \"bar\")",
+  "tuple-length": "tuple_size({1, \"foo\", 3.14})"
+},
+"dictionaries": {
+  "literal": "",
+  "size": "",
+  "lookup": "",
+  "update": "",
+  "missing-key-behavior": "",
+  "is-key-present": "",
+  "iterate": ""
+},
+"algebraic-data-types": {
+  "record": ""
+},
+"functions": {
+  "function-definition": "factorial(0) -&gt; 1;<br />factorial(N) -&gt; N * factorial(N-1).",
+  "function-definition-with-guards": "factorial(N) when N &gt; 0 -&gt; N * factorial(N-1);<br />factorial(0) -&gt; 1.",
+  "anonymous-function": "fun(X, Y) -&gt; X + Y end",
+  "piecewise-defined-anonymous-function": "fun([]) -&gt; null;<br /><span style=\"white-space: pre-wrap;\">  </span>([X|_]) -&gt; X<br />end"
+},
+"execution-control": {
+  "if": "if<br /><span style=\"white-space: pre-wrap;\">  </span>X == 0 -&gt; io:format(\"no hits~n\");<br /><span style=\"white-space: pre-wrap;\">  </span>X == 1 -&gt; io:format(\"one hit~n\");<br /><span style=\"white-space: pre-wrap;\">  </span>X &gt; 1 -&gt; io:format(\"~w hits~n\", [X])<br />end.",
+  "for": "",
+  "try/catch": "X = 0.<br />try (7 div X) of<br /><span style=\"white-space: pre-wrap;\">  </span>Val -&gt; Val<br />catch<br /><span style=\"white-space: pre-wrap;\">  </span>error:badarith -&gt; 0<br />end.",
+  "receive-message": "-module(echo).<br />-export([loop/0]).<br /><span style=\"white-space: pre-wrap;\"> </span><br />loop() -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span>receive<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>{From, Msg} -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>From ! { self(), Msg},<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>loop();<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>stop -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>true<br /><span style=\"white-space: pre-wrap;\">  </span>end.",
+  "spawn-process": "Pid = spawn(echo, loop, []).",
+  "send-message": "Pid ! {self(), hello}.",
+  "list-processes": "processes()."
+},
+"file-handles": {
+  "read-line-from-stdin": "",
+  "write-line-to-stdout": "",
+  "write-line-to-stderr": "",
+  "open-file-for-reading": "",
+  "read-line": "X = io:get_line(\"type line: \").",
+  "read-character": "X = io:get_chars(\"type char: \", 1).",
+  "read-term": "{ok, X} = io:read(\"type term: \").",
+  "open-file-for-writing": "",
+  "open-file-for-appending": "",
+  "write-line": "",
+  "write-character": "",
+  "write-term": "io:write(X).",
+  "printf": "io:format(\"foo: ~s ~.2f ~w~n\", [\"bar\", 3.1415, 7]).",
+  "close-file": ""
+},
+"files": {
+  "file-test": "filelib:is_file(\"/etc/hosts\")<br />filelib:is_regular(\"/etc/hosts\")",
+  "file-size": "filelib:file_size(\"/etc/hosts\")"
+},
+"directories": {
+  "build-pathname": "filename:join(\"/etc\", \"passwd\")",
+  "dirname-basename": "filename:dirname(\"/etc/passwd\")<br />filename:basename(\"/etc/passwd\")",
+  "absolute-pathname": "filename:absname(\"..\")",
+  "glob": "<span style=\"color: gray\"><em>returns list of strings:</em></span><br />filelib:wildcard(\"/etc/*\")",
+  "mkdir": "filelib:ensure_dir(\"/tmp/foo/bar/\")",
+  "dir-test": "filelib:is_dir(\"/tmp\")"
+},
+"processes-environment": {
+  "command-line-arguments": "<span style=\"color: gray\"><em>when invoked by</em> escript <em>the command line arguments are passed to the function</em> main <em>in the invoked file as a list of strings.</em></span>",
+  "program-name": "",
+  "exit": "halt(1)."
+},
+"libraries-namespaces": {
+  "load-file": "",
+  "define-namespace": "<span style=\"color: gray\"><em>in file</em> factorial.erl</span><br />-module(factorial).<br />-export([factorial/1]).<br /><span style=\"color: gray\"><em>definition of</em> factorial</span>",
+  "compile-namespace": "c(factorial).",
+  "use-function-in-namespace": "factorial:factorial(7)."
+},
+"reflection": {
+  "inspect-namespace": "factorial:module_info()."
+},
+"repl": {
+  "help": "help().",
+  "clear-variable": "f(X).",
+  "clear-all-variables": "f().",
+  "display-processes": "i()."
+}
+}
