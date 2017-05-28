@@ -4,7 +4,7 @@
   "version-used": "<span style=\"color: gray\"><em>GNU Fortran 4.5 (Fortran 95)</em></span>",
   "show-version": "$ gfortran <span style=\"white-space: pre-wrap;\">--</span>version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.f95<br />program hello<br /><span style=\"white-space: pre-wrap;\">  </span>write(*,*) 'Hello, World!'<br />end program hello<br /><br />$ gfortran hello.f95<br /><br />$ ./a.out<br /><span style=\"white-space: pre-wrap;\"> </span>Hello, World!",
   "file-suffixes": ".f95 <span style=\"color: gray\"><em>none</em></span> .o",
   "block-delimiters": "program <span style=\"color: gray\"><em>…</em></span> end program<br />function <span style=\"color: gray\"><em>…</em></span> end function<br />subroutine <span style=\"color: gray\"><em>…</em></span>end subroutine<br />if <span style=\"color: gray\"><em>…</em></span> then <span style=\"color: gray\"><em>…</em></span> elseif <span style=\"color: gray\"><em>…</em></span> then <span style=\"color: gray\"><em>…</em></span> else <span style=\"color: gray\"><em>…</em></span> endif<br />do while <span style=\"color: gray\"><em>…</em></span> end do<br />do <span style=\"color: gray\"><em>…</em></span> end do",
@@ -12,7 +12,7 @@
   "eol-comment": "! <span style=\"color: gray\"><em>comment</em></span>",
   "multiple-line-comment": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"variables-expressions": {
+"var-expr": {
   "case-sensitive": "<span style=\"color: gray\"><em>no; Fortran 77 and earlier required all caps</em></span>",
   "var-types": "integer real complex character logical",
   "var-declaration": "integer :: n<br />real :: x = 3.7<br /><span style=\"color: gray\">! variable declarations must appear before<br />! all other statements in a program or function body</span>",
@@ -51,7 +51,7 @@
   "random-seed": "integer n<br />integer, allocatable :: seed(:)<br /><br />call random_seed(size=n)<br />allocate(seed(n))<br />do i = 1, n<br /><span style=\"white-space: pre-wrap;\">  </span>seed(i) = i + 2<br />end do<br />call random_seed(put=seed)",
   "bit-op": "<span style=\"color: gray\"><em>right shift if</em> pos <em>is positive:</em></span><br />ishft(<span style=\"color: gray\"><em>i</em>, <em>pos</em></span>)<br />iand(<span style=\"color: gray\"><em>i</em></span>, <span style=\"color: gray\"><em>j</em></span>)<br />ior(<span style=\"color: gray\"><em>i</em></span>, <span style=\"color: gray\"><em>j</em></span>)<br />ieor(<span style=\"color: gray\"><em>i</em></span>, <span style=\"color: gray\"><em>j</em></span>)<br />not(<span style=\"color: gray\"><em>i</em></span>)"
 },
-"strings": {
+"str": {
   "str-type": "characater(len=100) s",
   "str-literal": "'don''t say \"no\"'<br />\"don't say \"\"no\"\"\"",
   "newline-in-str-literal": "\"lorem\" <span style=\"white-space: pre-wrap;\">//</span> achar(10) <span style=\"white-space: pre-wrap;\">//</span> \"ipsum\"",

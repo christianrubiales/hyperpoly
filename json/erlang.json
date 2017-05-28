@@ -3,7 +3,7 @@
   "version-used": "<span style=\"color: gray\"><em>8.0</em></span>",
   "show-version": "$ erl -version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.erl<br />-module(hello).<br />-export([hello_world/0]).<br /><br />hello_world() -&gt;<br /><span style=\"white-space: pre-wrap;\">  </span>io:format(\"Hello, World!~n\"),<br /><span style=\"white-space: pre-wrap;\">  </span>halt(0).<br /><br />$ erlc hello.erl<br /><br />$ erl -noshell -run hello hello_world<br />Hello, World!",
   "compiler": "<span style=\"color: gray\"><em>does not create a stand-alone executable:</em></span><br />$ erlc +native foo.erl",
   "bytecode-compiler": "$ erlc foo.erl",
@@ -51,7 +51,7 @@
   "bit-op": "5 bsl 1<br />5 bsr 1<br />5 band 1<br />5 bor 1<br />5 bxor 1<br />bnot 5",
   "binary-octal-hex-literals": "2#101010<br />8#52<br />16#2A"
 },
-"strings": {
+"str": {
   "str-literal": "\"don't say \\\"no\\\"\"",
   "str-literal-newline": "<span style=\"color: gray\"><em>yes; and \\n notation can also be used</em></span>",
   "char-esc": "<span style=\"color: gray\">\\d <em>is delete;</em> \\s <em>is space</em></span><br />\\b \\d \\e \\f \\n \\q \\r \\s \\t \\u \\v \\x<span style=\"color: gray\"><em>hh</em></span> \\x{<span style=\"color: gray\"><em>hh…</em></span>} \\<span style=\"color: gray\"><em>ooo</em></span> \\' \\\" \\\\",
@@ -87,7 +87,7 @@
   "backreference-match": "S = \"do do\".<br />Rx = \"(\\\\w+) \\\\1\".<br />{match, _} = re:run(S, Rx).",
   "backreference-subst": "S = \"do re\".<br />Rx = \"(\\\\w+) (\\\\w+)\".<br />Opts = [{return, list}].<br />S2 = re:replace(S, Rx, \"\\\\2 \\\\1\", Opts)."
 },
-"date-time": {
+"dates-time": {
   "current-date/time": "<span style=\"white-space: pre-wrap;\">{</span>{YYYY,MM,DD}, {HH,MI,SS<span style=\"white-space: pre-wrap;\">}</span>} = calendar:universal_time().<br /><span style=\"white-space: pre-wrap;\">{</span>{YYYY,MM,DD}, {HH,MI,SS<span style=\"white-space: pre-wrap;\">}</span>} = calendar:local_time()."
 },
 "lists": {

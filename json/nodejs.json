@@ -61,7 +61,7 @@
   "binary-octal-hex-literals": "<span style=\"color: gray\"><em>none</em></span><br />052 <span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> deprecated</span><br />0x2a",
   "radix": "(42).toString(7)<br />parseInt('60', 7)"
 },
-"strings": {
+"str": {
   "str-type": "String",
   "str-literal": "'don\\'t say \"no\"'<br />\"don't say \\\"no\\\"\"",
   "newline-in-str-literal": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> backquote literals only:</span><br /><span style=\"white-space: pre-wrap;\">`</span>first line<br />second line<span style=\"white-space: pre-wrap;\">`</span><br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Backslashes can be used to break<br /><span style=\"white-space: pre-wrap;\">//</span> long strings.</span>",
@@ -98,7 +98,7 @@
   "delete-char": "<span style=\"color: gray\"><em>none</em></span>",
   "squeeze-char": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"regexes": {
+"regex": {
   "regex-literal": "/lorem|ipsum/",
   "ascii-char-class-abbrev": ".<span style=\"white-space: pre-wrap;\">   </span>[^\\n]<br />\\d<span style=\"white-space: pre-wrap;\">  </span>[0-9]<br />\\D<span style=\"white-space: pre-wrap;\">  </span>[^0-9]<br />\\s<span style=\"white-space: pre-wrap;\">  </span>[ \\t\\r\\n\\f]<br />\\S<span style=\"white-space: pre-wrap;\">  </span>[^ \\t\\r\\n\\f]<br />\\w<span style=\"white-space: pre-wrap;\">  </span>[A-Za-z0-9_]<br />\\W<span style=\"white-space: pre-wrap;\">  </span>[^A-Za-z0-9_]",
   "unicode-char-class-abbrev": "<span style=\"color: gray\"><em>none</em></span>",

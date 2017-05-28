@@ -58,7 +58,7 @@
   "binary-octal-hex-literals": "#b101010<br />#o52<br />#x2a",
   "radix": "(format nil \"~7r\" 42)"
 },
-"strings": {
+"str": {
   "str-test": "(stringp \"foo\")",
   "str-literal": "\"foo bar\"",
   "newline-in-str-literal": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -86,7 +86,7 @@
   "str-to-char-array": "",
   "lookup-char": "(char \"foo\" 0)"
 },
-"regexes": {
+"regex": {
   "regex-literal": "<span style=\"color: gray\"><em>use a string:</em></span><br />\"\\\\b\\\\d{5}\\\\b\"",
   "char-class-abbrev": ". \\d \\D \\s \\S \\w \\W",
   "regex-anchors": "^ $ \\b \\B",

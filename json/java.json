@@ -14,7 +14,7 @@
   "eol-comment": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> comment</span>",
   "multiple-line-comment": "<span style=\"color: gray\">/* comment<br />another comment */</span>"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "int i;<br />int j = 3;",
   "uninitialized-local-var": "<span style=\"color: gray\"><em>compiler error</em></span>",
   "global-var": "<span style=\"color: gray\"><em>foo/Foo.java:</em></span><br />package foo;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> globals must be declared inside a<br /><span style=\"white-space: pre-wrap;\">//</span> class:</span><br />public class Foo {<br /><span style=\"white-space: pre-wrap;\">  </span>public static int bar;<br />}<br /><br /><span style=\"color: gray\"><em>UseFoo.java:</em></span><br />import foo.Foo;<br /><br />public class UseFoo {<br /><span style=\"white-space: pre-wrap;\">  </span>public static void main(String[] args) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>System.out.println(Foo.bar);<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
@@ -69,7 +69,7 @@
   "binary-octal-hex-literals": "<span style=\"color: gray\"><em>none in Java 1.6</em></span><br />052<br />0x2a",
   "radix": "Integer.toString(42, 7)<br />Integer.parseInt(\"60\", 7)"
 },
-"strings": {
+"str": {
   "str-type": "java.lang.String",
   "str-literal": "\"don't say\\\"no\\\"\"",
   "newline-literal": "<span style=\"color: gray\"><em>no</em></span>",
@@ -96,7 +96,7 @@
   "char-literal": "char n = 'X';",
   "test-char": ""
 },
-"regexes": {
+"regex": {
   "regex-type": "",
   "char-class-abbrev": "",
   "regex-anchors": "",

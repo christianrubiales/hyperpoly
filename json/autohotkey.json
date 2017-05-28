@@ -4,7 +4,7 @@
   "version-used": "<span style=\"color: gray\"><em>1.1</em></span>",
   "show-version": "msgbox % a_ahkversion"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "<span style=\"white-space: pre-wrap;\">&gt;</span> autohotkey foo.ahk",
   "repl": "",
   "cmd-line-program": "<span style=\"color: gray\"><em>none</em></span>",
@@ -57,7 +57,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "",
   "str-literal": "\"don't say \"\"no\"\"\"",
   "new-line-in-str-literal": "",
@@ -82,7 +82,7 @@
   "chr-ord": "",
   "str-to-char-array": ""
 },
-"regexes": {
+"regex": {
   "regex-match": "",
   "regex-literal": "",
   "char-class-abbrev": "",

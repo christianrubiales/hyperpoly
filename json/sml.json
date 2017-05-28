@@ -3,7 +3,7 @@
   "version-used": "<span style=\"color: gray\"><em>SML NJ 110</em></span>",
   "version": "<span style=\"color: gray\"><em>displayed at startup</em></span>"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "",
   "shebang": "",
   "bytecode-compiler-interpreter": "",
@@ -70,7 +70,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "string",
   "str-literal": "\"Hello, World!\"",
   "newline-in-str-literal": "",

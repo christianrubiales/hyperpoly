@@ -4,7 +4,7 @@
   "version": "$ rustc <span style=\"white-space: pre-wrap;\">--</span>version",
   "implicit-prologue": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "<span style=\"color: gray\"><em>none</em></span>",
   "compiler": "$ cat hello.rs<br />fn main() {<br /><span style=\"white-space: pre-wrap;\">  </span>println!(\"Hello, world!\");<br />}<br /><br />$ rustc hello.rs<br /><br />$ ./hello<br />Hello, world!",
   "statement-terminator": ";<br /><br /><span style=\"color: gray\"><em>Newlines are not statement terminators; they are permitted wherever spaces or tabs are permitted to separate tokens.</em></span>",
@@ -63,7 +63,7 @@
   "binary-octal-hex-literals": "0b101010<br />0o52<br />0x21",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "String<br /><br /><span style=\"color: gray\"><em>string reference:</em></span><br />&amp;str",
   "str-literal": "let s: &amp;str = \"don't say \\\"no\\\"\";<br />let s2: String = \"don't say \\\"no\\\"\".to_string();",
   "newline-in-str-literal": "let s: &amp;str = \"first line<br />second line\";<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> foobar:</span><br />let s2: &amp;str = \"foo\\<br /><span style=\"white-space: pre-wrap;\">  </span>bar\";",

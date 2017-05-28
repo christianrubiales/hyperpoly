@@ -3,14 +3,14 @@
   "version-used": "<span style=\"color: gray\"><em>GNAT GCC 4.6</em></span><br /><span style=\"color: gray\"><em>Ada 2012</em></span>",
   "show-version": "$ gnatgcc -gnat12 <span style=\"white-space: pre-wrap;\">--</span>version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.adb<br />with Text_IO;<br />use Text_IO;<br /><br />procedure Hello is<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(\"Hello World!\");<br />end Hello;<br /><br />$ gnatmake -gnat12 hello.adb<br /><br />$ ./hello<br />Hello World!",
   "file-suffixes": "<span style=\"color: gray\"><em>source:</em></span><br />foo.ads: specification<br />foo.adb: body<br /><br /><span style=\"color: gray\"><em>compiler generated:</em></span><br />foo.adi: compilation information<br />foo.o: object<br />foo",
   "source-code-encoding": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> default is ISO 8859-1:</span><br />pragma Wide_Character_Encoding(UTF8)",
   "eol-comment": "<span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>another line</em></span>",
   "multiple-line-comment": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"variables-expressions": {
+"var-expr": {
   "case-sensitive-id": "<span style=\"color: gray\"><em>no</em></span>",
   "declarations": "procedure Foo is<br /><span style=\"white-space: pre-wrap;\">  </span>Pi: constant Float := 3.14;<br /><span style=\"white-space: pre-wrap;\">  </span>N: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>type Customer is Record<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Id: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Name: String(1..4);<br /><span style=\"white-space: pre-wrap;\">  </span>end Record;<br /><span style=\"white-space: pre-wrap;\">  </span>C: Customer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>body of program</em></span>",
   "block-with-local-scope": "declare<br /><span style=\"white-space: pre-wrap;\">  </span>N: Integer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>N := 7;<br />end;",
@@ -52,7 +52,7 @@
   "random-num": "with Ada.Numerics.Float_Random;<br />with Ada.Numerics.Discrete_Random;<br />use Ada.Numerics;<br /><br />procedure Foo is<br /><span style=\"white-space: pre-wrap;\">  </span>type Rand_Range is range 0..99;<br /><span style=\"white-space: pre-wrap;\">  </span>package Rand_Int is new Discrete_Random(Rand_Range);<br /><span style=\"white-space: pre-wrap;\">  </span>IG: Rand_Int.Generator;<br /><span style=\"white-space: pre-wrap;\">  </span>FG: Float_Random.Generator;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use</em></span> Rand_Int.Random(IG)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use</em></span> Float_Random.Random(FG)",
   "bit-op": ""
 },
-"strings": {
+"str": {
   "string-literal<br-/>": "\"Don't say \"\"foo\"\"\"",
   "fixed-length-string-type": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> error unless string length is 6</span><br />String(1..6)<br />Wide_Wide_String(1..6)",
   "bounded-length-string-type": "",
@@ -69,7 +69,7 @@
   "convert-string-to-number": "",
   "convert-number-to-string": "Integer'Image(8)<br />Float'Image(3.14)"
 },
-"regexes": {
+"regex": {
   "match": "",
   "substitute": "",
   "extract-subgroup": ""

@@ -60,7 +60,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "String",
   "str-literal": "var s = 'don\\'t say \"no\"';<br />var s2 = \"don't say \\\"no\\\"\";<br />var s3 = '''don't say \"no\"'<br />var s4 = \"\"\"don't say \"no\\\"\"\"\"<br /><br /><span style=\"color: gray\"><em>raw string literals:</em></span> r'foo' r\"foo\"",
   "newline-in-str-literal": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> triple quote literals only:</span><br />var s = '''first line<br />second line''';<br /><br />var s2 = \"\"\"first line<br />second line\"\"\"",
@@ -96,7 +96,7 @@
   "delete-char": "",
   "squeeze-char": ""
 },
-"regexes": {
+"regex": {
   "regex-literal": "",
   "regex-metachar": ". [ ] \\ ( ) * + ? { } | ^ $<br /><br /><span style=\"color: gray\"><em>use raw string (i.e. with r prefix) literals to avoid having to escape backslashes.</em></span>",
   "char-class-abbrev": ". \\d \\D \\s \\S \\w \\W",

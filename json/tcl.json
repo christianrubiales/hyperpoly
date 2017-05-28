@@ -4,7 +4,7 @@
   "version-used": "<span style=\"color: gray\"><em>8.5</em></span>",
   "show-version": "$ tclsh<br />% info tclversion"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "$ tclsh foo.tcl",
   "repl": "$ tclsh",
   "cmd-line-program": "<span style=\"color: gray\"><em>none</em></span>",
@@ -57,7 +57,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "",
   "str-literal": "\"don't say \\\"no\\\"\"<br />{don't say \"no\"}",
   "new-line-in-str-literal": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -82,7 +82,7 @@
   "chr-ord": "format %c 65<br />scan A %c ascii_value",
   "str-to-char-array": "split \"abcd\" \"\""
 },
-"regexes": {
+"regex": {
   "regex-match": "if [regexp <span style=\"white-space: pre-wrap;\">--</span> {1999} $s] {<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"party!\"<br />}",
   "regex-literal": "",
   "char-class-abbrev": "<span style=\"color: gray\"><em>char class abbrevs:</em></span><br />. \\d \\D \\s \\S \\w \\W<br /><br /><span style=\"color: gray\"><em>anchors:</em></span> ^ $ \\A \\m \\M \\y \\Y \\Z",

@@ -5,7 +5,7 @@
   "show-version": "$ go version",
   "implicit-prologue": "import \"fmt\""
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.go<br />package main<br />import \"fmt\"<br /><br />func main() {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Hello, World!\\n\")<br />}<br /><br />$ go build hello.go<br /><br />$ ./hello<br />Hello, World!",
   "file-suffixes": "",
   "stmt-separator": "; <span style=\"color: gray\"><em>or sometimes newline</em></span><br /><br /><span style=\"color: gray\"><em>a new line terminates a statement when the last token on the line is<br /><span style=\"white-space: pre-wrap;\">  </span>(1) an identifier,<br /><span style=\"white-space: pre-wrap;\">  </span>(2) a numeric, character, or string literal,<br /><span style=\"white-space: pre-wrap;\">  </span>(3) one of the keywords</em> break, continue,<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fallthrough, <em>or</em> return, <em><br /><span style=\"white-space: pre-wrap;\">  </span>(4) one of</em> ++, <span style=\"white-space: pre-wrap;\">--</span>, ), ], <em>or</em> }</span>",
@@ -13,7 +13,7 @@
   "eol-comment": "<span style=\"white-space: pre-wrap;\">//</span> <span style=\"color: gray\"><em>comment</em></span>",
   "multiple-line-comment": "/* <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> */"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> memory allocated on stack:</span><br />var i int<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> allocated on stack; type inferred from literal:</span><br />j := 3<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> memory allocated on heap:</span><br />ptr := new(int)<br />*ptr = 7",
   "free-heap": "<span style=\"color: gray\"><em>none; uses garbage collection</em></span>",
   "global-var": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> foo.go:</span><br />package foo<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> capitalized top-level identifiers are exported:</span><br />var X = 7<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> bar.go:</span><br />package bar<br />import foo<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> package scope:</span><br />var y = 3<br /><br />func baz() {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> local scope:</span><br /><span style=\"white-space: pre-wrap;\">  </span>var z = 5<br /><br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(foo.X + y + z)<br />}",
@@ -61,7 +61,7 @@
   "random-seed": "import \"math/rand\"<br /><br />rand.Seed(17)",
   "bit-op": "<span style=\"white-space: pre-wrap;\">&lt;&lt; &gt;&gt; &amp; |</span> <span style=\"color: gray\"><em>none</em></span> ^"
 },
-"strings": {
+"str": {
   "str-type": "string",
   "str-literal": "\"hello\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> raw string literal:</span><br /><span style=\"white-space: pre-wrap;\">`hello`</span>",
   "newline-in-str-literal": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> backquote literals only:</span><br />let s := <span style=\"white-space: pre-wrap;\">`first line</span><br />second line<span style=\"white-space: pre-wrap;\">`</span>",
@@ -88,7 +88,7 @@
   "char-tests": "",
   "chr-ord": ""
 },
-"regexes": {
+"regex": {
   "regex-metachar": ". [ ] \\ ( ) * + ? { } | ^ $<br /><br /><span style=\"color: gray\"><em>use raw string (i.e. backtick) literals to avoid having to escape backslashes.</em></span>",
   "char-class-abbrev": ". \\d \\D \\s \\S \\w \\W",
   "regex-anchors": "^ $ \\A \\b \\B \\z",

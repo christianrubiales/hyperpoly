@@ -58,7 +58,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-test": "(stringp \"foo\")",
   "str-literal": "\"foo bar\"",
   "newline-in-str-literal": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -86,7 +86,7 @@
   "str-to-char-array": "",
   "lookup-char": "(aref \"foo\" 0)"
 },
-"regexes": {
+"regex": {
   "regex-literal": "",
   "char-class-abbrev": ". \\w \\W \\ca \\cl \\cg \\Ca \\Cl \\Cg \\s<span style=\"color: gray\"><em>x</em></span><br /><br /><span style=\"color: gray\">\\ca \\cl <em>and</em> \\cg <em>match ASCII, Latin, and Greek characters.</em></span><br /><br /><span style=\"color: gray\"><em>Character classes of the form</em> \\sx <em>depend on the current syntax table.</em></span>",
   "regex-anchors": "^ $ \\b \\B",

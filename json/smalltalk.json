@@ -4,7 +4,7 @@
   "version-used": "<span style=\"color: gray\"><em>Pharo 3.0</em></span>",
   "show-version": "SmalltalkImage current aboutThisSystem.<br /><br /><span style=\"color: gray\"><em>at command line:</em></span><br />$ ./pharo Pharo.image printVersion"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "",
   "repl": "",
   "cmd-line-program": "$ Pharo <span style=\"white-space: pre-wrap;\">--</span>headless Pharo.image eval '1 + 1.'",
@@ -57,7 +57,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "",
   "str-literal": "'don''t say \"no\"'.",
   "new-line-in-str-literal": "<span style=\"color: gray\"><em>no</em></span><br /><br /><span style=\"color: gray\">\" print newline in Transcript:\"</span><br />Transcript cr.",
@@ -82,7 +82,7 @@
   "chr-ord": "65 asCharacter<br />$A asciiValue",
   "str-to-char-array": ""
 },
-"regexes": {
+"regex": {
   "regex-match": "",
   "regex-literal": "",
   "char-class-abbrev": "",

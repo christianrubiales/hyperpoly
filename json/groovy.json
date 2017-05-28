@@ -16,7 +16,7 @@
   "eol-comment": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> comment</span>",
   "multiple-line-comment": "<span style=\"color: gray\">/* comment<br />another comment */</span>"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "x = 1<br />def y = 2<br />Integer z = 3",
   "local-scope-region": "",
   "global-var": "",
@@ -64,7 +64,7 @@
   "binary-oct-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-literal": "\"don't say \\\"no\\\"\"<br />'don\\'t say \"no\"'<br />\"\"\"don't say \"no\\\"\"\"\"<br />'''don't say \"no\"'''<br />/don't say \"no\"/",
   "str-literal-newline": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> triple quote literals only:</span><br />\"\"\"foo<br />bar\"\"\"<br /><br />'''foo<br />bar'''",
   "char-esc": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> single and double quotes<br /><span style=\"white-space: pre-wrap;\">//</span> including triple quotes:</span><br />\\b \\f \\n \\r \\t<br /><span style=\"white-space: pre-wrap;\">\\\\</span> \\\" \\'<br />\\u<span style=\"color: gray\"><em>hhhh</em></span> \\<span style=\"color: gray\"><em>o</em></span> \\<span style=\"color: gray\"><em>oo</em></span> \\<span style=\"color: gray\"><em>ooo</em></span><br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> slash quotes:</span><br />\\/",
@@ -94,7 +94,7 @@
   "delete-char": "",
   "squeeze-char": ""
 },
-"regexes": {
+"regex": {
   "regex-literal": "",
   "char-class-abbrev": "<span style=\"color: gray\"><em>char class abbrevs:</em></span><br />. \\d \\D \\s \\S \\w \\W<br /><br /><span style=\"color: gray\"><em>anchors:</em></span> ^ $ \\b",
   "regex-anchors": "",

@@ -14,7 +14,7 @@
   "eol-comment": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> comment</span>",
   "multiple-line-comment": "<span style=\"color: gray\">/* comment<br />another comment */</span>"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "int i;<br />int j = 3;",
   "uninitialized-local-var": "<span style=\"color: gray\"><em>compiler prevents use of uninitialized local variable</em></span>",
   "global-var": "",
@@ -69,7 +69,7 @@
   "binary-octal-hex-literals": "<span style=\"color: gray\"><em>none</em></span><br />052<br />0x2a",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "string",
   "str-literal": "\"don't say \\\"no\\\"\"",
   "newline-literal": "<span style=\"color: gray\"><em>string literals can extend over multiple lines, but the newlines do not appear in the resulting string</em></span>",
@@ -96,7 +96,7 @@
   "char-literal": "char n = 'X';",
   "test-char": "System.Char.IsLetter(Char)<br />System.Char.IsNumber(Char)<br />System.Char.IsWhiteSpace(Char)<br />System.Char.IsUpper(Char)<br />System.Char.IsLower(Char)"
 },
-"regexes": {
+"regex": {
   "regex-type": "",
   "char-class-abbrev": "",
   "regex-anchors": "",

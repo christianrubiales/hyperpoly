@@ -3,7 +3,7 @@
   "version-used": "<span style=\"color: gray\"><em>SWI Prolog 7.2</em></span>",
   "show-version": "$ swipl <span style=\"white-space: pre-wrap;\">--</span>version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat ./hello.pl<br />hello :-<br /><span style=\"white-space: pre-wrap;\">  </span>format('Hello, World!~n'),<br /><span style=\"white-space: pre-wrap;\">  </span>halt.<br /><br />$ swipl -q -t hello -f ./hello.pl<br />Hello, World!",
   "compiler": "",
   "bytecode-compiler": "",
@@ -51,7 +51,7 @@
   "bit-op": "X is 5 <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> 1.<br />X is 5 <span style=\"white-space: pre-wrap;\">&gt;&gt; </span> 1.<br />X is 5 /\\ 1.<br />X is 5 \\/ 1.<br />X is 5 xor 1.<br />X is \\ 5.",
   "binary-octal-hex-literals": "2'101010<br />8'52<br />16'2A"
 },
-"strings": {
+"str": {
   "str-literal": "<span style=\"color: gray\"><em>list of characters:</em></span><br />\"don't say \\\"no\\\"\"<br /><br /><span style=\"color: gray\"><em>quoted atom:</em></span><br />'don\\'t say \"no\"'",
   "str-literal-newline": "<span style=\"color: gray\"><em>yes; and \\n notation can also be used</em></span>",
   "char-esc": "\\a \\b \\e \\f \\n \\r \\s \\t \\v \\x<span style=\"color: gray\"><em>hh…</em></span>\\ \\u<span style=\"color: gray\"><em>hhhh</em></span> \\U<span style=\"color: gray\"><em>hhhhhhhh</em></span> \\<span style=\"color: gray\"><em>ooo</em></span> \\\\ \\' \\\"",
@@ -87,7 +87,7 @@
   "backreference-match": "",
   "backreference-subst": ""
 },
-"date-time": {
+"dates-time": {
   "current-date/time": "get_time(TimeStamp), stamp_date_time(TimeStamp, date(YY,MM,DD,H,M,S,_,_,_), local).<br />get_time(TimeStamp), stamp_date_time(TimeStamp, date(YY,MM,DD,H,M,S,_,_,_), 'UTC')."
 },
 "lists": {

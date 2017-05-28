@@ -16,7 +16,7 @@
   "eol-comment": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> comment</span>",
   "multiple-line-comment": "<span style=\"white-space: pre-wrap;\">--</span>[[<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>commented out</em></span><br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>also commented out</em></span><br />]]"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "local x = 1",
   "local-scope-region": "",
   "global-var": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> assign without using local</span><br />g = 1<br /><br />function incr_global()<br /><span style=\"white-space: pre-wrap;\">  </span>g = g + 1<br />end",
@@ -64,7 +64,7 @@
   "binary-oct-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-literal": "\"don't say \\\"no\\\"\"<br />'don\\'t say \"no\"'",
   "str-literal-newline": "<span style=\"color: gray\"><em>yes, if preceded by backslash</em></span>",
   "char-esc": "<span style=\"color: gray\"><em>single and double quotes:</em></span><br />\\a \\b \\f \\n \\r \\t \\v \\\" \\' \\\\ \\<span style=\"color: gray\"><em>ddd</em></span>",
@@ -94,7 +94,7 @@
   "delete-char": "",
   "squeeze-char": ""
 },
-"regexes": {
+"regex": {
   "regex-literal": "",
   "char-class-abbrev": "<span style=\"color: gray\"><em>char class abbrevs:</em></span><br />. %a %c %d %l %p %s %u %w %x %z<br /><br /><span style=\"color: gray\"><em>anchors:</em></span> ^ $",
   "regex-anchors": "",

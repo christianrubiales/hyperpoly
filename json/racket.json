@@ -58,7 +58,7 @@
   "binary-octal-hex-literals": "#b101010<br />#o52<br />#x2a",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-test": "(string? \"foo\")",
   "str-literal": "\"foo bar\"",
   "newline-in-str-literal": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -86,7 +86,7 @@
   "str-to-char-array": "<span style=\"color: gray\">; list:</span><br />(string-&gt;list \"foo\")",
   "lookup-char": "(string-ref \"foo\" 0)"
 },
-"regexes": {
+"regex": {
   "regex-literal": "<span style=\"color: gray\"><em>posix extended:</em></span><br />#rx\"^[0-9][0-9][0-9][0-9][0-9]$\"<br />(regexp \"^[0-9][0-9][0-9][0-9][0-9]$\")<br /><br /><span style=\"color: gray\"><em>perl style:</em></span><br />#px\"\\\\b\\\\d{5}\\\\b\"<br />(pregexp \"\\\\b\\\\d{5}\\\\b\")",
   "char-class-abbrev": "<span style=\"color: gray\"><em>regexp:</em></span><br />.<br /><br /><span style=\"color: gray\"><em>pregexp:</em></span><br />. \\d \\D \\s \\S \\w \\W",
   "regex-anchors": "<span style=\"color: gray\"><em>regexp:</em></span><br />^ $<br /><br /><span style=\"color: gray\"><em>pregexp:</em></span><br />^ $ \\b \\B",

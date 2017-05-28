@@ -3,7 +3,7 @@
   "version-used": "<span style=\"color: gray\"><em>1.3</em></span>",
   "show-version": "$ elixir -v"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.exs<br />IO.puts \"Hello, World!\"<br /><br />$ elixir hello.exs<br />Hello, World!",
   "compiler": "",
   "bytecode-compiler": "",
@@ -51,7 +51,7 @@
   "bit-op": "import Bitwise<br /><br /><span style=\"white-space: pre-wrap;\">5 &lt;&lt;&lt; 1</span><br /><span style=\"white-space: pre-wrap;\">5 &gt;&gt;&gt; 1</span><br /><span style=\"white-space: pre-wrap;\">5 &amp;&amp;&amp; 1</span><br /><span style=\"white-space: pre-wrap;\">5 ||| 1</span><br /><span style=\"white-space: pre-wrap;\">5 ^^^ 1</span><br /><span style=\"white-space: pre-wrap;\">~~~5</span>",
   "binary-octal-hex-literals": "0b101010<br />0o52<br />0x2A"
 },
-"strings": {
+"str": {
   "str-literal": "\"don't say \\\"no\\\"\"",
   "str-literal-newline": "",
   "char-esc": "\\\" \\' \\\\ \\a \\b \\d \\e \\f \\n \\r \\s \\t \\v \\0<br />\\x<span style=\"color: gray\"><em>hh</em></span> \\u<span style=\"color: gray\"><em>hhhh</em></span> \\u{<span style=\"color: gray\"><em>h</em></span>…}",
@@ -87,7 +87,7 @@
   "backreference-match": "",
   "backreference-subst": ""
 },
-"date-time": {
+"dates-time": {
   "current-date/time": "DateTime.utc_now"
 },
 "lists": {

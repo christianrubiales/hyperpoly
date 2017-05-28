@@ -3,7 +3,7 @@
   "version-used": "<span style=\"color: gray\"><em>Gforth 0.70</em></span>",
   "show-version": "$ gforth <span style=\"white-space: pre-wrap;\">--</span>version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "$ echo \"1 1 + . cr bye\" &gt; /tmp/add.forth<br /><br />$ gforth /tmp/add.forth",
   "shebang": "<span style=\"color: gray\"><em>none</em></span>",
   "repl": "$ gforth",
@@ -72,7 +72,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "string-literals": "<span style=\"color: gray\"><em>allocates memory for string and pushes address and length onto stack:</em></span><br />s\\\" don't say \\\"no\\\"\"",
   "string-escapes": "\\a \\b \\e \\f \\n \\r \\t \\v \\\" \\\\ \\, \\<span style=\"color: gray\"><em>ooo</em></span> \\x<span style=\"color: gray\"><em>xx</em></span>",
   "newline-in-literal": "<span style=\"color: gray\"><em>no, use \\n</em></span>",

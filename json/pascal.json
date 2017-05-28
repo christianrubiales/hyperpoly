@@ -3,14 +3,14 @@
   "version-used": "<span style=\"color: gray\"><em>Free Pascal 2.4</em></span>",
   "show-version": "$ fpc -v"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.pas<br />program Hello;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn('hello world!');<br />end.<br /><br />$ fpc hello.pas<br /><br />$ ./hello",
   "file-suffixes": "foo.pas<br />foo.o<br />foo",
   "source-code-encoding": "",
   "eol-comment": "<span style=\"color: gray\"><em>not ISO Pascal:</em></span><br /><span style=\"white-space: pre-wrap;\">//</span> <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"white-space: pre-wrap;\">//</span> <span style=\"color: gray\"><em>another line</em></span>",
   "multiple-line-comment": "(* <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> *)<br /><br />{ <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> }"
 },
-"variables-expressions": {
+"var-expr": {
   "case-sensitive-id": "<span style=\"color: gray\"><em>no</em></span>",
   "declarations": "program Foo;<br />const<br /><span style=\"white-space: pre-wrap;\">  </span>PI: Real = 3.14159;<br />type<br /><span style=\"white-space: pre-wrap;\">  </span>Customer = record<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Id: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Name: String;<br /><span style=\"white-space: pre-wrap;\">  </span>end;<br />var<br /><span style=\"white-space: pre-wrap;\">  </span>I: Integer;<br /><span style=\"white-space: pre-wrap;\">  </span>C: Customer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>body of program</em></span>",
   "block-with-local-scope": "",
@@ -52,7 +52,7 @@
   "random-num": "Random(100)<br />Random",
   "bit-op": "shl shr and or xor not"
 },
-"strings": {
+"str": {
   "string-literal<br-/>": "'Don''t say \"foo\"'",
   "fixed-length-string-type": "",
   "bounded-length-string-type": "",
@@ -69,7 +69,7 @@
   "convert-string-to-number": "uses SysUtils;<br /><br />7 + StrToInt('12')<br />73.9 + StrToFloat('.037')",
   "convert-number-to-string": "uses SysUtils;<br /><br />'value: ' + IntToStr(8)<br />'value: ' + FloatToStr(3.14)"
 },
-"regexes": {
+"regex": {
   "match": "",
   "substitute": "",
   "extract-subgroup": ""

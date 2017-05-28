@@ -5,7 +5,7 @@
   "show-version": "$ gcc <span style=\"white-space: pre-wrap;\">--</span>version",
   "implicit-prologue": "#include &lt;errno.h&gt;<br />#include &lt;stdlib.h&gt;<br />#include &lt;stdio.h&gt;<br />#include &lt;string.h&gt;<br />#include &lt;time.h&gt;<br />#include &lt;wchar.h&gt;"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.c<br />#include &lt;stdio.h&gt;<br /><br />int main(int argc, char <span style=\"white-space: pre-wrap;\">**</span>argv) {<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"Hello, World!\\n\");<br />}<br /><br />$ gcc hello.c<br /><br />$ ./a.out<br />Hello, World!",
   "file-suffixes": ".c .h .o",
   "stmt-separator": ";",
@@ -13,7 +13,7 @@
   "eol-comment": "<span style=\"white-space: pre-wrap;\">//</span> <span style=\"color: gray\"><em>comment</em></span>",
   "multiple-line-comment": "/* <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"color: gray\"><em>another line</em></span> */"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "<span style=\"color: gray\">/* if inside function, memory allocated on stack: */</span><br />int i;<br />int j = 3;<br /><br /><span style=\"color: gray\">/* memory allocated on heap: */</span><br />int *ptr = malloc(sizeof *ptr);<br /><span style=\"color: gray\">/* if malloc fails, it returns NULL and sets errno to ENOMEM */</span><br />*ptr = 7;",
   "free-heap": "free(ptr);",
   "global-var": "<span style=\"color: gray\">/* in foo.c, outside of any function: */</span><br />int x = 7;<br /><br /><span style=\"color: gray\">/* to declare in bar.c: */</span><br />extern int x;",
@@ -61,7 +61,7 @@
   "random-seed": "srand48(17);",
   "bit-op": "<span style=\"white-space: pre-wrap;\"> &lt;&lt; &gt;&gt; &amp; | ^ ~ </span>"
 },
-"strings": {
+"str": {
   "str-type": "char *<br />wchar_t *<br /><br /><span style=\"color: gray\">wchar_t <em>is typically 32 bits on Linux and 16 bits on Windows.</em></span>",
   "str-literal": "<span style=\"color: gray\">/* string in initialized data segment: */</span><br />char *s = \"hello\";<br />wchar_t *ws = L\"hello\";<br /><br /><span style=\"color: gray\">/* string in heap: */</span><br />char *s2 = strdup(s);<br />wchar_t *ws2 = wcsdup(ws);<br /><br /><span style=\"color: gray\">/* if strdup cannot allocate memory, it returns NULL and sets<br /><span style=\"white-space: pre-wrap;\">   </span>errno to ENOMEM. */</span>",
   "newline-in-str-literal": "<span style=\"color: gray\">/* compiler concatenates literals<br /><span style=\"white-space: pre-wrap;\">   </span>separated by whitespace: */</span><br />char *s = \"first line\\n\"<br /><span style=\"white-space: pre-wrap;\">  </span>\"second line\";",
@@ -88,7 +88,7 @@
   "char-tests": "#include &lt;ctype.h&gt;<br />#include &lt;wctype.h&gt;<br /><br />isascii<br />isrune<br />iscntrl<br />isgraph<br />isalpha<br />isspace<br />isupper<br />islower<br />isalnum<br />isdigit<br />isxdigit<br />ispunct<br /><br /><span style=\"color: gray\">/* also: iswascii, iswrune, <span style=\"white-space: pre-wrap;\">...</span> */</span>",
   "chr-ord": "<span style=\"color: gray\">/* Character types are integer types so no conversion is necessary. Use %c and %C to print a character like a string of length one. */</span><br />char ch = 'A';<br />wchar_t ch2 = L'A';<br /><br />int i = ch + 7;<br />int i2 = ch2 + 7;<br /><br />wprintf(L\"%c %d %C %d\\n\", ch, ch, ch2, ch2);"
 },
-"regexes": {
+"regex": {
   "regex-metachar": "<span style=\"color: gray\">/* REG_BASIC: */</span><br />. [ ] \\ * ^ $<br /><br /><span style=\"color: gray\">/* REG_EXTENDED: */</span><br />. [ ] \\ ( ) * + ? { } | ^ $",
   "char-class-abbrev": "<span style=\"color: gray\">/* matches any character; does not match newline if<br /><span style=\"white-space: pre-wrap;\">   </span>REG_NEWLINE is used: */</span><br />.<br /><br /><span style=\"color: gray\">/* more character classes available in pcre library */</span>",
   "regex-anchors": "<span style=\"color: gray\">/* match beginning and end of string; match beginning and<br /><span style=\"white-space: pre-wrap;\">   </span>end of line if REG_NEWLINE is used: */</span><br />^ $",

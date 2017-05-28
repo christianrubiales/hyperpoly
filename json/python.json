@@ -61,7 +61,7 @@
   "binary-octal-hex-literals": "0b101010<br />0o52<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">#</span> also 052 in Python 2</span><br />0x2a",
   "radix": "<span style=\"color: gray\"><em>none</em></span><br />int('60', 7)"
 },
-"strings": {
+"str": {
   "str-type": "str<br /><br /><span style=\"color: gray\"># Python 2:</span><br />unicode",
   "str-literal": "'don\\'t say \"no\"'<br />\"don't say \\\"no\\\"\"<br />\"don't \" 'say \"no\"'<br /><br /><span style=\"color: gray\"># Python 2 (and Python 3):</span><br />u'lorem'<br />u\"ipsum\"",
   "newline-in-str-literal": "<span style=\"color: gray\"># triple quote literals only:</span><br />'''first line<br />second line'''<br /><br />\"\"\"first line<br />second line\"\"\"",
@@ -98,7 +98,7 @@
   "delete-char": "table = {ord(ch): None for ch in \"aeiou\"}<br />\"disemvowel me\".translate(table)",
   "squeeze-char": "re.sub('(\\s)+', r'\\1',<br /><span style=\"white-space: pre-wrap;\">  </span>'too<span style=\"white-space: pre-wrap;\">   </span>much<span style=\"white-space: pre-wrap;\">   </span>space')"
 },
-"regexes": {
+"regex": {
   "regex-literal": "re.compile(r'lorem|ipsum')<br /><span style=\"color: gray\"><em>none</em></span>",
   "ascii-char-class-abbrev": ".<span style=\"white-space: pre-wrap;\">   </span>[^\\n]<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>with</em> re.S <em>modifier matches all chars</em></span><br />\\d<span style=\"white-space: pre-wrap;\">  </span>[0-9]<br />\\D<span style=\"white-space: pre-wrap;\">  </span>[^0-9]<br />\\s<span style=\"white-space: pre-wrap;\">  </span>[ \\t\\r\\n\\f]<br />\\S<span style=\"white-space: pre-wrap;\">  </span>[^ \\t\\r\\n\\f]<br />\\w<span style=\"white-space: pre-wrap;\">  </span>[A-Za-z0-9_]<br />\\W<span style=\"white-space: pre-wrap;\">  </span>[^A-Za-z0-9_]<br /><br /><span style=\"color: gray\"><em>In Python 3, the above definitions are used when</em> re.A <em>is in effect.</em></span>",
   "unicode-char-class-abbrev": ".<span style=\"white-space: pre-wrap;\">   </span>[^\\n]<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>with</em> re.S <em>modifier matches all chars</em></span><br />\\d<span style=\"white-space: pre-wrap;\">  </span>[<span style=\"color: gray\"><em>Nd</em></span>]<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">Nd: <em>Number, decimal digit</em></span><br />\\D<span style=\"white-space: pre-wrap;\">  </span>[^<span style=\"color: gray\"><em>Nd</em></span>]<br />\\s<span style=\"white-space: pre-wrap;\">  </span>[<span style=\"color: gray\"><em>Z</em></span>\\t\\n\\r\\f\\v\\x1c\\x1d\\x1e\\x1f\\x85]<br />\\S<span style=\"white-space: pre-wrap;\">  </span>[^<span style=\"color: gray\"><em>Z</em></span>\\t\\n\\r\\f\\v\\x1c\\x1d\\x1e\\x1f\\x85]<br />\\w [<span style=\"color: gray\"><em>LN</em></span>_]<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">L: <em>Letter</em>; N: <em>Number</em></span><br />\\W [<span style=\"color: gray\">^<em>LN</em></span>_]<br /><br /><span style=\"color: gray\"><em>In Python 2, the above definitions are used when</em> re.U <em>is in effect.</em></span>",

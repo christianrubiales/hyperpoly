@@ -4,7 +4,7 @@
   "version-used": "<span style=\"color: gray\"><em>ECMAScript 5</em></span>",
   "show-version": "<a href=\"http://kangax.github.io/compat-table/es5/\">ECMAScript 5 compatibility</a>"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "",
   "repl": "<span style=\"color: gray\"><em>Javascript Console:</em><br /><br /><span style=\"white-space: pre-wrap;\">  </span>Chrome (Mac): ⌥⌘J<br /><span style=\"white-space: pre-wrap;\">  </span>Chrome (Win): Ctrl+Shift+J<br /><span style=\"white-space: pre-wrap;\">  </span>Firefox (Mac): ⌥⌘K<br /><span style=\"white-space: pre-wrap;\">  </span>Firefox (Win): Ctrl+Shift+K</span>",
   "cmd-line-program": "",
@@ -57,7 +57,7 @@
   "binary-octal-hex-literals": "<span style=\"color: gray\"><em>none</em></span><br />052 <span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> deprecated</span><br />0x2a",
   "radix": "(42).toString(7)<br /><span style=\"color: gray\"><em>??</em></span>"
 },
-"strings": {
+"str": {
   "str-type": "String",
   "str-literal": "\"don't say \\\"no\\\"\"<br />'don\\'t say \"no\"'",
   "new-line-in-str-literal": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -82,7 +82,7 @@
   "chr-ord": "String.fromCharCode(65)<br />\"A\".charCodeAt(0)",
   "str-to-char-array": "\"abcd\".split(\"\")"
 },
-"regexes": {
+"regex": {
   "regex-match": "if (s.match(/1999/)) {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"party!\");<br />}",
   "regex-literal": "/lorem|ipsum/",
   "char-class-abbrev": ". \\d \\D \\s \\S \\w \\W",

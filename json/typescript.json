@@ -60,7 +60,7 @@
   "binary-octal-hex-literals": "<span style=\"color: gray\"><em>none</em></span><br />052 <span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> deprecated</span><br />0x2a",
   "radix": "(42).toString(7)<br /><span style=\"color: gray\"><em>??</em></span>"
 },
-"strings": {
+"str": {
   "str-type": "var s: string = \"lorem ipsum\";",
   "str-literal": "\"don't say \\\"no\\\"\"<br />'don\\'t say \"no\"'",
   "newline-in-str-literal": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -96,7 +96,7 @@
   "delete-char": "<span style=\"color: gray\"><em>none</em></span>",
   "squeeze-char": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"regexes": {
+"regex": {
   "regex-literal": "/lorem|ipsum/",
   "regex-metachar": "",
   "char-class-abbrev": ". \\d \\D \\s \\S \\w \\W",

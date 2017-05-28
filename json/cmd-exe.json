@@ -52,7 +52,7 @@
   "seed-random-numbers": "<span style=\"color: gray\"><em>none</em></span>",
   "bit-operators<br-/>": "<span style=\"color: gray\"><em>use with</em> set /a:</span><br /><span style=\"white-space: pre-wrap;\">&lt;&lt; &gt;&gt; &amp; | ^ ~</span>"
 },
-"strings": {
+"str": {
   "string-literal": "<span style=\"color: gray\"><em>None; barewords are used for strings.</em></span><br /><br /><span style=\"color: gray\"><em>Double quotes are used for file names which contain spaces and other special characters. However, the double quotes are stored in the variables and passed to commands.</em></span>",
   "newline-in-literal": "<span style=\"color: gray\"><em>No; a bareword string can be continued on the following line by ending a line with ^; the CRLF is not part of the value of the string; it is not possible to store a CRLF in a variable.</em></span>",
   "barewords": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -74,7 +74,7 @@
   "string-to-number": "set x=\"12\"<br />set /a \"result=7+%x%\"",
   "number-to-string<br-/>": "<span style=\"color: gray\"><em>all values are strings</em></span>"
 },
-"regexes": {
+"regex": {
   "regex-match": "set s=hello<br />echo %s%|findstr /r \"[a-z][a-z]*\" &amp;&amp; (echo match ) ^<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">||</span> (echo does not match)",
   "single-subst": "",
   "global-subst": "set \"s=do re mi mi mi\"<br />echo %s:mi=ma%"

@@ -61,7 +61,7 @@
   "binary-octal-hex-literals": "0b101010<br />052<br />0x2a",
   "radix": "42.to_s(7)<br />\"60\".to_i(7)"
 },
-"strings": {
+"str": {
   "str-type": "String",
   "str-literal": "\"don't say \\\"no\\\"\"<br />'don\\'t say \"no\"'<br />\"don't \" 'say \"no\"'",
   "newline-in-str-literal": "'first line<br />second line'<br /><br />\"first line<br />second line\"",
@@ -98,7 +98,7 @@
   "delete-char": "\"disemvowel me\".delete(\"aeiou\")",
   "squeeze-char": "\"too<span style=\"white-space: pre-wrap;\">   </span>much<span style=\"white-space: pre-wrap;\">   </span>space\".squeeze(\" \")"
 },
-"regexes": {
+"regex": {
   "regex-literal": "/lorem|ipsum/<br />%r(/etc/hosts)<br /><span style=\"color: gray\"># double quoted string escapes<br /># and #{} substitution can be used</span>",
   "ascii-char-class-abbrev": ".<span style=\"white-space: pre-wrap;\">   </span>[^\\n]<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>with</em> m <em>modifier matches all chars</em></span><br />\\d<span style=\"white-space: pre-wrap;\">  </span>[0-9]<br />\\D<span style=\"white-space: pre-wrap;\">  </span>[^0-9]<br />\\h<span style=\"white-space: pre-wrap;\">  </span>[0-9a-fA-F]<br />\\H<span style=\"white-space: pre-wrap;\">  </span>[^0-9a-fA-F]<br />\\s<span style=\"white-space: pre-wrap;\">  </span>[ \\t\\r\\n\\f]<br />\\S<span style=\"white-space: pre-wrap;\">  </span>[^ \\t\\r\\n\\f]<br />\\w<span style=\"white-space: pre-wrap;\">  </span>[A-Za-z0-9_]<br />\\W<span style=\"white-space: pre-wrap;\">  </span>[^A-Za-z0-9_]",
   "unicode-char-class-abbrev": ".<br />\\p{Digit}<br />\\p{^Digit}<br />\\p{Space}<br />\\p{^Space}<br />\\p{Word}<br />\\p{^Word}<br /><br /><span style=\"color: gray\"><em>POSIX character classes (e.g.</em> <span style=\"white-space: pre-wrap;\">[[:alpha:]]</span><em>), general category values (e.g.</em> \\p{L}, \\p{Lu}<em>), and script names (e.g.</em> \\p{Greek}) <em>also supported.</em></span>",

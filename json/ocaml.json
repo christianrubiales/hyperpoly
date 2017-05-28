@@ -3,7 +3,7 @@
   "version-used": "<span style=\"color: gray\"><em>4.0</em></span>",
   "version": "$ ocaml -version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "$ echo 'print_endline \"hello\"' &gt; hello.ml<br /><br />$ ocaml hello.ml",
   "shebang": "$ cat <span style=\"white-space: pre-wrap;\">&lt;&lt;</span>EOF &gt; hello.ml<br />#!/usr/bin/env ocaml<br /><br />print_endline \"hello\";;<br />EOF<br /><br />$ chmod +x hello.ml<br />$ ./hello.ml",
   "bytecode-compiler-interpreter": "$ echo 'print_endline \"hello\";;' &gt; hello.ml<br />$ ocamlc -o hello hello.ml<br />$ ocamlrun hello",
@@ -70,7 +70,7 @@
   "binary-octal-hex-literals": "0b101010<br />0o52<br />0x2a",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "string",
   "str-literal": "\"Hello, World!\"",
   "newline-in-str-literal": "<span style=\"color: gray\"><em>no</em></span>",

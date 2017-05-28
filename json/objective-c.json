@@ -14,7 +14,7 @@
   "eol-comment": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> comment</span>",
   "multiple-line-comment": "<span style=\"color: gray\">/* comment<br />another comment */</span>"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "int i;<br />int j = 3;",
   "uninitialized-local-var": "<span style=\"color: gray\"><em>behavior is undefined.<br /><br />Most implementations do not zero-initialize stack variables, so the value will be whatever happened to be in memory.</em></span>",
   "global-var": "<span style=\"color: gray\"><em>in</em> foo.cpp <em>outside of any function or class definition:</em></span><br />int foo = 7;<br /><br /><span style=\"color: gray\"><em>in</em> bar.cpp <em>outside of any function or class definition:</em></span><br />extern int foo;",
@@ -69,7 +69,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "NSString* s = @\"lorem ipsum\";<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> convert to C string:</span><br />const char* s2 = [s UTF8String];",
   "str-literal": "@\"don't say \\\"no\"\"",
   "newline-literal": "<span style=\"color: gray\"><em>string literals can extend over multiple lines, but the newlines do not appear in the resulting string</em></span>",
@@ -96,7 +96,7 @@
   "char-literal": "",
   "test-char": ""
 },
-"regexes": {
+"regex": {
   "regex-type": "",
   "char-class-abbrev": "",
   "regex-anchors": "",

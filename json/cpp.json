@@ -14,7 +14,7 @@
   "eol-comment": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> comment</span>",
   "multiple-line-comment": "<span style=\"color: gray\">/* comment<br />another comment */</span>"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "int i;<br />int j = 3;<br />int k(7);",
   "uninitialized-local-var": "<span style=\"color: gray\"><em>The behavior is undefined.<br /><br />Most implementations do not zero-initialize stack variables, so the value will be whatever happened to be in memory.</em></span>",
   "global-var": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> in foo.cpp and outside of any function<br /><span style=\"white-space: pre-wrap;\">//</span> or class definition:</span><br />int foo = 7;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> in bar.cpp and outside of any function<br /><span style=\"white-space: pre-wrap;\">//</span> or class definition:</span><br />extern int foo;",
@@ -69,7 +69,7 @@
   "binary-octal-hex-literals": "0b0101010<br />052<br />0x2a",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "string s(\"lorem ipsum\");<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> convert to C string:</span><br />const char* s2 = s.c_str();",
   "str-literal": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> const char*:</span><br />\"don't say \\\"no\\\"\"",
   "newline-literal": "<span style=\"color: gray\"><em>Newlines in string literals are ignored.</em></span>",
@@ -96,7 +96,7 @@
   "char-literal": "char n = 'X';",
   "test-char": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> functions have this signature:<br /><span style=\"white-space: pre-wrap;\">//</span><br /><span style=\"white-space: pre-wrap;\">//</span> <span style=\"white-space: pre-wrap;\">  </span>int (*)(int):<br /><span style=\"white-space: pre-wrap;\">//</span></span><br />isalpha<br />isdigit<br />isspace<br />isupper<br />islower"
 },
-"regexes": {
+"regex": {
   "regex-type": "regex<br />wregex",
   "char-class-abbrev": ". \\d \\D \\s \\S \\w \\W",
   "regex-anchors": "^ $ \\b \\B",

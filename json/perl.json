@@ -16,7 +16,7 @@
   "eol-comment": "<span style=\"color: gray\"># comment</span>",
   "multiple-line-comment": "<span style=\"color: gray\">=for<br />comment line<br />another line<br />=cut</span>"
 },
-"variables-expressions": {
+"var-expr": {
   "local-var": "my $v;<br />my (@a, %d);<br />my $x = 1;<br />my ($y, $z) = (2, 3);",
   "local-scope-region": "top level:<br /><span style=\"white-space: pre-wrap;\">  </span>file<br /><br />nestable:<br /><span style=\"white-space: pre-wrap;\">  </span>function body<br /><span style=\"white-space: pre-wrap;\">  </span>anonymous function body<br /><span style=\"white-space: pre-wrap;\">  </span>anonymous block",
   "global-var": "our ($g1, $g2) = (7, 8);<br /><br />sub swap_globals {<br /><span style=\"white-space: pre-wrap;\">  </span>($g1, $g2) = ($g2, $g1);<br />}",
@@ -64,7 +64,7 @@
   "binary-oct-hex-literals": "0b101010<br />052<br />0x2a",
   "radix": "<span style=\"color: gray\"># cpan -i Math::BaseCalc</span><br />use Math::BaseCalc;<br /><br />$c = new Math::BaseCalc(<br /><span style=\"white-space: pre-wrap;\">  </span>digits =&gt; [0..6]);<br />$c-&gt;to_base(42);<br />$c-&gt;from_base(\"60\");"
 },
-"strings": {
+"str": {
   "str-literal": "\"don't say \\\"no\\\"\"<br />'don\\'t say \"no\"'",
   "str-literal-newline": "'first line<br />second line'<br /><br />\"first line<br />second line\"",
   "char-esc": "<span style=\"color: gray\"><em>double quoted:</em></span><br />\\a \\b \\cx \\e \\f \\n \\r \\t \\xhh \\x{hhhh} \\ooo \\o{ooo}<br /><br /><span style=\"color: gray\"><em>single quoted:</em></span><br />\\' \\\\",
@@ -94,7 +94,7 @@
   "delete-char": "$s = \"disemvowel me\";<br />$s =~ tr/aeiou<span style=\"white-space: pre-wrap;\">//</span>d;",
   "squeeze-char": "$s = \"too much space\";<br />$s =~ tr/ <span style=\"white-space: pre-wrap;\">//</span>s;"
 },
-"regexes": {
+"regex": {
   "regex-literal": "/lorem|ipsum/<br />qr(/etc/hosts)",
   "char-class-abbrev": ". \\d \\D \\h \\H \\s \\S \\v \\V \\w \\W",
   "regex-anchors": "^ $ \\A \\b \\B \\z \\Z",

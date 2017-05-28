@@ -3,14 +3,14 @@
   "version-used": "<span style=\"color: gray\"><em>Postgres 9.1</em></span>",
   "show-version": "$ psql <span style=\"white-space: pre-wrap;\">--</span>version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "<span style=\"color: gray\"><em>at psql prompt:</em></span><br /><span style=\"white-space: pre-wrap;\">&gt;</span> create or replace function hello()<br />returns varchar as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return 'Hello World!';<br />end;<br />$$ language plpgsql;<br />CREATE FUNCTION<br /><br /><span style=\"white-space: pre-wrap;\">&gt;</span> select hello();<br />hello<br /><span style=\"white-space: pre-wrap;\">--------------</span><br />Hello World!<br />(1 row)",
   "file-suffixes": "",
   "source-code-encoding": "",
   "eol-comment": "<span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>comment line</em></span><br /><span style=\"white-space: pre-wrap;\">--</span> <span style=\"color: gray\"><em>another line</em></span>",
   "multiple-line-comment": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"variables-expressions": {
+"var-expr": {
   "case-sensitive-id": "<span style=\"color: gray\"><em>no</em></span>",
   "declarations": "create type customer as (<br /><span style=\"white-space: pre-wrap;\">  </span>id integer,<br /><span style=\"white-space: pre-wrap;\">  </span>name text<br />);<br /><br />create or replace function foo() returns void as $$<br />declare<br /><span style=\"white-space: pre-wrap;\">  </span>pi numeric(10,4) = 3.14;<br /><span style=\"white-space: pre-wrap;\">  </span>i integer = 42;<br /><span style=\"white-space: pre-wrap;\">  </span>c customer%rowtype;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return;<br />end $$ language plpgsql;",
   "block-with-local-scope": "declare<br /><span style=\"white-space: pre-wrap;\">  </span>i integer := 3;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>raise notice 'i is %', i;<br />end;",
@@ -52,7 +52,7 @@
   "random-num": "floor(100 * random())<br />random()",
   "bit-op": "<span style=\"white-space: pre-wrap;\"> &lt;&lt; &gt;&gt; </span> &amp; | ^ ~"
 },
-"strings": {
+"str": {
   "string-literal<br-/>": "'Don''t say \"foo\"'",
   "fixed-length-string-type": "<span style=\"color: gray\"><em>pads length to</em> n <em>with spaces:</em></span><br />char(<span style=\"color: gray\"><em>n</em></span>)",
   "bounded-length-string-type": "<span style=\"color: gray\"><em>error if</em> n <em>exceeded:</em></span><br />varchar(<span style=\"color: gray\"><em>n</em></span>)",
@@ -69,7 +69,7 @@
   "convert-string-to-number": "<span style=\"color: gray\"><em>arithmetic operators automatically convert strings to numbers</em></span><br />cast('12' as int)<br />cast('3.14') as real)",
   "convert-number-to-string": "<span style=\"color: gray\"><em>double pipe operator</em> <span style=\"white-space: pre-wrap;\">||</span> <em>converts numbers operands to strings</em></span><br />cast(8 to text)<br />cast(3.14 to text)"
 },
-"regexes": {
+"regex": {
   "match": "select *<br />from pwt<br />where name similar to 'r[a-z]+';",
   "substitute": "select regexp_replace('foo bar', 'bar$', 'baz');",
   "extract-subgroup": "select (regexp_matches('foobar', '(f..)bar'))[1];"

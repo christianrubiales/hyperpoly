@@ -5,13 +5,25 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
  * Make JSON file valid by removing trailing commas.
  */
 public class JsonProcessor {
+	
+	static Map<String, String> headerMap = new HashMap<>();
+	static {
+		headerMap.put("\"general\": {", "\"version\": {");
+		headerMap.put("\"grammar-invocation\": {", "\"grammar-execution\": {");
+		headerMap.put("\"date-time\": {", "\"dates-time\": {");
+		headerMap.put("\"regexes\": {", "\"regex\": {");
+		headerMap.put("\"variables-expressions\": {", "\"var-expr\": {");
+		headerMap.put("\"strings\": {", "\"str\": {");
+	}
 
 	/**
 	 * @param args[0] - json file
@@ -24,12 +36,14 @@ public class JsonProcessor {
 		for (int i = 1; i < lines.size() - 1; i++) {
 			String prev = lines.get(i - 1);
 			String curr = lines.get(i);
-			
-			if (curr.startsWith("\"general\": {")) {
-				lines.set(i, "\"version\": {");
 				
+			if (headerMap.containsKey(curr)) {
+				curr = headerMap.get(curr);
+				lines.set(i, curr);
+			}
+			
 			// header closing bracket encoutered, remove trailing  comma of previos line	
-			} else if (curr.startsWith("}")) {
+			if (curr.startsWith("}")) {
 				if (!prev.endsWith("{")) {
 					lines.set(i - 1, prev.substring(0, prev.length() - 1));
 				}

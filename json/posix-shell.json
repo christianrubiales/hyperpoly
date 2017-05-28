@@ -52,7 +52,7 @@
   "seed-random-numbers": "RANDOM=17<br />r=$RANDOM",
   "bit-operators<br-/>": "<span style=\"white-space: pre-wrap;\">&lt;&lt; &gt;&gt; &amp; | ^ ~</span>"
 },
-"strings": {
+"str": {
   "string-literal": "'don'\\''t say \"no\"'<br />\"don't say \\\"no\\\"\"<br />$'don\\'t say \"no\"'",
   "newline-in-literal": "<span style=\"color: gray\"><em>yes</em></span>",
   "barewords": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -74,7 +74,7 @@
   "string-to-number": "A=\"12\"<br />$(( 7 + $A ))<br /><br />B=\".037\"<br /><span style=\"white-space: pre-wrap;\">`</span>echo 73.9 + $B | bc<span style=\"white-space: pre-wrap;\">`</span>",
   "number-to-string<br-/>": "<span style=\"color: gray\"><em>all values are strings</em></span>"
 },
-"regexes": {
+"regex": {
   "regex-match": "s=hello<br />rx='[a-z][a-z]*'<br />if expr $s : $rx &gt; /dev/null<br />then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>…</em></span><br />fi",
   "single-subst": "s='do re mi mi mi'<br />s=$(echo $s | sed s/mi/ma/)",
   "global-subst": "s='do re mi mi mi'<br />s=$(echo $s | sed s/mi/ma/g)"

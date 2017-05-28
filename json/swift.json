@@ -4,7 +4,7 @@
   "version": "$ swift <span style=\"white-space: pre-wrap;\">--</span>version",
   "implicit-prologue": "import Foundation"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "interpreter": "<span style=\"color: gray\"><em>none</em></span>",
   "compiler": "$ cat hello.swift<br />print(\"Hello, World!\")<br /><br />$ swift hello.swift<br /><br />$ ./hello<br />Hello, World!",
   "statement-terminator": "; <span style=\"color: gray\"><em>or sometimes newline<br /><br />A newline does not terminate a statement when:<br /><span style=\"white-space: pre-wrap;\">  </span>(1) inside [ ] of an array literal,<br /><span style=\"white-space: pre-wrap;\">  </span>(2) inside of ( ) parens,<br /><span style=\"white-space: pre-wrap;\">  </span>(3) after a binary operator,<br /><span style=\"white-space: pre-wrap;\">  </span>(4) other situations?</em></span>",
@@ -63,7 +63,7 @@
   "binary-octal-hex-literals": "",
   "radix": ""
 },
-"strings": {
+"str": {
   "str-type": "String",
   "str-literal": "\"hello\"",
   "newline-in-str-literal": "<span style=\"color: gray\"><em>no</em></span>",

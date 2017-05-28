@@ -52,7 +52,7 @@
   "seed-random-numbers": "$r = random -setseed 17",
   "bit-operators<br-/>": "<span style=\"color: gray\"><em>none</em></span> <span style=\"color: gray\"><em>none</em></span> -band -bor -bxor -bnot<br /><br /><span style=\"color: gray\"># powershell 3.0:</span><br />-lsl -lsr"
 },
-"strings": {
+"str": {
   "string-literal": "'don''t say \"no\"'<br />\"don't say <span style=\"white-space: pre-wrap;\">`</span>\"no<span style=\"white-space: pre-wrap;\">`</span>\"\"",
   "newline-in-literal": "<span style=\"color: gray\"><em>yes</em></span>",
   "barewords": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -74,7 +74,7 @@
   "string-to-number": "7 + \"12\"<br /><br />73.9 + \".037\"",
   "number-to-string<br-/>": "[convert]::tostring(7) + \" items\"<br /><br /><span style=\"color: gray\"># or use variable interpolation</span>"
 },
-"regexes": {
+"regex": {
   "regex-match": "if (\"hello\" -match \"^[a-z][a-z]*$\") {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>…</em></span><br />}",
   "single-subst": "",
   "global-subst": "$s = \"do re mi mi mi\"<br />$s = $s -replace \"mi\", \"ma\""

@@ -4,7 +4,7 @@
   "version-used": "<span style=\"color: gray\"><em>GNU APL 1.5</em></span>",
   "show-version": "$ apl <span style=\"white-space: pre-wrap;\">--</span>version"
 },
-"grammar-invocation": {
+"grammar-execution": {
   "hello-world": "$ cat hello.apl<br />\"Hello, World!\"<br />)OFF<br /><br />$ apl <span style=\"white-space: pre-wrap;\">--</span>script <span style=\"white-space: pre-wrap;\">--</span>noSV -f hello.apl<br />Hello, World!",
   "file-suffixes": "",
   "block-delimiters": "",
@@ -12,7 +12,7 @@
   "eol-comment": "⍝ <span style=\"color: gray\"><em>comment</em></span><br /><br /><span style=\"color: gray\"><em>the standard name for</em> ⍝ <em>is \"lamp\"</em></span>",
   "multiple-line-comment": ""
 },
-"variables-expressions": {
+"var-expr": {
   "case-sensitive": "<span style=\"color: gray\"><em>yes</em></span>",
   "var-types": "",
   "var-declaration": "",
@@ -51,7 +51,7 @@
   "random-seed": "⎕RL ← 17",
   "bit-op": ""
 },
-"strings": {
+"str": {
   "str-type": "",
   "str-literal": "'don''t say \"no\"'",
   "newline-in-str-literal": "",
