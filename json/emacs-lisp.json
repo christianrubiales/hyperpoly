@@ -167,7 +167,7 @@
   "filter": "",
   "reduce": ""
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "<span style=\"color: gray\"><em>none</em></span>",
   "dict-ctor": "(setq h (make-hash-table :test 'equal))",
   "dict-pred": "(hash-table-p h)",
@@ -189,7 +189,7 @@
   "struct-setter<br-/>": "(setf (account-balance a) 0)",
   "struct-predicate<br-/>": "(account-p a)"
 },
-"functions": {
+"func": {
   "define-function<br-/>": "(defun add (x y) (+ x y))",
   "can-function-and-variable-share-name": "<span style=\"color: gray\"><em>yes</em></span>",
   "optional-argument": "(defun add (a &amp;optional b)<br /><span style=\"white-space: pre-wrap;\">  </span>(if (null b) a (+ a b)))",
@@ -205,7 +205,7 @@
   "lambda": "(lambda (x) (* x x))",
   "apply": "((lambda (x) (* x x)) 2)<br /><span style=\"white-space: pre-wrap;\"> </span><br />(apply<br /><span style=\"white-space: pre-wrap;\">  </span>#'(lambda (x) (* x x))<br /><span style=\"white-space: pre-wrap;\">  </span>'(2))"
 },
-"execution-control": {
+"exec-control": {
   "progn<br-/>": "progn prog1 prog2",
   "loop": "(setq i 1)<br />(loop (print \"hello\")<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(if (&gt; i 10)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(return)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(setq i (+ i 1))))",
   "do": "(do ((i 1) (sum 0))<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>((&gt; i 100) sum)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(setq sum (+ sum i))<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(setq i (+ i 1)))<br /><span style=\"color: gray\">do* <em>initializes sequentially</em></span>",
@@ -259,7 +259,7 @@
   "insert-file-contents-at-point": "(insert-file \"/etc/passwd\")",
   "mark": "<span style=\"color: gray\">;; to beginning of current buffer:</span><br />(set-mark 1)<br /><br /><span style=\"color: gray\">;; to point of current buffer:</span><br />(set-mark (point))"
 },
-"files": {
+"file": {
   "file-test": "(file-exists-p \"/etc/hosts\")<br /><br />(file-regular-p \"/etc/hosts\")",
   "file-size": "(eighth<br /><span style=\"white-space: pre-wrap;\">  </span>(file-attributes \"/etc/hosts\"))",
   "file-readable-writable-executable": "",
@@ -269,7 +269,7 @@
   "symlink": "(make-symbolic-link \"/etc/hosts\" /tmp/hosts\")<br /><span style=\"color: gray\"><em>returns target if symlink or nil:</em></span><br />(file-symlink-p \"/tmp/hosts\")",
   "tmp-file": "(make-temp-file \"foo\")"
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-basename": "(file-name-directory \"/etc/hosts\")<br /><br />(file-name-nondirectory<br /><span style=\"white-space: pre-wrap;\">  </span>\"/etc/hosts\")",
   "abs-pathname": "(expand-file-name \"..\")",
@@ -289,7 +289,7 @@
   "external-cmd": "(shell-command \"ls /etc\")",
   "cmd-subst": "(shell-command-to-string \"ls /etc\")"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "complete-example": "",
   "compile-library": "$ emacs -batch -Q -L . \\<br /><span style=\"white-space: pre-wrap;\">  </span>-f batch-byte-compile a.el",
   "load-library<br-/>": "(require \"a\")",

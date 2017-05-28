@@ -167,7 +167,7 @@
   "filter": "",
   "reduce": ""
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "<span style=\"color: gray\">; immutable:</span><br />#hash((\"t\" . 1) (\"f\" . 0))",
   "dict-ctor": "(define ih<br /><span style=\"white-space: pre-wrap;\">  </span>(make-immutable-hash<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>'((\"t\" . 1) (\"f\" . 0))))<br /><br /><span style=\"color: gray\">; mutable:</span><br />(define h (make-hash '((\"t\" . 1) (\"f\" . 0))))",
   "dict-pred": "(hash? h)<br /><br /><span style=\"color: gray\">; also true of assoc. lists and vectors:</span><br />(dict? h)",
@@ -189,7 +189,7 @@
   "struct-setter<br-/>": "(set-account-balance! a 0)",
   "struct-predicate<br-/>": "(account? a)"
 },
-"functions": {
+"func": {
   "define-function<br-/>": "(define (add x y) (+ x y))",
   "can-function-and-variable-share-name": "<span style=\"color: gray\"><em>no</em></span>",
   "optional-argument": "(define (add a (b null))<br /><span style=\"white-space: pre-wrap;\">  </span>(if (null? b) a (+ a b)))",
@@ -205,7 +205,7 @@
   "lambda": "(lambda (x) (* x x))",
   "apply": "((lambda (x) (* x x)) 2)<br /><span style=\"white-space: pre-wrap;\"> </span><br />(apply (lambda (x) (* x x)) '(2))"
 },
-"execution-control": {
+"exec-control": {
   "progn<br-/>": "begin <span style=\"color: gray\"><em>none</em></span> <span style=\"color: gray\"><em>none</em></span><br /><span style=\"color: gray\"><em>r6rs:</em></span><br />begin begin0 <span style=\"color: gray\"><em>none</em></span>",
   "loop": "<span style=\"color: gray\"><em>none, use recursion</em></span>",
   "do": "<span style=\"color: gray\"><em>none</em></span>",
@@ -259,7 +259,7 @@
   "insert-file-contents-at-point": "",
   "mark": ""
 },
-"files": {
+"file": {
   "file-test": "<span style=\"color: gray\"><em>??</em></span><br />(file-exists? \"/etc/hosts\")",
   "file-size": "(file-size \"/etc/hosts\")",
   "file-readable-writable-executable": "(pair? (filter<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(lambda (x) (eq? x 'read))<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(file-or-directory-permissions<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>\"/etc/hosts\")))<br />(pair? (filter<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(lambda (x) (eq? x 'write))<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(file-or-directory-permissions<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>\"/etc/hosts\")))<br />(pair? (filter<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(lambda (x) (eq? x 'execute))<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(file-or-directory-permissions<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>\"/etc/hosts\")))",
@@ -269,7 +269,7 @@
   "symlink": "(make-file-or-directory-link<br /><span style=\"white-space: pre-wrap;\">  </span>\"/etc/hosts\"<br /><span style=\"white-space: pre-wrap;\">  </span>\"/tmp/hosts\")<br />(link-exists? \"/tmp/hosts\")<br /><span style=\"color: gray\"><em>??</em></span>",
   "tmp-file": "(define tmp (make-temporary-file))<br />(path-&gt;string tmp)"
 },
-"directories": {
+"dir": {
   "build-pathname": "<span style=\"color: gray\">; returns path; convert to string<br />; with path-&gt;string:</span><br />(build-path \"/etc\" \"hosts\")",
   "dirname-basename": "(let-values (((dir file _)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(split-path \"/etc/hosts\")))<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">#| use dir or file <span style=\"white-space: pre-wrap;\">|#</span></span>)",
   "abs-pathname": "(simplify-path<br /><span style=\"white-space: pre-wrap;\">  </span>(path-&gt;complete-path \"..\"))",
@@ -289,7 +289,7 @@
   "external-cmd": "(require scheme/system)<br />(system \"ls /etc\")",
   "cmd-subst": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "complete-example": "",
   "compile-library": "$ raco make a.rkt",
   "load-library<br-/>": "(require a)",

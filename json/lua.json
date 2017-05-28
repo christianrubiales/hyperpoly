@@ -161,7 +161,7 @@
   "shuffle": "<span style=\"color: gray\"><em>none</em></span>",
   "zip": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "d = { t=1, f=0 }",
   "dict-size": "size = 0<br />for k, v in pairs(d) do<br /><span style=\"white-space: pre-wrap;\">  </span>size = size + 1<br />end",
   "dict-lookup": "d.t<br />d[\"t\"]",
@@ -177,7 +177,7 @@
   "dict-sort-val": "",
   "dict-default-val": ""
 },
-"functions": {
+"func": {
   "func-def": "function add(x, y)<br /><span style=\"white-space: pre-wrap;\">  </span>return x + y<br />end",
   "func-invocation": "add(1, 2)",
   "nested-func": "<span style=\"color: gray\"><em>visible outside containing function</em></span>",
@@ -195,7 +195,7 @@
   "closure": "",
   "generator": "crt = coroutine.create(<br /><span style=\"white-space: pre-wrap;\">  </span>function (n)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>while (true) do<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>coroutine.yield(n % 2)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>n = n + 1<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>end<br /><span style=\"white-space: pre-wrap;\">  </span>end<br />)<br /><br />status, retval =<br /><span style=\"white-space: pre-wrap;\">  </span>coroutine.resume(crt, 1)<br /><br />if status then<br /><span style=\"white-space: pre-wrap;\">  </span>print(\"parity: \" .. retval)<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>print(\"couldn't resume crt\")<br />end<br /><br />_, retval = coroutine.resume(crt)<br />print(\"parity: \" .. retval)"
 },
-"execution-control": {
+"exec-control": {
   "if": "if n == 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>print(\"no hits\")<br />elseif n == 1 then<br /><span style=\"white-space: pre-wrap;\">  </span>print(\"one hit\")<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>print(n .. \" hits\")<br />end",
   "while": "while i &lt; 100 do<br /><span style=\"white-space: pre-wrap;\">  </span>i = i + 1<br />end",
   "break-continue": "break <span style=\"color: gray\"><em>none</em></span>",
@@ -236,7 +236,7 @@
   "open-tmp-file": "",
   "in-memory-stream": ""
 },
-"files": {
+"file": {
   "file-test": "<span style=\"color: gray\"><em>none</em></span>",
   "file-size": "",
   "readable-writable-executable": "",
@@ -254,7 +254,7 @@
   "parse-xml": "",
   "generate-xml": ""
 },
-"directories": {
+"dir": {
   "working-dir": "",
   "build-pathname": "",
   "dirname-basename": "",
@@ -285,7 +285,7 @@
 "option-parsing": {
   "cmd-line-opt": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "compile-lib": "<span style=\"color: gray\"><em>none</em></span>",
   "load-lib": "require 'foo'<br />add(3,7)",
   "load-lib-subdir": "",
@@ -359,7 +359,7 @@
   "test-setup": "",
   "test-teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "",
   "warning-flag": "",
   "lint": "",

@@ -143,7 +143,7 @@
   "universal-test<br-/>": "",
   "existential-test<br-/>": "var a = [1, 2, 3, 4];<br />var even = function(x) {<br /><span style=\"white-space: pre-wrap;\">  </span>return x % 2 == 0;<br />};<br /><br />a.every(even)<br />a.some(even)"
 },
-"dictionaries": {
+"dict": {
   "dict-ctorl": "d = {\"t\": 1, \"f\": 0};<br /><span style=\"color: gray\">// keys do not need to be quoted if they<br />// are a legal JavaScript variable name<br /><em>and not a reserved word</em></span>",
   "dict-size": "var size = 0;<br />for (var k in d) {<br /><span style=\"white-space: pre-wrap;\">  </span>if (d.hasOwnProperty(k)) size++;<br />}",
   "dict-lookup": "d.t<br />d[\"t\"]",
@@ -154,7 +154,7 @@
   "dict-iter": "for (var k in d) {<br /><span style=\"white-space: pre-wrap;\">  </span>use k or d[k]<br />}",
   "dict-key-val-arrays": ""
 },
-"functions": {
+"func": {
   "def-func": "function add(x, y) {<br /><span style=\"white-space: pre-wrap;\">  </span>return x+y;<br />}",
   "call-func": "add(1, 2)",
   "missing-arg": "set to// undefined",
@@ -170,7 +170,7 @@
   "private-state-func": "function counter() {<br /><span style=\"white-space: pre-wrap;\">  </span>counter.i += 1;<br /><span style=\"white-space: pre-wrap;\">  </span>return counter.i;<br />}<br /><br />counter.i = 0;<br />alert(counter());",
   "closure": "function make_counter() {<br /><span style=\"white-space: pre-wrap;\">  </span>var i = 0;<br /><br /><span style=\"white-space: pre-wrap;\">  </span>return function() {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>i += 1;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>return i;<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}"
 },
-"execution-control": {
+"exec-control": {
   "if": "if (0 == n) {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"no hits\");<br />} else if (1 == n) {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"1 hit\");<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(n + \" hits\");<br />}",
   "switch": "switch (n) {<br />case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"no hits\\n\");<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"one hit\\n\");<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>alert(n + \" hits\\n\");<br />}",
   "while": "while (i &lt; 100) {<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1;<br />}",
@@ -216,7 +216,7 @@
   "open-temporary-file": "",
   "in-memory-file": ""
 },
-"files": {
+"file": {
   "file-test": "",
   "file-size": "",
   "readable-writable-executable": "",
@@ -230,7 +230,7 @@
   "parse-json": "var s1 = '{\"t\":1,\"f\":0}';<br />var d1 = JSON.parse(s1);",
   "generate-json": "var d2 = {'t': 1, 'f': 0};<br />var s2 = JSON.stringify(d1);"
 },
-"directories": {
+"dir": {
   "working-directory<br-/>": "",
   "build-pathname": "",
   "dirname-basename": "",
@@ -253,7 +253,7 @@
   "external-cmd": "",
   "cmd-subst": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "",
   "load-library-in-subdirectory": "",
   "hot-patch": "",

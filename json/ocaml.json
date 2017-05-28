@@ -139,9 +139,9 @@
   "tuple-lookup": "match (1, \"hello\", true) with _, x, _ -&gt; x",
   "pair-lookup": "fst (12, \"December\")<br />snd (12, \"December\")"
 },
-"dictionaries": {
+"dict": {
 },
-"functions": {
+"func": {
   "def-func": "let average a b = ( a +. b ) /. 2.0;;",
   "invoke-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">(*</span> 4.5: *)</span><br />average 1.0 2.0 +. 3.0;;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">(*</span> 3.0: *)</span><br />average 1.0 (2.0 +. 3.0);;",
   "named-parameter": "let subtract ~m ~s = m - s;;<br /><br />subtract ~s: 3 ~m: 7;;",
@@ -158,7 +158,7 @@
   "lazy-evaluation": "let arg1 x y = x;;<br /><br />arg1 7 (lazy (1/0) );;",
   "strict-evaluation": "<span style=\"color: gray\"><em>default behavior</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if x &gt; 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>print_endline \"pos\";;",
   "if-else-if-else": "if x &gt; 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>print_endline \"pos\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>if x &lt; 0 then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print_endline \"neg\"<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print_endline \"zero\";;",
   "sequencing": "print_endline \"one\";<br />print_endline \"two\";<br />print_endline \"three\";;",
@@ -200,7 +200,7 @@
   "end-of-file-test": "",
   "get-and-set-filehandle-position": ""
 },
-"files": {
+"file": {
   "file-test,-regular-file-test": "open Unix<br /><br />try Some (stat \"/etc/hosts\") with<br /><span style=\"white-space: pre-wrap;\">  </span>Unix_error (ENOENT, _, _) -&gt; None<br /><br />(stat \"/etc/hosts\").st_kind = S_REG",
   "file-size": "(stat \"/etc/hosts\").st_size",
   "is-file-readable,-writable,-executable": "open Unix<br /><br />try access \"/tmp/bar\" [R_OK]; true with<br /><span style=\"white-space: pre-wrap;\">  </span>Unix.Unix_error (EACCES, _, _) -&gt; false;;<br />try access \"/tmp/bar\" [W_OK]; true with<br /><span style=\"white-space: pre-wrap;\">  </span>Unix.Unix_error (EACCES, _, _) -&gt; false;;<br />try access \"/tmp/bar\" [X_OK]; true with<br /><span style=\"white-space: pre-wrap;\">  </span>Unix.Unix_error (EACCES, _, _) -&gt; false;;",
@@ -209,7 +209,7 @@
   "create-symlink,-symlink-test,-readlink": "open Unix<br /><br />symlink \"/etc/hosts\" \"/tmp/hosts\"<br />(lstat \"/tmp/hosts\").st_kind = S_LNK<br />readlink \"/tmp/hosts\"",
   "generate-unused-file-name": "open Filename<br /><br /><span style=\"color: gray\">(* prefix and suffix: *)</span><br />temp_file \"foo\" \".txt\""
 },
-"directories": {
+"dir": {
   "build-pathname": "open Filename<br /><br />concat \"/etc\" \"hosts\"",
   "dirname-and-basename": "open Filename<br /><br />dirname \"/etc/hosts\"<br />basename \"/etc/hosts\"",
   "iterate-over-directory-by-file": "",
@@ -232,7 +232,7 @@
   "escaped-external-cmd": "",
   "backticks": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "namespace-example": "",
   "namespaces": "",
   "file-name-restrictions": "<span style=\"color: gray\"><em>module</em> Foo.Bar <em>must be in</em> Foo.ml</span>",
@@ -273,7 +273,7 @@
 },
 "unit-tests": {
 },
-"debugging-profiling": {
+"debug-profile": {
 },
 "repl": {
   "invoke-repl": "$ ocaml<br /><br /><span style=\"color: gray\"><em>Use this if you want history:</em></span><br />$ rlwrap ocaml<br /><br /><span style=\"color: gray\"><em>The utop toplevel, which can be installed via opam, also provides history.</em></span>",

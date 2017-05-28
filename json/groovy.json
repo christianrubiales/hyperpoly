@@ -161,7 +161,7 @@
   "shuffle": "a = [1, 2, 3, 4]<br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> no return value:</span><br />Collections.shuffle(a)",
   "zip": "[[1,2,3], ['a', 'b', 'c']].transpose()"
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "d = [\"t\": 1, \"f\": 0]",
   "dict-size": "d.size()",
   "dict-lookup": "d[\"t\"]",
@@ -177,7 +177,7 @@
   "dict-sort-val": "",
   "dict-default-val": ""
 },
-"functions": {
+"func": {
   "func-def": "def (x, y) {<br /><span style=\"white-space: pre-wrap;\">  </span>x + y<br />}",
   "func-invocation": "add(1, 2)<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> parens are optional:</span><br />add 1, 2",
   "nested-func": "",
@@ -195,7 +195,7 @@
   "closure": "",
   "generator": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "if (n == 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"no hits\")<br />}<br />else if (n == 1) {<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"one hit\")<br />}<br />else {<br /><span style=\"white-space: pre-wrap;\">  </span>println(n + \" hits\")<br />}",
   "while": "while (i &lt; 100) {<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1<br />}",
   "break-continue": "break continue",
@@ -236,7 +236,7 @@
   "open-tmp-file": "",
   "in-memory-stream": ""
 },
-"files": {
+"file": {
   "file-test": "f = new File('/etc/hosts')<br /><br />f.exists()<br />f.isFile()",
   "file-size": "f = new File('/etc/hosts')<br /><br />f.length()",
   "readable-writable-executable": "f = new File('etc/hosts')<br /><br />f.canRead()<br />f.canWrite()<br />f.canExecute()",
@@ -254,7 +254,7 @@
   "parse-xml": "",
   "generate-xml": ""
 },
-"directories": {
+"dir": {
   "working-dir": "System.getProperty(\"user.dir\")<br /><br /><span style=\"color: gray\"><em>none</em></span>",
   "build-pathname": "",
   "dirname-basename": "f = new File(\"/etc/hosts\")<br />f.getParent()<br />f.getName()",
@@ -285,7 +285,7 @@
 "option-parsing": {
   "cmd-line-opt": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "compile-lib": "$ cat Foo.groovy<br />class Foo {<br /><span style=\"white-space: pre-wrap;\">  </span>static int add(int a, int b) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>a + b<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}<br /><br />$ groovyc foo.groovy",
   "load-lib": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> import Foo from Foo.groovy:</span><br />import Foo",
   "load-lib-subdir": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> import Foo from bar/Foo.groovy:</span><br />import bar.Foo",
@@ -359,7 +359,7 @@
   "test-setup": "",
   "test-teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "",
   "warning-flag": "",
   "lint": "",

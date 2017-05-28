@@ -172,7 +172,7 @@
   "tuple-lookup": "let tup = (1, \"hello\", true)<br />let n: Int = tup.0",
   "deconstruct-tuple": "let tup = (1, \"hello\", true)<br />let (n, s, b) = tup<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> use underscores for unneeded elements:</span><br />let (n, _, _) = tup"
 },
-"dictionaries": {
+"dict": {
   "declare-dict": "let dict = Dictionary&lt;String, Int&gt;()",
   "dict-literal": "let dict = [\"t\": 1, \"f\": 0]",
   "dict-size": "dict.count",
@@ -184,7 +184,7 @@
   "dict-iterate": "for (k, v) in dict {<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"\\(k): \\(v)\")<br />}",
   "dict-key-val": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> dict.keys and dict.values are iterable:</span><br />Array(dict.keys)<br />Array(dict.values)"
 },
-"functions": {
+"func": {
   "def-func": "func add(n: Int, m: Int) -&gt; Int {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}",
   "invoke-func": "add(3, 7)",
   "define-function-with-block-body": "",
@@ -204,7 +204,7 @@
   "currying": "",
   "lazy-evaluation": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "var signum: Int<br /><br />if i &gt; 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1<br />} else if i == 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1<br />}",
   "while": "var i = 0<br /><br />while i &lt; 10 {<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1<br />}",
   "for": "var n = 1<br /><br />for var i = 1; i &lt;= 10; i++ {<br /><span style=\"white-space: pre-wrap;\">  </span>n *= i<br />}",
@@ -238,7 +238,7 @@
   "flush-file-handle": "f.synchronizeFile()",
   "get-and-set-filehandle-position": "let pos = f.offsetInFile<br />f.seekToFileOffset(0)"
 },
-"files": {
+"file": {
   "file-test,-regular-file-test": "",
   "file-size": "",
   "is-file-readable,-writable,-executable": "",
@@ -247,7 +247,7 @@
   "create-symlink,-symlink-test,-readlink": "",
   "generate-unused-file-name": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-and-basename": "",
   "iterate-over-directory-by-file": "",
@@ -270,7 +270,7 @@
   "escaped-external-cmd": "",
   "backticks": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "define-namespace": "",
   "define-child-namespace": "",
   "reference-identifier-in-another-file": "",
@@ -319,7 +319,7 @@
   "setup": "",
   "teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "lint": "",
   "run-debugger": "",
   "profile-code": "",

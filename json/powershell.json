@@ -95,7 +95,7 @@
   "sort": "$a = 3, 2, 4, 1<br />$b = $a | Sort-Object",
   "reverse": "$a = 1, 2, 3<br />[array]::reverse($a)"
 },
-"functions": {
+"func": {
   "def-func": "function add {<br /><span style=\"white-space: pre-wrap;\">  </span>param ($a, $b)<br /><span style=\"white-space: pre-wrap;\">  </span>$a + $b<br />}",
   "call-func": "add 1 2",
   "missing-arg": "$null",
@@ -108,7 +108,7 @@
   "default-scope<br-/>": "<span style=\"color: gray\"><em>local</em></span>",
   "nest-func": "function add {<br /><span style=\"white-space: pre-wrap;\">  </span>param ($a, $b)<br /><span style=\"white-space: pre-wrap;\">  </span>function add2 {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>param ($a2, $b2)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>$a2 + $b2<br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><span style=\"white-space: pre-wrap;\">  </span>add2 $a $b<br />}<br /><br /><span style=\"color: gray\"># Nested function not visible outside of containing<br /># function; nested function can see local variables<br /># of containing function.</span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if ($n -eq 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"no hits\"<br />} elseif ($n -eq 1) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"one hit\"<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"$n hits\"<br />}",
   "while": "$i = 0<br />while ($i -lt 10) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output (++$i)<br />}",
   "for": "for ($i=1; $i -le 3; $i++) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output $i<br />}",
@@ -134,7 +134,7 @@
   "write-to-file": "",
   "append-to-file": ""
 },
-"files": {
+"file": {
   "create-empty-file": "<span style=\"color: gray\"># error if file exists:</span><br />new-item -type file foo.txt",
   "file-test": "if (test-path foo.txt) { write-output \"exists\" }<br /><br />if (test-path -pathtype leaf) {<br /><span style=\"white-space: pre-wrap;\">  </span>write-output \"regular\"<br />}",
   "file-size": "get-childitem foo.txt",
@@ -145,7 +145,7 @@
   "symlink": "",
   "unused-file-name": "[System.IO.Path]::GetTempFileName()"
 },
-"directories": {
+"dir": {
   "working-dir": "$loc = get-location<br />echo $loc<br /><br />set-location \\windows",
   "program-dir": "",
   "direname-basename": "",
@@ -176,7 +176,7 @@
   "bring-background-job-into-foreground": "",
   "disown-job": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "library": "<span style=\"color: gray\"><em>from directory in search path:</em></span><br /><br /><span style=\"white-space: pre-wrap;\">&gt;</span> type Modules\\Foo\\Foo.psm1<br />function add {<br /><span style=\"white-space: pre-wrap;\">  </span>param ($a, $b)<br /><span style=\"white-space: pre-wrap;\">  </span>$a + $b<br />}",
   "import-library": "import-module foo<br /><br />add 1 2",
   "library-path-environment-variable": "$env:psmodulepath"
@@ -186,7 +186,7 @@
   "list-defined-variables": "get-variable",
   "list-available-libraries": "get-module -listavailable"
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "",
   "stronger-err": "",
   "cpu-usage": ""

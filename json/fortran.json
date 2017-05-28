@@ -98,12 +98,12 @@
   "sort-array": "",
   "reduce": ""
 },
-"arith-seq": {
+"arithmetic-sequences": {
   "arith-seq-diff-one": "",
   "arith-seq-diff-ten": "",
   "arith-seq-diff-tenth": ""
 },
-"functions": {
+"func": {
   "def-func": "integer function add(n, m)<br /><span style=\"white-space: pre-wrap;\">  </span>integer, intent(in) :: n<br /><span style=\"white-space: pre-wrap;\">  </span>integer, intent(in) :: m<br /><span style=\"white-space: pre-wrap;\">  </span>add = n + m<br />end function add",
   "invoke-func": "add(3, 7)",
   "forward-decl-func": "",
@@ -125,7 +125,7 @@
   "func-private-state": "",
   "func-as-val": "<span style=\"color: gray\"><em>none; function pointers added in Fortran 2003</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "for": "do n = 1, 10, 1<br /><span style=\"white-space: pre-wrap;\">  </span>write(*,*) n<br />end do",
   "if": "if (n == 0) then<br /><span style=\"white-space: pre-wrap;\">  </span>write(*,*) 'no hits'<br />elseif (n == 1) then<br /><span style=\"white-space: pre-wrap;\">  </span>write(*,*) 'one hit'<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>write(*,*) n, 'hits'<br />endif",
   "while": "n = 1<br />do while ( n &lt; 10 )<br /><span style=\"white-space: pre-wrap;\">  </span>write(*,*) n<br /><span style=\"white-space: pre-wrap;\">  </span>n = n + 1<br />end do",

@@ -139,9 +139,9 @@
   "tuple-lookup": "(\\(a, _, _) -&gt; a) (1, \"hello\", True)",
   "pair-lookup": "fst (12, \"December\")<br />snd (12, \"December\")"
 },
-"dictionaries": {
+"dict": {
 },
-"functions": {
+"func": {
   "def-func": "average a b = (a + b) / 2.0",
   "invoke-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> 4.5:</span><br />average 1 2 + 3<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> 3.0:</span><br />average 1 (2 + 3)<br />average 1 $ 2 + 3",
   "named-parameter": "<span style=\"color: gray\"><em>none</em></span>",
@@ -158,7 +158,7 @@
   "lazy-evaluation": "<span style=\"color: gray\"><em>lazy evaluation is default:</em></span><br />arg1 x y = x<br /><br />arg1 7 (error \"bam!\")",
   "strict-evaluation": "arg1 x y = seq y x<br /><br />arg1 7 (error \"bam!\")"
 },
-"execution-control": {
+"exec-control": {
   "if": "if x &gt; 0<br /><span style=\"white-space: pre-wrap;\">  </span>then putStrLn \"pos\"<br /><span style=\"white-space: pre-wrap;\">  </span>else return ()",
   "if-else-if-else": "if x &gt; 0<br /><span style=\"white-space: pre-wrap;\">  </span>then putStrLn \"pos\"<br /><span style=\"white-space: pre-wrap;\">  </span>else if x &lt; 0<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>then putStrLn \"neg\"<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>else putStrLn \"zero\"",
   "sequencing": "do<br /><span style=\"white-space: pre-wrap;\">  </span>putStrLn \"one\"<br /><span style=\"white-space: pre-wrap;\">  </span>putStrLn \"two\"<br /><span style=\"white-space: pre-wrap;\">  </span>putStrLn \"three\"",
@@ -200,7 +200,7 @@
   "end-of-file-test": "",
   "get-and-set-filehandle-position": ""
 },
-"files": {
+"file": {
   "file-test,-regular-file-test": "import System<br /><br />Directory.doesFileExist \"/etc/hosts\"<br /><br />import Control.Monad<br />import System.Posix.Files<br /><br />liftM isRegularFile (getFileStatus \"/etc/hosts\")",
   "file-size": "import Control.Monad<br />import System.Posix.Files<br /><br />liftM fileSize (getFileStatus \"/etc/hosts\")",
   "is-file-readable,-writable,-executable": "import Control.Monad<br /><br />liftM readable<br /><span style=\"white-space: pre-wrap;\">  </span>(getPermissions \"/etc/hosts\")<br />liftM writable<br /><span style=\"white-space: pre-wrap;\">  </span>(getPermissions \"/etc/hosts\")<br />liftM executable<br /><span style=\"white-space: pre-wrap;\">  </span>(getPermissions \"/etc/hosts\")",
@@ -209,7 +209,7 @@
   "create-symlink,-symlink-test,-readlink": "import System.Posix.Files<br /><br />createSymbolicLink \"/etc/hosts\" \"/tmp/hosts\"<br /><span style=\"color: gray\"><em>??</em></span><br />readSymbolicLink \"/tmp/hosts\"",
   "generate-unused-file-name": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "import System.FilePath ((&lt;/&gt;))<br /><br />let path = \"/etc\" &lt;/&gt; \"hosts\"",
   "dirname-and-basename": "import System.FilePath<br /><br />takeFileName \"/etc/hosts\"<br />takeDirectory \"/etc/hosts\"",
   "iterate-over-directory-by-file": "import System<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> returns IO [FilePath]</span><br />Directory.getDirectoryContents \"/etc\"",
@@ -232,7 +232,7 @@
   "escaped-external-cmd": "",
   "backticks": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "namespace-example": "<span style=\"color: gray\"><em>Foo/Bar.hs</em></span><br />module Foo.Bar where<br /><span style=\"white-space: pre-wrap;\">  </span>data Baz = Baz<br /><span style=\"white-space: pre-wrap;\">  </span>say Baz = putStrLn \"hello\"<br /><br /><span style=\"color: gray\"><em>Main.hs</em></span><br />module Main where<br />import Foo.Bar<br />baz = Baz<br />main = say baz<br /><br /><span style=\"color: gray\"><em>to compile and run</em></span><br />$ ghc -c Foo/Bar.hs<br />$ ghc Main.hs<br />$ ./Main<br />hello",
   "namespaces": "values, constructors, type variables, type constructors, type classes, modules",
   "file-name-restrictions": "<span style=\"color: gray\"><em>module</em> Foo.Bar <em>must be in</em> Foo/Bar.hs</span>",
@@ -273,7 +273,7 @@
 },
 "unit-tests": {
 },
-"debugging-profiling": {
+"debug-profile": {
 },
 "repl": {
   "invoke-repl": "$ ghci",

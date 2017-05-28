@@ -110,7 +110,7 @@
   "tuple-element-access": "<span style=\"color: gray\"># \"foo\":</span><br />elem({1, \"foo\", 3.14}, 2)<br /><br /><span style=\"color: gray\"># 1, \"bar\", 3.14}:</span><br />put_elem({1, \"foo\", 3.14}, 2, \"bar\")",
   "tuple-length": "tuple_size({1, \"foo\", 3.14})"
 },
-"dictionaries": {
+"dict": {
   "literal": "%{\"t\" =&gt; 1, \"f\" =&gt; 0}",
   "size": "",
   "lookup": "",
@@ -122,13 +122,13 @@
 "algebraic-data-types": {
   "record": ""
 },
-"functions": {
+"func": {
   "function-definition": "def factorial(0), do: 1<br />def factorial(n), do: n * factorial(n - 1)",
   "function-definition-with-guards": "def factorial(n) when n &gt; 0, do: n * factorial(n - 1)<br />def factorial(0), do: 1",
   "anonymous-function": "fn(x, y) -&gt; x + y end",
   "piecewise-defined-anonymous-function": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "if x == 0 do<br /><span style=\"white-space: pre-wrap;\">  </span>IO.puts \"no hits\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>IO.puts \"hits\"<br />end",
   "for": "for x &lt;- 1..10, do: IO.puts(x)",
   "try/catch": "try do<br /><span style=\"white-space: pre-wrap;\">  </span>div(7, 0)<br /><span style=\"white-space: pre-wrap;\">  </span>:ok<br />catch<br /><span style=\"white-space: pre-wrap;\">  </span>_, _ -&gt; :failed<br />end",
@@ -153,11 +153,11 @@
   "printf": "",
   "close-file": ":ok = File.close(f)"
 },
-"files": {
+"file": {
   "file-test": "File.regular? \"/etc/hosts\"",
   "file-size": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-basename": "File.dirname \"/etc/hosts\"<br />File.basename \"/etc/hosts\"",
   "absolute-pathname": "File.absname \"/etc/hosts\"",
@@ -170,7 +170,7 @@
   "program-name": "",
   "exit": "System.halt"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-file": "",
   "define-namespace": "defmodule Factorial do<br />end",
   "compile-namespace": "c(\"factorial.ex\")",

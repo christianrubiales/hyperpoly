@@ -166,7 +166,7 @@
   "flatten": "",
   "zip": ""
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "var d = {\"t\": 1, \"f\": 0};",
   "dict-size": "d.length",
   "dict-lookup": "d[\"t\"]",
@@ -182,7 +182,7 @@
   "dict-sort-values": "",
   "dict-default-val": ""
 },
-"functions": {
+"func": {
   "def-func": "num add(num n, num m) {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m;<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> parameter and return types optional:</span><br />add(n, m) {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m;<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> expression body shorthand:</span><br />num add(num n, num m) =&gt; n + m;",
   "invoke-func": "add(1, 2)",
   "overload-func": "<span style=\"color: gray\"><em>none</em></span>",
@@ -199,7 +199,7 @@
   "closure": "Function make_counter() {<br /><span style=\"white-space: pre-wrap;\">  </span>num i = 0;<br /><span style=\"white-space: pre-wrap;\">  </span>return () =&gt; ++i;<br />}",
   "generator": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "int signum;<br /><br />if (i &gt; 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1;<br />} else if (i == 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0;<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1;<br />}",
   "switch": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> switch expression can be integer or string</span><br /><br />switch (i) {<br /><span style=\"white-space: pre-wrap;\">  </span>case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>case 1:<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print(\"i is boolean\");<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>break;<br /><span style=\"white-space: pre-wrap;\">  </span>default:<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print(\"i is not boolean\");<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Falling through not permitted; exception if last<br /><span style=\"white-space: pre-wrap;\">//</span> statement not break, continue, throw, or return.</span>",
   "while": "int i = 0;<br /><br />while (i &lt; 10) {<br /><span style=\"white-space: pre-wrap;\">  </span>++i;<br />}",
@@ -249,7 +249,7 @@
   "tmp-file": "",
   "stringio": ""
 },
-"files": {
+"file": {
   "file-test": "import 'dart:io' as io;<br /><br />File f = new io.File(\"/tmp/foo\");<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> existence check?</span><br /><br />if (f.existsSync()) {<br /><span style=\"white-space: pre-wrap;\">  </span>print(\"is a regular file\\n\");<br />}",
   "file-size": "f.lengthSync()",
   "readable-writable-executable": "",
@@ -270,7 +270,7 @@
   "generate-xml": "",
   "parse-html": ""
 },
-"directories": {
+"dir": {
   "working-dir": "",
   "build-pathname": "",
   "dirname-basename": "",
@@ -297,7 +297,7 @@
   "shell-esc-external-cmd": "",
   "cmd-subst": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> load ./foo.dart:</span><br />import 'foo.dart' as foo;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> load built-in library:</span><br />import 'dart:io' as io;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> library installed by package manager:</span><br />import 'package:foo/foo.dart' as foo;",
   "load-lib-subdir": "import 'lib/foo.dart' as foo;",
   "hot-patch": "",
@@ -376,7 +376,7 @@
   "html-escape": "",
   "base64": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "",
   "lint": ""
 }

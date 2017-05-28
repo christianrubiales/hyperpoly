@@ -172,7 +172,7 @@
   "tuple-lookup": "val tup = (1, \"hello\", true)<br />val n: Int = tup._1",
   "deconstruct-tuple": "val tup = (1, \"hello\", true)<br />tup match {<br /><span style=\"white-space: pre-wrap;\">  </span>case (_, s, _) =&gt; println(s)<br /><span style=\"white-space: pre-wrap;\">  </span>case _ =&gt; throw new Exception(\"bad tuple\")<br />}"
 },
-"dictionaries": {
+"dict": {
   "declare-dict": "import scala.collection.mutable<br /><br />val dict = mutable.Map.empty[String, Int]",
   "dict-literal": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> scala.collection.immutable.Map[String,Int]:</span><br />val dict = Map(\"t\" -&gt; 1, \"f\" -&gt; 0)",
   "dict-size": "dict.size",
@@ -184,7 +184,7 @@
   "dict-iterate": "for (kv &lt;- dict) {<br /><span style=\"white-space: pre-wrap;\">  </span>println(kv._1)<br /><span style=\"white-space: pre-wrap;\">  </span>println(kv._2)<br />}",
   "dict-key-val": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Iterable[String]:</span><br />dict.keys<br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Array[String]:</span><br />dict.keys.toArray<br />dict.values<br />dict.values.toArray"
 },
-"functions": {
+"func": {
   "def-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> argument types must be declared:</span><br />def average(a: Double, b: Double)<br /><span style=\"white-space: pre-wrap;\">  </span>= (a + b) / 2.0<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> return value type must be declared if<br /><span style=\"white-space: pre-wrap;\">//</span> function is recursive:</span><br />def factorial(n: Int): Int =<br /><span style=\"white-space: pre-wrap;\">  </span>if (n &lt; 1)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>1<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>n * factorial(n - 1)",
   "invoke-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> 3.0:</span><br />average(1, 2 + 3)<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> 4.5:</span><br />average(1, 2) + 3<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> parens can be omitted when a function<br /><span style=\"white-space: pre-wrap;\">//</span> takes no arguments; by convention parens<br /><span style=\"white-space: pre-wrap;\">//</span> are omitted when the function has no<br /><span style=\"white-space: pre-wrap;\">//</span> side effects</span>",
   "define-function-with-block-body": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> braces must be used if body<br /><span style=\"white-space: pre-wrap;\">//</span> not an expression:</span><br />def print_numbers() = {<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"one\")<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"two\")<br />}",
@@ -204,7 +204,7 @@
   "currying": "def plus(x: Int)(y: Int) = x + y<br />plus(3)(7)<br />def plus2 = plus(2)<br />plus2(7)",
   "lazy-evaluation": "def arg1(x: =&gt; Int, y: =&gt; Int): Int = x<br /><br />arg1(7, 1 / 0)"
 },
-"execution-control": {
+"exec-control": {
   "if": "if (x &gt; 0)<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"pos\")<br />else if (x &lt; 0)<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"neg\")<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>println(\"zero\")",
   "while": "var i = 0<br />while (i&lt;10) {<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"%d\\n\", i)<br /><span style=\"white-space: pre-wrap;\">  </span>i = i+1<br />}",
   "for": "for (i &lt;- 1 to 10)<br /><span style=\"white-space: pre-wrap;\">  </span>println(i)",
@@ -238,7 +238,7 @@
   "flush-file-handle": "",
   "get-and-set-filehandle-position": ""
 },
-"files": {
+"file": {
   "file-test,-regular-file-test": "import java.io.File<br /><br />val f = new File(\"/etc/hosts\")<br />f.exists<br />f.isFile",
   "file-size": "import java.io.File<br /><br />val f = new File(\"/etc/hosts\")<br />f.length",
   "is-file-readable,-writable,-executable": "import java.io.File<br /><br />val f = new File(\"/etc/hosts\")<br />f.canRead<br />f.canWrite<br />f.canExecute",
@@ -247,7 +247,7 @@
   "create-symlink,-symlink-test,-readlink": "import java.nio.file.Files<br />import java.nio.file.Paths<br /><br />val target = Paths.get(\"/etc/hosts\")<br />val path = Paths.get(\"/tmp/hosts\")<br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Possible java.nio.file.FileAlreadyExistsException:</span><br />Files.createSymbolicLink(path, target)<br />Files.isSymbolicLink(path)<br />Files.readSymbolicLink(path)",
   "generate-unused-file-name": "import java.nio.file.Files<br /><br />val path = Files.createTempFile(\"foo\", \".txt\")"
 },
-"directories": {
+"dir": {
   "build-pathname": "import java.io.File<br /><br />val root = File.listRoots()(0)<br />val hosts = new File(new File(root, \"etc\"), \"hosts\")<br />val path = hosts.getPath",
   "dirname-and-basename": "import java.io.File<br /><br />val f = new File(\"/etc/hosts\")<br />val dirn = f.getParent<br />val basen = f.getName",
   "iterate-over-directory-by-file": "import java.io.File<br /><br />val dir = new File(\"/etc\")<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Array[String]:</span><br />dir.list<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Array[java.io.File]:</span><br />dir.listFiles",
@@ -270,7 +270,7 @@
   "escaped-external-cmd": "import scala.sys.process._<br />import java.io.File<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> if args contain spaces, use List():</span><br />val exitCode = List(\"touch\", \"/tmp/some file\").!<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> there are operators for shell <span style=\"white-space: pre-wrap;\">&amp;&amp;, ||, and |</span>:</span><br />(( \"ls /tmp\" #<span style=\"white-space: pre-wrap;\">&amp;&amp;</span> \"ls /etc\") #| \"grep ssh\").!<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> redirection example:</span><br />(\"ls\" #&gt; new File(\"/tmp/ls.out\")).!",
   "backticks": "import scala.sys.process._<br /><br />val s = \"ls\".<span style=\"white-space: pre-wrap;\">!!</span>"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "define-namespace": "package foo {<br /><span style=\"white-space: pre-wrap;\">  </span>class A<br /><span style=\"white-space: pre-wrap;\">  </span>class B<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Alternate syntax; must be first statement in file;<br /><span style=\"white-space: pre-wrap;\">//</span> declares entire file to be in namespace</span><br />package foo",
   "define-child-namespace": "package foo.bar {<br /><span style=\"white-space: pre-wrap;\">  </span>class A<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Alternate nested syntax:</span><br />package foo {<br /><span style=\"white-space: pre-wrap;\">  </span>package bar {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>class A<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Alternate syntax; must be first statement in file:</span><br />package foo.bar",
   "reference-identifier-in-another-file": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> no import needed if identifier is fully qualified:</span><br />val a = new foo.bar.A",
@@ -319,7 +319,7 @@
   "setup": "import org.scalatest.FunSuite<br />import org.scalatest.BeforeAndAfter<br /><br />class FooSuite extends FunSuite with BeforeAndAfter {<br /><span style=\"white-space: pre-wrap;\">  </span>before {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print(\"before called\\n\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><br /><span style=\"white-space: pre-wrap;\">  </span>test(\"zero equals self\") {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>assert(0 == 0)<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
   "teardown": "import org.scalatest.FunSuite<br />import org.scalatest.BeforeAndAfter<br /><br />class FooSuite extends FunSuite with BeforeAndAfter {<br /><span style=\"white-space: pre-wrap;\">  </span>test(\"zero equals self\") {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>assert(0 == 0)<br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><br /><span style=\"white-space: pre-wrap;\">  </span>after {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print(\"after called\\n\");<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}"
 },
-"debugging-profiling": {
+"debug-profile": {
   "lint": "$ brew install scalastyle<br />$ scalastyle Hello.scala",
   "run-debugger": "<span style=\"color: gray\"><em>Scala IDE for Eclipse has a debugger</em></span>",
   "profile-code": "<span style=\"color: gray\"><em>Runs app under a sampling profiler. Profiling info is written to stdout. HotSpot VM only.</em></span><br />$ JAVA_OPTS=-Xprof scala SomeApp",

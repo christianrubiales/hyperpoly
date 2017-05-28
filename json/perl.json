@@ -161,7 +161,7 @@
   "shuffle": "use List::Util 'shuffle';<br /><br />@a = (1, 2, 3, 4);<br />shuffle(@a);",
   "zip": "<span style=\"color: gray\"># cpan -i List::MoreUtils</span><br />use List::MoreUtils 'zip';<br /><br />@nums = (1, 2, 3);<br />@lets = qw(a b c);<br /><span style=\"color: gray\"># flat array of 6 elements:</span><br />@a = zip @nums, @lets;"
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "%d = ( \"t\" =&gt; 1, \"f\" =&gt; 0 );<br /><br /><span style=\"color: gray\"># barewords permitted in front of =&gt;<br /># under 'use strict'</span>",
   "dict-size": "scalar(keys %d)",
   "dict-lookup": "$d{\"t\"}<br /><br /><span style=\"color: gray\"># barewords permitted inside { }<br /># under 'use strict'</span>",
@@ -177,7 +177,7 @@
   "dict-sort-val": "foreach $k (sort<br /><span style=\"white-space: pre-wrap;\">  </span>{ $d{$a} &lt;=&gt; $d{$b} } keys %d) {<br /><span style=\"white-space: pre-wrap;\">  </span>print \"$k: $d{$k}\\n\";<br />}",
   "dict-default-val": "my %counts;<br />$counts{'foo'} += 1<br /><br /><span style=\"color: gray\"><em>define a tied hash for computed values and defaults other than zero or empty string</em></span>"
 },
-"functions": {
+"func": {
   "func-def": "sub add3 { $_[0] + $_[1] + $_[2] }<br /><br />sub add3 {<br /><span style=\"white-space: pre-wrap;\">  </span>my ($x1, $x2, $x3) = @_;<br /><span style=\"white-space: pre-wrap;\">  </span>$x1 + $x2 + $x3;<br />}",
   "func-invocation": "add3(1, 2, 3);<br /><br /><span style=\"color: gray\"># parens are optional:</span><br />add3 1, 2, 3;",
   "nested-func": "<span style=\"color: gray\"><em>defined when containing function is defined; visible outside containing function</em></span>",
@@ -195,7 +195,7 @@
   "closure": "sub make_counter {<br /><span style=\"white-space: pre-wrap;\">  </span>my $i = 0;<br /><span style=\"white-space: pre-wrap;\">  </span>return sub { ++$i };<br />}<br /><br />my $nays = make_counter;<br />print $nays-&gt;() . \"\\n\";",
   "generator": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "if ( 0 == $n ) {<br /><span style=\"white-space: pre-wrap;\">  </span>print \"no hits\\n\"<br />} elsif ( 1 == $n ) {<br /><span style=\"white-space: pre-wrap;\">  </span>print \"one hit\\n\"<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>print \"$n hits\\n\"<br />}",
   "while": "while ( $i &lt; 100 ) { $i++ }",
   "break-continue": "last next",
@@ -236,7 +236,7 @@
   "open-tmp-file": "use File::Temp;<br /><br />$f = File::Temp-&gt;new();<br /><br />print $f \"lorem ipsum\\n\";<br /><br />print \"tmp file: \";<br />print $f-&gt;filename . \"\\n\";<br /><br />close $f or die;<br /><br /><span style=\"color: gray\"># file is removed when file handle goes<br /># out of scope</span>",
   "in-memory-stream": "my ($f, $s);<br />open($f, \"&gt;\", \\$s);<br />print $f \"lorem ipsum\\n\";<br />$s;"
 },
-"files": {
+"file": {
   "file-test": "-e \"/etc/hosts\"<br />-f \"/etc/hosts\"",
   "file-size": "-s \"/etc/hosts\"",
   "readable-writable-executable": "-r \"/etc/hosts\"<br />-w \"/etc/hosts\"<br />-x \"/etc/hosts\"",
@@ -254,7 +254,7 @@
   "parse-xml": "<span style=\"color: gray\"># cpan -i XML::XPath</span><br />use XML::XPath;<br /><br />my $xml = \"&lt;a&gt;&lt;b&gt;&lt;c&gt;foo&lt;/c&gt;&lt;/b&gt;&lt;/a&gt;\";<br /><br /><span style=\"color: gray\"># fatal error if XML not well-formed</span><br />my $doc = XML::XPath-&gt;new(xml =&gt; $xml);<br /><br />my $nodes = $doc-&gt;find(\"/a/b/c\");<br />print $nodes-&gt;size . \"\\n\";<br /><br />$node = $nodes-&gt;get_node(0);<br />print $node-&gt;string_value . \"\\n\";<br />print $node-&gt;getAttribute(\"ref\") . \"\\n\";",
   "generate-xml": "<span style=\"color: gray\"># cpan -i XML::Writer</span><br />use XML::Writer;<br /><br />my $writer = XML::Writer-&gt;new(<br />OUTPUT =&gt; STDOUT);<br />$writer-&gt;startTag(\"a\");<br />$writer-&gt;startTag(\"b\", id =&gt; \"123\");<br />$writer-&gt;characters(\"foo\");<br />$writer-&gt;endTag(\"b\");<br />$writer-&gt;endTag(\"a\");<br /><br /><span style=\"color: gray\"># &lt;a&gt;&lt;b id=\"123\"&gt;foo&lt;/b&gt;&lt;/a&gt;:</span><br />$writer-&gt;end;"
 },
-"directories": {
+"dir": {
   "working-dir": "use Cwd;<br /><br />my $old_dir = cwd();<br /><br />chdir(\"/tmp\");",
   "build-pathname": "use File::Spec;<br /><br />File::Spec-&gt;catfile(\"/etc\", \"hosts\")",
   "dirname-basename": "use File::Basename;<br /><br />print dirname(\"/etc/hosts\");<br />print basename(\"/etc/hosts\");",
@@ -285,7 +285,7 @@
 "option-parsing": {
   "cmd-line-opt": "use Getopt::Long;<br /><br />my ($file, $help, $verbose);<br /><br />my $usage =<br /><span style=\"white-space: pre-wrap;\">  </span>\"usage: $0 [-f FILE] [-v] [ARG …]\\n\";<br /><br />if (!GetOptions(\"file=s\" =&gt; \\$file,<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>\"help\" =&gt; \\$help,<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>\"verbose\" =&gt; \\$verbose)) {<br /><span style=\"white-space: pre-wrap;\">  </span>print $usage;<br /><span style=\"white-space: pre-wrap;\">  </span>exit 1;<br />}<br /><br />if ($help) {<br /><span style=\"white-space: pre-wrap;\">  </span>print $usage;<br /><span style=\"white-space: pre-wrap;\">  </span>exit 0;<br />}<br /><br /><span style=\"color: gray\"># After call to GetOptions() only<br /># positional arguments are in @ARGV.<br />#<br /># Options can follow positional arguments.<br />#<br /># Long options can be preceded by one or two<br /># hyphens. Single letters can be used if<br /># only one long option begins with that<br /># letter.<br />#<br /># Single letter options cannot be bundled<br /># after a single hyphen.<br />#<br /># Single letter options must be separated<br /># from an argument by a space or =.</span>"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "compile-lib": "<span style=\"color: gray\"><em>none</em></span>",
   "load-lib": "require ’Foo.pm';<br /><br /><span style=\"color: gray\"># searches @INC for Foo.pm:</span><br />require Foo;",
   "load-lib-subdir": "require 'Foo/Bar.pm';<br /><br />require Foo::Bar;",
@@ -359,7 +359,7 @@
   "test-setup": "<span style=\"color: gray\"># in class TestFoo:</span><br />sub make_fixture : Test(setup) {<br /><span style=\"white-space: pre-wrap;\">  </span>print \"setting up\";<br />};",
   "test-teardown": "<span style=\"color: gray\"># in class TestFoo:</span><br />sub teardown : Test(teardown) {<br /><span style=\"white-space: pre-wrap;\">  </span>print \"tearing down\";<br />};"
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "$ perl -c foo.pl",
   "warning-flag": "$ perl -w foo.pl<br />$ perl -W foo.pl",
   "lint": "$ perl MO=Lint foo.pl",

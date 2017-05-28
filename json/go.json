@@ -159,7 +159,7 @@
   "filter": "<span style=\"color: gray\"><em>none</em></span>",
   "reduce": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"dictionaries": {
+"dict": {
   "declare-dict": "d := make(map[string]int)",
   "dict-literal": "d := map[string]int {\"t\": 1, \"f\": 0}",
   "dict-size": "len(d)",
@@ -171,7 +171,7 @@
   "dict-iter": "for k, v := range d {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"%s: %d\\n\", k, v)<br />}",
   "dict-key-val-arrays": ""
 },
-"functions": {
+"func": {
   "def-func": "func add(n int, m int) int {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> parameters can share type declaration:</span><br />func add(n, m int) int {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}",
   "invoke-func": "add(3, 7)",
   "forward-decl-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> function can be invoked before definition</span><br />fmt.Printf(\"%f\\n\", add(2.2, 3.5))<br /><br />func add(n float32, m float32) float32 {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m<br />}",
@@ -193,7 +193,7 @@
   "func-private-state": "",
   "func-as-val": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "var signum int<br /><br />if x &gt; 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1<br />} else if x == 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1<br />}",
   "switch": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> switch expression can have any type</span><br /><br />switch i {<br />case 0, 1:<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"i is boolean\")<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"i is not a boolean\")<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> use \"fallthrough\" to fall through</span>",
   "while": "i := 0<br /><br />for i &lt; 10 {<br /><span style=\"white-space: pre-wrap;\">  </span>i++<br />}",
@@ -244,7 +244,7 @@
   "seek": "",
   "tmp-file": ""
 },
-"files": {
+"file": {
   "file-test": "import \"os\"<br /><br />fi, err := os.Stat(\"/tmp/foo\")<br />if os.IsNotExist(err) {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Does not exit\\n\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Exists\\n\")<br /><span style=\"white-space: pre-wrap;\">  </span>fm := fi.Mode()<br /><span style=\"white-space: pre-wrap;\">  </span>if fm.IsRegular() {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Is Regular\")<br /><span style=\"white-space: pre-wrap;\">  </span>} else {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Is Not Regular\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
   "file-size": "fi.Size()",
   "readable-writable-executable": "",
@@ -254,7 +254,7 @@
   "symlink": "import \"os\"<br /><br />err := os.Symlink(\"/etc/hosts\", \"/tmp/hosts\")<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Symlink failed: %s\\n\", err)<br />}<br /><br />fi, err2 := os.Lstat(\"/tmp/hosts\")<br />if err2 == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fm := fi.Mode()<br /><span style=\"white-space: pre-wrap;\">  </span>if fm &amp; os.ModeSymlink != 0 {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fmt.Println(\"File is a Symlink\")<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Lstat failed: %s\\n\", err2)<br />}<br /><br />s, err3 := os.Readlink(\"/tmp/hosts\")<br />if err3 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Readlink failed: %s\\n\", err3)<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"Link target: %s\\n\", s)<br />}",
   "unused-file-name": "import \"io/ioutil\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Uses system tmp dir if 1st arg is empty string:</span><br />f, err := ioutil.TempFile(\"/tmp\", \"foo\")<br />if err == nil {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"writing to: %s\\n\", f.Name())<br /><span style=\"white-space: pre-wrap;\">  </span>f.WriteString(\"foo content\")<br />}"
 },
-"directories": {
+"dir": {
   "working-dir": "import \"os\"<br /><br />dir, err := os.Getwd()<br />if err != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"Gtwd failed\\n\")<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>fmt.Printf(\"pwd: %s\\n\", dir)<br />}<br /><br />err2 := os.Chdir(\"/tmp\")<br />if err2 != nil {<br /><span style=\"white-space: pre-wrap;\">  </span>os.Stderr.WriteString(\"Chdir failed\\n\");<br />}",
   "build-pathname": "import \"path\"<br /><br />pathname := path.Join(\"/etc\", \"hosts\")<br />fmt.Printf(\"path: %s\\n\", pathname)",
   "dirname-basename": "import \"path\"<br /><br />path.Dir(\"/etc/hosts\")<br />path.Base(\"/etc/hosts\")",
@@ -289,7 +289,7 @@
 "option-parsing": {
   "getopt": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "import \"foo\"<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> Only capitalized identifiers are visible:</span><br />var bar = foo.GetBar()",
   "load-lib-subdir": "import \"lib/foo\"",
   "lib-path": "<span style=\"color: gray\"><em>The installation libraries are in the</em> GOROOT <em>directory. Additional directories can be listed in the</em> GOPATH <em>environment variable. The directories are separated by colons (semicolons) on Unix (Windows).<br /><br />Each directory contains a</em> src <em>subdirectory containing source code and a</em> pkg/ARCH <em>subdirectory containing compiled libraries.</em></span>",
@@ -330,7 +330,7 @@
   "setup-and-teardown": "",
   "unit-test-coverage": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "",
   "stronger-warnings": "",
   "suppress-warnings": "",

@@ -170,7 +170,7 @@
   "pair-lookup": "auto p = make_pair(\"foo\", 7);<br /><br />string s = p.first;<br />int i = p.second;",
   "pair-update": "p.first = \"bar\";<br />p.second = 8;"
 },
-"dictionaries": {
+"dict": {
   "dict-ctor": "#include &lt;map&gt;<br /><br />map&lt;string, int&gt; m;",
   "dict-lookup": "m[\"hello\"] = 5;<br />cout <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> m[\"hello\"] <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> endl;",
   "dict-size": "m.size()",
@@ -178,7 +178,7 @@
   "dict-missing-key": "<span style=\"color: gray\"><em>returns element created by default constructor of value type</em></span>",
   "dict-iter": "map&lt;string,int&gt;::iterator mi;<br />for (mi = m.begin(); mi != m.end(); ++mi) {<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"%s %d\", mi-&gt;first, mi-&gt;second)<br />}"
 },
-"functions": {
+"func": {
   "decl-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> parameter names are optional:</span><br />int<br />add(int m, int n);",
   "def-func": "int<br />add(int m, int n) {<br /><span style=\"white-space: pre-wrap;\">  </span>return m + n;<br />}",
   "call-func": "int sum = add(3, 7);",
@@ -201,7 +201,7 @@
   "func-as-val": "",
   "overload-op": "Rational Rational::operator+(Rational&amp; o) {<br /><span style=\"white-space: pre-wrap;\">  </span>return Rational(this-&gt;num * o.denom + o.num * this-&gt;denom, this-&gt;denom * o.denom);<br />}"
 },
-"execution-control": {
+"exec-control": {
   "if": "int signum;<br /><br />if (n &gt; 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1;<br />}<br />else if (n == 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0;<br />}<br />else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1;<br />}",
   "dangling-else": "if (n == 0)<br /><span style=\"white-space: pre-wrap;\">  </span>if (m == 0)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>cout <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> \"n and m are zero\" <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> endl;<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>cout <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> \"n is zero; m isn't\" <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> endl;",
   "switch": "const int INVALID_BINARY_DIGIT(-1);<br />int bin_digit;<br /><br />switch(n) {<br />case 0:<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>bin_digit = n;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>bin_digit = INVALID_BINARY_DIGIT;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />}",
@@ -245,7 +245,7 @@
   "read-from-file": "#include &lt;fstream&gt;<br /><br />string line;<br />ifstream f(\"/etc/passwd\");<br /><br />if (f.is_open()) {<br /><span style=\"white-space: pre-wrap;\">  </span>while (!f.eof()) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>getline(f, line);<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> process line</span><br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><span style=\"white-space: pre-wrap;\">  </span>f.close();<br /><span style=\"white-space: pre-wrap;\">  </span>if ( 0 != f.fail() ) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> handle error</span><br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}<br />else {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> handle error</span><br />}",
   "write-to-file": "#include &lt;fstream&gt;<br /><br />ofstream f(\"/tmp/test4\");<br />int i;<br /><br />for (i = 0; i &lt; 10; ++i) {<br /><span style=\"white-space: pre-wrap;\">  </span>f <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> i <span style=\"white-space: pre-wrap;\">&lt;&lt;</span> endl;<br />}<br />f.close();<br />if (0 != f.fail()) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> handle error</span><br />}"
 },
-"files": {
+"file": {
   "file-test": "",
   "file-size": "",
   "readable-writable-executable": "",
@@ -259,7 +259,7 @@
   "parse-xml": "",
   "parse-html": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-basename": "#include &lt;libgen.h&gt;<br /><br />string s1 = dirname(\"/etc/hosts\");<br />string s2 = basename(\"/etc/hosts\");",
   "absolute-pathname": "#include &lt;climits&gt;<br />#include &lt;cstdlib&gt;<br /><br />char buf[PATH_MAX];<br />if (realpath(\"..\", buf) == NULL) {<br /><span style=\"white-space: pre-wrap;\">  </span>throw exception();<br />}<br />else {<br /><span style=\"white-space: pre-wrap;\">  </span>string path(buf);<br />}",
@@ -279,7 +279,7 @@
   "environment-variable": "#include &lt;stdlib.h&gt;<br /><br />char* home = getenv(\"HOME\");<br />setenv(\"EDITOR\", \"emacs\", 1);<br />unsetenv(\"EDITOR\");",
   "iterate-through-environment-variables": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "std-lib-name": "<span style=\"color: gray\"><em>C++ Standard Library</em></span>",
   "declare-namespace": "namespace foo {<br /><span style=\"white-space: pre-wrap;\">  </span>namespace bar {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>class Baz {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>static const int ANSWER = 42;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>};<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
   "multiple-namespaces-per-file": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -368,7 +368,7 @@
   "setup": "",
   "teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "flag-for-stronger-warnings": "$ g++ -Wall foo.cpp",
   "suppress-warnings": "$ g++ -w foo.cpp",
   "treat-warnings-as-errors": "$ g++ -Werror foo.cpp",

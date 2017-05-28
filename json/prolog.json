@@ -110,7 +110,7 @@
   "tuple-element-access": "arg(2, tuple(1, \"foo\", 3.14), Element).<br /><span style=\"color: gray\"><em>Element = \"foo\".</em></span>",
   "tuple-length": "functor(tuple(1, \"foo\", 3.14), _, Length).<br /><span style=\"color: gray\"><em>Length = 3.</em></span>"
 },
-"dictionaries": {
+"dict": {
   "literal": "",
   "size": "",
   "lookup": "",
@@ -122,13 +122,13 @@
 "algebraic-data-types": {
   "record": ""
 },
-"functions": {
+"func": {
   "function-definition": "factorial(0,1).<br />factorial(N, F) :- N1 is N - 1, factorial(N1, F1), F is N * F1.",
   "function-definition-with-guards": "factorial(N, F) :- N &gt; 0, N1 is N - 1, factorial(N1, F1), F is N * F1.<br />factorial(0, 1).",
   "anonymous-function": "",
   "piecewise-defined-anonymous-function": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "( X = 0 -&gt; format('no hits~n')<br />; X = 1 -&gt; format('one hit~n')<br />; X &gt; 1 -&gt; format('~w hits~n', [X]) ).",
   "for": "between(1, 10, X), writeln(X), false; true.",
   "try/catch": "X = 0,<br />catch(Y is 7 div X,<br /><span style=\"white-space: pre-wrap;\">  </span>error(evaluation_error(zero_divisor), _),<br /><span style=\"white-space: pre-wrap;\">  </span>Y is 0).",
@@ -153,11 +153,11 @@
   "printf": "format('foo: ~s ~2f ~w~n', [\"bar\", 3.1415, 7]).",
   "close-file": "close(Fd)."
 },
-"files": {
+"file": {
   "file-test": "",
   "file-size": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-basename": "",
   "absolute-pathname": "",
@@ -170,7 +170,7 @@
   "program-name": "",
   "exit": "halt(1)."
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-file": "<span style=\"color: gray\"><em>ways to load file</em> data.pl:</span><br />[data].<br />['data.pl'].<br />consult(data)",
   "define-namespace": ":- module(factorial, [factorial/1]).",
   "compile-namespace": "",

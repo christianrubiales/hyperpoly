@@ -166,7 +166,7 @@
   "flatten": "",
   "zip": ""
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "d = {\"t\": 1, \"f\": 0};<br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> keys do not need to be quoted if they<br /><span style=\"white-space: pre-wrap;\">//</span> are a legal JavaScript variable name<br /><span style=\"white-space: pre-wrap;\">//</span>and not a reserved word</span><br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> declare type:</span><br />var d: {[idx: string]: number} = {t: 1, f: 0}",
   "dict-size": "var size = 0;<br />for (var k in d) {<br /><span style=\"white-space: pre-wrap;\">  </span>if (d.hasOwnProperty(k)) size++;<br />}",
   "dict-lookup": "d.hasOwnProperty(\"t\") ? d[\"t\"] : undefined<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> if type of d not declared:</span><br />d.hasOwnProperty(\"t\") ? d.t : undefined",
@@ -182,7 +182,7 @@
   "dict-sort-values": "function cmp2(a, b) {<br /><span style=\"white-space: pre-wrap;\">  </span>if (a[1] &lt; b[1]) { return -1; }<br /><span style=\"white-space: pre-wrap;\">  </span>if (a[1] &gt; b[1]) { return 1; }<br /><span style=\"white-space: pre-wrap;\">  </span>return 0;<br />}<br /><br />for (p in _.pairs(d).sort(cmp2)) {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(p[0] + \": \" + p[1]);<br />}",
   "dict-default-val": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"functions": {
+"func": {
   "def-func": "function add(x: number, y: number): number {<br /><span style=\"white-space: pre-wrap;\">  </span>return x + y;<br />}<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> parameter and return types optional:</span><br />function add(x, y) {<br /><span style=\"white-space: pre-wrap;\">  </span>return x + y;<br />}",
   "invoke-func": "add(1, 2)",
   "overload-func": "function to_number(x: string): number;<br />function to_number(x: number): number;<br />function to_number(x): number {<br /><span style=\"white-space: pre-wrap;\">  </span>if (typeof(x) == \"string\") { return parseFloat(x); }<br /><span style=\"white-space: pre-wrap;\">  </span>if (typeof(x) == \"number\") { return x; }<br />}",
@@ -199,7 +199,7 @@
   "closure": "function make_counter(): () =&gt; number {<br /><span style=\"white-space: pre-wrap;\">  </span>var i = 0;<br /><br /><span style=\"white-space: pre-wrap;\">  </span>return function() {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>i += 1;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>return i;<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
   "generator": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "if (0 == n) {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"no hits\");<br />} else if (1 == n) {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"1 hit\");<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>alert(n + \" hits\");<br />}",
   "switch": "switch (n) {<br />case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"no hits\\n\");<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>alert(\"one hit\\n\");<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>alert(n + \" hits\\n\");<br />}",
   "while": "while (i &lt; 100) {<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1;<br />}",
@@ -249,7 +249,7 @@
   "tmp-file": "",
   "stringio": ""
 },
-"files": {
+"file": {
   "file-test": "var fs = require('fs');<br /><br />var qry = fs.existsSync('/etc/hosts');<br /><br />var stat = fs.statSync('/etc/hosts');<br />var qry2 = stat.isFile();",
   "file-size": "var fs = require('fs');<br /><br />var stat = fs.statSync('/etc/hosts');<br />var sz = stat.size;",
   "readable-writable-executable": "",
@@ -270,7 +270,7 @@
   "generate-xml": "<span style=\"color: gray\"># npm install xmlbuilder</span><br />var builder = require('xmlbuilder');<br /><br />var xml = builder.create('a').ele('b', {id: 123}, 'foo').end();",
   "parse-html": ""
 },
-"directories": {
+"dir": {
   "working-dir": "var old_dir = process.cwd();<br /><br />process.chdir(\"/tmp\");",
   "build-pathname": "",
   "dirname-basename": "",
@@ -297,7 +297,7 @@
   "shell-esc-external-cmd": "",
   "cmd-subst": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "",
   "load-lib-subdir": "",
   "hot-patch": "",
@@ -376,7 +376,7 @@
   "html-escape": "",
   "base64": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "$ tsc <span style=\"white-space: pre-wrap;\">--</span>noEmit foo.ts",
   "lint": "$ npm install -g tslint<br />$ tslint -c ~/.tslint.json -f foo.ts"
 }

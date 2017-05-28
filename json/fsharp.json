@@ -139,9 +139,9 @@
   "tuple-lookup": "match (1, \"hello\", true) with _, x, _ -&gt; x",
   "pair-lookup": "fst (12, \"December\")<br />snd (12, \"December\")"
 },
-"dictionaries": {
+"dict": {
 },
-"functions": {
+"func": {
   "def-func": "let average a b = ( a + b ) / 2.0",
   "invoke-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> 4.5:</span><br />average 1.0 2.0 + 3.0<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> 3.0:</span><br />average 1.0 (2.0 + 3.0)",
   "named-parameter": "",
@@ -158,7 +158,7 @@
   "lazy-evaluation": "",
   "strict-evaluation": "<span style=\"color: gray\"><em>default behavior</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if x &gt; 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>printfn \"pos\"",
   "if-else-if-else": "if x &gt; 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>printfn \"pos\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>if x &lt; 0 then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>printfn \"neg\"<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>printfn \"zero\"",
   "sequencing": "printfn \"one\"<br />printfn \"two\"<br />printfn \"three\"",
@@ -200,7 +200,7 @@
   "end-of-file-test": "",
   "get-and-set-filehandle-position": ""
 },
-"files": {
+"file": {
   "file-test,-regular-file-test": "",
   "file-size": "",
   "is-file-readable,-writable,-executable": "",
@@ -209,7 +209,7 @@
   "create-symlink,-symlink-test,-readlink": "",
   "generate-unused-file-name": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-and-basename": "",
   "iterate-over-directory-by-file": "",
@@ -232,7 +232,7 @@
   "escaped-external-cmd": "",
   "backticks": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "namespace-example": "",
   "namespaces": "",
   "file-name-restrictions": "",
@@ -273,7 +273,7 @@
 },
 "unit-tests": {
 },
-"debugging-profiling": {
+"debug-profile": {
 },
 "repl": {
   "invoke-repl": "<span style=\"color: gray\"><em>Mono:</em></span><br />$ fsharpi<br /><br /><span style=\"color: gray\"><em>In visual studio, highlight code and press ALT+ENTER.</em></span>",

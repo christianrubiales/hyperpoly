@@ -167,7 +167,7 @@
   "filter": "",
   "reduce": ""
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "<span style=\"color: gray\">; clojure.lang.PersistentArrayMap:</span><br />{\"t\" 1 \"f\" 0}",
   "dict-ctor": "<span style=\"color: gray\">; immutable:</span><br />(def ih (hash-map \"t\" 1 \"f\" 0))",
   "dict-pred": "(map? ih)",
@@ -189,7 +189,7 @@
   "struct-setter<br-/>": "<span style=\"color: gray\"><em>none</em></span>",
   "struct-predicate<br-/>": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"functions": {
+"func": {
   "define-function<br-/>": "(defn add [x y] (+ x y))",
   "can-function-and-variable-share-name": "<span style=\"color: gray\"><em>no</em></span>",
   "optional-argument": "(defn add ([a] a) ([a b] (+ a b)))<br /><span style=\"color: gray\"><em>no syntax error if called with more than 2 args:</em></span><br />(defn add [a &amp; [b]]<br /><span style=\"white-space: pre-wrap;\">  </span>(if (nil? b) a (+ a b)))",
@@ -205,7 +205,7 @@
   "lambda": "#(* % %)<br />(fn [x] (* x x))<br /><br /><span style=\"color: gray\">; shortcut notation with two args:</span><br />#(* %1 %2)",
   "apply": "(#(* % %) 2)<br /><span style=\"white-space: pre-wrap;\"> </span><br />((fn [x] (* x x)) 2)<br /><span style=\"white-space: pre-wrap;\"> </span><br />(apply #(* % %) '(2))"
 },
-"execution-control": {
+"exec-control": {
   "progn<br-/>": "do <span style=\"color: gray\"><em>none</em></span> <span style=\"color: gray\"><em>none</em></span>",
   "loop": "(loop [i 1]<br /><span style=\"white-space: pre-wrap;\">  </span>(if (&lt;= i 10)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(do (println \"hello\")<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(recur (+ i 1)))))",
   "do": "<span style=\"color: gray\"><em>none</em></span>",
@@ -259,7 +259,7 @@
   "insert-file-contents-at-point": "",
   "mark": ""
 },
-"files": {
+"file": {
   "file-test": "(.exists (io/file \"/etc/hosts\"))",
   "file-size": "(.length (io/file \"/etc/hosts\"))",
   "file-readable-writable-executable": "(.canRead (io/file \"/etc/hosts\"))<br />(.canWrite (io/file \"/etc/hosts\"))<br />(.canExecute (io/file \"/etc/hosts\"))",
@@ -269,7 +269,7 @@
   "symlink": "",
   "tmp-file": "<span style=\"color: gray\">; java.io.File:</span><br />(java.io.File/createTempFile \"foo\" \".txt\")"
 },
-"directories": {
+"dir": {
   "build-pathname": "(require '[clojure.java.io :as io])<br /><br /><span style=\"color: gray\">; returns java.io.File;<br />; convert to string with .getPath:</span><br />(io/file \"/etc\" \"hosts\")",
   "dirname-basename": "(require '[clojure.java.io :as io])<br /><br />(.getParent (io/file \"/etc/hosts\"))<br />(.getName (io/file \"/etc/hosts\"))",
   "abs-pathname": "(.getCanonicalPath (java.io.File. \"..\"))",
@@ -289,7 +289,7 @@
   "external-cmd": "(.exec (Runtime/getRuntime) \"ls\")",
   "cmd-subst": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "complete-example": "$ cat b/a.clj<br />(ns b.a)<br />(def x 3)<br /><br />$ java -cp clojure.jar:. clojure.main<br />=&gt; (require 'b.a)<br />=&gt; b.a/x<br />3",
   "compile-library": "(compile 'a)",
   "load-library<br-/>": "(require 'a)",

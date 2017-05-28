@@ -99,7 +99,7 @@
 },
 "generic-types": {
 },
-"functions": {
+"func": {
   "decl-func": "",
   "def-func": "function Add(M: Integer; N: Integer): Integer;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>Result := M + N;<br />end;",
   "call-func": "Sum := Add(7, 3);",
@@ -111,7 +111,7 @@
   "overloaded-func": "",
   "forward-decl": "function Odd(N: Integer): Boolean;<br />Forward;<br /><br />function Even(N: Integer): Boolean;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>if N = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := true<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := Odd(N - 1);<br />end;<br /><br />function Odd(N: Integer): Boolean;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>if N = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := false<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Result := Even(N - 1);<br />end;"
 },
-"execution-control": {
+"exec-control": {
   "if": "if I = 0 then<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn('no hits');<br />end<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>if I = 1 then<br /><span style=\"white-space: pre-wrap;\">  </span>begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>WriteLn('one hit');<br /><span style=\"white-space: pre-wrap;\">  </span>end<br /><span style=\"white-space: pre-wrap;\">  </span>else<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>WriteLn(IntToStr(I) + ' hits');",
   "switch": "",
   "while": "I := 0;<br />while I &lt; 10 do<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>WriteLn(IntToStr(I));<br /><span style=\"white-space: pre-wrap;\">  </span>I := I + 1;<br />end",
@@ -135,14 +135,14 @@
   "write-line-stdout": "",
   "write-line-stderr": ""
 },
-"files": {
+"file": {
 },
-"directories": {
+"dir": {
 },
 "processes-environment": {
   "cmd-line-arg": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "",
   "namespace-decl": "",
   "namespace-alias": "",

@@ -159,7 +159,7 @@
   "filter": "",
   "reduce": ""
 },
-"dictionaries": {
+"dict": {
   "declare-dict": "",
   "dict-literal": "",
   "dict-size": "",
@@ -171,7 +171,7 @@
   "dict-iter": "",
   "dict-key-val-arrays": ""
 },
-"functions": {
+"func": {
   "def-func": "int add(int n, int m) {<br /><span style=\"white-space: pre-wrap;\">  </span>return n + m;<br />}",
   "invoke-func": "add(3, 7)",
   "forward-decl-func": "float add(float x, float y);<br /><br /><span style=\"color: gray\">/* if a function invocation is encountered before a<br /><span style=\"white-space: pre-wrap;\">  </span>declaration or a definition, the arguments and the<br /><span style=\"white-space: pre-wrap;\">  </span>return value are assumed to have type 'int' */</span><br />printf(\"%f\\n\", add(2.2, 3.5));<br /><br />float add(float x, float y) {<br /><span style=\"white-space: pre-wrap;\">  </span>return x + y;<br />}",
@@ -193,7 +193,7 @@
   "func-private-state": "int<br />counter() {<br /><span style=\"white-space: pre-wrap;\">  </span>static int n = 0;<br /><br /><span style=\"white-space: pre-wrap;\">  </span>return ++n;<br />}",
   "func-as-val": "int<br />add(int m, int n) {<br /><span style=\"white-space: pre-wrap;\">  </span>return m + n;<br />}<br /><br /><span style=\"color: gray\">/* a function cannot be stored in a variable, but<br /><span style=\"white-space: pre-wrap;\">  </span>its address can */</span><br />int (* fp)(int, int) = &amp;add;<br /><br />printf(\"1 + 2: %d\\n\", (*fp)(1, 2));"
 },
-"execution-control": {
+"exec-control": {
   "if": "int signum;<br /><br />if (i &gt; 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1;<br />} else if (i == 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0;<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1;<br />}",
   "switch": "<span style=\"color: gray\">/* switch expression must be an integer */</span><br /><br />switch (i) {<br />case 0:<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"i is boolean\\n\");<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"i is not a boolean\\n\");<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />}<br /><br /><span style=\"color: gray\">/* use \"break\" to prevent falling through */</span>",
   "while": "int i = 0;<br /><br />while (i &lt; 10) {<br /><span style=\"white-space: pre-wrap;\">  </span>++i;<br />}",
@@ -244,7 +244,7 @@
   "seek": "long pos;<br />if ((pos = ftell(f)) == -1) {<br /><span style=\"white-space: pre-wrap;\">  </span>perror(\"ftell failed\");<br />}<br /><br /><span style=\"color: gray\">/* 3rd arg can also be SEEK_CUR or SEEK_END */</span><br />if (fseek(f, 0, SEEK_SET) == -1) {<br /><span style=\"white-space: pre-wrap;\">  </span>perror(\"fseek failed\");<br />}",
   "tmp-file": "#include &lt;limits.h&gt;<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* PATH_MAX */</span><br />#include &lt;unistd.h&gt;<br /><br />char buf[PATH_MAX];<br /><br />strcpy(buf, \"/tmp/foo.XXXXXX\");<br /><br /><span style=\"color: gray\">/* terminal Xs will be replaced: */</span><br />int fd = mkstemp(buf);<br /><br />if (fd != -1) {<br /><span style=\"white-space: pre-wrap;\">  </span>FILE *f = fdopen(fd, \"w\");<br /><br /><span style=\"white-space: pre-wrap;\">  </span>if (NULL == f) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>perror(\"fdopen failed\");<br /><span style=\"white-space: pre-wrap;\">  </span>} else {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* use f */</span><br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>perror(\"mkstemp failed\");<br />}"
 },
-"files": {
+"file": {
   "file-test": "#include &lt;sys/stat.h&gt;<br />#include &lt;unistd.h&gt;<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* access() */</span><br /><br />struct stat buf;<br /><br />if (access(\"/tmp/foo\", F_OK) &gt;= 0) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* file exists */</span><br />}<br /><br />if (stat(\"/tmp/foo\", &amp;buf) != 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>perror(\"stat failed\");<br />} else if (S_ISREG(buf.st_mode)) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* file is regular */</span><br />}",
   "file-size": "#include &lt;sys/stat.h&gt;<br /><br />struct stat buf;<br /><br />if (stat(\"/tmp/foo\", &amp;buf) != 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>perror(\"stat failed\");<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"size: %llu\\n\", buf.st_size);<br />}",
   "readable-writable-executable": "#include &lt;unistd.h&gt;<br /><br />if (access(\"/etc/hosts\", R_OK) != 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"not readable\\n\");<br />}<br />if (access(\"/etc/hosts\", W_OK) != 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"not writable\\n\");<br />}<br />if (access(\"/etc/hosts\", X_OK) != 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>printf(\"not executable\\n\");<br />}",
@@ -254,7 +254,7 @@
   "symlink": "#include &lt;limits.h&gt;<span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* PATH_MAX */</span><br />#include &lt;sys/stat.h&gt;<br />#include &lt;unistd.h&gt;<br /><br />if (symlink(\"/etc/hosts\", \"/tmp/hosts\") == -1) {<br /><span style=\"white-space: pre-wrap;\">  </span>perror(\"symlink failed\");<br />}<br /><br />struct stat sbuf;<br /><br />if (stat(\"/tmp/hosts\", &amp;buf) != 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>perror(\"stat failed\");<br />} else if (S_ISLNK(buf.st_mode)) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* file is symlink */</span><br />}<br /><br />char pbuf[PATH_MAX + 1];<br /><br />ssize_t size = readlink(\"/tmp/hosts\", pbuf, PATH_MAX);<br /><br />if (size &gt;= 0 ) {<br /><span style=\"white-space: pre-wrap;\">  </span>pbuf[size] = 0;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\">/* pbuf now contains null-terminated string<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">   </span>with target path */</span><br />}",
   "unused-file-name": "<span style=\"color: gray\">/* if first argument is NULL, path is in system temp<br /><span style=\"white-space: pre-wrap;\">   </span>directory. Caller should free() return value. */</span><br />char *path = tempnam(\"/tmp\", \"foo\");"
 },
-"directories": {
+"dir": {
   "working-dir": "",
   "build-pathname": "",
   "dirname-basename": "#include &lt;libgen.h&gt;<br /><br />char *s1 = strdup(\"/etc/hosts\");<br />char *s2 = strdup(\"/etc/hosts\");<br /><span style=\"color: gray\">/* Check whether s1 or s2 are NULL. */</span><br /><br /><span style=\"color: gray\">/* Some implementations return pointers to statically allocated<br /><span style=\"white-space: pre-wrap;\">   </span>memory which is overwritten by subsequent calls;<br /><span style=\"white-space: pre-wrap;\">   </span>others modify the input string. */</span><br />char *s3 = dirname(s1);<br />char *s4 = basename(s2);",
@@ -289,7 +289,7 @@
 "option-parsing": {
   "getopt": "#include &lt;getopt.h&gt;<br /><br /><span style=\"color: gray\">/* 2nd value indicates whether option takes an argument */</span><br />static struct option long_opts[] = {<br /><span style=\"white-space: pre-wrap;\">  </span>{\"debug\", no_argument, NULL, 'd'},<br /><span style=\"white-space: pre-wrap;\">  </span>{\"threshold\", required_argument, NULL, 't'},<br /><span style=\"white-space: pre-wrap;\">  </span>{0, 0, 0, 0}<br />};<br /><br />int debug = 0;<br />double threshold = 0.0;<br />char *file = NULL;<br /><br />int ch;<br />int opti;<br />char *endptr;<br /><br />while (1) {<br /><span style=\"white-space: pre-wrap;\">  </span>ch = getopt_long(argc, argv, \"dt:\", long_opts, &amp;opti);<br /><span style=\"white-space: pre-wrap;\">  </span>if (-1 == ch) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>break;<br /><span style=\"white-space: pre-wrap;\">  </span>}<br /><br /><span style=\"white-space: pre-wrap;\">  </span>switch (ch) {<br /><span style=\"white-space: pre-wrap;\">  </span>case 'd':<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>debug = 1;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>break;<br /><span style=\"white-space: pre-wrap;\">  </span>case 't':<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>threshold = strtod(optarg, &amp;endptr);<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>if (*endptr != 0) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fprintf(stderr, \"expected float: %s\\n\", optarg);<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>exit(1);<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>}<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>break;<br /><span style=\"white-space: pre-wrap;\">  </span>default:<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>fprintf(stderr, \"unexpected arg: %d\\n\", ch);<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>exit(1);<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}<br /><br /><span style=\"color: gray\">/* optind is index of 1st arg not consumed by getopt */</span><br />if (optind != argc - 1) {<br /><span style=\"white-space: pre-wrap;\">  </span>fputs(\"USAGE: foo [<span style=\"white-space: pre-wrap;\">--</span>multi] [<span style=\"white-space: pre-wrap;\">--</span>threshold=NUM] FILE\\n\",<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>stderr);<br /><span style=\"white-space: pre-wrap;\">  </span>exit(1);<br />}<br />else {<br /><span style=\"white-space: pre-wrap;\">  </span>file = argv[optind];<br />}"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "<span style=\"color: gray\">/* The library must also be linked:<br /><br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\"> </span>$ gcc foo.o main.c<br /><br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\"> </span>If the library is in an archive:<br /><br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\"> </span>$ gcc -lfoo main.c<br />*/</span><br />#include \"foo.h\"",
   "load-lib-subdir": "#include \"lib/foo.h\"",
   "lib-path": "<span style=\"color: gray\"><em>Add directory to path searched by</em> #include <em>directive:</em></span><br />$ gcc -I/home/fred/include foo.c<br /><br /><span style=\"color: gray\"><em>Add directory to path searched by -l (lowercase L) option:</em></span><br />$ gcc -L/home/fred/lib -lbar foo.c",
@@ -330,7 +330,7 @@
   "setup-and-teardown": "",
   "unit-test-coverage": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "$ gcc -fsyntax-only foo.c",
   "stronger-warnings": "$ gcc -Wall foo.c",
   "suppress-warnings": "$ gcc -w foo.c",

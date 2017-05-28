@@ -99,7 +99,7 @@
 },
 "generic-types": {
 },
-"functions": {
+"func": {
   "decl-func": "",
   "def-func": "create function add(i int, j int)<br />returns int as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return i + j;<br />end;<br />$$ language plpgsql;",
   "call-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> in select clause:</span><br />select add(1, 2);<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> in where clause:</span><br />select * from cust where id = add(1, 2);<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> inside PL/pgSQL functions can be used wherever<br /><span style=\"white-space: pre-wrap;\">--</span> expressions are permitted. Can be used as a statement<br /><span style=\"white-space: pre-wrap;\">--</span> with perform:</span><br />perform add(1, 2);",
@@ -111,7 +111,7 @@
   "overloaded-func": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span>integer version:</span><br />create or replace function add(m int, n int)<br />returns int as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return m + n;<br />end;<br />$$ language plpgsql;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span>float version:</span><br />create or replace function add(x real, y real)<br />returns real as $$<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return x + y;<br />end;<br />$$ language plpgsql;",
   "forward-decl": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if i = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>return 'no hits';<br />elsif i = 1 then<br /><span style=\"white-space: pre-wrap;\">  </span>return 'one hit';<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>return i <span style=\"white-space: pre-wrap;\">||</span> ' hits';<br />end if;",
   "switch": "",
   "while": "i = 1;<br />sum = 0;<br />while i &lt;= n loop<br /><span style=\"white-space: pre-wrap;\">  </span>sum = sum + i;<br /><span style=\"white-space: pre-wrap;\">  </span>i = i + 1;<br />end loop;",
@@ -135,14 +135,14 @@
   "write-line-stdout": "<span style=\"color: gray\"><em>none</em></span>",
   "write-line-stderr": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">--</span> stderr stream goes to both client and server log.<br /><span style=\"white-space: pre-wrap;\">--</span><br /><span style=\"white-space: pre-wrap;\">--</span> levels are: debug, log, info, notice, warning<br /><span style=\"white-space: pre-wrap;\">--</span></span><br />raise notice 'i is %', i;"
 },
-"files": {
+"file": {
 },
-"directories": {
+"dir": {
 },
 "processes-environment": {
   "cmd-line-arg": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "",
   "namespace-decl": "",
   "namespace-alias": "",

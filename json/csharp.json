@@ -170,7 +170,7 @@
   "pair-lookup": "",
   "pair-update": ""
 },
-"dictionaries": {
+"dict": {
   "dict-ctor": "using System.Collections.Generic;<br />Dictionary&lt;string, int&gt; dict = new Dictionary&lt;string, int&gt;();",
   "dict-lookup": "dict.Add(\"hello\", 5);<br />dict[\"hello\"]",
   "dict-size": "dict.Count",
@@ -178,7 +178,7 @@
   "dict-missing-key": "<span style=\"color: gray\"><em>throws</em></span> KeyNotFoundException<br /><span style=\"color: gray\"><em>in</em> System.Collections.Generic</span>",
   "dict-iter": "foreach ( KeyValuePair&lt;string,int&gt; e in dict) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use e.Key and e.Value</em></span><br />}"
 },
-"functions": {
+"func": {
   "decl-func": "",
   "def-func": "",
   "call-func": "",
@@ -201,7 +201,7 @@
   "func-as-val": "",
   "overload-op": "public static Rational operator+(Rational a, Rational b) {<br /><span style=\"white-space: pre-wrap;\">  </span>return new Rational(a.num*b.denom + b.num *a.denom,a.denom*b.denom);<br />}"
 },
-"execution-control": {
+"exec-control": {
   "if": "if (i&gt;0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1;<br />} else if (i==0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0;<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1;<br />}",
   "dangling-else": "",
   "switch": "switch(i) {<br />case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>0;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>1;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>-1;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />}",
@@ -245,7 +245,7 @@
   "read-from-file": "using System.IO;<br /><br />StreamReader sr = new StreamReader(\"/etc/passwd\");<br />string line;<br /><br />while ((line = sr.ReadLine()) != null) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> process line</span><br />}",
   "write-to-file": "using System.IO;<br /><br />StreamWriter fout = new StreamWriter(\"/tmp/test3\");<br />int i;<br /><br />for (i = 0; i &lt; 10; i++) {<br /><span style=\"white-space: pre-wrap;\">  </span>fout.WriteLine(i.ToString());<br />}<br />fout.Close();"
 },
-"files": {
+"file": {
   "file-test": "System.IO.File.Exists(\"/etc/hosts\")",
   "file-size": "",
   "readable-writable-executable": "",
@@ -259,7 +259,7 @@
   "parse-xml": "",
   "parse-html": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-basename": "",
   "absolute-pathname": "",
@@ -279,7 +279,7 @@
   "environment-variable": "using System.Environment;<br />string home = GetEnvironmentVariable(\"HOME\");<br />SetEnvironmentVariable(\"EDITOR\", \"emacs\");<br />SetEnvironmentVariable(\"EDITOR\", null);",
   "iterate-through-environment-variables": "using System.Collections;<br />using System.Environment;<br />IDictionary env = GetEnvironmentVariables();<br />foreach (DictionaryEntry de in env) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use de.Key or de.Value</em></span><br />}"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "std-lib-name": "<span style=\"color: gray\"><em>Base Class Library</em></span>",
   "declare-namespace": "namespace foo {<br /><span style=\"white-space: pre-wrap;\">  </span>namespace bar {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>public class Baz {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>public const int ANSWER = 42;<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>};<br /><span style=\"white-space: pre-wrap;\">  </span>}<br />}",
   "multiple-namespaces-per-file": "<span style=\"color: gray\"><em>yes</em></span>",
@@ -368,7 +368,7 @@
   "setup": "",
   "teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "flag-for-stronger-warnings": "",
   "suppress-warnings": "",
   "treat-warnings-as-errors": "",

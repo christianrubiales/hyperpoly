@@ -17,12 +17,21 @@ public class JsonProcessor {
 	
 	static Map<String, String> headerMap = new HashMap<>();
 	static {
+		headerMap.put("\"arith-seq\": {", "\"arithmetic-sequences\": {");
+		headerMap.put("\"date-time\": {", "\"dates-time\": {");
+		headerMap.put("\"debugging-profiling\": {", "\"debug-profile\": {");
+		headerMap.put("\"dictionaries\": {", "\"dict\": {");
+		headerMap.put("\"directories\": {", "\"dir\": {");
+		headerMap.put("\"execution-control\": {", "\"exec-control\": {");
+		headerMap.put("\"files\": {", "\"file\": {");
+		headerMap.put("\"functions\": {", "\"func\": {");
 		headerMap.put("\"general\": {", "\"version\": {");
 		headerMap.put("\"grammar-invocation\": {", "\"grammar-execution\": {");
-		headerMap.put("\"date-time\": {", "\"dates-time\": {");
+		headerMap.put("\"libraries-namespaces\": {", "\"lib-namespaces\": {");
 		headerMap.put("\"regexes\": {", "\"regex\": {");
-		headerMap.put("\"variables-expressions\": {", "\"var-expr\": {");
+		headerMap.put("\"stack\": {", "\"stacks\": {");
 		headerMap.put("\"strings\": {", "\"str\": {");
+		headerMap.put("\"variables-expressions\": {", "\"var-expr\": {");
 	}
 
 	/**

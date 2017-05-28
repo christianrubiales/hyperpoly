@@ -95,7 +95,7 @@
   "sort": "",
   "reverse": ""
 },
-"functions": {
+"func": {
   "def-func": "goto:eof<br />:add<br /><span style=\"white-space: pre-wrap;\">  </span>set /a sum=%~1+%~2<br /><span style=\"white-space: pre-wrap;\">  </span>echo %sum%<br />goto:eof",
   "call-func": "call:add 1 2",
   "missing-arg": "<span style=\"color: gray\"><em>parameter treated as undefined variable or as containing the empty string</em></span>",
@@ -108,7 +108,7 @@
   "default-scope<br-/>": "<span style=\"color: gray\"><em>global</em></span>",
   "nest-func": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if %n% equ 0 (<br /><span style=\"white-space: pre-wrap;\">  </span>echo no hits<br />) else (<br /><span style=\"white-space: pre-wrap;\">  </span>if %n% equ 1 (<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>echo one hit<br /><span style=\"white-space: pre-wrap;\">  </span>) else (<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>echo %n% hits<br /><span style=\"white-space: pre-wrap;\">  </span>)<br />)",
   "while": "set i=0<br />:loop<br /><span style=\"white-space: pre-wrap;\">  </span>set /a i+=1<br /><span style=\"white-space: pre-wrap;\">  </span>echo %i%<br />if %i% lss 10 goto :loop",
   "for": "set nums=(1 2 3 4)<br />for %%n in %nums% do echo %%n",
@@ -134,7 +134,7 @@
   "write-to-file": "echo hello &gt; \\tmp\\a",
   "append-to-file": "echo hello <span style=\"white-space: pre-wrap;\">&gt;&gt;</span> \\tmp\\a"
 },
-"files": {
+"file": {
   "create-empty-file": "<span style=\"color: gray\">rem overwrites existing file:</span><br />type nul &gt; foo.txt",
   "file-test": "if exist foo.txt ( echo exists )<br /><br /><span style=\"color: gray\"><em>??</em></span>",
   "file-size": "dir foo.txt",
@@ -145,7 +145,7 @@
   "symlink": "",
   "unused-file-name": ""
 },
-"directories": {
+"dir": {
   "working-dir": "echo %cd%<br /><br />chdir \\windows",
   "program-dir": "echo %~dp0",
   "direname-basename": "",
@@ -176,7 +176,7 @@
   "bring-background-job-into-foreground": "",
   "disown-job": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "library": "",
   "import-library": "",
   "library-path-environment-variable": ""
@@ -186,7 +186,7 @@
   "list-defined-variables": "set",
   "list-available-libraries": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "",
   "stronger-err": "",
   "cpu-usage": ""

@@ -170,7 +170,7 @@
   "pair-lookup": "",
   "pair-update": ""
 },
-"dictionaries": {
+"dict": {
   "dict-ctor": "java.util.TreeMap&lt;String, Integer&gt; m = new java.util.TreeMap&lt;String, Integer&gt;();",
   "dict-lookup": "m.put(\"hello\", 5);<br />m.get(\"hello\")",
   "dict-size": "m.size()",
@@ -178,7 +178,7 @@
   "dict-missing-key": "null",
   "dict-iter": "for ( java.util.Map.Entry&lt;String, Integer&gt; e : m.entrySet() ) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use e.getKey() or e.getValue()</em></span><br />}"
 },
-"functions": {
+"func": {
   "decl-func": "",
   "def-func": "",
   "call-func": "",
@@ -201,7 +201,7 @@
   "func-as-val": "",
   "overload-op": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if (i&gt;0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1;<br />} else if (i==0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0;<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1;<br />}",
   "dangling-else": "",
   "switch": "switch(i) {<br />case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>0;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>1;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>-1;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />}",
@@ -245,7 +245,7 @@
   "read-from-file": "import java.io.BufferedReader;<br />import java.io.FileReader;<br /><br />BufferedReader in = new BufferedReader(new FileReader(\"/etc/passwd\"));<br />String line;<br /><br />while ((line = in.readLine()) != null) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> process line</span><br />}",
   "write-to-file": "import java.io.BufferedWriter;<br />import java.io.FileWriter;<br /><br />BufferedWriter fout = new BufferedWriter(new FileWriter(\"/tmp/test2\"));<br />int i;<br /><br />for (i = 0; i &lt; 10; i++) {<br /><span style=\"white-space: pre-wrap;\">  </span>fout.write(String.format(\"%d\", i));<br /><span style=\"white-space: pre-wrap;\">  </span>fout.newLine();<br />}<br />fout.close();"
 },
-"files": {
+"file": {
   "file-test": "import java.io.File;<br /><br />File f = new File(\"/etc/hosts\");<br />f.exists()<br />f.isFile()",
   "file-size": "import java.io.File;<br /><br />File f = new File(\"/etc/hosts\");<br />f.length()",
   "readable-writable-executable": "import java.io.File;<br /><br />File f = new File(\"/etc/hosts\");<br /><br />f.canRead()<br />f.canWrite()<br />f.canExecute()",
@@ -259,7 +259,7 @@
   "parse-xml": "",
   "parse-html": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "import java.io.File;<br /><br />File root = File.listRoots()[0];<br />File etc = new File(root, \"etc\");<br />File hosts = new File(etc, \"hosts\");<br />String path = hosts.getPath();",
   "dirname-basename": "import java.io.File;<br /><br />File f = new File(\"/etc/hosts\");<br />String dirname = f.getParent();<br />String basename = f.getName();",
   "absolute-pathname": "import java.io.File;<br /><br />File f = new File(\"foo\");<br />String abspath = f.getAbsolutePath();<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> getCanonicalPath() expands .. and .:</span><br />File f2 = new File(\"../foo\");<br />String abspath2 = f2.getCanonicalPath();<br />File f3 = new File(\"./foo\");<br />String abspath3 = f3.getCanonicalPath();",
@@ -279,7 +279,7 @@
   "environment-variable": "String home = System.getenv(\"HOME\");",
   "iterate-through-environment-variables": "import java.util.Map;<br />Map&lt;String, String&gt; env = System.getenv();<br />for (String name : env.keySet()) {<br /><span style=\"white-space: pre-wrap;\">  </span>String value = env.get(name));<br />}"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "std-lib-name": "<span style=\"color: gray\"><em>Java API</em></span>",
   "declare-namespace": "package foo.bar;<br />public class Baz {<br /><span style=\"white-space: pre-wrap;\">  </span>public static final int ANSWER = 42;<br />}",
   "multiple-namespaces-per-file": "<span style=\"color: gray\"><em>no</em></span>",
@@ -368,7 +368,7 @@
   "setup": "",
   "teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "flag-for-stronger-warnings": "",
   "suppress-warnings": "",
   "treat-warnings-as-errors": "",

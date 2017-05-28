@@ -170,7 +170,7 @@
   "pair-lookup": "",
   "pair-update": ""
 },
-"dictionaries": {
+"dict": {
   "dict-ctor": "NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:10];",
   "dict-lookup": "[dict setObject:@\"5\" forKey:@\"hello\"];<br />[dict objectForKey:@\"hello\"]",
   "dict-size": "[dict count]",
@@ -178,7 +178,7 @@
   "dict-missing-key": "NULL",
   "dict-iter": "NSEnumerator *i = [dict keyEnumerator];<br />id key;<br />while ((key = [i nextObject])) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>do something with key</em></span><br />}"
 },
-"functions": {
+"func": {
   "decl-func": "",
   "def-func": "",
   "call-func": "",
@@ -201,7 +201,7 @@
   "func-as-val": "",
   "overload-op": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if (i&gt;0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1;<br />} else if (i==0) {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0;<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1;<br />}",
   "dangling-else": "",
   "switch": "switch(i) {<br />case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>0;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>1;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>-1;<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />}",
@@ -245,7 +245,7 @@
   "read-from-file": "NSError *error = nil;<br />NSString *s = [NSString stringWithContentsOfFile: @\"/etc/passwd\" encoding:NSUTF8StringEncoding error:&amp;error];<br /><br />if ( error != nil ) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> handle error</span><br />}<br /><br />NSArray *a = [s componentsSeparatedByString:@\"\\n\"];<br />id line;<br /><br />while (line = [i nextObject]) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> process line</span><br />}",
   "write-to-file": ""
 },
-"files": {
+"file": {
   "file-test": "",
   "file-size": "",
   "readable-writable-executable": "",
@@ -259,7 +259,7 @@
   "parse-xml": "",
   "parse-html": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-basename": "",
   "absolute-pathname": "",
@@ -279,7 +279,7 @@
   "environment-variable": "NSString *home = [[[NSProcessInfo processInfo] environment] objectForKey:@\"HOME\"];",
   "iterate-through-environment-variables": "NSEnumerator *i = [[[NSProcessInfo processInfo] environment] keyEnumerator];<br />id key;<br />while ((key = [i nextObject])) {<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>use NSString key</em></span><br />}"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "std-lib-name": "<span style=\"color: gray\"><em>Foundation Framework</em></span>",
   "declare-namespace": "",
   "multiple-namespaces-per-file": "",
@@ -368,7 +368,7 @@
   "setup": "",
   "teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "flag-for-stronger-warnings": "",
   "suppress-warnings": "",
   "treat-warnings-as-errors": "",

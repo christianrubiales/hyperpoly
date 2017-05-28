@@ -169,7 +169,7 @@
   "flatten": "let a = [1, [2, [3, 4]]];<br /><br />let a2 = _.flatten(a);<br />let a3 = _.flattenDeep(a);",
   "zip": "let a = _.zip([1, 2, 3], ['a', 'b', 'c']);<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> shorter array padded with undefined:</span><br />_.zip([1, 2, 3], ['a', 'b'])"
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "d = {t: 1, f: 0};<br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> keys do not need to be quoted if they<br /><span style=\"white-space: pre-wrap;\">//</span> are a legal JavaScript variable name<br /><span style=\"white-space: pre-wrap;\">//</span> and not a reserved word</span>",
   "dict-size": "_.size(d)<br />Object.getOwnPropertyNames(d).length",
   "dict-lookup": "d.hasOwnProperty(\"t\") ? d[\"t\"] : undefined<br />d.hasOwnProperty(\"t\") ? d.t : undefined<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> JavaScript dictionaries are objects<br /><span style=\"white-space: pre-wrap;\">//</span> and inherit properties from Object.</span>",
@@ -185,7 +185,7 @@
   "dict-sort-values": "let cmp = (a, b) =&gt; a[1] - b[1];<br />let d = {t: 1, f: 0};<br /><br />for (let p of _.toPairs(d).sort(cmp)) {<br /><span style=\"white-space: pre-wrap;\">  </span>console.log(p);<br />}",
   "dict-default-val": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"functions": {
+"func": {
   "def-func": "function add3 (x1, x2, x3) {<br /><span style=\"white-space: pre-wrap;\">  </span>return x1 + x2 + x3;<br />}",
   "invoke-func": "add3(1, 2, 3)",
   "missing-arg": "<span style=\"color: gray\"><em>set to</em> undefined</span>",
@@ -206,7 +206,7 @@
   "decorator": "<span style=\"color: gray\"><em>none</em></span>",
   "invoke-op-like-func": "<span style=\"color: gray\"><em>none</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if (n === 0) {<br /><span style=\"white-space: pre-wrap;\">  </span>console.log('no hits');<br />} else if (n === 1) {<br /><span style=\"white-space: pre-wrap;\">  </span>console.log('1 hit');<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>console.log(n + ' hits');<br />}",
   "switch": "switch (n) {<br />case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>console.log('no hits\\n;);<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>console.log('one hit\\n');<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>console.log(n + ' hits\\n');<br />}",
   "while": "while (i &lt; 100) {<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1;<br />}",

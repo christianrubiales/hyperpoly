@@ -169,7 +169,7 @@
   "flatten": "a = [1, [2, [3, 4]]]<br />a2 = a.flatten(1)<br />a3 = a.flatten",
   "zip": "[1, 2, 3].zip([\"a\", \"b\", \"c\"])<br /><br /><span style=\"color: gray\"># shorter array padded with nil:</span><br />[1, 2, 3].zip([\"a\", \"b\"])"
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "d = {'t' =&gt; 1, 'f' =&gt; 0}<br /><br /><span style=\"color: gray\"># keys are symbols:</span><br />symbol_to_int = {t: 1, f: 0}",
   "dict-size": "d.size<br />d.length",
   "dict-lookup": "d['t']",
@@ -185,7 +185,7 @@
   "dict-sort-values": "d.sort_by { |k, v| v }.each do |k, v|<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"#{k}: #{v}\"<br />end",
   "dict-default-val": "counts = Hash.new(0)<br />counts['foo'] += 1<br /><br />factorial = Hash.new do |h,k|<br /><span style=\"white-space: pre-wrap;\">  </span>k &gt; 1 ? k * h[k-1] : 1<br />end"
 },
-"functions": {
+"func": {
   "def-func": "def add3(x1, x2, x3)<br /><span style=\"white-space: pre-wrap;\">  </span>x1 + x2 + x3<br />end<br /><br /><span style=\"color: gray\"># parens are optional and customarily<br /># omitted when defining functions<br /># with no parameters</span>",
   "invoke-func": "add3(1, 2, 3)<br /><br /><span style=\"color: gray\"># parens are optional:</span><br />add3 1, 2, 3",
   "missing-arg": "<span style=\"color: gray\"><em>raises</em> ArgumentError <em>if number of arguments doesn't match function arity</em></span>",
@@ -206,7 +206,7 @@
   "decorator": "",
   "invoke-op-like-func": "3.*(7)<br /><br />a = ['foo', 'bar', 'baz']<br />a.[](2)"
 },
-"execution-control": {
+"exec-control": {
   "if": "if n == 0<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"no hits\"<br />elsif 1 == n<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"one hit\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"#{n} hits\"<br />end",
   "switch": "case n<br />when 0<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"no hits\"<br />when 1<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"one hit\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"#{n} hits\"<br />end",
   "while": "while i &lt; 100 do<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1<br />end",

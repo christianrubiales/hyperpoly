@@ -172,7 +172,7 @@
   "tuple-lookup": "let tup = (1, \"hello\", true);<br />let n: i32 = tup.0",
   "deconstruct-tuple": "let tup = (1, \"hello\", true);<br />let (n, s, b) = tup;<br /><br /><span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> use underscores for unneeded elements:</span><br />let (n, _, _) = tup;"
 },
-"dictionaries": {
+"dict": {
   "declare-dict": "let mut dict = std::collections::HashMap::new();",
   "dict-literal": "<span style=\"color: gray\"><span style=\"white-space: pre-wrap;\">//</span> no dict literal</span><br />let mut dict = std::collections::HashMap::new();<br />dict.insert(\"t\", 1);<br />dict.insert(\"f\", 0);",
   "dict-size": "dict.len()",
@@ -184,7 +184,7 @@
   "dict-iterate": "",
   "dict-key-val": ""
 },
-"functions": {
+"func": {
   "def-func": "fn add(x: f64, y: f64) -&gt; f64 {<br /><span style=\"white-space: pre-wrap;\">  </span>x + y<br />}",
   "invoke-func": "add(3.7, 2.8)",
   "define-function-with-block-body": "",
@@ -204,7 +204,7 @@
   "currying": "",
   "lazy-evaluation": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "let signum: i32;<br /><br />if i &gt; 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 1<br />} else if i == 0 {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = 0<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>signum = -1<br />}",
   "while": "let mut i: i32 = 0;<br /><br />while i &lt; 10 {<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1<br />}",
   "for": "let mut n: i32 = 1;<br /><br />for i in range(1i, 11i) {<br /><span style=\"white-space: pre-wrap;\">  </span>n *= i;<br />}",
@@ -238,7 +238,7 @@
   "flush-file-handle": "",
   "get-and-set-filehandle-position": ""
 },
-"files": {
+"file": {
   "file-test,-regular-file-test": "",
   "file-size": "",
   "is-file-readable,-writable,-executable": "",
@@ -247,7 +247,7 @@
   "create-symlink,-symlink-test,-readlink": "",
   "generate-unused-file-name": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-and-basename": "",
   "iterate-over-directory-by-file": "",
@@ -270,7 +270,7 @@
   "escaped-external-cmd": "",
   "backticks": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "define-namespace": "",
   "define-child-namespace": "",
   "reference-identifier-in-another-file": "",
@@ -319,7 +319,7 @@
   "setup": "",
   "teardown": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "lint": "",
   "run-debugger": "",
   "profile-code": "",

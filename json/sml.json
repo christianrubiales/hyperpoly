@@ -139,9 +139,9 @@
   "tuple-lookup": "#1 (1, \"hello\", true)",
   "pair-lookup": "#1 (12,\"December\")<br />#2 (12,\"December\")"
 },
-"dictionaries": {
+"dict": {
 },
-"functions": {
+"func": {
   "def-func": "fun average a b = ( a + b ) / 2.0;",
   "invoke-func": "",
   "named-parameter": "",
@@ -158,7 +158,7 @@
   "lazy-evaluation": "",
   "strict-evaluation": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "f x &gt; 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>print \"pos\\n\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>();",
   "if-else-if-else": "if x &gt; 0 then print \"pos\" else if x &lt; 0 then print \"neg\" else print \"zero\";",
   "sequencing": "",
@@ -200,7 +200,7 @@
   "end-of-file-test": "",
   "get-and-set-filehandle-position": ""
 },
-"files": {
+"file": {
   "file-test,-regular-file-test": "",
   "file-size": "",
   "is-file-readable,-writable,-executable": "",
@@ -209,7 +209,7 @@
   "create-symlink,-symlink-test,-readlink": "",
   "generate-unused-file-name": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "",
   "dirname-and-basename": "",
   "iterate-over-directory-by-file": "",
@@ -232,7 +232,7 @@
   "escaped-external-cmd": "",
   "backticks": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "namespace-example": "",
   "namespaces": "",
   "file-name-restrictions": "",
@@ -273,7 +273,7 @@
 },
 "unit-tests": {
 },
-"debugging-profiling": {
+"debug-profile": {
 },
 "repl": {
   "invoke-repl": "$ sml",

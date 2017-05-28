@@ -143,7 +143,7 @@
   "universal-test<br-/>": "",
   "existential-test<br-/>": ""
 },
-"dictionaries": {
+"dict": {
   "dict-ctorl": "set d [dict create t 1 f 0]",
   "dict-size": "dict size $d",
   "dict-lookup": "dict get $d t",
@@ -154,7 +154,7 @@
   "dict-iter": "foreach {k v} $d {<br /><span style=\"white-space: pre-wrap;\">  </span>code<br />}",
   "dict-key-val-arrays": ""
 },
-"functions": {
+"func": {
   "def-func": "proc add { x y } {<br /><span style=\"white-space: pre-wrap;\">  </span>expr $x + $y<br />}",
   "call-func": "<span style=\"color: gray\"># statement position:</span><br />add 1 2<br /><br /><span style=\"color: gray\"># argument position:</span><br />set a [ add 1 2 ]",
   "missing-arg": "<span style=\"color: gray\"><em>error</em></span>",
@@ -170,7 +170,7 @@
   "private-state-func": "",
   "closure": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "if { 0 == $n } {<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"no hits\"<br />} elseif { 1 == $n } {<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"1 hit\"<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>puts \"$n hits\"<br />}",
   "switch": "",
   "while": "while { $i &lt; 100 } {<br /><span style=\"white-space: pre-wrap;\">  </span>incr i<br />}",
@@ -216,7 +216,7 @@
   "open-temporary-file": "",
   "in-memory-file": ""
 },
-"files": {
+"file": {
   "file-test": "file exists \"/etc/hosts\"<br />file isfile \"/etc/hosts\"",
   "file-size": "",
   "readable-writable-executable": "",
@@ -230,7 +230,7 @@
   "parse-json": "",
   "generate-json": ""
 },
-"directories": {
+"dir": {
   "working-directory<br-/>": "",
   "build-pathname": "file join \"/etc\" \"hosts\"",
   "dirname-basename": "file dirname \"/etc/hosts\"<br />file tail \"/etc/hosts\"",
@@ -253,7 +253,7 @@
   "external-cmd": "exec ls",
   "cmd-subst": "set f [ open |ls ]<br />read f"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "source foo.tcl<br />add 3 7",
   "load-library-in-subdirectory": "",
   "hot-patch": "",

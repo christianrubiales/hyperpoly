@@ -169,7 +169,7 @@
   "flatten": "<span style=\"color: gray\"><em>none</em></span>",
   "zip": "$a = array_map(NULL,<br /><span style=\"white-space: pre-wrap;\">  </span>[1, 2, 3],<br /><span style=\"white-space: pre-wrap;\">  </span>[\"a\", \"b\", \"c\"]);<br /><br /><span style=\"color: gray\"># shorter array padded with NULLs</span>"
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "$d = [\"t\" =&gt; 1, \"f\" =&gt; 0];<br /><br /><span style=\"color: gray\"># older syntax:</span><br />$d = array(\"t\" =&gt; 1, \"f\" =&gt; 0);",
   "dict-size": "count($d)",
   "dict-lookup": "$d[\"t\"]",
@@ -185,7 +185,7 @@
   "dict-sort-values": "asort($d);<br /><br />foreach ($d as $k =&gt; $v) {<br /><span style=\"white-space: pre-wrap;\">  </span>print \"$k: $v\\n\";<br />}",
   "dict-default-val": "$counts = [];<br />$counts['foo'] += 1;<br /><br /><span style=\"color: gray\"># For computed values and defaults other than<br /># zero or empty string, extend ArrayObject.</span>"
 },
-"functions": {
+"func": {
   "def-func": "function add3($x1, $x2, $x3)<br />{<br /><span style=\"white-space: pre-wrap;\">  </span>return $x1 + $x2 + $x3;<br />}",
   "invoke-func": "add3(1, 2, 3);<br /><br /><span style=\"color: gray\"># function names are case insensitive:</span><br />ADD3(1, 2, 3);",
   "missing-arg": "<span style=\"color: gray\"><em>set to</em> NULL <em>with warning</em></span>",
@@ -206,7 +206,7 @@
   "decorator": "",
   "invoke-op-like-func": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "if ( 0 == $n ) {<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"no hits\\n\";<br />} elseif ( 1 == $n ) {<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"one hit\\n\";<br />} else {<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"$n hits\\n\";<br />}",
   "switch": "switch ($n) {<br />case 0:<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"no hits\\n\";<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />case 1:<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"one hit\\n\";<br /><span style=\"white-space: pre-wrap;\">  </span>break;<br />default:<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"$n hits\\n\";<br />}",
   "while": "while ( $i &lt; 100 ) { $i++; }",

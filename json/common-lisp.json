@@ -167,7 +167,7 @@
   "filter": "(remove-if-not (lambda (x) (&gt; x 2)) #(1 2 3))<br /><br /><span style=\"color: gray\">; also remove-if</span>",
   "reduce": ""
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "<span style=\"color: gray\"><em>none</em></span>",
   "dict-ctor": "(defparameter *h* (make-hash-table :test 'equal))<br /><br /><span style=\"color: gray\">; default equality test is 'eql</span>",
   "dict-pred": "(hash-table-p *h*)",
@@ -189,7 +189,7 @@
   "struct-setter<br-/>": "(setf (account-balance a) 0)",
   "struct-predicate<br-/>": "(account-p a)"
 },
-"functions": {
+"func": {
   "define-function<br-/>": "(defun add (x y) (+ x y))",
   "can-function-and-variable-share-name": "<span style=\"color: gray\"><em>yes</em></span>",
   "optional-argument": "(defun add (a &amp;optional b)<br /><span style=\"white-space: pre-wrap;\">  </span>(if (null b) a (+ a b)))",
@@ -205,7 +205,7 @@
   "lambda": "(lambda (x) (* x x))",
   "apply": "((lambda (x) (* x x)) 2)<br /><span style=\"white-space: pre-wrap;\"> </span><br />(apply #'(lambda (x) (* x x)) '(2))"
 },
-"execution-control": {
+"exec-control": {
   "progn<br-/>": "progn prog1 prog2",
   "loop": "(setq i 1)<br />(loop (print \"hello\")<br /><span style=\"white-space: pre-wrap;\">  </span>(if (&gt; i 10)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(return)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>(setq i (+ i 1))))",
   "do": "(do ((i 1) (sum 0))<br /><span style=\"white-space: pre-wrap;\">  </span>((&gt; i 100) sum)<br /><span style=\"white-space: pre-wrap;\">  </span>(setq sum (+ sum i))<br /><span style=\"white-space: pre-wrap;\">  </span>(setq i (+ i 1)))<br /><span style=\"color: gray\">do* <em>initializes serially</em></span>",
@@ -259,7 +259,7 @@
   "insert-file-contents-at-point": "",
   "mark": ""
 },
-"files": {
+"file": {
   "file-test": "(osicat:file-exists-p \"/tmp/foo\")<br />(osicat:regular-file-exists-p \"/tmp/foo\")",
   "file-size": "",
   "file-readable-writable-executable": "",
@@ -269,7 +269,7 @@
   "symlink": "(osicat:make-link \"/tmp/hosts\" :target \"/etc/hosts\")",
   "tmp-file": ""
 },
-"directories": {
+"dir": {
   "build-pathname": "(make-pathname<br /><span style=\"white-space: pre-wrap;\">  </span>:directory '(:absolute \"etc\")<br /><span style=\"white-space: pre-wrap;\">  </span>:name \"hosts\")",
   "dirname-basename": "(pathname-directory #P\"/etc/hosts\")<br /><br />(pathname-name #P\"/etc/hosts\")",
   "abs-pathname": "",
@@ -289,7 +289,7 @@
   "external-cmd": "(run-program \"ls\" '( \"/etc\"))",
   "cmd-subst": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "complete-example": "",
   "compile-library": "(compile-file \"a.lisp\")",
   "load-library<br-/>": "(load \"a.lisp\")",

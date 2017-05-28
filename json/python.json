@@ -169,7 +169,7 @@
   "flatten": "<span style=\"color: gray\"><em>none</em></span>",
   "zip": "list(zip([1, 2, 3], ['a', 'b', 'c']))<br /><br /><span style=\"color: gray\"># extras in longer array dropped:</span><br />list(zip([1, 2, 3], ['a', 'b']))"
 },
-"dictionaries": {
+"dict": {
   "dict-literal": "d = {'t': 1, 'f': 0}",
   "dict-size": "len(d)",
   "dict-lookup": "d['t']",
@@ -185,7 +185,7 @@
   "dict-sort-values": "from operator import itemgetter<br /><br />pairs = sorted(d.items(), key=itemgetter(1))<br /><br />for k, v in pairs:<br /><span style=\"white-space: pre-wrap;\">  </span>print('{}: {}'.format(k, v))",
   "dict-default-val": "from collections import defaultdict<br /><br />counts = defaultdict(lambda: 0)<br />counts['foo'] += 1<br /><br />class Factorial(dict):<br /><span style=\"white-space: pre-wrap;\">  </span>def <span style=\"white-space: pre-wrap;\">__missing__</span>(self, k):<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>if k &gt; 1:<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>return k * self[k-1]<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>else:<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>return 1<br /><br />factorial = Factorial()"
 },
-"functions": {
+"func": {
   "def-func": "def add3(x1, x2, x3):<br /><span style=\"white-space: pre-wrap;\">  </span>return x1 + x2 + x3",
   "invoke-func": "add3(1, 2, 3)",
   "missing-arg": "<span style=\"color: gray\"><em>raises</em> TypeError <em>if number of arguments doesn't match function arity</em></span>",
@@ -206,7 +206,7 @@
   "decorator": "def logcall(f):<br /><span style=\"white-space: pre-wrap;\">  </span>def wrapper(*a, **opts):<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print('calling ' + f.<span style=\"white-space: pre-wrap;\">__name__</span>)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>f(*a, **opts)<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>print('called ' + f.<span style=\"white-space: pre-wrap;\">__name__</span>)<br /><span style=\"white-space: pre-wrap;\">  </span>return wrapper<br /><br />@logcall<br />def square(x):<br /><span style=\"white-space: pre-wrap;\">  </span>return x * x",
   "invoke-op-like-func": "import operator<br /><br />operator.mul(3, 7)<br /><br />a = ['foo', 'bar', 'baz']<br />operator.itemgetter(2)(a)"
 },
-"execution-control": {
+"exec-control": {
   "if": "if 0 == n:<br /><span style=\"white-space: pre-wrap;\">  </span>print('no hits')<br />elif 1 == n:<br /><span style=\"white-space: pre-wrap;\">  </span>print('one hit')<br />else:<br /><span style=\"white-space: pre-wrap;\">  </span>print(str(n) + ' hits')",
   "switch": "<span style=\"color: gray\"><em>none</em></span>",
   "while": "while i &lt; 100:<br /><span style=\"white-space: pre-wrap;\">  </span>i += 1",

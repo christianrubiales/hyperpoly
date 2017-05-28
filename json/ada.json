@@ -99,7 +99,7 @@
 },
 "generic-types": {
 },
-"functions": {
+"func": {
   "decl-func": "function Add(M: Integer; N: Integer) return Integer;",
   "def-func": "function Add(M: Integer; N: Integer) return Integer is<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>return M + N;<br />end Add;",
   "call-func": "Sum := Add(7, 3);",
@@ -111,7 +111,7 @@
   "overloaded-func": "",
   "forward-decl": ""
 },
-"execution-control": {
+"exec-control": {
   "if": "if I = 0 then<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(\"no hits\");<br />elsif I = 1 then<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(\"one hit\");<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(Integer'Image(I) &amp; \" hits\");<br />end if;",
   "switch": "",
   "while": "I := 0;<br />while I &lt; 10 loop<br /><span style=\"white-space: pre-wrap;\">  </span>Put_Line(Integer'Image(I));<br /><span style=\"white-space: pre-wrap;\">  </span>I := I + 1;<br />end loop;",
@@ -135,14 +135,14 @@
   "write-line-stdout": "with Text_IO;<br />with Ada.Wide_Wide_Text_IO;<br /><br />Text_IO.Put_Line(\"Hello!\");<br />Ada.Wide_Wide_Text_IO.Put_Line(\"Hello!\");",
   "write-line-stderr": ""
 },
-"files": {
+"file": {
 },
-"directories": {
+"dir": {
 },
 "processes-environment": {
   "cmd-line-arg": "with Ada.Command_Line;<br /><br />Ada.Command_Line.Command_Name<br />Ada.Command_Line.Argument_Count<br />Ada.Command_Line.Argument(1)<br />Ada.Command_Line.Argument(2)"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "load-lib": "with Text_IO;",
   "namespace-decl": "$ cat put_hello.ads<br />package Put_Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>procedure Put_Hello;<br />end;<br /><br />$ cat put_hello.adb<br />cat put_hello.adb<br />with Text_IO;<br /><br />package body Put_Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>procedure Put_Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>begin<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"white-space: pre-wrap;\">  </span>Text_IO.Put_Line(\"Hello World!\");<br /><span style=\"white-space: pre-wrap;\">  </span>end Put_Hello;<br />end;",
   "namespace-alias": "with Text_IO;<br /><br />procedure Hello is<br /><span style=\"white-space: pre-wrap;\">  </span>package IO renames Text_IO;<br />begin<br /><span style=\"white-space: pre-wrap;\">  </span>IO.Put_Line(\"Hello World!\");<br />end Hello;",

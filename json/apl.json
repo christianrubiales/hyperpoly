@@ -98,12 +98,12 @@
   "sort-array": "a ← 8 7 10 9<br />a[⍋ a]",
   "reduce": "+ / 1 2 3<br /><br /><span style=\"color: gray\">⍝ 2:</span><br />- / 1 2 3"
 },
-"arith-seq": {
+"arithmetic-sequences": {
   "arith-seq-diff-one": "<span style=\"color: gray\">⍝ iota: ⍳</span><br /><br />⍳ 100",
   "arith-seq-diff-ten": "<span style=\"color: gray\">⍝ 0, 10, <span style=\"white-space: pre-wrap;\">...</span>, 100:</span><br /><br />10 × ( ⍳ 11 ) - 1",
   "arith-seq-diff-tenth": "<span style=\"color: gray\">⍝ 0.0, 0.1, <span style=\"white-space: pre-wrap;\">...</span>, 10.0</span><br /><br />.1 × ( ⍳ 101 ) - 1"
 },
-"functions": {
+"func": {
   "def-func": "<span style=\"color: gray\">⍝ define dyadic operator:</span><br />∇r ← a add b<br />r ← a + b ∇<br /><br /><span style=\"color: gray\">⍝ define monadic operator:</span><br />∇r ← double n<br />r ← 2 × n ∇",
   "invoke-func": "3 add 7<br />double 7",
   "forward-decl-func": "",
@@ -125,7 +125,7 @@
   "func-private-state": "",
   "func-as-val": ""
 },
-"execution-control": {
+"exec-control": {
   "for": "",
   "if": "",
   "while": "",

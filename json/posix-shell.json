@@ -95,7 +95,7 @@
   "sort": "",
   "reverse": ""
 },
-"functions": {
+"func": {
   "def-func": "add() { echo $(( $1 + $2 )); }<br /><span style=\"color: gray\"><em>or</em></span><br />function add { echo $(( $1 + $2 )); }",
   "call-func": "add 1 2",
   "missing-arg": "''",
@@ -108,7 +108,7 @@
   "default-scope<br-/>": "<span style=\"color: gray\"><em>global</em></span>",
   "nest-func": "<span style=\"color: gray\"><em>Nested function visible outside containing function.</em></span>"
 },
-"execution-control": {
+"exec-control": {
   "if": "if [ $n -eq 0 ]<br />then<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"no hits\"<br />elif [ $n -eq 1 ]<br />then<br /><span style=\"white-space: pre-wrap;\">  </span>echo \"1 hit\"<br />else<br /><span style=\"white-space: pre-wrap;\">  </span>echo $n \" hits\"<br />fi",
   "while": "i=0<br />while [ $i -lt 10 ]<br />do i=$(($i + 1))<br /><span style=\"white-space: pre-wrap;\">  </span>echo $i<br />done",
   "for": "for i in 1 2 3<br />do<br /><span style=\"white-space: pre-wrap;\">  </span>echo $i<br />done",
@@ -134,7 +134,7 @@
   "write-to-file": "echo \"hello\" &gt; /tmp/a",
   "append-to-file": "echo \"hello\" <span style=\"white-space: pre-wrap;\">&gt;&gt;</span> /tmp/a"
 },
-"files": {
+"file": {
   "create-empty-file": "<span style=\"color: gray\"># does not overwrite existing file, but updates<br /># last mod. time:</span><br />touch foo.txt",
   "file-test": "if [ -e foo.txt ]; then echo \"exists\"; fi<br />if [ -f foo.txt ]; then echo \"regular\"; fi",
   "file-size": "ls -l foo.txt",
@@ -145,7 +145,7 @@
   "symlink": "ln -s /etc/passwd /tmp/passwd<br />if [ -h /tmp/passwd ]; then echo \"symlink\"; fi<br />readlink /tmp/passwd",
   "unused-file-name": "mktemp /tmp/fooXXXXX"
 },
-"directories": {
+"dir": {
   "working-dir": "echo $(pwd)<br />echo $PWD<br /><br />cd /tmp",
   "program-dir": "<span style=\"color: gray\"><em>bash only:</em></span><br />\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" &amp;&amp; pwd )\"",
   "direname-basename": "dirname /etc/hosts<br />basename /etc/hosts",
@@ -176,7 +176,7 @@
   "bring-background-job-into-foreground": "fg %1",
   "disown-job": "disown %1"
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "library": "$ cat foo.sh<br />function add() {<br /><span style=\"white-space: pre-wrap;\">  </span>echo $(($1 + $2));<br />}",
   "import-library": "source foo.sh<br />add 3 7",
   "library-path-environment-variable": "<span style=\"color: gray\"><em>none</em></span>"
@@ -186,7 +186,7 @@
   "list-defined-variables": "printenv",
   "list-available-libraries": ""
 },
-"debugging-profiling": {
+"debug-profile": {
   "check-syntax": "$ apt-get install shellcheck<br />$ shellcheck foo.sh",
   "stronger-err": "<span style=\"color: gray\"><em>bash only:</em></span><br />bash -eu -o pipefail<br /><br /><span style=\"color: gray\">-e: <em>exit with nonzero status if command fails</em><br />-u: <em>exit with nonzero status if undefined variable accessed</em><br />-o pipefail: <em>exit with nonzero status if command in pipeline fails</em></span>",
   "cpu-usage": "time ls"

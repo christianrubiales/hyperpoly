@@ -20,7 +20,7 @@
   "null-test<br-/>": "<span style=\"color: gray\"><em>none</em></span>",
   "undefined-variable-access": ""
 },
-"stack": {
+"stacks": {
   "stacks": "<span style=\"color: gray\"><em>data<br />floating point<br />return<br />locals</em></span>",
   "stack-underflow": "",
   "display-stack": ".s<br /><span style=\"color: gray\"><em>displays float stack:</em></span><br />f.s",
@@ -159,7 +159,7 @@
   "write": "",
   "read": ""
 },
-"dictionaries": {
+"dict": {
   "dictionary-literal": "",
   "dictionary-length": "",
   "dictionary-element-access": "",
@@ -167,7 +167,7 @@
   "set-dictionary-element": "",
   "range": ""
 },
-"functions": {
+"func": {
   "def-func": ": add3 + + ;",
   "invoke-func": "3 7 5 add3",
   "missing-arg": "<span style=\"color: gray\"><em>a stack underflow error results if the expected number of arguments is not on the stack</em></span>",
@@ -183,7 +183,7 @@
   "partial-application": "",
   "fried-quotation": ""
 },
-"execution-control": {
+"exec-control": {
   "notes-on-conditionals": "<span style=\"color: gray\"><em>conditionals can only be used in word definitions.</em></span><br /><span style=\"color: gray\">endif <em>can be used in place of</em> then</span>",
   "ifelse": ": ifelse rot if drop else nip then ;<br />x @ 0 &gt; x @ x @ negate ifelse",
   "if": "<span style=\"color: gray\"><em>bool</em></span><br />if<br /><span style=\"white-space: pre-wrap;\">  </span><span style=\"color: gray\"><em>if true</em></span><br />then",
@@ -207,7 +207,7 @@
   "write-to-stdout": ".\" hello\" cr",
   "redirect-to-file": ""
 },
-"files": {
+"file": {
   "file-test,-regular-file-text": "",
   "file-size": "",
   "is-file-readable,-writable,-executable": "",
@@ -217,7 +217,7 @@
   "create-symlink,-symlink-test,-readlink": "",
   "generate-unused-file-name": ""
 },
-"directories": {
+"dir": {
   "working-directory<br-/>": "",
   "build-pathname": "",
   "dirname-and-basename": "",
@@ -240,7 +240,7 @@
   "signal-handler": "",
   "send-signal": ""
 },
-"libraries-namespaces": {
+"lib-namespaces": {
   "interpret-file": "foo.fs include<br /><span style=\"color: gray\"><em>or</em></span><br />s\" foo.fs\" included",
   "load-library": "require foo.fs<br /><span style=\"color: gray\"><em>or</em></span><br />s\" foo.fs\" required",
   "hot-patch": "",
