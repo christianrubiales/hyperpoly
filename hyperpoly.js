@@ -1,6 +1,43 @@
 var jsons = {};
+var selected = [];
+var techs = ['ada','apl','autohotkey','c','cpp','csharp','clojure','','','','','','','','','','','','','','','','','','','','','','',];
 
 $(document).ready(function(){
+
+	// make sure checkboxes are unchecked
+	$('input[name=technology]').prop('checked', false);
+
+	// read params
+	var params={};
+	location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(s,k,v) { params[k] = v });
+	if (params['q']) {
+		params['q'] = params['q'].replace(/\//, '');
+	} else {
+		params['q'] = 'java,python'
+		location.search = '?q=java,python';
+		selected.push('java');
+		selected.push('python');
+	}
+
+	$.updateShortUrl = function () {
+		var href = '';
+
+		for (var i = 0; i < selected.length - 1; i++) {
+			href += selected[i] + ',';
+		}
+		var loc = window.location;
+		if (selected.length > 0) {
+			href += selected[selected.length - 1];
+			$('#shortcuturl').attr('href', './q='+ href);
+			$('#shortcuturl').text(loc.protocol + '//' + loc.host + loc.pathname +'?q='+ href);
+		} else {
+			$('#shortcuturl').attr('href', '.');
+			$('#shortcuturl').text(loc.protocol + '//' + loc.host + loc.pathname);
+		}
+
+
+	}
+
     $('input[name=technology]').click(function() {
     	var technology = $(this).attr('value');
     	var checked = $(this).prop('checked');
@@ -34,8 +71,24 @@ $(document).ready(function(){
 	    			}
 	    		}
 	    	});
+	    	if (selected.indexOf(technology) < 0) {
+	    		selected.push(technology);
+	    	}
 	    } else {
 	    	$("." + technology).remove();
+	    	selected.splice(selected.indexOf(technology), 1);
 	    }
+	    $.updateShortUrl();
     });
+
+	// check techs from params
+	if (params['q']) {
+		var langs = params['q'].split(',');
+		langs.forEach(function (lang) {
+			if (techs.indexOf(lang) > -1) {
+				$('input[value=' + lang + ']').trigger('click');
+			}
+			}
+		});
+	}
 });
