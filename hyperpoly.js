@@ -27,7 +27,7 @@ $(document).ready(function(){
 		var loc = window.location;
 		if (selected.length > 0) {
 			href += selected[selected.length - 1];
-			$('#shortcuturl').attr('href', './q='+ href);
+			$('#shortcuturl').attr('href', './?q='+ href);
 			$('#shortcuturl').text(loc.protocol + '//' + loc.host + loc.pathname +'?q='+ href);
 		} else {
 			$('#shortcuturl').attr('href', '.');
