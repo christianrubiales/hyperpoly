@@ -1,6 +1,5 @@
 var jsons = {};
 var selected = [];
-var techs = ['ada','apl','autohotkey','c','cpp','csharp','clojure','','','','','','','','','','','','','','','','','','','','','','',];
 
 $(document).ready(function(){
 
@@ -85,10 +84,7 @@ $(document).ready(function(){
 	if (params['q']) {
 		var langs = params['q'].split(',');
 		langs.forEach(function (lang) {
-			if (techs.indexOf(lang) > -1) {
-				$('input[value=' + lang + ']').trigger('click');
-			}
-			}
+			$('input[value=' + lang + ']').trigger('click');
 		});
 	}
 });
