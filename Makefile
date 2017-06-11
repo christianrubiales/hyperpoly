@@ -27,6 +27,7 @@ compile-java :
 	javac ./java/com/christianrubiales/hyperpoly/HyperpolyglotHtmlToJson.java -d ./bin
 	javac ./java/com/christianrubiales/hyperpoly/SkeletonHtmlProcessor.java -d ./bin
 	javac ./java/com/christianrubiales/hyperpoly/JsonProcessor.java -d ./bin
+	javac ./java/com/christianrubiales/hyperpoly/Test.java -d ./bin
 
 html-to-json :
 	./html-to-json.sh
